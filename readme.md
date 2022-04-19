@@ -7,6 +7,13 @@ bem vindo
 escolha uma das opções para prosseguir:
 
 buscar ---> (nome, data, end) <!-- funcao nome, data (buscar pelo invtervalo), end(cep, nº -> end) -->
+     como que vc deseja acessar?
+     <br>
+     -nome
+     <br>
+     -data
+     <br>
+     -end
 <br>
 Exibir registro de funcionário  <!-- todas infos --> ---> (deseja modificar, exclui-lo, conceder aumento salarial, Imprimir uma Folha de Salário do Funcionário <!-- parametro: codigo, nome -->)
 <br>
