@@ -15,6 +15,7 @@ buscar ---> (nome, data, end) <!-- funcao nome, data (buscar pelo invtervalo), e
      <br>
      -end
 <br>
+<br>
 Exibir registro de funcionário  <!-- todas infos --> ---> (deseja modificar, exclui-lo, conceder aumento salarial, Imprimir uma Folha de Salário do Funcionário <!-- parametro: codigo, nome -->)
 <br>
 exibir lista de funcionarios <!-- codigo, nome, tipo -->  ---> (exc, add, exibir lista por tipo <!-- cout << tipo \n codigo, nome -->)
