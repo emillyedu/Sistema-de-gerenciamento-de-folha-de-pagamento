@@ -278,7 +278,7 @@ void Funcionario::addFuncionario(){
             else if(to_string(data.ano).length() == 4){
                 ano = to_string(data.ano);
             }
-            else if(to_string(data.ano).length() < 2 || to_string(data.ano).length() == 3 || to_string(data.ano).length() > 4){
+            else{
                 ano = "0";
             }
 
@@ -292,9 +292,10 @@ void Funcionario::addFuncionario(){
             if(stoi(ano) < 1000 || stoi(ano) > 2022){
                 system("cls");
                 cout << "data invalida" << endl;
+                continue;
             }
 
-            else if(stoi(mes)){
+            if(stoi(mes)){
                 if(stoi(mes) == 2){
                     if(data.dia <= 28 && data.dia > 1){
                         break;
