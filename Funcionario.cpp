@@ -2,6 +2,10 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <cstring>
 
 using namespace std;
 
@@ -24,7 +28,6 @@ void Funcionario::lerArquivo(){
     int i = 0;
     if(arquivo.is_open()){
         while(getline(arquivo, linhas[i])){
-            cout << linhas[i] << endl;
             i++;
         }
         arquivo.close();
@@ -34,9 +37,114 @@ void Funcionario::lerArquivo(){
     }
 }
 
+void Funcionario::exibirArquivo(){
+    for(int i = 0; i < 100; i++){
+        if(linhas[i] != ""){
+            cout << linhas[i] << endl;
+        }
+    }
+}
+
+void Funcionario::separadorColuna(string colPresent[], int del[]){
+    for(int i = 1, j = 0; i < 100; i++, j++){
+        if(linhas[i] != ""){
+            colPresent[i] = linhas[i];
+            colPresent[i].erase(0, del[j]);
+            colPresent[i].erase(colPresent[i].find(','));
+        }
+        else{
+            break;
+        }
+        // cout << colPresent[i] << endl;
+    }
+}
+void Funcionario::colunas(){
+    int del[100] = {0};
+
+    criarArquivo();
+    lerArquivo();
+
+    for(int i = 1; i < 100; i++){
+        if(linhas[i] != ""){
+            codigo[i] = linhas[i];
+            codigo[i].erase(3, codigo[i].length());
+        }
+        else{
+            break;
+        }
+        // cout << codigo[i] << endl;
+    }
+    for(int i = 1, j = 0; i < 100; i++, j++){
+        del[j] += codigo[i].size() + 1;
+    }
+    separadorColuna(nome, del);
+    
+    for(int i = 1, j = 0; i < 100; i++, j++){
+        del[j] += nome[i].size() + 1;
+    }
+    separadorColuna(end, del);
+
+    for(int i = 1, j = 0; i < 100; i++, j++){
+        del[j] += end[i].size() + 1;
+    }
+    separadorColuna(telefone, del);
+
+    for(int i = 1, j = 0; i < 100; i++, j++){
+        del[j] += telefone[i].size() + 1;
+    }
+    separadorColuna(data, del);
+    for(int i = 1, j = 0; i < 100; i++, j++){
+        del[j] += data[i].size() + 1;
+    }
+    separadorColuna(desig, del);
+    for(int i = 1, j = 0; i < 100; i++, j++){
+        del[j] += desig[i].size() + 1;
+    }
+    separadorColuna(salario, del);
+    for(int i = 1, j = 0; i < 100; i++, j++){
+        del[j] += salario[i].size() + 1;
+    }
+    separadorColuna(sup, del);
+    for(int i = 1, j = 0; i < 100; i++, j++){
+        del[j] += sup[i].size() + 1;
+    }
+    separadorColuna(acad, del);
+    
+    for(int i = 1, j = 0; i < 100; i++, j++){
+        del[j] += acad[i].length() +1;
+        if(linhas[i] != ""){
+            formacao[i] = linhas[i];
+            formacao[i].erase(0, del[j]);
+        }
+        else{
+            break;
+        }
+        // cout << formacao[i] << endl; 
+    }
+}
+
+string Funcionario::forEndereco(string api[], int line, int tam){
+    api[line].erase(0, tam);
+    int count = 0;
+    while(1){
+        for(int i = 0; i < 50; i++){
+            if(api[line][i] == '"'){
+                api[line].erase(i, 2);
+                count = 1;
+                break;
+            }
+        }
+        if(count = 1){
+            break;
+        }
+    }
+    return api[line];
+}
+
 string Funcionario::retornaEndereco(string cep){
     int i;
-
+    int count = 0;
+    string logradouro;
     string linhasAPI[12];
 
     fstream arquivoAPI;
@@ -66,67 +174,7 @@ string Funcionario::retornaEndereco(string cep){
 
     system("del index.html");
 
-    linhasAPI[2].erase(0, 17);
-    int count = 0;
-    while(1){
-        for(i = 0; i < 50; i++){
-            if(linhasAPI[2][i] == '"'){
-                linhasAPI[2].erase(i, 2);
-                count = 1;
-                break;
-            }
-        }
-        if(count = 1){
-            break;
-        }
-    }
-
-    linhasAPI[4].erase(0, 13);
-    count = 0;
-    while(1){
-        for(i = 0; i < 50; i++){
-            if(linhasAPI[4][i] == '"'){
-                linhasAPI[4].erase(i, 2);
-                count = 1;
-                break;
-            }
-        }
-        if(count = 1){
-            break;
-        }
-    }
-
-    linhasAPI[5].erase(0, 17);
-    count = 0;
-    while(1){
-        for(i = 0; i < 50; i++){
-            if(linhasAPI[5][i] == '"'){
-                linhasAPI[5].erase(i, 2);
-                count = 1;
-                break;
-            }
-        }
-        if(count = 1){
-            break;
-        }
-    }
-
-    linhasAPI[6].erase(0, 9);
-    count = 0;
-    while(1){
-        for(i = 0; i < 50; i++){
-            if(linhasAPI[6][i] == '"'){
-                linhasAPI[6].erase(i, 2);
-                count = 1;
-                break;
-            }
-        }
-        if(count = 1){
-            break;
-        }
-    }
-
-    return "Logradouro: " + linhasAPI[2] + " - " "Bairro: " + linhasAPI[4] + " - " + "Cidade: " + linhasAPI[5] + " - " + "UF: " + linhasAPI[6];
+    return "Logradouro: " + forEndereco(linhasAPI, 2, 17) + " - " "Bairro: " + forEndereco(linhasAPI, 4, 13) + " - " + "Cidade: " + forEndereco(linhasAPI, 5, 17) + " - " + "UF: " + forEndereco(linhasAPI, 6, 9);
 
 }
 
@@ -140,20 +188,32 @@ void Funcionario::addFuncionario(){
     Data data;
     string nome, aux, codigo, cod, telefone, designacao, endereco, cep, numero, areaS[2], areaF[2], formacao;
     string Nan("Nan"), logradouro, bairro, cidade, uf, linha[100], line, dia, mes, ano;
-    char yn;
+    string yn;
     int i, c, desig, li = 0;
     float salario;
 
     criarArquivo();
     lerArquivo();
+    exibirArquivo();
 
-    cout << "deseja adicionar funcionario? [s/n]" << endl;
-    cin >> yn;
-    getchar();
-
+    while(1){
+        cout << "deseja adicionar funcionario? [s/n]" << endl;
+        cin >> yn;
+        getchar();
+        if(yn == "S" || yn == "s" ||yn == "N" || yn == "n"){
+            break;
+        }
+        else if(yn.length() > 1){
+            continue;
+        }
+        else{
+            continue;
+        }
+        system("cls");
+    }
     system("cls");
 
-    while(yn == 'S' || yn == 's'){
+    while(yn == "S" || yn == "s"){
         while(1){
             c = 1;
             while(1){
@@ -201,13 +261,25 @@ void Funcionario::addFuncionario(){
 
         system("cls");
 
-        cout << "poderia informar seu CEP? [s/n]: ";
-        cin >> yn;
-        getchar();
-
-        system("cls");
         while(1){
-            if(yn == 'S' || yn == 's'){
+            cout << "poderia informar seu CEP? [s/n]: ";
+            cin >> yn;
+            getchar();
+            if(yn == "S" || yn == "s" ||yn == "N" || yn == "n"){
+                break;
+            }
+            else if(yn.length() > 1){
+                continue;
+            }
+            else{
+                continue;
+            } 
+            system("cls");
+        }
+        system("cls");
+
+        while(1){
+            if(yn == "S" || yn == "s"){
                 cout << "digite seu CEP: ";
                 getline(cin, cep);
 
@@ -225,7 +297,7 @@ void Funcionario::addFuncionario(){
             }
         }
         
-        if(endereco == "Nan" || yn == 'N' || yn == 'n'){
+        if(endereco == "Nan" || yn == "N" || yn == "n"){
             endereco.clear();
             cep.clear();
             cout << "informe o logradouro: ";
@@ -259,7 +331,6 @@ void Funcionario::addFuncionario(){
             cout << "ano: ";
             cin >> data.ano;
             
-            
             if(to_string(data.dia).length() == 1){
                 dia = "0" + to_string(data.dia);
             }
@@ -281,7 +352,6 @@ void Funcionario::addFuncionario(){
             else{
                 ano = "0";
             }
-
 
             if(stoi(mes) < 1 || stoi(mes) > 12){
                 system("cls");
@@ -367,12 +437,12 @@ void Funcionario::addFuncionario(){
 
         system("cls");
 
-        if(designacao == "gerente" || designacao == "Gerente"){
+        if(designacao == "Gerente"){
             cout << "informe a area de supervisão: ";
             getline(cin, areaS[0]);
             system("cls");
         }
-        else if(designacao == "diretor" || designacao == "Diretor"){
+        else if(designacao == "Diretor"){
             cout << "informe a area de supervisão: ";
             getline(cin, areaS[1]);
             system("cls");
@@ -380,7 +450,7 @@ void Funcionario::addFuncionario(){
             getline(cin, areaF[0]);
             system("cls");
         }
-        else if(designacao == "presidente" || designacao == "Presidente"){
+        else if(designacao == "Presidente"){
             cout << "informe a area de formacao: ";
             getline(cin, areaF[1]);
             system("cls");
@@ -393,7 +463,7 @@ void Funcionario::addFuncionario(){
         cin >> salario;
         getchar();
 
-        line = codigo + "," + nome + "," + endereco + "," + telefone + "," + dia + "/" + mes +"/" + ano + "," + designacao + "," + "R$" + to_string(salario).erase(to_string(salario).size()-4, 4) ;
+        line = codigo + "," + nome + "," + endereco + "," + telefone + "," + dia + "/" + mes +"/" + ano + "," + designacao + "," + to_string(salario).erase(to_string(salario).size()-4, 4) ;
         if(designacao == "gerente" || designacao == "Gerente"){
             linha[li] = line + "," + areaS[0] + "," + Nan + "," + Nan + "\n";
         }
