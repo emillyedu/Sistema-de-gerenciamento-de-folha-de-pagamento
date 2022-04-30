@@ -3,6 +3,9 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <string.h>
+#include <cstdlib> //função rand
+#include <time.h> // time(0)
 
 using namespace std;
 
@@ -20,6 +23,11 @@ public:
     void colunas();
 
     void addFuncionario();
+
+    void excluirRegistro();
+    void calculaFolhaSalarial();
+    float geraDiasTrabalhados(float m);
+    float geraHorasExtras(float m);
 
 protected:
     fstream arquivo;

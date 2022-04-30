@@ -495,3 +495,213 @@ void Funcionario::addFuncionario(){
     arquivo.close();
 
 }
+
+void Funcionario::excluirRegistro(){
+    string cod;
+    int cont = 0, teste = 1;
+    string escolha;
+    string aux[100];
+    string linha[100], line, linhaAux;
+    fstream file;
+
+    lerArquivo();
+
+    system("cls");
+
+    for(int i = 1; i < 100; i++){
+                if(linhas[i] != ""){
+                    aux[i] = linhas[i];
+                    aux[i].erase(5, aux[i].length());
+                }
+    }
+    cout << "Digite o Codigo do Registro: ";
+    
+    cin >> cod;
+
+    for(int i = 0; i < 100; i++){
+        if(aux[i].find(cod) != string::npos && cod.size() == 5){
+            if((linhas[i].find("presidente") != string::npos) || (linhas[i].find("diretor") != string::npos)){
+                system("cls");
+                cout << "Registro nao pode ser excluido." << endl;
+                break;
+            }else{
+                system("cls");
+                cout << "codigo encontrado: " << cod << endl;
+                cout << "Deseja excluir o registro do Arquivo ? ";
+                while(1){
+                    cout << "Digite sim ou nao: ";
+                    cin >> escolha;
+                    if(escolha == "nao"){
+                        system("cls");
+                        cout << "Registro nao exluido." << endl;
+                        break;
+                    }else if(escolha == "sim"){
+                        system("cls");
+                        cout << "O registro foi excluido." << endl;
+                        cont = i;
+                        teste = 0;
+                        break;
+                    }else{
+                        system("cls");
+                        cout << "Opcao invalida" << endl;
+                    }
+                }
+                break;
+            }
+        }else if(linha[i] == ""){
+            system("cls");
+            cout << "Codigo nao encontrado." << endl;
+        }
+    }
+
+    int i = 0;
+    for(int j = 0; j < 100; j++){
+        if((j == cont) && (teste == 0)){
+
+        }else{
+            linhaAux = linhas[j];
+            linha[i] = linhaAux;
+            // linha[i] = linha[j];
+            i++;
+        }
+    }
+
+
+    file.open("./csv/Empresa - Copia.csv", ios::out);
+
+    for(int i = 0; i<100; i++){
+        if(linha[i] == ""){
+            break;
+        }
+        file << linha[i] << endl;
+    }
+    file.close();
+
+}
+
+//Numeros aletórios de dias trabalhados
+float Funcionario::geraDiasTrabalhados(float m){
+    srand(time(0));
+    float dias;
+    if(m == 2){
+        while(1){
+            dias = 1 + rand() % 28;
+            if(dias <= 28 && dias > 14){
+                return dias;
+            }
+        }
+    }else if(m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12){
+        while(1){
+            dias = 1 + rand() % 31;
+            if(dias <= 31 && dias > 15){
+                return dias;
+            }
+        }
+    }else{
+        while(1){
+            dias = 1 + rand() % 30;
+            if(dias <= 30 && dias > 15){
+                return dias;
+            }
+        }
+    }
+}
+
+//Numeros aletórios de horas extras
+float Funcionario::geraHorasExtras(float m){
+    float horas;
+    srand(time(0));
+    while(1){
+        horas = rand() % 2;
+        horas = horas*m;
+        if(horas < 56){
+            return horas;
+        }
+    }
+
+}
+
+void Funcionario::calculaFolhaSalarial(){
+    ifstream fileTeste;
+    fstream file;
+    string data, Smes;
+    string aux[100];
+    float salarios[1000], horasExtras[62], diasTrabalhados[31];
+    float mes;
+
+    cout << "Digite o ano e o mes, em que a folha salarial vai ser calculada: " << "Padrao : yy/xxxx" << endl;
+    cin >> data;
+    Smes = data;
+
+    data = "FolhaSalarial-" + data + ".csv";
+    cout << data << endl;
+
+    // verifica se o arquivo já foi criado
+    fileTeste.open(data);
+    if (fileTeste.is_open()){
+        cout<<"Folha Salarial dessa data ja foi calculada"<<endl;
+        fileTeste.close();
+    }else{
+        fileTeste.close();
+
+        // Abre o arquivo salario e le para o array linhas.
+        arquivo.open("./csv/Salarios.csv", ios::in);
+        
+
+        int i = 0;
+        if(arquivo.is_open()){
+            while(getline(arquivo, linhas[i])){
+                i++;
+            }
+            arquivo.close();
+        }
+        else{
+            cout << "nao foi possivel ler o arquivo" << endl;
+        }
+
+        //Passa linhas para variável aux
+        for(int i = 1; i < 100; i++){
+                if(linhas[i] != ""){
+                    aux[i] = linhas[i];
+                    aux[i].erase(0, 6);
+                    cout << aux[i]<< endl;
+                }
+        }
+        // transforma string em float
+        for(int i = 0; i < 100; i++){
+                if(aux[i] != ""){
+                    salarios[i] = stof(aux[i]);
+                    cout << salarios[i]<< endl;
+                }
+        }
+
+        //variavel mes da folha salarial
+        Smes = Smes.erase(2, Smes.length());
+        mes = stof(Smes);
+
+        cout << geraDiasTrabalhados(mes)<< endl;
+
+        cout << geraHorasExtras(mes) << endl;
+
+        // char* char_arr;
+        // caracter * pch;
+        // string str_obj(linhas[1]);
+        // char_arr = &str_obj[0];
+        // cout << char_arr << endl;
+        // pch=strstr(char_arr,"R$");
+        // printf("%c\n", *pch);
+        // cout << pch << endl;
+        // aux[0] = pch;
+        // aux[0].erase(aux[0].length()-6, aux[0].length());
+        // cout << aux[0] << endl;
+        // cout << aux[0][0];
+
+        // for(int i = 1; i < 100; i++){
+        //          if(linhas[i] != ""){
+        //              aux[i] = linhas[i];
+        //              aux[i].erase(pch, aux[i].length());
+        //          }
+        // }
+
+    }
+}
