@@ -610,8 +610,8 @@ float Funcionario::geraDiasTrabalhados(float m){
 //Numeros aletórios de horas extras
 float Funcionario::geraHorasExtras(float m){
     float horas;
-    srand(time(0));
     while(1){
+        srand(time(0));
         horas = rand() % 2;
         horas = horas*m;
         if(horas < 56){
@@ -626,7 +626,7 @@ void Funcionario::calculaFolhaSalarial(){
     fstream file;
     string data, Smes;
     string aux[100];
-    float salarios[1000], horasExtras[62], diasTrabalhados[31];
+    float salariosBruto[1000], horasExtras[62], diasTrabalhados[31], salariosLiquido[100];
     float mes;
 
     cout << "Digite o ano e o mes, em que a folha salarial vai ser calculada: " << "Padrao : yy/xxxx" << endl;
@@ -670,8 +670,8 @@ void Funcionario::calculaFolhaSalarial(){
         // transforma string em float
         for(int i = 0; i < 100; i++){
                 if(aux[i] != ""){
-                    salarios[i] = stof(aux[i]);
-                    cout << salarios[i]<< endl;
+                    salariosBruto[i] = stof(aux[i]);
+                    cout << salariosBruto[i]<< endl;
                 }
         }
 
@@ -679,9 +679,60 @@ void Funcionario::calculaFolhaSalarial(){
         Smes = Smes.erase(2, Smes.length());
         mes = stof(Smes);
 
-        cout << geraDiasTrabalhados(mes)<< endl;
+        // Calcula salario bruto daquele mes
+        for(int i = 0; i < 100; i++){
+            if(aux[i] != ""){
+                if(mes == 2){
+                    salariosBruto[i] = ((salariosBruto[i]/28)*geraDiasTrabalhados(mes)) +  ((salariosBruto[i]/28)/8)*2*geraHorasExtras(mes);
+                }else if(mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12){
+                    salariosBruto[i] = ((salariosBruto[i]/31)*geraDiasTrabalhados(mes)) +  ((salariosBruto[i]/31)/8)*2*geraHorasExtras(mes);
+                }else{
+                    salariosBruto[i] = ((salariosBruto[i]/30)*geraDiasTrabalhados(mes)) +  ((salariosBruto[i]/30)/8)*2*geraHorasExtras(mes);       
+                }
+                cout << salariosBruto[i] << endl;
+            }
+        }
 
-        cout << geraHorasExtras(mes) << endl;
+        //desconto inss
+        for(int i = 0; i < 100; i++){
+            if(aux[i] != ""){
+                if(salariosBruto[i] <= 1212){
+                    salariosLiquido[i] = salariosBruto[i] - salariosBruto[i]*(7.5/100);
+                }else if(salariosBruto[i] <= 2427.35){
+                    salariosLiquido[i] = salariosBruto[i] - (salariosBruto[i] - 1212.01)*(9/100)+90.90;
+                }else if(salariosBruto[i] <= 3641.03){
+                    salariosLiquido[i] = salariosBruto[i] -(salariosBruto[i] - 2427.36)*(12/100)+200.28;       
+                }else if(salariosBruto[i] <= 7087.22){
+                    salariosLiquido[i] = salariosBruto[i] - (salariosBruto[i] - 3641.04)*(14/100)+536.17;
+                }
+                cout << salariosLiquido[i] << endl;
+            }
+        }
+        
+        //Desconto irrf
+        for(int i = 0; i < 100; i++){
+            if(aux[i] != ""){
+                if(salariosBruto[i] <= 1903.98){
+
+                }else if(salariosBruto[i] <= 2826.65){
+                    salariosLiquido[i] = salariosLiquido[i] - (salariosLiquido[i]*(7.5/100)-142.80);
+                }else if(salariosBruto[i] <= 3751.05){
+                    salariosLiquido[i] = salariosLiquido[i] - (salariosLiquido[i]*(15/100)-354.80);
+                }else if(salariosBruto[i] <= 4664.68){
+                    salariosLiquido[i] = salariosLiquido[i] - (salariosLiquido[i]*(22.5/100)-636.13);     
+                }else if(salariosBruto[i] >= 4664.69){
+                    salariosLiquido[i] = salariosLiquido[i] - (salariosLiquido[i]*(27.5/100)-869.36);
+                }
+                cout << salariosLiquido[i] << endl;
+            }
+        }
+       
+
+
+
+        // cout << geraDiasTrabalhados(mes)<< endl;
+
+        // cout << geraHorasExtras(mes) << endl;
 
         // char* char_arr;
         // caracter * pch;
