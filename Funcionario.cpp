@@ -48,78 +48,81 @@ void Funcionario::exibirArquivo(){
 void Funcionario::separadorColuna(string colPresent[], int del[]){
     for(int i = 1, j = 0; i < 100; i++, j++){
         if(linhas[i] != ""){
-            colPresent[i] = linhas[i];
-            colPresent[i].erase(0, del[j]);
-            colPresent[i].erase(colPresent[i].find(','));
+            colPresent[j] = linhas[i];
+            colPresent[j].erase(0, del[j]);
+            colPresent[j].erase(colPresent[j].find(','));
         }
         else{
             break;
         }
-        // cout << colPresent[i] << endl;
+        //cout << colPresent[j] << endl;
     }
 }
+
 void Funcionario::colunas(){
     int del[100] = {0};
+    int j, i;
 
     criarArquivo();
     lerArquivo();
 
-    for(int i = 1; i < 100; i++){
+    for(i = 1, j = 0; i < 100; i++, j++){
         if(linhas[i] != ""){
-            codigo[i] = linhas[i];
-            codigo[i].erase(3, codigo[i].length());
+            codigo[j] = linhas[i];
+            codigo[j].erase(3, codigo[j].length());
         }
         else{
             break;
         }
-        // cout << codigo[i] << endl;
+        //cout << codigo[j] << endl;
     }
-    for(int i = 1, j = 0; i < 100; i++, j++){
-        del[j] += codigo[i].size() + 1;
+
+    for(j = 0; j < 100; j++){
+        del[j] += codigo[j].size() + 1;
     }
     separadorColuna(nome, del);
     
-    for(int i = 1, j = 0; i < 100; i++, j++){
-        del[j] += nome[i].size() + 1;
+    for(j = 0; j < 100; j++){
+        del[j] += nome[j].size() + 1;
     }
     separadorColuna(end, del);
 
-    for(int i = 1, j = 0; i < 100; i++, j++){
-        del[j] += end[i].size() + 1;
+    for(j = 0; j < 100; j++){
+        del[j] += end[j].size() + 1;
     }
     separadorColuna(telefone, del);
 
-    for(int i = 1, j = 0; i < 100; i++, j++){
-        del[j] += telefone[i].size() + 1;
+    for(j = 0; j < 100; j++){
+        del[j] += telefone[j].size() + 1;
     }
     separadorColuna(data, del);
-    for(int i = 1, j = 0; i < 100; i++, j++){
-        del[j] += data[i].size() + 1;
+    for(j = 0; j < 100; j++){
+        del[j] += data[j].size() + 1;
     }
     separadorColuna(desig, del);
-    for(int i = 1, j = 0; i < 100; i++, j++){
-        del[j] += desig[i].size() + 1;
+    for(j = 0; j < 100; j++){
+        del[j] += desig[j].size() + 1;
     }
     separadorColuna(salario, del);
-    for(int i = 1, j = 0; i < 100; i++, j++){
-        del[j] += salario[i].size() + 1;
+    for(j = 0; j < 100; j++){
+        del[j] += salario[j].size() + 1;
     }
     separadorColuna(sup, del);
-    for(int i = 1, j = 0; i < 100; i++, j++){
-        del[j] += sup[i].size() + 1;
+    for(j = 0; j < 100; j++){
+        del[j] += sup[j].size() + 1;
     }
     separadorColuna(acad, del);
     
-    for(int i = 1, j = 0; i < 100; i++, j++){
-        del[j] += acad[i].length() +1;
+    for(i = 1, j = 0; i < 100; i++, j++){
+        del[j] += acad[j].length() +1;
         if(linhas[i] != ""){
-            formacao[i] = linhas[i];
-            formacao[i].erase(0, del[j]);
+            formacao[j] = linhas[i];
+            formacao[j].erase(0, del[j]);
         }
         else{
             break;
         }
-        // cout << formacao[i] << endl; 
+        //cout << formacao[j] << endl; 
     }
 }
 
