@@ -3,8 +3,8 @@
 
 int main(){
     Funcionario funcionario;
-    // funcionario.addFuncionario();
-    // funcionario.colunas();
+    funcionario.addFuncionario();
+    //funcionario.colunas();
 
     // funcionario.excluirRegistro();
     // funcionario.calculaFolhaSalarial();

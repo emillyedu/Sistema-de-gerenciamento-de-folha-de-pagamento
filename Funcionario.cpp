@@ -12,6 +12,9 @@ using namespace std;
 Funcionario::Funcionario(){
 }
 
+string Funcionario::getCodigo(int i){
+    return codigo[i];
+}
 void Funcionario::criarArquivo(){
     arquivo.open("./csv/Empresa.csv", ios::in);
 
@@ -194,6 +197,7 @@ void Funcionario::addFuncionario(){
     string yn;
     int i, c, desig, li = 0;
     float salario;
+    string tentativa;
 
     criarArquivo();
     lerArquivo();
@@ -215,7 +219,7 @@ void Funcionario::addFuncionario(){
         system("cls");
     }
     system("cls");
-
+    
     while(yn == "S" || yn == "s"){
         while(1){
             c = 1;
@@ -241,13 +245,12 @@ void Funcionario::addFuncionario(){
                     continue;
                 }
             }
-
             for(i = 1; i < 100; i++){
                 if(linhas[i] != ""){
-                    aux = linhas[i];
-                    aux.erase(3, aux.length());
+                    colunas();
+                    aux = getCodigo(i-1);
                 }
-
+            
                 if(aux == codigo){
                     cout << "codigo invalido, tente novamente" << endl;
                     c = 0;

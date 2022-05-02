@@ -29,10 +29,21 @@ public:
     float geraDiasTrabalhados(float m);
     float geraHorasExtras(float m);
 
+    string getCodigo(int i);
+    string getNome(int i);
+    string getEnd(int i);
+    string getTelefone(int i);
+    string getData(int i);
+    string getDesig(int i);
+    string getSalario(int i);
+    string getSup(int i);
+    string getAcad(int i);
+    string getFormacao(int i);
+
 protected:
     fstream arquivo;
     string linhas[100];
-    string codigo[5], nome[100], end[150], telefone[15], data[15], desig[30],salario[50],sup[100],acad[100],formacao[100];
+    string codigo[100], nome[100], end[100], telefone[100], data[100], desig[100],salario[100],sup[100],acad[100],formacao[100];
 };
 
 #endif
