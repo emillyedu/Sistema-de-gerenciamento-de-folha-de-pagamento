@@ -653,8 +653,8 @@ void Funcionario::excluirRegistro(){
 }
 
 //Numeros aletórios de dias trabalhados
-float Funcionario::geraDiasTrabalhados(float m){
-    float dias;
+double Funcionario::geraDiasTrabalhados(double m){
+    double dias;
     srand(time(NULL));
     if(m == 2){
         while(1){
@@ -681,8 +681,8 @@ float Funcionario::geraDiasTrabalhados(float m){
 }
 
 //Numeros aletórios de horas extras
-float Funcionario::geraHorasExtras(float m){
-    float horas;
+double Funcionario::geraHorasExtras(double m){
+    double horas;
     while(1){
         srand(time(NULL));
         horas = rand() % 2;
@@ -698,9 +698,8 @@ void Funcionario::calculaFolhaSalarial(){
     ifstream fileTeste;
     fstream file;
     string data, Smes;
-    string aux[100];
-    float salariosBruto[1000], horasExtras[62], diasTrabalhados[31], salariosLiquido[100];
-    float mes;
+    double salariosBruto[1000], horasExtras[62], diasTrabalhados[31], salariosLiquido[100];
+    double mes;
 
     cout << "Digite o ano e o mes, em que a folha salarial vai ser calculada: " << "Padrao : yy/xxxx" << endl;
     cin >> data;
@@ -717,44 +716,24 @@ void Funcionario::calculaFolhaSalarial(){
     }else{
         fileTeste.close();
 
-        // Abre o arquivo salario e le para o array linhas.
-        arquivo.open("./csv/Salarios.csv", ios::in);
-        
+        lerArquivo();
+        colunas();
 
-        int i = 0;
-        if(arquivo.is_open()){
-            while(getline(arquivo, linhas[i])){
-                i++;
-            }
-            arquivo.close();
-        }
-        else{
-            cout << "nao foi possivel ler o arquivo" << endl;
-        }
 
-        //Passa linhas para variável aux
-        for(int i = 1; i < 100; i++){
-                if(linhas[i] != ""){
-                    aux[i] = linhas[i];
-                    aux[i].erase(0, 6);
-                    cout << aux[i]<< endl;
-                }
-        }
-        // transforma string em float
+        // transforma string em double
         for(int i = 0; i < 100; i++){
-                if(aux[i] != ""){
-                    salariosBruto[i] = stof(aux[i]);
-                    cout << salariosBruto[i]<< endl;
+                if(salario[i] != ""){
+                    salariosBruto[i] = stod(salario[i]);
                 }
         }
 
         //variavel mes da folha salarial
         Smes = Smes.erase(2, Smes.length());
-        mes = stof(Smes);
+        mes = stod(Smes);
 
         // Calcula salario bruto daquele mes
         for(int i = 0; i < 100; i++){
-            if(aux[i] != ""){
+            if(salario[i] != ""){
                 if(mes == 2){
                     salariosBruto[i] = ((salariosBruto[i]/28)*geraDiasTrabalhados(mes)) +  ((salariosBruto[i]/28)/8)*2*geraHorasExtras(mes);
                 }else if(mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12){
@@ -768,15 +747,17 @@ void Funcionario::calculaFolhaSalarial(){
 
         //desconto inss
         for(int i = 0; i < 100; i++){
-            if(aux[i] != ""){
+            if(salario[i] != ""){
                 if(salariosBruto[i] <= 1212){
-                    salariosLiquido[i] = salariosBruto[i] - salariosBruto[i]*(7.5/100);
+                    salariosLiquido[i] = salariosBruto[i] - (salariosBruto[i]*(7.5/100));
                 }else if(salariosBruto[i] <= 2427.35){
-                    salariosLiquido[i] = salariosBruto[i] - (salariosBruto[i] - 1212.01)*(9/100)+90.90;
+                    salariosLiquido[i] = salariosBruto[i] - (((salariosBruto[i] - 1212.01)*(9*1.0/100))+90.90);
                 }else if(salariosBruto[i] <= 3641.03){
-                    salariosLiquido[i] = salariosBruto[i] -(salariosBruto[i] - 2427.36)*(12/100)+200.28;       
+                    salariosLiquido[i] = salariosBruto[i] - (((salariosBruto[i]-2427.36)*(12*1.0/100))+200.28);  
                 }else if(salariosBruto[i] <= 7087.22){
-                    salariosLiquido[i] = salariosBruto[i] - (salariosBruto[i] - 3641.04)*(14/100)+536.17;
+                    salariosLiquido[i] = salariosBruto[i] - (((salariosBruto[i]-3641.04)*(14*1.0/100))+345.92);
+                }else if((salariosBruto[i] >= 7087.23)){
+                    salariosLiquido[i] = salariosBruto[i] - 828.38;
                 }
                 cout << salariosLiquido[i] << endl;
             }
@@ -784,48 +765,21 @@ void Funcionario::calculaFolhaSalarial(){
         
         //Desconto irrf
         for(int i = 0; i < 100; i++){
-            if(aux[i] != ""){
-                if(salariosBruto[i] <= 1903.98){
+            if(salario[i] != ""){
+                if(salariosLiquido[i] <= 1903.98){
 
-                }else if(salariosBruto[i] <= 2826.65){
-                    salariosLiquido[i] = salariosLiquido[i] - (salariosLiquido[i]*(7.5/100)-142.80);
-                }else if(salariosBruto[i] <= 3751.05){
-                    salariosLiquido[i] = salariosLiquido[i] - (salariosLiquido[i]*(15/100)-354.80);
-                }else if(salariosBruto[i] <= 4664.68){
-                    salariosLiquido[i] = salariosLiquido[i] - (salariosLiquido[i]*(22.5/100)-636.13);     
-                }else if(salariosBruto[i] >= 4664.69){
-                    salariosLiquido[i] = salariosLiquido[i] - (salariosLiquido[i]*(27.5/100)-869.36);
+                }else if(salariosLiquido[i] <= 2826.65){
+                    salariosLiquido[i] = salariosLiquido[i] - ((salariosLiquido[i]*(7.5/100))-142.80);
+                }else if(salariosLiquido[i] <= 3751.05){
+                    salariosLiquido[i] = salariosLiquido[i] - ((salariosLiquido[i]*(15*1.0/100))-354.80);
+                }else if(salariosLiquido[i] <= 4664.68){
+                    salariosLiquido[i] = salariosLiquido[i] - ((salariosLiquido[i]*(22.5*1.0/100))-636.13);     
+                }else if(salariosLiquido[i] >= 4664.69){
+                    salariosLiquido[i] = salariosLiquido[i] - ((salariosLiquido[i]*(27.5/100))-869.36);
                 }
                 cout << salariosLiquido[i] << endl;
             }
         }
-       
-
-
-
-        // cout << geraDiasTrabalhados(mes)<< endl;
-
-        // cout << geraHorasExtras(mes) << endl;
-
-        // char* char_arr;
-        // caracter * pch;
-        // string str_obj(linhas[1]);
-        // char_arr = &str_obj[0];
-        // cout << char_arr << endl;
-        // pch=strstr(char_arr,"R$");
-        // printf("%c\n", *pch);
-        // cout << pch << endl;
-        // aux[0] = pch;
-        // aux[0].erase(aux[0].length()-6, aux[0].length());
-        // cout << aux[0] << endl;
-        // cout << aux[0][0];
-
-        // for(int i = 1; i < 100; i++){
-        //          if(linhas[i] != ""){
-        //              aux[i] = linhas[i];
-        //              aux[i].erase(pch, aux[i].length());
-        //          }
-        // }
 
     }
 }

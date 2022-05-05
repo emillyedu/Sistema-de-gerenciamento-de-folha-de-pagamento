@@ -35,8 +35,8 @@ public:
     void excluirRegistro();
 
     void calculaFolhaSalarial();
-    float geraDiasTrabalhados(float m);
-    float geraHorasExtras(float m);
+    double geraDiasTrabalhados(double m);
+    double geraHorasExtras(double m);
 
     double aumentoDeSalarios();
 
