@@ -15,6 +15,34 @@ Funcionario::Funcionario(){
 string Funcionario::getCodigo(int i){
     return codigo[i];
 }
+string Funcionario::getDesig(int i){
+    return desig[i];
+}
+string Funcionario::getSalario(int i){
+    return salario[i];
+}
+string Funcionario::getNome(int i){
+    return nome[i];
+}
+string Funcionario::getEnd(int i){
+    return end[i];
+}
+string Funcionario::getTelefone(int i){
+    return telefone[i];
+}
+string Funcionario::getData(int i){
+    return data[i];
+}
+string Funcionario::getSup(int i){
+    return sup[i];
+}
+string Funcionario::getAcad(int i){
+    return acad[i];
+}
+string Funcionario::getFormacao(int i){
+    return formacao[i];
+}
+
 void Funcionario::criarArquivo(){
     arquivo.open("./csv/Empresa.csv", ios::in);
 
@@ -183,7 +211,57 @@ string Funcionario::retornaEndereco(string cep){
     return "Logradouro: " + forEndereco(linhasAPI, 2, 17) + " - " "Bairro: " + forEndereco(linhasAPI, 4, 13) + " - " + "Cidade: " + forEndereco(linhasAPI, 5, 17) + " - " + "UF: " + forEndereco(linhasAPI, 6, 9);
 
 }
+double Funcionario::aumentoDeSalarios(){
+    Operador operador;
+    Gerente gerente;
+    Presidente presidente;
+    Diretor diretor;
+    
+    double salarioAum[100];
 
+    criarArquivo();
+    lerArquivo();
+
+    int count ;
+    for(int i = 1, j = 0; i < 100; i++, j++){
+        count = 0;
+        if(linhas[i] != ""){
+            count = 1;
+
+            colunas();
+        
+            if(getDesig(j) == "Operador"){
+                salarioAum[j] = operador.calculaSalario(stod(getSalario(j)));
+            }
+            else if(getDesig(j)  == "Presidente"){
+                salarioAum[j] = presidente.calculaSalario(stod(getSalario(j)));
+            }
+            else if(getDesig(j) == "Gerente"){
+                salarioAum[j] = gerente.calculaSalario(stod(getSalario(j)));
+            }
+            else if(getDesig(j) == "Diretor"){
+                salarioAum[j] = diretor.calculaSalario(stod(getSalario(j)));
+            }
+        }
+
+        if(count = 0){
+            break;
+        }
+    }
+
+    arquivo.open("./csv/Empresa.csv", ios::out);
+        arquivo << "codigo,nome,end,telefone,data de ingresso,designacao,salario,area de supervisao,area academica,formacao maxima" << endl;
+        for(int i = 0; i < 100; i++){
+            if(linhas[i+1] != ""){
+                arquivo << getCodigo(i) + "," + getNome(i) + "," + getEnd(i) + "," + getTelefone(i) + "," + getData(i) + "," + getDesig(i) + "," + to_string(salarioAum[i]).erase(to_string(salarioAum[i]).size()-4, 4) + "," + getSup(i) + "," + getAcad(i) + "," + getFormacao(i) << endl;
+            }
+            else{
+                break;
+            }
+        }
+    arquivo.close();
+
+}
 void Funcionario::addFuncionario(){
     typedef struct{
         int dia;
@@ -248,10 +326,8 @@ void Funcionario::addFuncionario(){
             for(i = 1; i < 100; i++){
                 if(linhas[i] != ""){
                     colunas();
-                    aux = getCodigo(i-1);
                 }
-            
-                if(aux == codigo){
+                if(getCodigo(i-1) == codigo){
                     cout << "codigo invalido, tente novamente" << endl;
                     c = 0;
                     break;
@@ -470,13 +546,13 @@ void Funcionario::addFuncionario(){
         getchar();
 
         line = codigo + "," + nome + "," + endereco + "," + telefone + "," + dia + "/" + mes +"/" + ano + "," + designacao + "," + to_string(salario).erase(to_string(salario).size()-4, 4) ;
-        if(designacao == "gerente" || designacao == "Gerente"){
+        if(designacao == "Gerente"){
             linha[li] = line + "," + areaS[0] + "," + Nan + "," + Nan + "\n";
         }
-        else if(designacao == "diretor" || designacao == "Diretor"){
+        else if(designacao == "Diretor"){
             linha[li] = line + "," + areaS[1] + "," + areaF[0] + "," + Nan + "\n";
         }
-        else if(designacao == "presidente" || designacao == "Presidente"){
+        else if(designacao == "Presidente"){
             linha[li] = line + "," + Nan + "," + areaF[1] + "," + formacao + "\n";
         }
         else{

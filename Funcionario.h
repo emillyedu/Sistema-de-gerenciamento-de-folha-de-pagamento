@@ -1,11 +1,19 @@
-#ifndef FUNCIONARIO_H
-#define FUNCIONARIO_H
+#include "Presidente.h"
+#include "Operador.h"
+#include "Diretor.h"
+#include "Gerente.h"
+#include "GerenciaFuncionario.h"
+
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <string.h>
 #include <cstdlib> //função rand
 #include <time.h> // time(0)
+
+
+#ifndef FUNCIONARIO_H
+#define FUNCIONARIO_H
 
 using namespace std;
 
@@ -25,9 +33,12 @@ public:
     void addFuncionario();
 
     void excluirRegistro();
+
     void calculaFolhaSalarial();
     float geraDiasTrabalhados(float m);
     float geraHorasExtras(float m);
+
+    double aumentoDeSalarios();
 
     string getCodigo(int i);
     string getNome(int i);
@@ -39,6 +50,8 @@ public:
     string getSup(int i);
     string getAcad(int i);
     string getFormacao(int i);
+    string getLinhas(int i);
+    fstream getArquivo();
 
 protected:
     fstream arquivo;
