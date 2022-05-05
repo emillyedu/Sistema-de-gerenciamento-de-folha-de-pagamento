@@ -698,14 +698,14 @@ void Funcionario::calculaFolhaSalarial(){
     ifstream fileTeste;
     fstream file;
     string data, Smes;
-    double salariosBruto[1000], horasExtras[62], diasTrabalhados[31], salariosLiquido[100];
+    double salariosBruto[1000], salariosLiquido[100], descontoINSS[100], descontoIRRF[100], salarioEmpresa=0;
     double mes;
 
-    cout << "Digite o ano e o mes, em que a folha salarial vai ser calculada: " << "Padrao : yy/xxxx" << endl;
+    cout << "Digite o ano e o mes, em que a folha salarial vai ser calculada: " << "Padrao : yyxxxx" << endl;
     cin >> data;
     Smes = data;
 
-    data = "FolhaSalarial-" + data + ".csv";
+    data = "./csv/FolhaSalarial-" + data + ".csv";
     cout << data << endl;
 
     // verifica se o arquivo já foi criado
@@ -741,7 +741,7 @@ void Funcionario::calculaFolhaSalarial(){
                 }else{
                     salariosBruto[i] = ((salariosBruto[i]/30)*geraDiasTrabalhados(mes)) +  ((salariosBruto[i]/30)/8)*2*geraHorasExtras(mes);       
                 }
-                cout << salariosBruto[i] << endl;
+                // cout << salariosBruto[i] << endl;
             }
         }
 
@@ -749,17 +749,22 @@ void Funcionario::calculaFolhaSalarial(){
         for(int i = 0; i < 100; i++){
             if(salario[i] != ""){
                 if(salariosBruto[i] <= 1212){
+                    descontoINSS[i] = (salariosBruto[i]*(7.5/100));
                     salariosLiquido[i] = salariosBruto[i] - (salariosBruto[i]*(7.5/100));
                 }else if(salariosBruto[i] <= 2427.35){
+                    descontoINSS[i] = (((salariosBruto[i] - 1212.01)*(9*1.0/100))+90.90);
                     salariosLiquido[i] = salariosBruto[i] - (((salariosBruto[i] - 1212.01)*(9*1.0/100))+90.90);
                 }else if(salariosBruto[i] <= 3641.03){
+                    descontoINSS[i] = (((salariosBruto[i]-2427.36)*(12*1.0/100))+200.28);
                     salariosLiquido[i] = salariosBruto[i] - (((salariosBruto[i]-2427.36)*(12*1.0/100))+200.28);  
                 }else if(salariosBruto[i] <= 7087.22){
+                    descontoINSS[i] = (((salariosBruto[i]-3641.04)*(14*1.0/100))+345.92);
                     salariosLiquido[i] = salariosBruto[i] - (((salariosBruto[i]-3641.04)*(14*1.0/100))+345.92);
                 }else if((salariosBruto[i] >= 7087.23)){
+                    descontoINSS[i] = 828.38;
                     salariosLiquido[i] = salariosBruto[i] - 828.38;
                 }
-                cout << salariosLiquido[i] << endl;
+                // cout << salariosLiquido[i] << endl;
             }
         }
         
@@ -767,19 +772,36 @@ void Funcionario::calculaFolhaSalarial(){
         for(int i = 0; i < 100; i++){
             if(salario[i] != ""){
                 if(salariosLiquido[i] <= 1903.98){
-
+                    descontoIRRF[i] = 0;
                 }else if(salariosLiquido[i] <= 2826.65){
+                    descontoIRRF[i] = ((salariosLiquido[i]*(7.5/100))-142.80);
                     salariosLiquido[i] = salariosLiquido[i] - ((salariosLiquido[i]*(7.5/100))-142.80);
                 }else if(salariosLiquido[i] <= 3751.05){
+                    descontoIRRF[i] = ((salariosLiquido[i]*(15*1.0/100))-354.80);
                     salariosLiquido[i] = salariosLiquido[i] - ((salariosLiquido[i]*(15*1.0/100))-354.80);
                 }else if(salariosLiquido[i] <= 4664.68){
+                    descontoIRRF[i] = ((salariosLiquido[i]*(22.5*1.0/100))-636.13);
                     salariosLiquido[i] = salariosLiquido[i] - ((salariosLiquido[i]*(22.5*1.0/100))-636.13);     
                 }else if(salariosLiquido[i] >= 4664.69){
+                    descontoIRRF[i] = ((salariosLiquido[i]*(27.5/100))-869.36);
                     salariosLiquido[i] = salariosLiquido[i] - ((salariosLiquido[i]*(27.5/100))-869.36);
                 }
-                cout << salariosLiquido[i] << endl;
+                // cout << salariosLiquido[i] << endl;
             }
         }
+
+        file.open(data, fstream::out);
+        file << "Funcinario," << "Designacao," <<"SalarioBruto," << "INSS," << "IRRF," << "SalarioLiquido" << endl; 
+        for(int i = 0; i<100; i++){
+            if(salariosBruto[i] != 0){
+            file << nome[i] << "," << desig[i] << "," << fixed << setprecision(2) << "R$" << salariosBruto[i] << "," << fixed << setprecision(2) 
+            << "R$" <<descontoINSS[i] << "," << fixed << setprecision(2) << "R$" << descontoIRRF[i] << "," << fixed << setprecision(2) << "R$" 
+            << salariosLiquido[i] << endl;
+            salarioEmpresa+=salariosLiquido[i];
+            }
+        }
+        file << "SalarioEmpresa: " << fixed << setprecision(2) << salarioEmpresa << endl;
+        file.close();
 
     }
 }

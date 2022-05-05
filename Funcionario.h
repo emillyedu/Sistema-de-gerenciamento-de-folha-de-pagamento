@@ -10,6 +10,7 @@
 #include <string.h>
 #include <cstdlib> //função rand
 #include <time.h> // time(0)
+#include <iomanip> // setprecision
 
 
 #ifndef FUNCIONARIO_H
