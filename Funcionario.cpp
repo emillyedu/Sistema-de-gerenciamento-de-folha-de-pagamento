@@ -579,30 +579,22 @@ void Funcionario::addFuncionario(){
 }
 
 void Funcionario::excluirRegistro(){
-    string cod;
+    string cod, escolha, linha[100], linhaAux;
     int cont = 0, teste = 1;
-    string escolha;
-    string aux[100];
-    string linha[100], line, linhaAux;
     fstream file;
 
     lerArquivo();
+    colunas();
 
     system("cls");
 
-    for(int i = 1; i < 100; i++){
-                if(linhas[i] != ""){
-                    aux[i] = linhas[i];
-                    aux[i].erase(5, aux[i].length());
-                }
-    }
     cout << "Digite o Codigo do Registro: ";
     
     cin >> cod;
 
     for(int i = 0; i < 100; i++){
-        if(aux[i].find(cod) != string::npos && cod.size() == 5){
-            if((linhas[i].find("presidente") != string::npos) || (linhas[i].find("diretor") != string::npos)){
+        if(codigo[i].find(cod) != string::npos && cod.size() == 3){
+            if((linhas[i+1].find("Presidente") != string::npos) || (linhas[i+1].find("Diretor") != string::npos)){
                 system("cls");
                 cout << "Registro nao pode ser excluido." << endl;
                 break;
@@ -620,7 +612,7 @@ void Funcionario::excluirRegistro(){
                     }else if(escolha == "sim"){
                         system("cls");
                         cout << "O registro foi excluido." << endl;
-                        cont = i;
+                        cont = i+1;
                         teste = 0;
                         break;
                     }else{
@@ -643,13 +635,12 @@ void Funcionario::excluirRegistro(){
         }else{
             linhaAux = linhas[j];
             linha[i] = linhaAux;
-            // linha[i] = linha[j];
             i++;
         }
     }
 
 
-    file.open("./csv/Empresa - Copia.csv", ios::out);
+    file.open("./csv/Empresa.csv", ios::out);
 
     for(int i = 0; i<100; i++){
         if(linha[i] == ""){
@@ -663,8 +654,8 @@ void Funcionario::excluirRegistro(){
 
 //Numeros aletórios de dias trabalhados
 float Funcionario::geraDiasTrabalhados(float m){
-    srand(time(0));
     float dias;
+    srand(time(NULL));
     if(m == 2){
         while(1){
             dias = 1 + rand() % 28;
@@ -693,7 +684,7 @@ float Funcionario::geraDiasTrabalhados(float m){
 float Funcionario::geraHorasExtras(float m){
     float horas;
     while(1){
-        srand(time(0));
+        srand(time(NULL));
         horas = rand() % 2;
         horas = horas*m;
         if(horas < 56){
