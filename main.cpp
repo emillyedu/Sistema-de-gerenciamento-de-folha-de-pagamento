@@ -9,12 +9,15 @@
 int main(){
     Funcionario funcionario;
 
-    // funcionario.aumentoDeSalarios();
+    //funcionario.aumentoDeSalarios();
     
-    // funcionario.addFuncionario();
+    //funcionario.addFuncionario();
     //funcionario.colunas();
+    
+    //funcionario.modificarFuncionario();
 
-    // funcionario.excluirRegistro();
+    //funcionario.excluirRegistro();
     funcionario.calculaFolhaSalarial();
+    
     return 0;
 }
