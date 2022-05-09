@@ -32,6 +32,26 @@ public:
     void colunas();
 
     void addFuncionario();
+    
+    /*======================================= Para as modificações ===============================================*/
+    //ou virtual void?
+    void modificarFuncionario();
+    
+    void modificaCodigo(string cod);
+    void modificaNome(string cod);
+    void modificaEndereco(string cod);
+    void modificaTelefone(string cod);
+    void modificaData(string cod);
+    void modificaSalario(string cod);
+
+    void modificaDesignacao(string cod);
+    void modDesigDeOperador(string cod);
+    void modDesigDeGerente(string cod);
+    void modDesigDeDiretor(string cod);
+    void modDesigDePresidente(string cod);
+    void modDesigParaOperador(string cod);
+        
+    /*============================================================================================================*/
 
     void excluirRegistro();
 
