@@ -26,3 +26,7 @@ Calcular Folha Salarial <!-- parametro: mes -->
 
 Imprimir a folha salarial empresa <!-- mes, ano -->
 
+
+obs:
+Na otimização, mudar a função ler arquivo - receber como parâmetro o arquivo
+
