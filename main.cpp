@@ -17,7 +17,8 @@ int main(){
     //funcionario.modificarFuncionario();
 
     //funcionario.excluirRegistro();
-    funcionario.calculaFolhaSalarial();
+    // funcionario.calculaFolhaSalarial();
+    funcionario.exibeFolhaSalarialFuncionario();
     
     return 0;
 }

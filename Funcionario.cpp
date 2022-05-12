@@ -580,1109 +580,1109 @@ void Funcionario::addFuncionario(){
 
 /* ======================================  Para as modificações =============================================*/
 
-void Funcionario::modificaCodigo(string cod){
-    //fstream file;
-    int cont = 0;
-    string linha[NUM_LINHAS], modificacao;
+// void Funcionario::modificaCodigo(string cod){
+//     //fstream file;
+//     int cont = 0;
+//     string linha[NUM_LINHAS], modificacao;
     
-    colunas();
+//     colunas();
 
-    cout << "================================= Modificar Codigo ===================================" << endl;
-    cout << "\n";
+//     cout << "================================= Modificar Codigo ===================================" << endl;
+//     cout << "\n";
 
-    cout << "Digite o novo codigo: ";
-    cin >> modificacao;
+//     cout << "Digite o novo codigo: ";
+//     cin >> modificacao;
 
-    system("cls");
+//     system("cls");
 
-    arquivo.open("./csv/Empresa.csv", ios::in);
+//     arquivo.open("./csv/Empresa.csv", ios::in);
 
-    if (arquivo.is_open()){
+//     if (arquivo.is_open()){
 
-        //if (cod.find("EF") != string::npos && cod.size() == 5){   
+//         //if (cod.find("EF") != string::npos && cod.size() == 5){   
 
-        while(getline(arquivo, linhas[NUM_LINHAS])){
-            if (codigo[cont].find(cod) != string::npos){
+//         while(getline(arquivo, linhas[NUM_LINHAS])){
+//             if (codigo[cont].find(cod) != string::npos){
 
-                cout << linhas[cont] << endl;
-                cout << "\tcodigo encontrado\n";
+//                 cout << linhas[cont] << endl;
+//                 cout << "\tcodigo encontrado\n";
                 
-                linha[cont] = linhas[cont];
+//                 linha[cont] = linhas[cont];
 
-                linha[cont] = modificacao + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + "," + data[cont]
-                + "," + desig[cont] + "," + salario[cont] + "," + sup[cont] + "," + acad[cont] + "," + formacao[cont]; 
+//                 linha[cont] = modificacao + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + "," + data[cont]
+//                 + "," + desig[cont] + "," + salario[cont] + "," + sup[cont] + "," + acad[cont] + "," + formacao[cont]; 
     
-                cout << linha[cont] << endl;
+//                 cout << linha[cont] << endl;
 
-                cont++;
+//                 cont++;
                     
-            } else {
-                linha[cont] = linhas[cont];
-                cont++;
-            }    
-        }
+//             } else {
+//                 linha[cont] = linhas[cont];
+//                 cont++;
+//             }    
+//         }
 
-    } else {
-        cout <<  "Nao foi possivel ler o arquivo" << endl;
-    }   
+//     } else {
+//         cout <<  "Nao foi possivel ler o arquivo" << endl;
+//     }   
 
-    arquivo.close();
+//     arquivo.close();
 
-    arquivo.open("./csv/Empresa.csv", ios::out);
+//     arquivo.open("./csv/Empresa.csv", ios::out);
 
-    for (int i = 0; i < cont; i++){
-        arquivo << linha[i] << endl;
-    }
+//     for (int i = 0; i < cont; i++){
+//         arquivo << linha[i] << endl;
+//     }
 
-    arquivo.close();   
-}        
+//     arquivo.close();   
+// }        
 
-void Funcionario::modificaNome(string cod){
-    //fstream file;
-    int cont = 0;
-    string linha[NUM_LINHAS], modificacao;
+// void Funcionario::modificaNome(string cod){
+//     //fstream file;
+//     int cont = 0;
+//     string linha[NUM_LINHAS], modificacao;
 
-    colunas();
+//     colunas();
     
-    cout << "================================= Modificar Nome ===================================" << endl;
-    cout << "\n";
+//     cout << "================================= Modificar Nome ===================================" << endl;
+//     cout << "\n";
 
-    cout << "Digite o novo nome: ";
-    getline(cin, modificacao);
+//     cout << "Digite o novo nome: ";
+//     getline(cin, modificacao);
 
-    system("cls");
+//     system("cls");
 
-    arquivo.open("./csv/Empresa.csv", ios::in);
+//     arquivo.open("./csv/Empresa.csv", ios::in);
 
-    if (arquivo.is_open()){
+//     if (arquivo.is_open()){
 
-        //if (cod.find("EF") != string::npos && cod.size() == 5){   
+//         //if (cod.find("EF") != string::npos && cod.size() == 5){   
 
-        while(getline(arquivo, linhas[NUM_LINHAS])){
-            if (codigo[cont].find(cod) != string::npos){
+//         while(getline(arquivo, linhas[NUM_LINHAS])){
+//             if (codigo[cont].find(cod) != string::npos){
 
-                cout << linhas[cont] << endl;
-                cout << "\tcodigo encontrado\n";
+//                 cout << linhas[cont] << endl;
+//                 cout << "\tcodigo encontrado\n";
                 
-                linha[cont] = linhas[cont];
+//                 linha[cont] = linhas[cont];
 
-                linha[cont] = codigo[cont] + "," + modificacao + "," + end[cont] + "," + telefone[cont] + "," + data[cont]
-                + "," + desig[cont] + "," + salario[cont] + "," + sup[cont] + "," + acad[cont] + "," + formacao[cont]; 
+//                 linha[cont] = codigo[cont] + "," + modificacao + "," + end[cont] + "," + telefone[cont] + "," + data[cont]
+//                 + "," + desig[cont] + "," + salario[cont] + "," + sup[cont] + "," + acad[cont] + "," + formacao[cont]; 
     
-                cout << linha[cont] << endl;
+//                 cout << linha[cont] << endl;
 
-                cont++;
+//                 cont++;
                     
-            } else {
-                linha[cont] = linhas[cont];
-                cont++;
-            }
-        }
+//             } else {
+//                 linha[cont] = linhas[cont];
+//                 cont++;
+//             }
+//         }
 
-    } else {
-        cout <<  "Nao foi possivel ler o arquivo" << endl;
-    }   
+//     } else {
+//         cout <<  "Nao foi possivel ler o arquivo" << endl;
+//     }   
 
-    arquivo.close();
+//     arquivo.close();
 
-    arquivo.open("./csv/Empresa.csv", ios::out);
+//     arquivo.open("./csv/Empresa.csv", ios::out);
 
-    for (int i = 0; i < cont; i++){
-        arquivo << linha[i] << endl;
-    }
+//     for (int i = 0; i < cont; i++){
+//         arquivo << linha[i] << endl;
+//     }
 
-    arquivo.close();   
-}        
+//     arquivo.close();   
+// }        
 
-void Funcionario::modificaEndereco(string cod){
-    //fstream file;
-    int cont = 0;
-    string linha[NUM_LINHAS];
-    string modificacao, endereco, logradouro, bairro, cidade, uf, numero;
+// void Funcionario::modificaEndereco(string cod){
+//     //fstream file;
+//     int cont = 0;
+//     string linha[NUM_LINHAS];
+//     string modificacao, endereco, logradouro, bairro, cidade, uf, numero;
 
-    colunas();
+//     colunas();
     
-    cout << "================================= Modificar Endereco ===================================" << endl;
-    cout << "\n";
+//     cout << "================================= Modificar Endereco ===================================" << endl;
+//     cout << "\n";
 
-    cout << "Digite o novo endereco:\n\n";
-    cout << "Logradouro: ";
-    getline(cin, logradouro);
+//     cout << "Digite o novo endereco:\n\n";
+//     cout << "Logradouro: ";
+//     getline(cin, logradouro);
 
-    cout << "Bairro: ";
-    getline(cin, bairro);
+//     cout << "Bairro: ";
+//     getline(cin, bairro);
 
-    cout << "Cidade: ";
-    getline(cin, cidade);
+//     cout << "Cidade: ";
+//     getline(cin, cidade);
 
-    cout << "UF: ";
-    getline(cin, uf); 
+//     cout << "UF: ";
+//     getline(cin, uf); 
 
-    cout << "Numero: ";
-    getline(cin, numero);
+//     cout << "Numero: ";
+//     getline(cin, numero);
 
-    endereco = "Logradouro: " + logradouro + " - " + "Bairro: " + bairro + " - "
-    + "Cidade: " + cidade + " - " + "UF: " + uf + " - " + "numero: " + numero;
+//     endereco = "Logradouro: " + logradouro + " - " + "Bairro: " + bairro + " - "
+//     + "Cidade: " + cidade + " - " + "UF: " + uf + " - " + "numero: " + numero;
 
-    modificacao = endereco;
+//     modificacao = endereco;
 
-    system("cls");
+//     system("cls");
     
-    arquivo.open("./csv/Empresa.csv", ios::in);
+//     arquivo.open("./csv/Empresa.csv", ios::in);
 
-    if (arquivo.is_open()){
+//     if (arquivo.is_open()){
 
-        //if (cod.find("EF") != string::npos && cod.size() == 5){   
+//         //if (cod.find("EF") != string::npos && cod.size() == 5){   
 
-        while(getline(arquivo, linhas[NUM_LINHAS])){
-            if (codigo[cont].find(cod) != string::npos){
+//         while(getline(arquivo, linhas[NUM_LINHAS])){
+//             if (codigo[cont].find(cod) != string::npos){
 
-                cout << linhas[cont] << endl;
-                cout << "\tcodigo encontrado\n";
+//                 cout << linhas[cont] << endl;
+//                 cout << "\tcodigo encontrado\n";
                 
-                linha[cont] = linhas[cont];
+//                 linha[cont] = linhas[cont];
 
-                linha[cont] = codigo[cont] + "," + nome[cont] + "," + modificacao + "," + telefone[cont] + "," + data[cont]
-                + "," + desig[cont] + "," + salario[cont] + "," + sup[cont] + "," + acad[cont] + "," + formacao[cont]; 
+//                 linha[cont] = codigo[cont] + "," + nome[cont] + "," + modificacao + "," + telefone[cont] + "," + data[cont]
+//                 + "," + desig[cont] + "," + salario[cont] + "," + sup[cont] + "," + acad[cont] + "," + formacao[cont]; 
     
-                cout << linha[cont] << endl;
+//                 cout << linha[cont] << endl;
 
-                cont++;
+//                 cont++;
                     
-            } else {
-                linha[cont] = linhas[cont];
-                cont++;
-            }
-        }
+//             } else {
+//                 linha[cont] = linhas[cont];
+//                 cont++;
+//             }
+//         }
 
-    } else {
-        cout <<  "Nao foi possivel ler o arquivo" << endl;
-    }   
+//     } else {
+//         cout <<  "Nao foi possivel ler o arquivo" << endl;
+//     }   
 
-    arquivo.close();
+//     arquivo.close();
 
-    arquivo.open("./csv/Empresa.csv", ios::out);
+//     arquivo.open("./csv/Empresa.csv", ios::out);
 
-    for (int i = 0; i < cont; i++){
-        arquivo << linha[i] << endl;
-    }
+//     for (int i = 0; i < cont; i++){
+//         arquivo << linha[i] << endl;
+//     }
 
-    arquivo.close();   
-}        
+//     arquivo.close();   
+// }        
 
-void Funcionario::modificaTelefone(string cod){
-    //fstream file;
-    int cont = 0;
-    string linha[NUM_LINHAS], modificacao;
+// void Funcionario::modificaTelefone(string cod){
+//     //fstream file;
+//     int cont = 0;
+//     string linha[NUM_LINHAS], modificacao;
 
-    colunas();
+//     colunas();
     
-    cout << "================================= Modificar Telefone ===================================" << endl;
-    cout << "\n";
+//     cout << "================================= Modificar Telefone ===================================" << endl;
+//     cout << "\n";
 
-    cout << "Digite o novo telefone - formato: (00) 0000-0000: ";
-    getline(cin, modificacao);
-    //cin.ignore(); // ou getchar?
+//     cout << "Digite o novo telefone - formato: (00) 0000-0000: ";
+//     getline(cin, modificacao);
+//     //cin.ignore(); // ou getchar?
 
-    system("cls");
+//     system("cls");
 
-    arquivo.open("./csv/Empresa.csv", ios::in);
+//     arquivo.open("./csv/Empresa.csv", ios::in);
 
-    if (arquivo.is_open()){
+//     if (arquivo.is_open()){
 
-        //if (cod.find("EF") != string::npos && cod.size() == 5){   
+//         //if (cod.find("EF") != string::npos && cod.size() == 5){   
 
-        while(getline(arquivo, linhas[NUM_LINHAS])){
-            if (codigo[cont].find(cod) != string::npos){
+//         while(getline(arquivo, linhas[NUM_LINHAS])){
+//             if (codigo[cont].find(cod) != string::npos){
 
-                cout << linhas[cont] << endl;
-                cout << "\tcodigo encontrado\n";
+//                 cout << linhas[cont] << endl;
+//                 cout << "\tcodigo encontrado\n";
                 
-                linha[cont] = linhas[cont];
+//                 linha[cont] = linhas[cont];
 
-                linha[cont] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + modificacao + "," + data[cont]
-                + "," + desig[cont] + "," + salario[cont] + "," + sup[cont] + "," + acad[cont] + "," + formacao[cont]; 
+//                 linha[cont] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + modificacao + "," + data[cont]
+//                 + "," + desig[cont] + "," + salario[cont] + "," + sup[cont] + "," + acad[cont] + "," + formacao[cont]; 
     
-                cout << linha[cont] << endl;
+//                 cout << linha[cont] << endl;
 
-                cont++;
+//                 cont++;
                     
-            } else {
-                linha[cont] = linhas[cont];
-                cont++;
-            }
-        }
+//             } else {
+//                 linha[cont] = linhas[cont];
+//                 cont++;
+//             }
+//         }
 
-    } else {
-        cout <<  "Nao foi possivel ler o arquivo" << endl;
-    }   
+//     } else {
+//         cout <<  "Nao foi possivel ler o arquivo" << endl;
+//     }   
 
-    arquivo.close();
+//     arquivo.close();
 
-    arquivo.open("./csv/Empresa.csv", ios::out);
+//     arquivo.open("./csv/Empresa.csv", ios::out);
 
-    for (int i = 0; i < cont; i++){
-        arquivo << linha[i] << endl;
-    }
+//     for (int i = 0; i < cont; i++){
+//         arquivo << linha[i] << endl;
+//     }
 
-    arquivo.close();   
-}
+//     arquivo.close();   
+// }
 
-void Funcionario::modificaData(string cod){
-    //fstream file;
-    int cont = 0;
-    string linha[NUM_LINHAS], modificacao; 
+// void Funcionario::modificaData(string cod){
+//     //fstream file;
+//     int cont = 0;
+//     string linha[NUM_LINHAS], modificacao; 
 
-    colunas();
+//     colunas();
     
-    cout << "================================= Modificar Data de Ingresso ===================================" << endl;
-    cout << "\n";
+//     cout << "================================= Modificar Data de Ingresso ===================================" << endl;
+//     cout << "\n";
 
-    cout << "Digite a nova data - formato: 00/00/00: ";
-    getline(cin, modificacao);
-    //cin.ignore(); // ou getchar?
+//     cout << "Digite a nova data - formato: 00/00/00: ";
+//     getline(cin, modificacao);
+//     //cin.ignore(); // ou getchar?
 
-    system("cls");
+//     system("cls");
 
-    arquivo.open("./csv/Empresa.csv", ios::in);
+//     arquivo.open("./csv/Empresa.csv", ios::in);
 
-    if (arquivo.is_open()){
+//     if (arquivo.is_open()){
 
-        //if (cod.find("EF") != string::npos && cod.size() == 5){   
+//         //if (cod.find("EF") != string::npos && cod.size() == 5){   
 
-        while(getline(arquivo, linhas[NUM_LINHAS])){
-            if (codigo[cont].find(cod) != string::npos){
+//         while(getline(arquivo, linhas[NUM_LINHAS])){
+//             if (codigo[cont].find(cod) != string::npos){
 
-                cout << linhas[cont] << endl;
-                cout << "\tcodigo encontrado\n";
+//                 cout << linhas[cont] << endl;
+//                 cout << "\tcodigo encontrado\n";
                 
-                linha[cont] = linhas[cont];
+//                 linha[cont] = linhas[cont];
 
-                linha[cont] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + ","
-                + modificacao + "," + desig[cont] + "," + salario[cont] + "," + sup[cont] + "," + acad[cont] + ","
-                + formacao[cont]; 
+//                 linha[cont] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + ","
+//                 + modificacao + "," + desig[cont] + "," + salario[cont] + "," + sup[cont] + "," + acad[cont] + ","
+//                 + formacao[cont]; 
     
-                cout << linha[cont] << endl;
+//                 cout << linha[cont] << endl;
 
-                cont++;
+//                 cont++;
                     
-            } else {
-                linha[cont] = linhas[cont];
-                cont++;
-            }
-        }
+//             } else {
+//                 linha[cont] = linhas[cont];
+//                 cont++;
+//             }
+//         }
 
-    } else {
-        cout <<  "Nao foi possivel ler o arquivo" << endl;
-    }   
+//     } else {
+//         cout <<  "Nao foi possivel ler o arquivo" << endl;
+//     }   
 
-    arquivo.close();
+//     arquivo.close();
 
-    arquivo.open("./csv/Empresa.csv", ios::out);
+//     arquivo.open("./csv/Empresa.csv", ios::out);
 
-    for (int i = 0; i < cont; i++){
-        arquivo << linha[i] << endl;
-    }
+//     for (int i = 0; i < cont; i++){
+//         arquivo << linha[i] << endl;
+//     }
 
-    arquivo.close(); 
-}
+//     arquivo.close(); 
+// }
 
-void Funcionario::modificaSalario(string cod){
-    //fstream file;
-    int cont = 0;
-    string linha[NUM_LINHAS], modificacao;
+// void Funcionario::modificaSalario(string cod){
+//     //fstream file;
+//     int cont = 0;
+//     string linha[NUM_LINHAS], modificacao;
     
-    colunas();
+//     colunas();
     
-    cout << "================================= Modificar Salario ===================================" << endl;
-    cout << "\n";
+//     cout << "================================= Modificar Salario ===================================" << endl;
+//     cout << "\n";
 
-    cout << "Digite o novo salario: ";
-    getline(cin, modificacao);
-    //cin.ignore(); // ou getchar?
+//     cout << "Digite o novo salario: ";
+//     getline(cin, modificacao);
+//     //cin.ignore(); // ou getchar?
 
-    system("cls");
+//     system("cls");
 
-    arquivo.open("./csv/Empresa.csv", ios::in);
+//     arquivo.open("./csv/Empresa.csv", ios::in);
 
-    if (arquivo.is_open()){
+//     if (arquivo.is_open()){
 
-        //if (cod.find("EF") != string::npos && cod.size() == 5){   
+//         //if (cod.find("EF") != string::npos && cod.size() == 5){   
 
-        while(getline(arquivo, linhas[NUM_LINHAS])){
-            if (codigo[cont].find(cod) != string::npos){
+//         while(getline(arquivo, linhas[NUM_LINHAS])){
+//             if (codigo[cont].find(cod) != string::npos){
 
-                cout << linhas[cont] << endl;
-                cout << "\tcodigo encontrado\n";
+//                 cout << linhas[cont] << endl;
+//                 cout << "\tcodigo encontrado\n";
                 
-                linha[cont] = linhas[cont];
+//                 linha[cont] = linhas[cont];
 
-                linha[cont] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + "," + data[cont]
-                + "," + desig[cont] + "," + modificacao + "," + sup[cont] + "," + acad[cont] + "," + formacao[cont]; 
+//                 linha[cont] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + "," + data[cont]
+//                 + "," + desig[cont] + "," + modificacao + "," + sup[cont] + "," + acad[cont] + "," + formacao[cont]; 
     
-                cout << linha[cont] << endl;
+//                 cout << linha[cont] << endl;
 
-                cont++;
+//                 cont++;
                     
-            } else {
-                linha[cont] = linhas[cont];
-                cont++;
-            }
-        }
+//             } else {
+//                 linha[cont] = linhas[cont];
+//                 cont++;
+//             }
+//         }
 
-    } else {
-        cout <<  "Nao foi possivel ler o arquivo" << endl;
-    }   
+//     } else {
+//         cout <<  "Nao foi possivel ler o arquivo" << endl;
+//     }   
 
-    arquivo.close();
+//     arquivo.close();
 
-    arquivo.open("./csv/Empresa.csv", ios::out);
+//     arquivo.open("./csv/Empresa.csv", ios::out);
 
-    for (int i = 0; i < cont; i++){
-        arquivo << linha[i] << endl;
-    }
+//     for (int i = 0; i < cont; i++){
+//         arquivo << linha[i] << endl;
+//     }
 
-    arquivo.close();   
-}
+//     arquivo.close();   
+// }
 
-void Funcionario::modDesigParaOperador(string cod){
-    int cont = 0;
-    string linha[NUM_LINHAS];
-    string modificacao = "Operador";
+// void Funcionario::modDesigParaOperador(string cod){
+//     int cont = 0;
+//     string linha[NUM_LINHAS];
+//     string modificacao = "Operador";
 
-    colunas();
+//     colunas();
 
-    arquivo.open("./csv/Empresa.csv", ios::in);
+//     arquivo.open("./csv/Empresa.csv", ios::in);
 
-    if (arquivo.is_open()){
+//     if (arquivo.is_open()){
 
-        while(getline(arquivo, linhas[NUM_LINHAS])){
-            if (codigo[cont].find(cod) != string::npos){
+//         while(getline(arquivo, linhas[NUM_LINHAS])){
+//             if (codigo[cont].find(cod) != string::npos){
 
-                cout << linhas[cont] << endl;
-                cout << "\tcodigo encontrado\n";
+//                 cout << linhas[cont] << endl;
+//                 cout << "\tcodigo encontrado\n";
                 
-                linha[cont] = linhas[cont];
+//                 linha[cont] = linhas[cont];
 
-                linha[cont] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + "," + data[cont]
-                + "," + modificacao + "," + salario[cont] + "," + "Nan" + "," + "Nan" + "," + "Nan"; 
+//                 linha[cont] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + "," + data[cont]
+//                 + "," + modificacao + "," + salario[cont] + "," + "Nan" + "," + "Nan" + "," + "Nan"; 
     
-                cout << linha[cont] << endl;
+//                 cout << linha[cont] << endl;
 
-                cont++;
+//                 cont++;
                     
-            } else {
-                linha[cont] = linhas[cont];
-                cont++;
-            }
-        }
+//             } else {
+//                 linha[cont] = linhas[cont];
+//                 cont++;
+//             }
+//         }
                 
-    } else {
-        cout <<  "Nao foi possivel ler o arquivo" << endl;
-    }   
+//     } else {
+//         cout <<  "Nao foi possivel ler o arquivo" << endl;
+//     }   
 
-    arquivo.close();
+//     arquivo.close();
 
-    arquivo.open("./csv/Empresa.csv", ios::out);
+//     arquivo.open("./csv/Empresa.csv", ios::out);
 
-    for (int i = 0; i < cont; i++){
-        arquivo << linha[i] << endl;
-    }
+//     for (int i = 0; i < cont; i++){
+//         arquivo << linha[i] << endl;
+//     }
 
-    arquivo.close();
-}
+//     arquivo.close();
+// }
 
-void Funcionario::modDesigDeGerente(string cod){
-    int cont;
-    string linha[NUM_LINHAS];
-    string modificacao, areaS, areaF, formacaoMax;
+// void Funcionario::modDesigDeGerente(string cod){
+//     int cont;
+//     string linha[NUM_LINHAS];
+//     string modificacao, areaS, areaF, formacaoMax;
 
-    colunas();
+//     colunas();
 
-    while(1){
-        cont = 0; // Corrigir isso para os outros métodos também.
+//     while(1){
+//         cont = 0; // Corrigir isso para os outros métodos também.
 
-        cout << "Digite a nova designacao - (Operador, Diretor ou Presidente?): ";
-        getline(cin, modificacao);
-        //cin.ignore(); // ou getchar?
+//         cout << "Digite a nova designacao - (Operador, Diretor ou Presidente?): ";
+//         getline(cin, modificacao);
+//         //cin.ignore(); // ou getchar?
 
-        if (modificacao == "Operador" || modificacao == "operador"){
+//         if (modificacao == "Operador" || modificacao == "operador"){
             
-            modDesigParaOperador(cod);
-            break;
+//             modDesigParaOperador(cod);
+//             break;
 
-        } else if (modificacao == "Diretor" || modificacao == "diretor"){
+//         } else if (modificacao == "Diretor" || modificacao == "diretor"){
             
-            cout << "\n\nQual a area de supervisao? ";
-            getline(cin, areaS);
+//             cout << "\n\nQual a area de supervisao? ";
+//             getline(cin, areaS);
 
-            cout << "\nQual a area de formacao? ";
-            getline(cin, areaF);
+//             cout << "\nQual a area de formacao? ";
+//             getline(cin, areaF);
 
-            system("cls");
+//             system("cls");
 
-            arquivo.open("./csv/Empresa.csv", ios::in);
+//             arquivo.open("./csv/Empresa.csv", ios::in);
 
-            if (arquivo.is_open()){
+//             if (arquivo.is_open()){
 
-             //if (cod.find("EF") != string::npos && cod.size() == 5){   
+//              //if (cod.find("EF") != string::npos && cod.size() == 5){   
 
-                while(getline(arquivo, linhas[NUM_LINHAS])){
-                    if (codigo[cont].find(cod) != string::npos){
+//                 while(getline(arquivo, linhas[NUM_LINHAS])){
+//                     if (codigo[cont].find(cod) != string::npos){
 
-                        cout << linhas[cont] << endl;
-                        cout << "codigo encontrado\n";
+//                         cout << linhas[cont] << endl;
+//                         cout << "codigo encontrado\n";
                 
-                        linha[cont] = linhas[cont];
+//                         linha[cont] = linhas[cont];
 
-                        linha[cont] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + "," + data[cont]
-                        + "," + modificacao + "," + salario[cont] + "," + areaS + "," + areaF + "," + formacao[cont]; 
+//                         linha[cont] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + "," + data[cont]
+//                         + "," + modificacao + "," + salario[cont] + "," + areaS + "," + areaF + "," + formacao[cont]; 
     
-                        cout << linha[cont] << endl;
+//                         cout << linha[cont] << endl;
 
-                        cont++;
+//                         cont++;
                     
-                    } else {
-                        linha[cont] = linhas[cont];
-                        cont++;
-                    }
-                }
+//                     } else {
+//                         linha[cont] = linhas[cont];
+//                         cont++;
+//                     }
+//                 }
 
-            } else {
-                cout <<  "Nao foi possivel ler o arquivo" << endl;
-            }   
+//             } else {
+//                 cout <<  "Nao foi possivel ler o arquivo" << endl;
+//             }   
 
-            arquivo.close();
+//             arquivo.close();
 
-            arquivo.open("./csv/Empresa.csv", ios::out);
+//             arquivo.open("./csv/Empresa.csv", ios::out);
 
-            for (int i = 0; i < cont; i++){
-                arquivo << linha[i] << endl;
-            }
+//             for (int i = 0; i < cont; i++){
+//                 arquivo << linha[i] << endl;
+//             }
 
-            arquivo.close(); 
+//             arquivo.close(); 
 
-            break;
+//             break;
         
-        } else if (modificacao == "Presidente" || modificacao == "presidente"){
+//         } else if (modificacao == "Presidente" || modificacao == "presidente"){
 
-            cout << "\nQual a area de formacao? ";
-            getline(cin, areaF);
+//             cout << "\nQual a area de formacao? ";
+//             getline(cin, areaF);
 
-            cout << "\nQual a formacao maxima? ";
-            getline(cin, formacaoMax);
+//             cout << "\nQual a formacao maxima? ";
+//             getline(cin, formacaoMax);
 
-            system("cls");
+//             system("cls");
 
-            arquivo.open("./csv/Empresa.csv", ios::in);
+//             arquivo.open("./csv/Empresa.csv", ios::in);
 
-            if (arquivo.is_open()){
+//             if (arquivo.is_open()){
 
-             //if (cod.find("EF") != string::npos && cod.size() == 5){   
+//              //if (cod.find("EF") != string::npos && cod.size() == 5){   
 
-                while(getline(arquivo, linhas[NUM_LINHAS])){
-                    if (codigo[cont].find(cod) != string::npos){
+//                 while(getline(arquivo, linhas[NUM_LINHAS])){
+//                     if (codigo[cont].find(cod) != string::npos){
 
-                        cout << linhas[cont] << endl;
-                        cout << "codigo encontrado\n";
+//                         cout << linhas[cont] << endl;
+//                         cout << "codigo encontrado\n";
                 
-                        linha[cont] = linhas[cont];
+//                         linha[cont] = linhas[cont];
 
-                        linha[cont] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + "," + data[cont]
-                        + "," + modificacao + "," + salario[cont] + "," + "Nan" + "," + areaF + "," + formacaoMax; 
+//                         linha[cont] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + "," + data[cont]
+//                         + "," + modificacao + "," + salario[cont] + "," + "Nan" + "," + areaF + "," + formacaoMax; 
     
-                        cout << linha[cont] << endl;
+//                         cout << linha[cont] << endl;
 
-                        cont++;
+//                         cont++;
                     
-                    } else {
-                        linha[cont] = linhas[cont];
-                        cont++;
-                    }
-                }
+//                     } else {
+//                         linha[cont] = linhas[cont];
+//                         cont++;
+//                     }
+//                 }
 
-            } else {
-                cout <<  "Nao foi possivel ler o arquivo" << endl;
-            }   
+//             } else {
+//                 cout <<  "Nao foi possivel ler o arquivo" << endl;
+//             }   
 
-            arquivo.close();
+//             arquivo.close();
 
-            arquivo.open("./csv/Empresa.csv", ios::out);
+//             arquivo.open("./csv/Empresa.csv", ios::out);
 
-            for (int i = 0; i < cont; i++){
-                arquivo << linha[i] << endl;
-            }
+//             for (int i = 0; i < cont; i++){
+//                 arquivo << linha[i] << endl;
+//             }
 
-            arquivo.close(); 
+//             arquivo.close(); 
 
-            break;
+//             break;
 
-        } else {
-            system("cls");
-            cout << "Resposta invalida, tente novamente.";
-            system("cls");
+//         } else {
+//             system("cls");
+//             cout << "Resposta invalida, tente novamente.";
+//             system("cls");
 
-            continue;
-        }
-    }
-}
+//             continue;
+//         }
+//     }
+// }
 
-void Funcionario::modDesigDeOperador(string cod){
-    int cont = 0;
-    string linha[NUM_LINHAS];
-    string modificacao, areaS, areaF, formacaoMax;
+// void Funcionario::modDesigDeOperador(string cod){
+//     int cont = 0;
+//     string linha[NUM_LINHAS];
+//     string modificacao, areaS, areaF, formacaoMax;
 
-    colunas();
+//     colunas();
 
-    while(1){
-        cont = 0;
+//     while(1){
+//         cont = 0;
 
-        cout << "Digite a nova designacao - (Gerente, Diretor ou Presidente?): ";
-        getline(cin, modificacao);
-        //cin.ignore(); // ou getchar?
+//         cout << "Digite a nova designacao - (Gerente, Diretor ou Presidente?): ";
+//         getline(cin, modificacao);
+//         //cin.ignore(); // ou getchar?
 
-        if (modificacao == "Gerente" || modificacao == "gerente"){
+//         if (modificacao == "Gerente" || modificacao == "gerente"){
 
-            cout << "\n\nQual a area de supervisao? ";
-            getline(cin, areaS);
+//             cout << "\n\nQual a area de supervisao? ";
+//             getline(cin, areaS);
 
-            system("cls");
+//             system("cls");
 
-            arquivo.open("./csv/Empresa.csv", ios::in);
+//             arquivo.open("./csv/Empresa.csv", ios::in);
 
-            if (arquivo.is_open()){
+//             if (arquivo.is_open()){
 
-             //if (cod.find("EF") != string::npos && cod.size() == 5){   
+//              //if (cod.find("EF") != string::npos && cod.size() == 5){   
 
-                while(getline(arquivo, linhas[NUM_LINHAS])){
-                    if (codigo[cont].find(cod) != string::npos){
+//                 while(getline(arquivo, linhas[NUM_LINHAS])){
+//                     if (codigo[cont].find(cod) != string::npos){
 
-                        cout << linhas[cont] << endl;
-                        cout << "codigo encontrado\n";
+//                         cout << linhas[cont] << endl;
+//                         cout << "codigo encontrado\n";
                 
-                        linha[cont] = linhas[cont];
+//                         linha[cont] = linhas[cont];
 
-                        linha[cont] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + "," + data[cont]
-                        + "," + modificacao + "," + salario[cont] + "," + areaS + "," + acad[cont] + "," + formacao[cont]; 
+//                         linha[cont] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + "," + data[cont]
+//                         + "," + modificacao + "," + salario[cont] + "," + areaS + "," + acad[cont] + "," + formacao[cont]; 
     
-                        cout << linha[cont] << endl;
+//                         cout << linha[cont] << endl;
 
-                        cont++;
+//                         cont++;
                     
-                    } else {
-                        linha[cont] = linhas[cont];
-                        cont++;
-                    }
-                }
+//                     } else {
+//                         linha[cont] = linhas[cont];
+//                         cont++;
+//                     }
+//                 }
 
-            } else {
-                cout <<  "Nao foi possivel ler o arquivo" << endl;
-            }   
+//             } else {
+//                 cout <<  "Nao foi possivel ler o arquivo" << endl;
+//             }   
 
-            arquivo.close();
+//             arquivo.close();
 
-            arquivo.open("./csv/Empresa.csv", ios::out);
+//             arquivo.open("./csv/Empresa.csv", ios::out);
 
-            for (int i = 0; i < cont; i++){
-                arquivo << linha[i] << endl;
-            }
+//             for (int i = 0; i < cont; i++){
+//                 arquivo << linha[i] << endl;
+//             }
 
-            arquivo.close();   
+//             arquivo.close();   
 
-            break;
+//             break;
 
-        } else if (modificacao == "Diretor" || modificacao == "diretor"){
+//         } else if (modificacao == "Diretor" || modificacao == "diretor"){
 
-            cout << "\n\nQual a area de supervisao? ";
-            getline(cin, areaS);
+//             cout << "\n\nQual a area de supervisao? ";
+//             getline(cin, areaS);
 
-            cout << "\nQual a area de formacao? ";
-            getline(cin, areaF);
+//             cout << "\nQual a area de formacao? ";
+//             getline(cin, areaF);
 
-            system("cls");
+//             system("cls");
 
-            arquivo.open("./csv/Empresa.csv", ios::in);
+//             arquivo.open("./csv/Empresa.csv", ios::in);
 
-            if (arquivo.is_open()){
+//             if (arquivo.is_open()){
 
-             //if (cod.find("EF") != string::npos && cod.size() == 5){   
+//              //if (cod.find("EF") != string::npos && cod.size() == 5){   
 
-                while(getline(arquivo, linhas[NUM_LINHAS])){
-                    if (codigo[cont].find(cod) != string::npos){
+//                 while(getline(arquivo, linhas[NUM_LINHAS])){
+//                     if (codigo[cont].find(cod) != string::npos){
 
-                        cout << linhas[cont] << endl;
-                        cout << "codigo encontrado\n";
+//                         cout << linhas[cont] << endl;
+//                         cout << "codigo encontrado\n";
                 
-                        linha[cont] = linhas[cont];
+//                         linha[cont] = linhas[cont];
 
-                        linha[cont] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + "," + data[cont]
-                        + "," + modificacao + "," + salario[cont] + "," + areaS + "," + areaF + "," + formacao[cont]; 
+//                         linha[cont] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + "," + data[cont]
+//                         + "," + modificacao + "," + salario[cont] + "," + areaS + "," + areaF + "," + formacao[cont]; 
     
-                        cout << linha[cont] << endl;
+//                         cout << linha[cont] << endl;
 
-                        cont++;
+//                         cont++;
                     
-                    } else {
-                        linha[cont] = linhas[cont];
-                        cont++;
-                    }
-                }
+//                     } else {
+//                         linha[cont] = linhas[cont];
+//                         cont++;
+//                     }
+//                 }
 
-            } else {
-                cout <<  "Nao foi possivel ler o arquivo" << endl;
-            }   
+//             } else {
+//                 cout <<  "Nao foi possivel ler o arquivo" << endl;
+//             }   
 
-            arquivo.close();
+//             arquivo.close();
 
-            arquivo.open("./csv/Empresa.csv", ios::out);
+//             arquivo.open("./csv/Empresa.csv", ios::out);
 
-            for (int i = 0; i < cont; i++){
-                arquivo << linha[i] << endl;
-            }
+//             for (int i = 0; i < cont; i++){
+//                 arquivo << linha[i] << endl;
+//             }
 
-            arquivo.close();   
+//             arquivo.close();   
 
-            break;
+//             break;
 
-        } else if (modificacao == "Presidente" || "presidente"){
+//         } else if (modificacao == "Presidente" || "presidente"){
             
-            cout << "\nQual a area de formacao? ";
-            getline(cin, areaF);
+//             cout << "\nQual a area de formacao? ";
+//             getline(cin, areaF);
 
-            cout << "\nQual a formacao maxima? ";
-            getline(cin, formacaoMax);
+//             cout << "\nQual a formacao maxima? ";
+//             getline(cin, formacaoMax);
 
-            system("cls");
+//             system("cls");
 
-            arquivo.open("./csv/Empresa.csv", ios::in);
+//             arquivo.open("./csv/Empresa.csv", ios::in);
 
-            if (arquivo.is_open()){
+//             if (arquivo.is_open()){
 
-             //if (cod.find("EF") != string::npos && cod.size() == 5){   
+//              //if (cod.find("EF") != string::npos && cod.size() == 5){   
 
-                while(getline(arquivo, linhas[NUM_LINHAS])){
-                    if (codigo[cont].find(cod) != string::npos){
+//                 while(getline(arquivo, linhas[NUM_LINHAS])){
+//                     if (codigo[cont].find(cod) != string::npos){
 
-                        cout << linhas[cont] << endl;
-                        cout << "codigo encontrado\n";
+//                         cout << linhas[cont] << endl;
+//                         cout << "codigo encontrado\n";
                 
-                        linha[cont] = linhas[cont];
+//                         linha[cont] = linhas[cont];
 
-                        linha[cont] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + "," + data[cont]
-                        + "," + modificacao + "," + salario[cont] + "," + sup[cont] + "," + areaF + "," + formacaoMax; 
+//                         linha[cont] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + "," + data[cont]
+//                         + "," + modificacao + "," + salario[cont] + "," + sup[cont] + "," + areaF + "," + formacaoMax; 
     
-                        cout << linha[cont] << endl;
+//                         cout << linha[cont] << endl;
 
-                        cont++;
+//                         cont++;
                     
-                    } else {
-                        linha[cont] = linhas[cont];
-                        cont++;
-                    }
-                }
+//                     } else {
+//                         linha[cont] = linhas[cont];
+//                         cont++;
+//                     }
+//                 }
 
-            } else {
-                cout <<  "Nao foi possivel ler o arquivo" << endl;
-            }   
+//             } else {
+//                 cout <<  "Nao foi possivel ler o arquivo" << endl;
+//             }   
 
-            arquivo.close();
+//             arquivo.close();
 
-            arquivo.open("./csv/Empresa.csv", ios::out);
+//             arquivo.open("./csv/Empresa.csv", ios::out);
 
-            for (int i = 0; i < cont; i++){
-                arquivo << linha[i] << endl;
-            }
+//             for (int i = 0; i < cont; i++){
+//                 arquivo << linha[i] << endl;
+//             }
 
-            arquivo.close(); 
+//             arquivo.close(); 
 
-            break;
+//             break;
 
-        } else {
-            system("cls");
-            cout << "Resposta invalida, tente novamente.";
-            system("cls");
+//         } else {
+//             system("cls");
+//             cout << "Resposta invalida, tente novamente.";
+//             system("cls");
 
-            continue;        
-        }
-    }
+//             continue;        
+//         }
+//     }
 
-}
+// }
 
-void Funcionario::modDesigDeDiretor(string cod){
-    int cont;
-    string linha[NUM_LINHAS];
-    string modificacao, areaS, areaF, formacaoMax;
+// void Funcionario::modDesigDeDiretor(string cod){
+//     int cont;
+//     string linha[NUM_LINHAS];
+//     string modificacao, areaS, areaF, formacaoMax;
 
-    colunas();
+//     colunas();
 
-    while(1){
-        cont = 0;
+//     while(1){
+//         cont = 0;
 
-        cout << "Digite a nova designacao - (Operador, Gerente ou Presidente?): ";
-        getline(cin, modificacao);
-        //cin.ignore(); // ou getchar?
+//         cout << "Digite a nova designacao - (Operador, Gerente ou Presidente?): ";
+//         getline(cin, modificacao);
+//         //cin.ignore(); // ou getchar?
 
-        if (modificacao == "Operador" || "operador"){
+//         if (modificacao == "Operador" || "operador"){
             
-            modDesigParaOperador(cod);
-            break;
+//             modDesigParaOperador(cod);
+//             break;
 
-        } else if (modificacao == "Gerente" || modificacao == "gerente"){
+//         } else if (modificacao == "Gerente" || modificacao == "gerente"){
 
-            cout << "\n\nQual a area de supervisao? ";
-            getline(cin, areaS);
+//             cout << "\n\nQual a area de supervisao? ";
+//             getline(cin, areaS);
 
-            system("cls");
+//             system("cls");
 
-            arquivo.open("./csv/Empresa.csv", ios::in);
+//             arquivo.open("./csv/Empresa.csv", ios::in);
 
-            if (arquivo.is_open()){
+//             if (arquivo.is_open()){
 
-             //if (cod.find("EF") != string::npos && cod.size() == 5){   
+//              //if (cod.find("EF") != string::npos && cod.size() == 5){   
 
-                while(getline(arquivo, linhas[NUM_LINHAS])){
-                    if (codigo[cont].find(cod) != string::npos){
+//                 while(getline(arquivo, linhas[NUM_LINHAS])){
+//                     if (codigo[cont].find(cod) != string::npos){
 
-                        cout << linhas[cont] << endl;
-                        cout << "codigo encontrado\n";
+//                         cout << linhas[cont] << endl;
+//                         cout << "codigo encontrado\n";
                 
-                        linha[cont] = linhas[cont];
+//                         linha[cont] = linhas[cont];
 
-                        linha[cont] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + "," + data[cont]
-                        + "," + modificacao + "," + salario[cont] + "," + areaS + "," + "Nan" + "," + formacao[cont]; 
+//                         linha[cont] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + "," + data[cont]
+//                         + "," + modificacao + "," + salario[cont] + "," + areaS + "," + "Nan" + "," + formacao[cont]; 
     
-                        cout << linha[cont] << endl;
+//                         cout << linha[cont] << endl;
 
-                        cont++;
+//                         cont++;
                     
-                    } else {
-                        linha[cont] = linhas[cont];
-                        cont++;
-                    }
-                }
+//                     } else {
+//                         linha[cont] = linhas[cont];
+//                         cont++;
+//                     }
+//                 }
 
-            } else {
-                cout <<  "Nao foi possivel ler o arquivo" << endl;
-            }   
+//             } else {
+//                 cout <<  "Nao foi possivel ler o arquivo" << endl;
+//             }   
 
-            arquivo.close();
+//             arquivo.close();
 
-            arquivo.open("./csv/Empresa.csv", ios::out);
+//             arquivo.open("./csv/Empresa.csv", ios::out);
 
-            for (int i = 0; i < cont; i++){
-                arquivo << linha[i] << endl;
-            }
+//             for (int i = 0; i < cont; i++){
+//                 arquivo << linha[i] << endl;
+//             }
 
-            arquivo.close();   
+//             arquivo.close();   
 
-            break;
+//             break;
 
-        } else if (modificacao == "Presidente" || "presidente"){
+//         } else if (modificacao == "Presidente" || "presidente"){
             
-            cout << "\nQual a area de formacao? ";
-            getline(cin, areaF);
+//             cout << "\nQual a area de formacao? ";
+//             getline(cin, areaF);
 
-            cout << "\nQual a formacao maxima? ";
-            getline(cin, formacaoMax);
+//             cout << "\nQual a formacao maxima? ";
+//             getline(cin, formacaoMax);
 
-            system("cls");
+//             system("cls");
 
-            arquivo.open("./csv/Empresa.csv", ios::in);
+//             arquivo.open("./csv/Empresa.csv", ios::in);
 
-            if (arquivo.is_open()){
+//             if (arquivo.is_open()){
 
-             //if (cod.find("EF") != string::npos && cod.size() == 5){   
+//              //if (cod.find("EF") != string::npos && cod.size() == 5){   
 
-                while(getline(arquivo, linhas[NUM_LINHAS])){
-                    if (codigo[cont].find(cod) != string::npos){
+//                 while(getline(arquivo, linhas[NUM_LINHAS])){
+//                     if (codigo[cont].find(cod) != string::npos){
 
-                        cout << linhas[cont] << endl;
-                        cout << "codigo encontrado\n";
+//                         cout << linhas[cont] << endl;
+//                         cout << "codigo encontrado\n";
                 
-                        linha[cont] = linhas[cont];
+//                         linha[cont] = linhas[cont];
 
-                        linha[cont] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + "," + data[cont]
-                        + "," + modificacao + "," + salario[cont] + "," + "Nan" + "," + areaF + "," + formacaoMax; 
+//                         linha[cont] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + "," + data[cont]
+//                         + "," + modificacao + "," + salario[cont] + "," + "Nan" + "," + areaF + "," + formacaoMax; 
     
-                        cout << linha[cont] << endl;
+//                         cout << linha[cont] << endl;
 
-                        cont++;
+//                         cont++;
                     
-                    } else {
-                        linha[cont] = linhas[cont];
-                        cont++;
-                    }
-                }
+//                     } else {
+//                         linha[cont] = linhas[cont];
+//                         cont++;
+//                     }
+//                 }
 
-            } else {
-                cout <<  "Nao foi possivel ler o arquivo" << endl;
-            }   
+//             } else {
+//                 cout <<  "Nao foi possivel ler o arquivo" << endl;
+//             }   
 
-            arquivo.close();
+//             arquivo.close();
 
-            arquivo.open("./csv/Empresa.csv", ios::out);
+//             arquivo.open("./csv/Empresa.csv", ios::out);
 
-            for (int i = 0; i < cont; i++){
-                arquivo << linha[i] << endl;
-            }
+//             for (int i = 0; i < cont; i++){
+//                 arquivo << linha[i] << endl;
+//             }
 
-            arquivo.close(); 
+//             arquivo.close(); 
 
-            break;
+//             break;
 
-        } else {
-            system("cls");
-            cout << "Resposta invalida, tente novamente.";
-            system("cls");
+//         } else {
+//             system("cls");
+//             cout << "Resposta invalida, tente novamente.";
+//             system("cls");
 
-            continue;        
-        }
-    }
+//             continue;        
+//         }
+//     }
 
-}
+// }
 
-void Funcionario::modDesigDePresidente(string cod){
-    int cont;
-    string linha[NUM_LINHAS];
-    string modificacao, areaS, areaF, formacaoMax;
+// void Funcionario::modDesigDePresidente(string cod){
+//     int cont;
+//     string linha[NUM_LINHAS];
+//     string modificacao, areaS, areaF, formacaoMax;
 
-    colunas();
+//     colunas();
 
-    while(1){
-        cont = 0;
+//     while(1){
+//         cont = 0;
 
-        cout << "Digite a nova designacao - (Operador, Gerente ou Diretor?): ";
-        getline(cin, modificacao);
-        //cin.ignore(); // ou getchar?
+//         cout << "Digite a nova designacao - (Operador, Gerente ou Diretor?): ";
+//         getline(cin, modificacao);
+//         //cin.ignore(); // ou getchar?
 
-        if (modificacao == "Operador" || "operador"){
+//         if (modificacao == "Operador" || "operador"){
             
-            modDesigParaOperador(cod);
-            break;
+//             modDesigParaOperador(cod);
+//             break;
 
-        } else if (modificacao == "Gerente" || modificacao == "gerente"){
+//         } else if (modificacao == "Gerente" || modificacao == "gerente"){
 
-            cout << "\n\nQual a area de supervisao? ";
-            getline(cin, areaS);
+//             cout << "\n\nQual a area de supervisao? ";
+//             getline(cin, areaS);
 
-            system("cls");
+//             system("cls");
 
-            arquivo.open("./csv/Empresa.csv", ios::in);
+//             arquivo.open("./csv/Empresa.csv", ios::in);
 
-            if (arquivo.is_open()){
+//             if (arquivo.is_open()){
 
-             //if (cod.find("EF") != string::npos && cod.size() == 5){   
+//              //if (cod.find("EF") != string::npos && cod.size() == 5){   
 
-                while(getline(arquivo, linhas[NUM_LINHAS])){
-                    if (codigo[cont].find(cod) != string::npos){
+//                 while(getline(arquivo, linhas[NUM_LINHAS])){
+//                     if (codigo[cont].find(cod) != string::npos){
 
-                        cout << linhas[cont] << endl;
-                        cout << "codigo encontrado\n";
+//                         cout << linhas[cont] << endl;
+//                         cout << "codigo encontrado\n";
                 
-                        linha[cont] = linhas[cont];
+//                         linha[cont] = linhas[cont];
 
-                        linha[cont] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + "," + data[cont]
-                        + "," + modificacao + "," + salario[cont] + "," + areaS + "," + "Nan" + "," + "Nan"; 
+//                         linha[cont] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + "," + data[cont]
+//                         + "," + modificacao + "," + salario[cont] + "," + areaS + "," + "Nan" + "," + "Nan"; 
     
-                        cout << linha[cont] << endl;
+//                         cout << linha[cont] << endl;
 
-                        cont++;
+//                         cont++;
                     
-                    } else {
-                        linha[cont] = linhas[cont];
-                        cont++;
-                    }
-                }
+//                     } else {
+//                         linha[cont] = linhas[cont];
+//                         cont++;
+//                     }
+//                 }
 
-            } else {
-                cout <<  "Nao foi possivel ler o arquivo" << endl;
-            }   
+//             } else {
+//                 cout <<  "Nao foi possivel ler o arquivo" << endl;
+//             }   
 
-            arquivo.close();
+//             arquivo.close();
 
-            arquivo.open("./csv/Empresa.csv", ios::out);
+//             arquivo.open("./csv/Empresa.csv", ios::out);
 
-            for (int i = 0; i < cont; i++){
-                arquivo << linha[i] << endl;
-            }
+//             for (int i = 0; i < cont; i++){
+//                 arquivo << linha[i] << endl;
+//             }
 
-            arquivo.close();   
+//             arquivo.close();   
 
-            break;
+//             break;
 
-        } else if (modificacao == "Diretor" || "diretor"){
+//         } else if (modificacao == "Diretor" || "diretor"){
             
-            cout << "\nQual a area de supervisao?";
-            getline(cin, areaS);
+//             cout << "\nQual a area de supervisao?";
+//             getline(cin, areaS);
 
-            cout << "\nQual a area de formacao? ";
-            getline(cin, areaF);
+//             cout << "\nQual a area de formacao? ";
+//             getline(cin, areaF);
 
-            system("cls");
+//             system("cls");
 
-            arquivo.open("./csv/Empresa.csv", ios::in);
+//             arquivo.open("./csv/Empresa.csv", ios::in);
 
-            if (arquivo.is_open()){
+//             if (arquivo.is_open()){
 
-             //if (cod.find("EF") != string::npos && cod.size() == 5){   
+//              //if (cod.find("EF") != string::npos && cod.size() == 5){   
 
-                while(getline(arquivo, linhas[NUM_LINHAS])){
-                    if (codigo[cont].find(cod) != string::npos){
+//                 while(getline(arquivo, linhas[NUM_LINHAS])){
+//                     if (codigo[cont].find(cod) != string::npos){
 
-                        cout << linhas[cont] << endl;
-                        cout << "codigo encontrado\n";
+//                         cout << linhas[cont] << endl;
+//                         cout << "codigo encontrado\n";
                 
-                        linha[cont] = linhas[cont];
+//                         linha[cont] = linhas[cont];
 
-                        linha[cont] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + "," + data[cont]
-                        + "," + modificacao + "," + salario[cont] + "," + areaS + "," + areaF + "," + "Nan"; 
+//                         linha[cont] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + "," + data[cont]
+//                         + "," + modificacao + "," + salario[cont] + "," + areaS + "," + areaF + "," + "Nan"; 
     
-                        cout << linha[cont] << endl;
+//                         cout << linha[cont] << endl;
 
-                        cont++;
+//                         cont++;
                     
-                    } else {
-                        linha[cont] = linhas[cont];
-                        cont++;
-                    }
-                }
+//                     } else {
+//                         linha[cont] = linhas[cont];
+//                         cont++;
+//                     }
+//                 }
 
-            } else {
-                cout <<  "Nao foi possivel ler o arquivo" << endl;
-            }   
+//             } else {
+//                 cout <<  "Nao foi possivel ler o arquivo" << endl;
+//             }   
 
-            arquivo.close();
+//             arquivo.close();
 
-            arquivo.open("./csv/Empresa.csv", ios::out);
+//             arquivo.open("./csv/Empresa.csv", ios::out);
 
-            for (int i = 0; i < cont; i++){
-                arquivo << linha[i] << endl;
-            }
+//             for (int i = 0; i < cont; i++){
+//                 arquivo << linha[i] << endl;
+//             }
 
-            arquivo.close(); 
+//             arquivo.close(); 
 
-            break;
+//             break;
 
-        } else {
-            system("cls");
-            cout << "Resposta invalida, tente novamente.";
-            system("cls");
+//         } else {
+//             system("cls");
+//             cout << "Resposta invalida, tente novamente.";
+//             system("cls");
 
-            continue;        
-        }
-    }
-}
+//             continue;        
+//         }
+//     }
+// }
 
-void Funcionario::modificaDesignacao(string cod){
-    int desigAtual;
+// void Funcionario::modificaDesignacao(string cod){
+//     int desigAtual;
     
-    cout << "================================= Modificar Designacao ===================================" << endl;
-    cout << "\n";
+//     cout << "================================= Modificar Designacao ===================================" << endl;
+//     cout << "\n";
 
-    cout << "Informe a designacao atual - [1] Operador, [2] Gerente, [3] Diretor, [4] Presidente : \n";
-    cin >> desigAtual;
+//     cout << "Informe a designacao atual - [1] Operador, [2] Gerente, [3] Diretor, [4] Presidente : \n";
+//     cin >> desigAtual;
     
-    getchar();
+//     getchar();
 
-    system("cls");
+//     system("cls");
 
-    switch (desigAtual){
-        case 1:
-            modDesigDeOperador(cod);
-            break;
+//     switch (desigAtual){
+//         case 1:
+//             modDesigDeOperador(cod);
+//             break;
         
-        case 2:
-            modDesigDeGerente(cod); 
-            break;
+//         case 2:
+//             modDesigDeGerente(cod); 
+//             break;
 
-        case 3:
-            modDesigDeDiretor(cod); 
-            break;
+//         case 3:
+//             modDesigDeDiretor(cod); 
+//             break;
 
-        case 4:
-            modDesigDePresidente(cod); 
-            break;
-    }
-}
+//         case 4:
+//             modDesigDePresidente(cod); 
+//             break;
+//     }
+// }
 
-// Lembrar do cont = 0 no início dos while, se for o caso de tiver cont.
-void Funcionario::modificarFuncionario(){
-    string cod;
-    int desig, escolha = 0, i = 0;
+// // Lembrar do cont = 0 no início dos while, se for o caso de tiver cont.
+// void Funcionario::modificarFuncionario(){
+//     string cod;
+//     int desig, escolha = 0, i = 0;
 
-    while(1){
-        cout << "========================================= Modificar ========================================" << endl;
+//     while(1){
+//         cout << "========================================= Modificar ========================================" << endl;
 
-        // Tentar tratar se o código já existe ou não aqui
-        cout << "\nQual o codigo do Funcionario?\n";
+//         // Tentar tratar se o código já existe ou não aqui
+//         cout << "\nQual o codigo do Funcionario?\n";
 
-        getline(cin, cod);
+//         getline(cin, cod);
 
-        system("cls");
+//         system("cls");
 
-        if(cod.length() == 3){
-            break;
-        }
+//         if(cod.length() == 3){
+//             break;
+//         }
             
-        else if(cod.length() < 3){
-            cout << "codigo menor do que o esperado" << endl;
-            system("cls");
-            continue;
-        }
+//         else if(cod.length() < 3){
+//             cout << "codigo menor do que o esperado" << endl;
+//             system("cls");
+//             continue;
+//         }
                 
-        else{
-            cout << "codigo maior do que o esperado" << endl;
-            system("cls");
-            continue;
-        }
-    }
+//         else{
+//             cout << "codigo maior do que o esperado" << endl;
+//             system("cls");
+//             continue;
+//         }
+//     }
 
-    //Precisa de outro laço aqui? tentar tratar a possibilidade de uma escolha inválida
-    cout << "O que deseja modificar?" << endl;
-    cout << "[1] Codigo\n";
-    cout << "[2] Nome\n";
-    cout << "[3] Endereco\n"; 
-    cout << "[4] Telefone\n";
-    cout << "[5] Data\n";
-    cout << "[6] Salario\n";
-    cout << "[7] Designacao\n\n";
+//     //Precisa de outro laço aqui? tentar tratar a possibilidade de uma escolha inválida
+//     cout << "O que deseja modificar?" << endl;
+//     cout << "[1] Codigo\n";
+//     cout << "[2] Nome\n";
+//     cout << "[3] Endereco\n"; 
+//     cout << "[4] Telefone\n";
+//     cout << "[5] Data\n";
+//     cout << "[6] Salario\n";
+//     cout << "[7] Designacao\n\n";
 
-    cin >> escolha;
-    getchar();
+//     cin >> escolha;
+//     getchar();
    
-    system("cls");
+//     system("cls");
 
-    switch (escolha){
-        case 1:
-            modificaCodigo(cod);
-            break;
+//     switch (escolha){
+//         case 1:
+//             modificaCodigo(cod);
+//             break;
         
-        case 2:
-            modificaNome(cod);
-            break;
+//         case 2:
+//             modificaNome(cod);
+//             break;
         
-        case 3:
-            modificaEndereco(cod);
-            break;
+//         case 3:
+//             modificaEndereco(cod);
+//             break;
         
-        case 4:
-            modificaTelefone(cod);
-            break;
+//         case 4:
+//             modificaTelefone(cod);
+//             break;
 
-        case 5:
-            modificaData(cod);
-            break;
+//         case 5:
+//             modificaData(cod);
+//             break;
         
-        case 6:
-            modificaSalario(cod);
-            break;
+//         case 6:
+//             modificaSalario(cod);
+//             break;
         
-        case 7:
-            modificaDesignacao(cod);
-            break;
-    }
+//         case 7:
+//             modificaDesignacao(cod);
+//             break;
+//     }
 
-}
+// }
 
 /* ==========================================================================================================*/
 
@@ -1912,4 +1912,89 @@ void Funcionario::calculaFolhaSalarial(){
         file.close();
 
     }
+}
+
+void Funcionario::exibeFolhaSalarialFuncionario(){
+    ifstream fileTeste;
+    fstream file;
+    string data, Smes, arquivo[100], nomeF, codigoF;
+    double salariosBruto[1000], salariosLiquido[100], descontoINSS[100], descontoIRRF[100], salarioEmpresa=0;
+    double mes;
+    int i = 0, opcao, teste, valor;
+
+    lerArquivo();
+    colunas();
+
+    cout << "Digite o ano e o mes, folha salarial que vai ser exibida: " << "Padrao : yyxxxx" << endl;
+    cin >> data;
+    while(1){
+        cout << "Deseja fazer a busca por nome(1) ou codigo(2)?" << endl;
+        cin >> opcao;
+        if(opcao == 1){
+            teste = 0;
+            cout << "Digite o nome: ";
+            getchar();
+            getline(cin, nomeF);
+            for(i=0;i<100;i++){
+                if(nomeF == nome[i]){
+                    valor = i;
+                    teste = 1;
+                    break;
+            }
+        }
+        if(teste)
+                break;
+        cout << "Nome Inválido" << endl;
+        
+        }else if(opcao == 2){
+            teste = 0;
+            cout << "Digite o codigo: ";
+            getchar();
+            getline(cin, codigoF);
+            for(i=0;i<100;i++){
+                if(codigoF == codigo[i]){
+                    valor = i;
+                    teste = 1;
+                    break;
+                }
+            }
+            if(teste)
+                break;
+            cout << "codigo Inválido" << endl;     
+        }
+    }
+
+    data = "./csv/FolhaSalarial-" + data + ".csv";
+    cout << data << endl;
+
+    fileTeste.open(data);
+    if (fileTeste.is_open()){
+        cout<<"Folha Salarial dessa data ja foi calculada"<<endl;
+        i=0;
+        while(getline(fileTeste, arquivo[i])){
+            i++;
+        }
+        cout << "Codigo," << arquivo[0] << endl;
+        cout << codigo[valor] << "," << arquivo[valor+1] << endl;
+
+        fileTeste.close();
+    }else{
+        fileTeste.close();
+        cout<<"Folha Salarial dessa data não foi calculada"<<endl;
+        calculaFolhaSalarial();
+        
+        fileTeste.open(data);
+
+        cout<<"Folha Salarial dessa data foi calculada"<<endl;
+        i=0;
+        while(getline(fileTeste, arquivo[i])){
+            i++;
+        }
+        
+        cout << "Codigo," << arquivo[0] << endl;
+        cout << codigo[valor] << "," << arquivo[valor+1] << endl;
+
+        fileTeste.close();
+    }
+
 }
