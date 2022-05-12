@@ -1920,7 +1920,7 @@ void Funcionario::exibeFolhaSalarialFuncionario(){
     string data, Smes, arquivo[100], nomeF, codigoF;
     double salariosBruto[1000], salariosLiquido[100], descontoINSS[100], descontoIRRF[100], salarioEmpresa=0;
     double mes;
-    int i = 0, opcao, teste, valor;
+    int i = 0, opcao, teste, valor, lucas;
 
     lerArquivo();
     colunas();
