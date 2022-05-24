@@ -57,6 +57,7 @@ public:
 
     void calculaFolhaSalarial();
     void exibeFolhaSalarialFuncionario();
+    void exibeFolhaSalarialEmpresa();
     double geraDiasTrabalhados(double m);
     double geraHorasExtras(double m);
 

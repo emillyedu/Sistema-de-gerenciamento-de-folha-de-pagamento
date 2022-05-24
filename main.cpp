@@ -18,7 +18,8 @@ int main(){
 
     //funcionario.excluirRegistro();
     // funcionario.calculaFolhaSalarial();
-    funcionario.exibeFolhaSalarialFuncionario();
+    // funcionario.exibeFolhaSalarialFuncionario();
+    funcionario.exibeFolhaSalarialEmpresa();
     
     return 0;
 }

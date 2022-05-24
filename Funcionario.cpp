@@ -1980,21 +1980,113 @@ void Funcionario::exibeFolhaSalarialFuncionario(){
         fileTeste.close();
     }else{
         fileTeste.close();
-        cout<<"Folha Salarial dessa data não foi calculada"<<endl;
-        calculaFolhaSalarial();
+        cout<<"Folha Salarial dessa data ainda não foi calculada"<<endl;
+        // calculaFolhaSalarial();
         
+        // fileTeste.open(data);
+
+        // cout<<"Folha Salarial dessa data foi calculada"<<endl;
+        // i=0;
+        // while(getline(fileTeste, arquivo[i])){
+        //     i++;
+        // }
+        
+        // cout << "Codigo," << arquivo[0] << endl;
+        // cout << codigo[valor] << "," << arquivo[valor+1] << endl;
+
+        // fileTeste.close();
+    }
+
+}
+
+void Funcionario::exibeFolhaSalarialEmpresa(){
+    int opcao, i, valor;
+    string data, arquivo[100], ano, busca[12], SalarioBrutoS[100],INSSS[100],IRRFS[100],SalarioLiquidoS[100], linha, temp;
+    ifstream fileTeste;
+    float SalarioBruto[100],INSS[100],IRRF[100],SalarioLiquido[100];
+
+    cout << "Exibir folha salarial mensal ou anual ? (1) - mensal / (2) - anual" << endl;
+    cin >> opcao;
+
+    if(opcao == 1){
+        cout << "Digite o ano e o mes, folha salarial que vai ser exibida: " << "Padrao : yyxxxx" << endl;
+        cin >> data;
+        data = "./csv/FolhaSalarial-" + data + ".csv";
+        cout << data << endl;
+
         fileTeste.open(data);
+        if (fileTeste.is_open()){
+            cout<<"Folha Salarial dessa data ja foi calculada"<<endl;
+            i=0;
+            while(getline(fileTeste, arquivo[i])){
+                cout << arquivo[i] << endl;
+            }
 
-        cout<<"Folha Salarial dessa data foi calculada"<<endl;
-        i=0;
-        while(getline(fileTeste, arquivo[i])){
-            i++;
+            fileTeste.close();
+        }else{
+            fileTeste.close();
+            cout<<"Folha Salarial dessa data ainda não foi calculada"<<endl;
+
+            // calculaFolhaSalarial();
+            
+            // fileTeste.open(data);
+
+            // cout<<"Folha Salarial dessa data foi calculada"<<endl;
+            // i=0;
+            // while(getline(fileTeste, arquivo[i])){
+            //     cout << arquivo[i] << endl;
+            // }
+
+            // fileTeste.close();
         }
-        
-        cout << "Codigo," << arquivo[0] << endl;
-        cout << codigo[valor] << "," << arquivo[valor+1] << endl;
+    }else if(opcao == 2){
+        cout << "Digite o ano da folha salarial que vai ser exibida: " << "Padrao : xxxx" << endl;
+        cin >> ano;
 
-        fileTeste.close();
+        for(int j = 1; j<13; j++){
+            if(j < 10){
+                busca[j-1] = "./csv/FolhaSalarial-0" + to_string(j) + ano + ".csv";
+                cout << busca[j-1] << endl;
+
+                fileTeste.open(busca[j-1]);
+                if (fileTeste.is_open()){
+                    cout<<"Folha Salarial dessa data ja foi calculada"<<endl;
+                    while(getline(fileTeste, linha)){
+                        temp = " ";
+                        for(int k = 0; k < linha.size(); k++){
+                            if(linha[k] != ','){
+                                temp = temp + linha[k];
+                            }else{
+                                break;
+                            }
+                        }
+                        cout << temp << endl;
+                    }
+                    
+
+                    fileTeste.close();
+                }else{
+                    fileTeste.close();
+                    cout<<"Folha Salarial do mes " << j << " nao foi calculada" <<endl;
+
+                    // calculaFolhaSalarial();
+                    
+                    // fileTeste.open(data);
+
+                    // cout<<"Folha Salarial dessa data foi calculada"<<endl;
+                    // i=0;
+                    // while(getline(fileTeste, arquivo[i])){
+                    //     cout << arquivo[i] << endl;
+                    // }
+
+                    // fileTeste.close();
+                }
+
+            }else{
+                busca[j-1] = "./csv/FolhaSalarial-" + to_string(j) + ano + ".csv";
+                cout << busca[j-1] << endl;
+            }
+        }
     }
 
 }
