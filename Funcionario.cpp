@@ -2128,7 +2128,7 @@ void Funcionario::exibeFolhaSalarialEmpresa(){
     int opcao, i, valor, k, l;
     string data, arquivo[100], ano, busca[12], SalarioBrutoS[100],INSSS[100],IRRFS[100],SalarioLiquidoS[100], linha, temp;
     ifstream fileTeste;
-    double SalarioBruto[100],INSS[100],IRRF[100],SalarioLiquido[100], aux;
+    double SalarioBruto[100],INSS[100],IRRF[100],SalarioLiquido[100], salarioEmpresa=0;
 
     lerArquivo();
     colunas();
@@ -2252,14 +2252,23 @@ void Funcionario::exibeFolhaSalarialEmpresa(){
 
                         // linha.find("SalarioEmpresa") != string::npos
                         if(l>0 && SalarioBrutoS[i] != ""){
-                            cout << SalarioBrutoS[i] << endl;
                             SalarioBrutoS[i] = SalarioBrutoS[i].erase(0,2);
-                            cout << SalarioBrutoS[i] << endl;
+                            INSSS[i] = INSSS[i].erase(0,2);
+                            IRRFS[i] = IRRFS[i].erase(0,2);
+                            SalarioLiquidoS[i] = SalarioLiquidoS[i].erase(0,2);
+                            // cout << SalarioBrutoS[i] << endl;
+                            // cout << INSSS[i] << endl;
+                            // cout << IRRFS[i] << endl;
+                            // cout << SalarioLiquidoS[i] << endl;
                             try{
-                                aux = stod(SalarioBrutoS[i]);
-                                cout << aux << endl; 
-                                SalarioBruto[i] += aux;
-                                cout << SalarioBruto[i] << endl;
+                                SalarioBruto[l-1] += stod(SalarioBrutoS[i]);
+                                // cout << SalarioBruto[l-1] << endl;
+                                INSS[l-1] += stod(INSSS[i]);
+                                // cout << INSS[l-1] << endl;
+                                IRRF[l-1] += stod(IRRFS[i]);
+                                // cout << IRRF[l-1] << endl;
+                                SalarioLiquido[l-1] += stod(SalarioLiquidoS[i]);
+                                // cout << SalarioLiquido[l-1] << endl;
                             }catch(std :: invalid_argument  const & ex ){
                                 cout << "O parâmetro não é uma string" << endl;
                             }
@@ -2292,8 +2301,130 @@ void Funcionario::exibeFolhaSalarialEmpresa(){
             }else{
                 busca[j-1] = "./csv/FolhaSalarial-" + to_string(j) + ano + ".csv";
                 cout << busca[j-1] << endl;
+
+                fileTeste.open(busca[j-1]);
+                if (fileTeste.is_open()){
+                    cout<<"Folha Salarial dessa data ja foi calculada"<<endl;
+                    i=0;
+                    l = 0;
+                    while(getline(fileTeste, linha)){
+                        temp = "";
+                        for(k = 0; k < linha.size(); k++){
+                            if(linha[k] != ','){
+                                temp = temp + linha[k];
+                            }else{
+                                break;
+                            }
+                        }
+                        // cout << temp << endl;
+                        
+                        temp = "";
+                        for(++k; k < linha.size(); k++){
+                            if(linha[k] != ','){
+                                temp = temp + linha[k];
+                            }else{
+                                break;
+                            }
+                        }
+                        // cout << temp << endl;
+
+                        temp = "";
+                        for(++k; k < linha.size(); k++){
+                            if(linha[k] != ','){
+                                temp = temp + linha[k];
+                            }else{
+                                break;
+                            }
+                        }
+                        // cout << temp << endl;
+                        SalarioBrutoS[i]=temp;
+                        // cout << SalarioBrutoS[i] << endl;
+
+                        temp = "";
+                        for(++k; k < linha.size(); k++){
+                            if(linha[k] != ','){
+                                temp = temp + linha[k];
+                            }else{
+                                break;
+                            }
+                        }
+                        // cout << temp << endl;
+                        INSSS[i]=temp;
+                        // cout << INSSS[i] << endl;
+
+                        temp = "";
+                        for(++k; k < linha.size(); k++){
+                            if(linha[k] != ','){
+                                temp = temp + linha[k];
+                            }else{
+                                break;
+                            }
+                        }
+                        // cout << temp << endl;
+                        IRRFS[i]=temp;
+                        // cout << IRRFS[i] << endl;
+
+                        temp = "";
+                        for(++k; k < linha.size(); k++){
+                            if(linha[k] != ','){
+                                temp = temp + linha[k];
+                            }else{
+                                break;
+                            }
+                        }
+                        // cout << temp << endl;
+                        SalarioLiquidoS[i]=temp;
+                        // cout << SalarioLiquidoS[i] << endl;
+
+                        // linha.find("SalarioEmpresa") != string::npos
+                        if(l>0 && SalarioBrutoS[i] != ""){
+                            SalarioBrutoS[i] = SalarioBrutoS[i].erase(0,2);
+                            INSSS[i] = INSSS[i].erase(0,2);
+                            IRRFS[i] = IRRFS[i].erase(0,2);
+                            SalarioLiquidoS[i] = SalarioLiquidoS[i].erase(0,2);
+                            // cout << SalarioBrutoS[i] << endl;
+                            // cout << INSSS[i] << endl;
+                            // cout << IRRFS[i] << endl;
+                            // cout << SalarioLiquidoS[i] << endl;
+                            try{
+                                SalarioBruto[l-1] += stod(SalarioBrutoS[i]);
+                                // cout << SalarioBruto[l-1] << endl;
+                                INSS[l-1] += stod(INSSS[i]);
+                                // cout << INSS[l-1] << endl;
+                                IRRF[l-1] += stod(IRRFS[i]);
+                                // cout << IRRF[l-1] << endl;
+                                SalarioLiquido[l-1] += stod(SalarioLiquidoS[i]);
+                                // cout << SalarioLiquido[l-1] << endl;
+                            }catch(std :: invalid_argument  const & ex ){
+                                cout << "O parâmetro não é uma string" << endl;
+                            }
+                        }
+
+                        l++;
+                        }
+
+                        i++;
+                    
+
+                    fileTeste.close();
+                }
             }
         }
-    }
 
+        cout << "Folha Salaria: " << ano << endl;
+        cout << "Funcinario,Designacao,SalarioBruto,INSS,IRRF,SalarioLiquido" << endl;
+        for(i=0; i < 100; i++){
+            if(nome[i] != ""){
+                cout << nome[i] << "," << desig[i] << ',' << SalarioBruto[i] << "," << INSS[i] << "," << IRRF[i] << "," << SalarioLiquido[i] 
+                << endl;
+                salarioEmpresa += SalarioLiquido[i];
+            }else{
+                cout << "SalarioEmpresa: " << salarioEmpresa << endl;
+                break;
+            } 
+        }
+        
+
+
+    }
 }
