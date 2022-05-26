@@ -25,6 +25,10 @@ public:
     void lerArquivo();
     void exibirArquivo();
 
+    void exibeRegistroFunc();
+    void exibeListaFunc();
+    void exibeListaTipo();
+
     string retornaEndereco(string cep);
     string forEndereco(string api[], int line, int tam);
 
@@ -61,7 +65,7 @@ public:
     double geraDiasTrabalhados(double m);
     double geraHorasExtras(double m);
 
-    double aumentoDeSalarios();
+    void aumentoDeSalarios();
 
     string getCodigo(int i);
     string getNome(int i);
@@ -78,7 +82,7 @@ public:
 
 protected:
     fstream arquivo;
-    string linhas[100];
+    string linhas[100], Nan = {"Nan"};;
     string codigo[100], nome[100], end[100], telefone[100], data[100], desig[100],salario[100],sup[100],acad[100],formacao[100];
 };
 

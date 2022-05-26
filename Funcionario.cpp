@@ -43,6 +43,11 @@ string Funcionario::getFormacao(int i){
     return formacao[i];
 }
 
+string Funcionario::getLinhas(int i){
+    return linhas[i];
+}
+
+
 void Funcionario::criarArquivo(){
     arquivo.open("./csv/Empresa.csv", ios::in);
 
@@ -72,6 +77,125 @@ void Funcionario::exibirArquivo(){
     for(int i = 0; i < 100; i++){
         if(linhas[i] != ""){
             cout << linhas[i] << endl;
+        }
+    }
+}
+
+void Funcionario::exibeRegistroFunc(){
+    //Ao inserir o número de código do funcionário, os usuários podem acessar todas as informações 
+    //fornecidas relacionadas a um determinado funcionário por meio desta função.
+    string codigoFunc;
+
+    lerArquivo();
+
+    cout << "Insira o código do funcionário desejado: ";
+    getline(cin, codigoFunc);
+
+    for(int i = 0; i < 100; i++){
+
+        if(linhas[i] != ""){
+            colunas();
+        }
+        if(getCodigo(i) == codigoFunc){
+            cout << endl;
+            cout << "Codigo: " << getCodigo(i) << endl;
+            cout << "Nome: " << getNome(i) << endl;
+            cout << "Endereco: " << getEnd(i) << endl;
+            cout << "Telefone: " << getTelefone(i) << endl;
+            cout << "Data de ingresso: " << getData(i) << endl;
+            cout << "Designacao: " << getDesig(i) << endl;
+            cout << "Salario: " << getSalario(i) << endl;
+            if(getSup(i) != Nan){
+                cout << "Area de supervisao: " << getSup(i) << endl;
+            }
+            if(getAcad(i) != Nan){
+                cout << "Area academica: " << getAcad(i) << endl;
+            }
+            if(getFormacao(i) != Nan){
+                cout << "Formacao maxima: " << getFormacao(i) << endl << endl;     
+            }
+
+            break;
+        }
+    }
+}
+
+void Funcionario::exibeListaFunc(){
+    //Este recurso exibe o registro de todos os funcionários 
+    lerArquivo();
+    cout << "Codigo,Nome,Designacao" << endl;
+    for(int i = 0; i < 100; i++){
+        if(linhas[i] != ""){
+            colunas();
+        }
+        if((getCodigo(i) != "") && (getNome(i) != "") && (getDesig(i) != "")){
+            cout << getCodigo(i) << "," << getNome(i) << "," << getDesig(i) << endl;
+        }
+    }
+}
+
+void Funcionario::exibeListaTipo(){
+    //Este recurso exibe o registro de todos os funcionários de um determinado tipo
+    int c, flag = 0, desig;
+    string designacao;
+
+    lerArquivo();
+
+    c = 1;
+    while(1){
+        cout << "Insira a designacao que deseja observar:\n";
+        cout << "(1) Operador\n";
+        cout << "(2) Gerente\n";
+        cout << "(3) Diretor\n";
+        cout << "(4) Presidente\n";
+
+        cin >> desig;
+        getchar();
+
+        switch (desig){
+        case 1:
+            designacao = "Operador";
+            c = 0;
+            break;
+        case 2:
+            designacao = "Gerente";
+            c = 0;
+            break;
+        case 3:
+            designacao = "Diretor";
+            c = 0;
+            break;
+        case 4:
+            designacao = "Presidente";
+            c = 0;
+            break;
+        default:
+            cout << "Inválido! Tente novamente\n";
+            break;
+        }
+
+        if(c == 0){
+            break;
+        }
+    }
+    
+    for(int i = 0; i < 100; i++){
+        if(linhas[i] != ""){
+            colunas();
+        }
+        if(getDesig(i) == designacao){
+            flag = 1;
+        }
+    }
+    if(flag == 0){
+        cout << "Não foi encontrado nenhum funcionario" << endl;
+        return;
+    }
+
+    cout << "Codigo,Nome,Designacao" << endl;
+    for(int i = 0; i < 100; i++){
+        if(getDesig(i) == designacao){
+            cout << getCodigo(i) << "," << getNome(i) << "," << getDesig(i) << endl;
         }
     }
 }
@@ -211,7 +335,8 @@ string Funcionario::retornaEndereco(string cep){
     return "Logradouro: " + forEndereco(linhasAPI, 2, 17) + " - " "Bairro: " + forEndereco(linhasAPI, 4, 13) + " - " + "Cidade: " + forEndereco(linhasAPI, 5, 17) + " - " + "UF: " + forEndereco(linhasAPI, 6, 9);
 
 }
-double Funcionario::aumentoDeSalarios(){
+
+void Funcionario::aumentoDeSalarios(){
     Operador operador;
     Gerente gerente;
     Presidente presidente;
@@ -271,7 +396,7 @@ void Funcionario::addFuncionario(){
 
     Data data;
     string nome, aux, codigo, cod, telefone, designacao, endereco, cep, numero, areaS[2], areaF[2], formacao;
-    string Nan("Nan"), logradouro, bairro, cidade, uf, linha[100], line, dia, mes, ano;
+    string logradouro, bairro, cidade, uf, linha[100], line, dia, mes, ano;
     string yn;
     int i, c, desig, li = 0;
     float salario;
