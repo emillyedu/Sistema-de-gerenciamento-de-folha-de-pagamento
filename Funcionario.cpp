@@ -2125,10 +2125,10 @@ void Funcionario::exibeFolhaSalarialFuncionario(){
 }
 
 void Funcionario::exibeFolhaSalarialEmpresa(){
-    int opcao, i, valor, k;
+    int opcao, i, valor, k, l;
     string data, arquivo[100], ano, busca[12], SalarioBrutoS[100],INSSS[100],IRRFS[100],SalarioLiquidoS[100], linha, temp;
     ifstream fileTeste;
-    float SalarioBruto[100],INSS[100],IRRF[100],SalarioLiquido[100];
+    double SalarioBruto[100],INSS[100],IRRF[100],SalarioLiquido[100], aux;
 
     lerArquivo();
     colunas();
@@ -2180,6 +2180,7 @@ void Funcionario::exibeFolhaSalarialEmpresa(){
                 if (fileTeste.is_open()){
                     cout<<"Folha Salarial dessa data ja foi calculada"<<endl;
                     i=0;
+                    l = 0;
                     while(getline(fileTeste, linha)){
                         temp = "";
                         for(k = 0; k < linha.size(); k++){
@@ -2189,7 +2190,7 @@ void Funcionario::exibeFolhaSalarialEmpresa(){
                                 break;
                             }
                         }
-                        cout << temp << endl;
+                        // cout << temp << endl;
                         
                         temp = "";
                         for(++k; k < linha.size(); k++){
@@ -2199,7 +2200,7 @@ void Funcionario::exibeFolhaSalarialEmpresa(){
                                 break;
                             }
                         }
-                        cout << temp << endl;
+                        // cout << temp << endl;
 
                         temp = "";
                         for(++k; k < linha.size(); k++){
@@ -2209,9 +2210,9 @@ void Funcionario::exibeFolhaSalarialEmpresa(){
                                 break;
                             }
                         }
-                        cout << temp << endl;
+                        // cout << temp << endl;
                         SalarioBrutoS[i]=temp;
-                        cout << SalarioBrutoS[i] << endl;
+                        // cout << SalarioBrutoS[i] << endl;
 
                         temp = "";
                         for(++k; k < linha.size(); k++){
@@ -2221,9 +2222,9 @@ void Funcionario::exibeFolhaSalarialEmpresa(){
                                 break;
                             }
                         }
-                        cout << temp << endl;
+                        // cout << temp << endl;
                         INSSS[i]=temp;
-                        cout << INSSS[i] << endl;
+                        // cout << INSSS[i] << endl;
 
                         temp = "";
                         for(++k; k < linha.size(); k++){
@@ -2233,9 +2234,9 @@ void Funcionario::exibeFolhaSalarialEmpresa(){
                                 break;
                             }
                         }
-                        cout << temp << endl;
+                        // cout << temp << endl;
                         IRRFS[i]=temp;
-                        cout << IRRFS[i] << endl;
+                        // cout << IRRFS[i] << endl;
 
                         temp = "";
                         for(++k; k < linha.size(); k++){
@@ -2245,11 +2246,26 @@ void Funcionario::exibeFolhaSalarialEmpresa(){
                                 break;
                             }
                         }
-                        cout << temp << endl;
+                        // cout << temp << endl;
                         SalarioLiquidoS[i]=temp;
-                        cout << SalarioLiquidoS[i] << endl;
+                        // cout << SalarioLiquidoS[i] << endl;
 
+                        // linha.find("SalarioEmpresa") != string::npos
+                        if(l>0 && SalarioBrutoS[i] != ""){
+                            cout << SalarioBrutoS[i] << endl;
+                            SalarioBrutoS[i] = SalarioBrutoS[i].erase(0,2);
+                            cout << SalarioBrutoS[i] << endl;
+                            try{
+                                aux = stod(SalarioBrutoS[i]);
+                                cout << aux << endl; 
+                                SalarioBruto[i] += aux;
+                                cout << SalarioBruto[i] << endl;
+                            }catch(std :: invalid_argument  const & ex ){
+                                cout << "O parâmetro não é uma string" << endl;
+                            }
+                        }
 
+                        l++;
                         }
 
                         i++;
