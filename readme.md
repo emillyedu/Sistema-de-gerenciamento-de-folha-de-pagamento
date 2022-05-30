@@ -30,3 +30,12 @@ Imprimir a folha salarial empresa <!-- mes, ano -->
 obs:
 Na otimização, mudar a função ler e criar arquivo - receber como parâmetro o arquivo
 
+
+
+
+perguntas:
+
+sementes - num aleatorios
+caso: dois presidentes, duas pessoas supervisionando mesma área
+
+
