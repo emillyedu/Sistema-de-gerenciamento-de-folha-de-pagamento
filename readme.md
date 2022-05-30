@@ -28,5 +28,5 @@ Imprimir a folha salarial empresa <!-- mes, ano -->
 
 
 obs:
-Na otimização, mudar a função ler arquivo - receber como parâmetro o arquivo
+Na otimização, mudar a função ler e criar arquivo - receber como parâmetro o arquivo
 
