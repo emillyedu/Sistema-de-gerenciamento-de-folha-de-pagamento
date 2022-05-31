@@ -6,7 +6,9 @@
 
 #include <iostream>
 
+
 int main(){
+    srand(time(NULL));
     Funcionario funcionario;
     
     funcionario.exibeFolhaSalarialEmpresa();

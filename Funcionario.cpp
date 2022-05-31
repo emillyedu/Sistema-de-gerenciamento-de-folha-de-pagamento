@@ -1816,7 +1816,7 @@ void Funcionario::excluirRegistro(){
     int cont = 0, teste = 1;
     fstream file;
 
-    lerArquivo();
+    lerArquivo(); // Lê o arquivo com todas as informações dos uncinário e passa para as variáveis corrrespondentes
     colunas();
 
     system("cls");
@@ -1826,8 +1826,8 @@ void Funcionario::excluirRegistro(){
     cin >> cod;
 
     for(int i = 0; i < 100; i++){
-        if(codigo[i].find(cod) != string::npos && cod.size() == 3){
-            if((linhas[i+1].find("Presidente") != string::npos) || (linhas[i+1].find("Diretor") != string::npos)){
+        if(codigo[i] == cod){ // procura o código digitado entre os códigos do arquivo
+            if(desig[i] == "Presidente" || desig[i] == "Diretor"){ // verifica se esse código pertence a um Presidente ou Diretor
                 system("cls");
                 cout << "Registro nao pode ser excluido." << endl;
                 break;
@@ -1845,7 +1845,7 @@ void Funcionario::excluirRegistro(){
                     }else if(escolha == "sim"){
                         system("cls");
                         cout << "O registro foi excluido." << endl;
-                        cont = i+1;
+                        cont = i+1; // Armazena o index da linha em que o código foi excluído
                         teste = 0;
                         break;
                     }else{
@@ -1855,7 +1855,7 @@ void Funcionario::excluirRegistro(){
                 }
                 break;
             }
-        }else if(linha[i] == ""){
+        }else if(linhas[i] == ""){ // se código digitado não for encontrado e a linha estiver vazia encerra o for
             system("cls");
             cout << "Codigo nao encontrado." << endl;
         }
@@ -1863,8 +1863,8 @@ void Funcionario::excluirRegistro(){
 
     int i = 0;
     for(int j = 0; j < 100; j++){
-        if((j == cont) && (teste == 0)){
-
+        if((j == cont) && (teste == 0)){ //o index corresponde ao contador e variável teste está zerada comfirmando que essa linha não dever 
+                                         // ser salva no arquivo logo deve ser excluída.
         }else{
             linhaAux = linhas[j];
             linha[i] = linhaAux;
@@ -1888,7 +1888,6 @@ void Funcionario::excluirRegistro(){
 //Numeros aletórios de dias trabalhados
 double Funcionario::geraDiasTrabalhados(double m){
     double dias;
-    srand(time(NULL));
     if(m == 2){
         while(1){
             dias = 1 + rand() % 28;
@@ -1917,7 +1916,6 @@ double Funcionario::geraDiasTrabalhados(double m){
 double Funcionario::geraHorasExtras(double m){
     double horas;
     while(1){
-        srand(time(NULL));
         horas = rand() % 2;
         horas = horas*m;
         if(horas < 56){
@@ -1974,7 +1972,6 @@ void Funcionario::calculaFolhaSalarial(){
                 }else{
                     salariosBruto[i] = ((salariosBruto[i]/30)*geraDiasTrabalhados(mes)) +  ((salariosBruto[i]/30)/8)*2*geraHorasExtras(mes);       
                 }
-                // cout << salariosBruto[i] << endl;
             }
         }
 
@@ -1997,7 +1994,6 @@ void Funcionario::calculaFolhaSalarial(){
                     descontoINSS[i] = 828.38;
                     salariosLiquido[i] = salariosBruto[i] - 828.38;
                 }
-                // cout << salariosLiquido[i] << endl;
             }
         }
         
@@ -2019,7 +2015,6 @@ void Funcionario::calculaFolhaSalarial(){
                     descontoIRRF[i] = ((salariosLiquido[i]*(27.5/100))-869.36);
                     salariosLiquido[i] = salariosLiquido[i] - ((salariosLiquido[i]*(27.5/100))-869.36);
                 }
-                // cout << salariosLiquido[i] << endl;
             }
         }
 
@@ -2042,10 +2037,8 @@ void Funcionario::calculaFolhaSalarial(){
 void Funcionario::exibeFolhaSalarialFuncionario(){
     ifstream fileTeste;
     fstream file;
-    string data, Smes, arquivo[100], nomeF, codigoF;
-    double salariosBruto[1000], salariosLiquido[100], descontoINSS[100], descontoIRRF[100], salarioEmpresa=0;
-    double mes;
-    int i = 0, opcao, teste, valor, lucas;
+    string data, arquivo[100], nomeF, codigoF;
+    int i = 0, opcao, teste, valor;
 
     lerArquivo();
     colunas();
@@ -2125,7 +2118,7 @@ void Funcionario::exibeFolhaSalarialFuncionario(){
 }
 
 void Funcionario::exibeFolhaSalarialEmpresa(){
-    int opcao, i, valor, k, l;
+    int opcao, i, k, l;
     string data, arquivo[100], ano, busca[12], SalarioBrutoS[100],INSSS[100],IRRFS[100],SalarioLiquidoS[100], linha, temp;
     ifstream fileTeste;
     double SalarioBruto[100],INSS[100],IRRF[100],SalarioLiquido[100], salarioEmpresa=0;
@@ -2174,240 +2167,108 @@ void Funcionario::exibeFolhaSalarialEmpresa(){
         for(int j = 1; j<13; j++){
             if(j < 10){
                 busca[j-1] = "./csv/FolhaSalarial-0" + to_string(j) + ano + ".csv";
-                cout << busca[j-1] << endl;
-
-                fileTeste.open(busca[j-1]);
-                if (fileTeste.is_open()){
-                    cout<<"Folha Salarial dessa data ja foi calculada"<<endl;
-                    i=0;
-                    l = 0;
-                    while(getline(fileTeste, linha)){
-                        temp = "";
-                        for(k = 0; k < linha.size(); k++){
-                            if(linha[k] != ','){
-                                temp = temp + linha[k];
-                            }else{
-                                break;
-                            }
-                        }
-                        // cout << temp << endl;
-                        
-                        temp = "";
-                        for(++k; k < linha.size(); k++){
-                            if(linha[k] != ','){
-                                temp = temp + linha[k];
-                            }else{
-                                break;
-                            }
-                        }
-                        // cout << temp << endl;
-
-                        temp = "";
-                        for(++k; k < linha.size(); k++){
-                            if(linha[k] != ','){
-                                temp = temp + linha[k];
-                            }else{
-                                break;
-                            }
-                        }
-                        // cout << temp << endl;
-                        SalarioBrutoS[i]=temp;
-                        // cout << SalarioBrutoS[i] << endl;
-
-                        temp = "";
-                        for(++k; k < linha.size(); k++){
-                            if(linha[k] != ','){
-                                temp = temp + linha[k];
-                            }else{
-                                break;
-                            }
-                        }
-                        // cout << temp << endl;
-                        INSSS[i]=temp;
-                        // cout << INSSS[i] << endl;
-
-                        temp = "";
-                        for(++k; k < linha.size(); k++){
-                            if(linha[k] != ','){
-                                temp = temp + linha[k];
-                            }else{
-                                break;
-                            }
-                        }
-                        // cout << temp << endl;
-                        IRRFS[i]=temp;
-                        // cout << IRRFS[i] << endl;
-
-                        temp = "";
-                        for(++k; k < linha.size(); k++){
-                            if(linha[k] != ','){
-                                temp = temp + linha[k];
-                            }else{
-                                break;
-                            }
-                        }
-                        // cout << temp << endl;
-                        SalarioLiquidoS[i]=temp;
-                        // cout << SalarioLiquidoS[i] << endl;
-
-                        // linha.find("SalarioEmpresa") != string::npos
-                        if(l>0 && SalarioBrutoS[i] != ""){
-                            SalarioBrutoS[i] = SalarioBrutoS[i].erase(0,2);
-                            INSSS[i] = INSSS[i].erase(0,2);
-                            IRRFS[i] = IRRFS[i].erase(0,2);
-                            SalarioLiquidoS[i] = SalarioLiquidoS[i].erase(0,2);
-                            // cout << SalarioBrutoS[i] << endl;
-                            // cout << INSSS[i] << endl;
-                            // cout << IRRFS[i] << endl;
-                            // cout << SalarioLiquidoS[i] << endl;
-                            try{
-                                SalarioBruto[l-1] += stod(SalarioBrutoS[i]);
-                                // cout << SalarioBruto[l-1] << endl;
-                                INSS[l-1] += stod(INSSS[i]);
-                                // cout << INSS[l-1] << endl;
-                                IRRF[l-1] += stod(IRRFS[i]);
-                                // cout << IRRF[l-1] << endl;
-                                SalarioLiquido[l-1] += stod(SalarioLiquidoS[i]);
-                                // cout << SalarioLiquido[l-1] << endl;
-                            }catch(std :: invalid_argument  const & ex ){
-                                cout << "O parâmetro não é uma string" << endl;
-                            }
-                        }
-
-                        l++;
-                        }
-
-                        i++;
-                    
-
-                    fileTeste.close();
-                }else{
-                    fileTeste.close();
-                    cout<<"Folha Salarial do mes " << j << " nao foi calculada" <<endl;
-
-                    // calculaFolhaSalarial();
-                    
-                    // fileTeste.open(data);
-
-                    // cout<<"Folha Salarial dessa data foi calculada"<<endl;
-                    // i=0;
-                    // while(getline(fileTeste, arquivo[i])){
-                    //     cout << arquivo[i] << endl;
-                    // }
-
-                    // fileTeste.close();
-                }
-
-            }else{
+            }else if(j >= 10){
                 busca[j-1] = "./csv/FolhaSalarial-" + to_string(j) + ano + ".csv";
-                cout << busca[j-1] << endl;
+            }
 
-                fileTeste.open(busca[j-1]);
-                if (fileTeste.is_open()){
-                    cout<<"Folha Salarial dessa data ja foi calculada"<<endl;
-                    i=0;
-                    l = 0;
-                    while(getline(fileTeste, linha)){
-                        temp = "";
-                        for(k = 0; k < linha.size(); k++){
-                            if(linha[k] != ','){
-                                temp = temp + linha[k];
-                            }else{
-                                break;
-                            }
+            fileTeste.open(busca[j-1]);
+            if (fileTeste.is_open()){
+                i=0;
+                l = 0;
+                while(getline(fileTeste, linha)){
+                    temp = "";
+                    for(k = 0; k < linha.size(); k++){
+                        if(linha[k] != ','){
+                            temp = temp + linha[k];
+                        }else{
+                            break;
                         }
-                        // cout << temp << endl;
+                    }
                         
-                        temp = "";
-                        for(++k; k < linha.size(); k++){
-                            if(linha[k] != ','){
-                                temp = temp + linha[k];
-                            }else{
-                                break;
-                            }
+                    temp = "";
+                    for(++k; k < linha.size(); k++){
+                        if(linha[k] != ','){
+                            temp = temp + linha[k];
+                        }else{
+                            break;
                         }
-                        // cout << temp << endl;
+                    }
 
-                        temp = "";
-                        for(++k; k < linha.size(); k++){
-                            if(linha[k] != ','){
-                                temp = temp + linha[k];
-                            }else{
-                                break;
-                            }
+                    temp = "";
+                    for(++k; k < linha.size(); k++){
+                        if(linha[k] != ','){
+                            temp = temp + linha[k];
+                        }else{
+                            break;
                         }
-                        // cout << temp << endl;
-                        SalarioBrutoS[i]=temp;
-                        // cout << SalarioBrutoS[i] << endl;
+                    }
+                    SalarioBrutoS[i]=temp;
 
-                        temp = "";
-                        for(++k; k < linha.size(); k++){
-                            if(linha[k] != ','){
-                                temp = temp + linha[k];
-                            }else{
-                                break;
-                            }
+                    temp = "";
+                    for(++k; k < linha.size(); k++){
+                        if(linha[k] != ','){
+                            temp = temp + linha[k];
+                        }else{
+                            break;
                         }
-                        // cout << temp << endl;
-                        INSSS[i]=temp;
-                        // cout << INSSS[i] << endl;
+                    }
+                    INSSS[i]=temp;
 
-                        temp = "";
-                        for(++k; k < linha.size(); k++){
-                            if(linha[k] != ','){
-                                temp = temp + linha[k];
-                            }else{
-                                break;
-                            }
+                    temp = "";
+                    for(++k; k < linha.size(); k++){
+                        if(linha[k] != ','){
+                            temp = temp + linha[k];
+                        }else{
+                            break;
                         }
-                        // cout << temp << endl;
-                        IRRFS[i]=temp;
-                        // cout << IRRFS[i] << endl;
+                    }
+                    IRRFS[i]=temp;
 
-                        temp = "";
-                        for(++k; k < linha.size(); k++){
-                            if(linha[k] != ','){
-                                temp = temp + linha[k];
-                            }else{
-                                break;
-                            }
+                    temp = "";
+                    for(++k; k < linha.size(); k++){
+                        if(linha[k] != ','){
+                            temp = temp + linha[k];
+                        }else{
+                            break;
                         }
-                        // cout << temp << endl;
-                        SalarioLiquidoS[i]=temp;
-                        // cout << SalarioLiquidoS[i] << endl;
+                    }
+                    SalarioLiquidoS[i]=temp;
 
-                        // linha.find("SalarioEmpresa") != string::npos
-                        if(l>0 && SalarioBrutoS[i] != ""){
-                            SalarioBrutoS[i] = SalarioBrutoS[i].erase(0,2);
-                            INSSS[i] = INSSS[i].erase(0,2);
-                            IRRFS[i] = IRRFS[i].erase(0,2);
-                            SalarioLiquidoS[i] = SalarioLiquidoS[i].erase(0,2);
-                            // cout << SalarioBrutoS[i] << endl;
-                            // cout << INSSS[i] << endl;
-                            // cout << IRRFS[i] << endl;
-                            // cout << SalarioLiquidoS[i] << endl;
-                            try{
-                                SalarioBruto[l-1] += stod(SalarioBrutoS[i]);
-                                // cout << SalarioBruto[l-1] << endl;
-                                INSS[l-1] += stod(INSSS[i]);
-                                // cout << INSS[l-1] << endl;
-                                IRRF[l-1] += stod(IRRFS[i]);
-                                // cout << IRRF[l-1] << endl;
-                                SalarioLiquido[l-1] += stod(SalarioLiquidoS[i]);
-                                // cout << SalarioLiquido[l-1] << endl;
-                            }catch(std :: invalid_argument  const & ex ){
-                                cout << "O parâmetro não é uma string" << endl;
-                            }
+                    if(l>0 && SalarioBrutoS[i] != ""){
+                        SalarioBrutoS[i] = SalarioBrutoS[i].erase(0,2);
+                        INSSS[i] = INSSS[i].erase(0,2);
+                        IRRFS[i] = IRRFS[i].erase(0,2);
+                        SalarioLiquidoS[i] = SalarioLiquidoS[i].erase(0,2);
+                        try{
+                            SalarioBruto[l-1] += stod(SalarioBrutoS[i]);
+                            INSS[l-1] += stod(INSSS[i]);
+                            IRRF[l-1] += stod(IRRFS[i]);
+                            SalarioLiquido[l-1] += stod(SalarioLiquidoS[i]);
+                        }catch(std :: invalid_argument  const & ex ){
+                            cout << "O parâmetro não é uma string" << endl;
                         }
-
-                        l++;
-                        }
-
-                        i++;
-                    
-
-                    fileTeste.close();
+                    }
+                    l++;
                 }
+
+                i++;
+                    
+                fileTeste.close();
+            }else{
+                fileTeste.close();
+                cout<<"Folha Salarial do mes " << j << " nao foi calculada" <<endl;
+
+                // calculaFolhaSalarial();
+                
+                // fileTeste.open(data);
+
+                // cout<<"Folha Salarial dessa data foi calculada"<<endl;
+                // i=0;
+                // while(getline(fileTeste, arquivo[i])){
+                //     cout << arquivo[i] << endl;
+                // }
+
+                // fileTeste.close();
             }
         }
 
@@ -2423,8 +2284,5 @@ void Funcionario::exibeFolhaSalarialEmpresa(){
                 break;
             } 
         }
-        
-
-
     }
 }
