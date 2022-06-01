@@ -84,19 +84,56 @@ void Funcionario::exibirArquivo(){
 void Funcionario::exibeRegistroFunc(){
     //Ao inserir o número de código do funcionário, os usuários podem acessar todas as informações 
     //fornecidas relacionadas a um determinado funcionário por meio desta função.
-    string codigoFunc;
+    string cod, codigo;
+    int flag = 0, c;
 
     lerArquivo();
 
-    cout << "Insira o código do funcionário desejado: ";
-    getline(cin, codigoFunc);
+    while(1){
+        c = 1;
+        while(1){
+            cout << "Insira o código do funcionário desejado: ";
+            getline(cin, cod);
+            system("cls");
+
+            if(cod.length() == 3){
+                codigo = cod;
+                break;
+            }
+            else if(cod.length() == 2){
+                codigo = "0" + cod;
+                break;
+            }
+            else if(cod.length() == 1){
+                codigo = "00" + cod;
+                break;
+            }
+            else{
+                cout << "codigo maior do que o esperado" << endl;
+                continue;
+            }
+        }
+        for(int i = 1; i < 100; i++){
+            if(linhas[i] != ""){
+                colunas();
+            }
+            if(getCodigo(i-1) == codigo){
+                cout << "codigo invalido, tente novamente" << endl;
+                c = 0;
+                break;
+            }
+        }
+        if(c == 1){
+            break;
+        }
+    }
 
     for(int i = 0; i < 100; i++){
 
         if(linhas[i] != ""){
             colunas();
         }
-        if(getCodigo(i) == codigoFunc){
+        if(getCodigo(i) == cod){
             cout << endl;
             cout << "Codigo: " << getCodigo(i) << endl;
             cout << "Nome: " << getNome(i) << endl;
@@ -114,15 +151,20 @@ void Funcionario::exibeRegistroFunc(){
             if(getFormacao(i) != Nan){
                 cout << "Formacao maxima: " << getFormacao(i) << endl << endl;     
             }
-
+            flag = 1;
             break;
         }
+    }
+    
+    if(flag == 0){
+        cout << "Funcionario nao encontrado" << endl;
     }
 }
 
 void Funcionario::exibeListaFunc(){
     //Este recurso exibe o registro de todos os funcionários 
     lerArquivo();
+
     cout << "Codigo,Nome,Designacao" << endl;
     for(int i = 0; i < 100; i++){
         if(linhas[i] != ""){
@@ -187,6 +229,7 @@ void Funcionario::exibeListaTipo(){
             flag = 1;
         }
     }
+
     if(flag == 0){
         cout << "Não foi encontrado nenhum funcionario" << endl;
         return;
@@ -504,7 +547,7 @@ void Funcionario::addFuncionario(){
             }
         }
         
-        if(endereco == "Nan" || yn == "N" || yn == "n"){
+        if(endereco == Nan || yn == "N" || yn == "n"){
             endereco.clear();
             cep.clear();
             cout << "informe o logradouro: ";
