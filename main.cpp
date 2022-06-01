@@ -11,7 +11,7 @@ int main(){
     srand(time(NULL));
     Funcionario funcionario;
     
-    funcionario.exibeFolhaSalarialEmpresa();
+    funcionario.calculaFolhaSalarial();
     
     return 0;
 }

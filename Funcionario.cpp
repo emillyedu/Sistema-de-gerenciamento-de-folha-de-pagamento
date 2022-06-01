@@ -1855,11 +1855,11 @@ void Funcionario::addFuncionario(){
 /* ==========================================================================================================*/
 
 void Funcionario::excluirRegistro(){
-    string cod, escolha, linha[100], linhaAux;
+    string cod, escolha,linha[100], linhaAux;
     int cont = 0, teste = 1;
     fstream file;
 
-    lerArquivo(); // Lê o arquivo com todas as informações dos uncinário e passa para as variáveis corrrespondentes
+    lerArquivo(); // Lê o arquivo com todas as informações dos usuário e passa para as variáveis corrrespondentes
     colunas();
 
     system("cls");
@@ -1879,13 +1879,14 @@ void Funcionario::excluirRegistro(){
                 cout << "codigo encontrado: " << cod << endl;
                 cout << "Deseja excluir o registro do Arquivo ? ";
                 while(1){
-                    cout << "Digite sim ou nao: ";
+                    cout << "Digite (s)sim ou (n)nao: ";
                     cin >> escolha;
-                    if(escolha == "nao"){
+                    getchar();
+                    if(escolha == "n" || escolha == "N"){
                         system("cls");
                         cout << "Registro nao exluido." << endl;
                         break;
-                    }else if(escolha == "sim"){
+                    }else if(escolha == "s" || escolha == "S"){
                         system("cls");
                         cout << "O registro foi excluido." << endl;
                         cont = i+1; // Armazena o index da linha em que o código foi excluído
@@ -1894,11 +1895,12 @@ void Funcionario::excluirRegistro(){
                     }else{
                         system("cls");
                         cout << "Opcao invalida" << endl;
+                        continue;
                     }
                 }
                 break;
             }
-        }else if(linhas[i] == ""){ // se código digitado não for encontrado e a linha estiver vazia encerra o for
+        }else if(linhas[i] == "" && i == 99){ // se código digitado não for encontrado e a linha estiver vazia encerra o for
             system("cls");
             cout << "Codigo nao encontrado." << endl;
         }
@@ -1971,16 +1973,39 @@ double Funcionario::geraHorasExtras(double m){
 void Funcionario::calculaFolhaSalarial(){
     ifstream fileTeste;
     fstream file;
-    string data, Smes;
+    string data, dataM, dataA;
+    string meses[12]{"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
+    int testeMes=0, testeAno=0;
     double salariosBruto[1000], salariosLiquido[100], descontoINSS[100], descontoIRRF[100], salarioEmpresa=0;
     double mes;
 
-    cout << "Digite o ano e o mes, em que a folha salarial vai ser calculada: " << "Padrao : yyxxxx" << endl;
-    cin >> data;
-    Smes = data;
+    while(1){
+        cout << "Digite o ano e o mes, em que a folha salarial vai ser calculada: " << "Padrao : yyxxxx" << endl;
+        cin >> data;
+        dataM = data;
+        dataM.erase(2, 6);
+        dataA = data;
+        dataA.erase(0, 2);
+        for(int i = 0; i<12; i++){
+            if(dataM == meses[i]){
+                testeMes=1;
+                break;
+            }
+        }
+        
+        if(dataA.length() == '4'){
+            testeAno=1;
+        }
+
+        if(testeAno == 1 && testeMes == 1){
+            break;
+        }else{
+            cout << "Data invalida." << endl;
+            continue;
+        }
+    }
 
     data = "./csv/FolhaSalarial-" + data + ".csv";
-    cout << data << endl;
 
     // verifica se o arquivo já foi criado
     fileTeste.open(data);
@@ -2002,8 +2027,8 @@ void Funcionario::calculaFolhaSalarial(){
         }
 
         //variavel mes da folha salarial
-        Smes = Smes.erase(2, Smes.length());
-        mes = stod(Smes);
+        dataM = dataM.erase(2, dataM.length());
+        mes = stod(dataM);
 
         // Calcula salario bruto daquele mes
         for(int i = 0; i < 100; i++){
