@@ -1982,10 +1982,12 @@ void Funcionario::calculaFolhaSalarial(){
     while(1){
         cout << "Digite o ano e o mes, em que a folha salarial vai ser calculada: " << "Padrao : yyxxxx" << endl;
         cin >> data;
+        getchar();
         dataM = data;
         dataM.erase(2, 6);
         dataA = data;
         dataA.erase(0, 2);
+        
         for(int i = 0; i<12; i++){
             if(dataM == meses[i]){
                 testeMes=1;
@@ -1993,11 +1995,11 @@ void Funcionario::calculaFolhaSalarial(){
             }
         }
         
-        if(dataA.length() == '4'){
+        if(strlen(dataA.c_str()) == 4){
             testeAno=1;
         }
 
-        if(testeAno == 1 && testeMes == 1){
+        if((testeAno == 1) && (testeMes == 1)){
             break;
         }else{
             cout << "Data invalida." << endl;
@@ -2105,14 +2107,40 @@ void Funcionario::calculaFolhaSalarial(){
 void Funcionario::exibeFolhaSalarialFuncionario(){
     ifstream fileTeste;
     fstream file;
-    string data, arquivo[100], nomeF, codigoF;
+    string data, arquivo[100], nomeF, codigoF, dataM, dataA;
+    string meses[12]{"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
+    int testeMes=0, testeAno=0;
     int i = 0, opcao, teste, valor;
 
     lerArquivo();
     colunas();
 
-    cout << "Digite o ano e o mes, folha salarial que vai ser exibida: " << "Padrao : yyxxxx" << endl;
-    cin >> data;
+    while(1){
+        cout << "Digite o ano e o mes, em que a folha salarial vai ser exibida: " << "Padrao : yyxxxx" << endl;
+        cin >> data;
+        getchar();
+        dataM = data;
+        dataM.erase(2, 6);
+        dataA = data;
+        dataA.erase(0, 2);
+        for(int i = 0; i<12; i++){
+            if(dataM == meses[i]){
+                testeMes=1;
+                break;
+            }
+        }
+        
+        if(strlen(dataA.c_str()) == 4){
+            testeAno=1;
+        }
+
+        if((testeAno == 1) && (testeMes == 1)){
+            break;
+        }else{
+            cout << "Data invalida." << endl;
+            continue;
+        }
+    }
     while(1){
         cout << "Deseja fazer a busca por nome(1) ou codigo(2)?" << endl;
         cin >> opcao;
@@ -2194,8 +2222,18 @@ void Funcionario::exibeFolhaSalarialEmpresa(){
     lerArquivo();
     colunas();
 
-    cout << "Exibir folha salarial mensal ou anual ? (1) - mensal / (2) - anual" << endl;
-    cin >> opcao;
+    while(1){
+        cout << "Exibir folha salarial mensal ou anual ? (1) - mensal / (2) - anual" << endl;
+        cin >> opcao;
+        getchar();
+        if(opcao == 1){
+            break;
+        }else if(opcao == 2){
+            break;
+        }else
+            continue;
+    }
+    
 
     if(opcao == 1){
         cout << "Digite o ano e o mes, folha salarial que vai ser exibida: " << "Padrao : yyxxxx" << endl;
