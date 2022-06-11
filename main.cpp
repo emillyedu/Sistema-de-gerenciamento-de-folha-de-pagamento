@@ -3,6 +3,7 @@
 #include "Diretor.h"
 #include "Presidente.h"
 #include "Gerente.h"
+#include "Menu.h"
 
 #include <iostream>
 
@@ -10,8 +11,9 @@
 int main(){
     srand(time(NULL));
     Funcionario funcionario;
+    Menu menu;
     
-    funcionario.exibeFolhaSalarialEmpresa();
+    menu.cmdPrincipal();
     
     return 0;
 }
