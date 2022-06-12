@@ -14,7 +14,7 @@ int main(){
     Menu menu;
     
     // menu.cmdPrincipal();
-    funcionario.calculaFolhaSalarial();
+    funcionario.exibeFolhaSalarialFuncionario();
     
     return 0;
 }

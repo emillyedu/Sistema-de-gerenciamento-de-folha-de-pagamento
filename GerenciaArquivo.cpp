@@ -92,6 +92,15 @@ void GerenciaArquivo::exibirArquivo(){
     }
 }
 
+string GerenciaArquivo::transformaStringMin(string str){
+    char* c;
+    c = &str[0];
+
+    strlwr(c);
+
+    return c;
+}
+
 void GerenciaArquivo::separadorColuna(string colPresent[], int del[]){
     for(int i = 1, j = 0; i < 100; i++, j++){
         if(linhas[i] != ""){

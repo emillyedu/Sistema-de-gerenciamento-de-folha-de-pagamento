@@ -962,6 +962,7 @@ void Funcionario::exibeFolhaSalarialFuncionario(){
             cout << "Digite o nome: ";
             getchar();
             getline(cin, nomeF);
+            nomeF = transformaStringMin(nomeF);
             for(i=0;i<100;i++){
                 if(nomeF == nome[i]){
                     valor = i;
@@ -1000,14 +1001,15 @@ void Funcionario::exibeFolhaSalarialFuncionario(){
 
     calculaDescontos(salarioD);
 
-    cout << "Nome," << "SalarioBruto," << "INSS," << "IRRF," << "SalarioLiquido" << endl;
+    system("cls");
+    cout << "Funcinario,Designacao,SalarioBruto,INSS,IRRF,SalarioLiquido" << endl;
     cout << nome[valor] << ",R$" << salario[valor] << ",R$" << inss[valor] << ",R$" << irrf[valor] << ",R$" << salarioLiquido[valor] << endl;
 
 }
 
 void Funcionario::exibeFolhaSalarialEmpresa(){
     int opcao, i, k, l;
-    string data, arquivo[100], ano, busca[12], stringSalarioBru[100],stringInss[100],stringIrrf[100],stringSalarioLiq[100], linha, temp;
+    string data, arquivo[TAM], ano, busca[12], stringSalarioBru[TAM],stringInss[TAM],stringIrrf[TAM],stringSalarioLiq[TAM], linha, temp;
     ifstream fileTeste;
     salarioEmpresa = 0;
 
@@ -1173,7 +1175,7 @@ void Funcionario::exibeFolhaSalarialEmpresa(){
 
         cout << "Folha Salaria: " << ano << endl;
         cout << "Funcinario,Designacao,SalarioBruto,INSS,IRRF,SalarioLiquido" << endl;
-        for(i=0; i < 100; i++){
+        for(i=0; i < TAM; i++){
             if(nome[i] != ""){
                 cout << nome[i] << "," << desig[i] << ',' << salarioBruto[i] << "," << inss[i] << "," << irrf[i] << "," << salarioLiquido[i] 
                 << endl;

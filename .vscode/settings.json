@@ -15,6 +15,7 @@
         "type_traits": "cpp",
         "fstream": "cpp",
         "iosfwd": "cpp",
-        "stdexcept": "cpp"
+        "stdexcept": "cpp",
+        "random": "cpp"
     }
 }

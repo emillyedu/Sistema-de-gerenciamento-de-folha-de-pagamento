@@ -37,7 +37,7 @@ public:
     void limpaArraySalario();
 
 protected:
-    double salarioBruto[100],inss[100],irrf[100],salarioLiquido[100], salarioEmpresa;
+    double salarioBruto[TAM],inss[TAM],irrf[TAM],salarioLiquido[TAM], salarioEmpresa;
 
 };
 

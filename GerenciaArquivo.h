@@ -20,6 +20,7 @@ public:
     void criarArquivo();
     void lerArquivo();
     void exibirArquivo();
+    string transformaStringMin(string str);
 
     void separadorColuna(string colunaAtual[], int del[]);
     void colunas();
