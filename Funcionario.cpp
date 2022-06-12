@@ -766,13 +766,12 @@ void Funcionario::modificarFuncionario(){
 }
 
 void Funcionario::excluirRegistro(){
-    string cod, escolha, linhaAux;
-    int cont = 0, teste = 1;
+    string cod, linhaAux,linha[TAM];;
+    int cont = 0, teste = 1, escolha;
     fstream file;
 
     lerArquivo(); // Lê o arquivo com todas as informações dos usuário e passa para as variáveis corrrespondentes
     colunas();
-    string linha[100];
 
     system("cls");
 
@@ -780,7 +779,7 @@ void Funcionario::excluirRegistro(){
     
     cin >> cod;
 
-    for(int i = 0; i < 100; i++){
+    for(int i = 0; i < tamArq; i++){
         if(codigo[i] == cod){ // procura o código digitado entre os códigos do arquivo
             if(desig[i] == "Presidente" || desig[i] == "Diretor"){ // verifica se esse código pertence a um Presidente ou Diretor
                 system("cls");
@@ -791,14 +790,14 @@ void Funcionario::excluirRegistro(){
                 cout << "codigo encontrado: " << cod << endl;
                 cout << "Deseja excluir o registro do Arquivo ? ";
                 while(1){
-                    cout << "Digite (s)sim ou (n)nao: ";
+                    cout << "Digite (1)sim ou (2)nao: ";
                     cin >> escolha;
                     getchar();
-                    if(escolha == "n" || escolha == "N"){
+                    if(escolha == 2){
                         system("cls");
                         cout << "Registro nao exluido." << endl;
                         break;
-                    }else if(escolha == "s" || escolha == "S"){
+                    }else if(escolha == 1){
                         system("cls");
                         cout << "O registro foi excluido." << endl;
                         cont = i+1; // Armazena o index da linha em que o código foi excluído
@@ -812,14 +811,15 @@ void Funcionario::excluirRegistro(){
                 }
                 break;
             }
-        }else if(linhas[i] == "" && i == 99){ // se código digitado não for encontrado e a linha estiver vazia encerra o for
+        }else if(i == tamArq-1){ // se código digitado não for encontrado e a linha estiver vazia encerra o for
             system("cls");
             cout << "Codigo nao encontrado." << endl;
         }
+        // linhas[i] == "" && 
     }
 
     int i = 0;
-    for(int j = 0; j < 100; j++){
+    for(int j = 0; j < tamArq; j++){
         if((j == cont) && (teste == 0)){ //o index corresponde ao contador e variável teste está zerada comfirmando que essa linha não dever 
                                          // ser salva no arquivo logo deve ser excluída.
         }else{
@@ -832,7 +832,7 @@ void Funcionario::excluirRegistro(){
 
     file.open("./csv/Empresa.csv", ios::out);
 
-    for(int i = 0; i<100; i++){
+    for(int i = 0; i<tamArq; i++){
         if(linha[i] == ""){
             break;
         }
