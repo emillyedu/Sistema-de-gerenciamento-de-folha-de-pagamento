@@ -32,9 +32,13 @@ public:
     void excluirRegistro();
     void aumentoDeSalarios();
     void calculaFolhaSalarial();
+    void calculaInss(double sa[]);
+    void calculaIrrf();
     void modificarFuncionario();
+    void limpaArraySalario();
 
 protected:
+    double salarioBruto[100],inss[100],irrf[100],salarioLiquido[100], salarioEmpresa;
 
 };
 

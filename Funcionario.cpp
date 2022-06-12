@@ -848,9 +848,10 @@ void Funcionario::calculaFolhaSalarial(){
     string data, dataM, dataA;
     string meses[12]{"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
     int testeMes=0, testeAno=0;
-    double salariosBruto[1000], salariosLiquido[100], descontoINSS[100], descontoIRRF[100], salarioEmpresa=0;
+    salarioEmpresa=0;
     double mes;
 
+    limpaArraySalario();
     lerArquivo();
     colunas();
 
@@ -896,7 +897,7 @@ void Funcionario::calculaFolhaSalarial(){
         for(int i = 0; i < tamArq-1; i++){
             if(linhas[i] != ""){
                 if(getSalario(i) != ""){
-                    salariosBruto[i] = stod(getSalario(i));
+                    salarioBruto[i] = stod(getSalario(i));
                 }
             }
         }
@@ -910,11 +911,11 @@ void Funcionario::calculaFolhaSalarial(){
             if(linhas[i] != ""){
                 if(getSalario(i) != ""){
                     if(mes == 2){
-                        salariosBruto[i] = ((salariosBruto[i]/28)*geraDiasTrabalhados(mes)) +  ((salariosBruto[i]/28)/8)*2*geraHorasExtras(mes);
+                        salarioBruto[i] = ((salarioBruto[i]/28)*geraDiasTrabalhados(mes)) +  ((salarioBruto[i]/28)/8)*2*geraHorasExtras(mes);
                     }else if(mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12){
-                        salariosBruto[i] = ((salariosBruto[i]/31)*geraDiasTrabalhados(mes)) +  ((salariosBruto[i]/31)/8)*2*geraHorasExtras(mes);
+                        salarioBruto[i] = ((salarioBruto[i]/31)*geraDiasTrabalhados(mes)) +  ((salarioBruto[i]/31)/8)*2*geraHorasExtras(mes);
                     }else{
-                        salariosBruto[i] = ((salariosBruto[i]/30)*geraDiasTrabalhados(mes)) +  ((salariosBruto[i]/30)/8)*2*geraHorasExtras(mes);       
+                        salarioBruto[i] = ((salarioBruto[i]/30)*geraDiasTrabalhados(mes)) +  ((salarioBruto[i]/30)/8)*2*geraHorasExtras(mes);       
                     }
                 }else
                     break;
@@ -925,21 +926,21 @@ void Funcionario::calculaFolhaSalarial(){
         for(int i = 0; i < tamArq-1; i++){
             if(linhas[i] != ""){
                 if(getSalario(i) != ""){
-                    if(salariosBruto[i] <= 1212){
-                        descontoINSS[i] = (salariosBruto[i]*(7.5/100));
-                        salariosLiquido[i] = salariosBruto[i] - (salariosBruto[i]*(7.5/100));
-                    }else if(salariosBruto[i] <= 2427.35){
-                        descontoINSS[i] = (((salariosBruto[i] - 1212.01)*(9*1.0/100))+90.90);
-                        salariosLiquido[i] = salariosBruto[i] - (((salariosBruto[i] - 1212.01)*(9*1.0/100))+90.90);
-                    }else if(salariosBruto[i] <= 3641.03){
-                        descontoINSS[i] = (((salariosBruto[i]-2427.36)*(12*1.0/100))+200.28);
-                        salariosLiquido[i] = salariosBruto[i] - (((salariosBruto[i]-2427.36)*(12*1.0/100))+200.28);  
-                    }else if(salariosBruto[i] <= 7087.22){
-                        descontoINSS[i] = (((salariosBruto[i]-3641.04)*(14*1.0/100))+345.92);
-                        salariosLiquido[i] = salariosBruto[i] - (((salariosBruto[i]-3641.04)*(14*1.0/100))+345.92);
-                    }else if((salariosBruto[i] >= 7087.23)){
-                        descontoINSS[i] = 828.38;
-                        salariosLiquido[i] = salariosBruto[i] - 828.38;
+                    if(salarioBruto[i] <= 1212){
+                        inss[i] = (salarioBruto[i]*(7.5/100));
+                        salarioLiquido[i] = salarioBruto[i] - (salarioBruto[i]*(7.5/100));
+                    }else if(salarioBruto[i] <= 2427.35){
+                        inss[i] = (((salarioBruto[i] - 1212.01)*(9*1.0/100))+90.90);
+                        salarioLiquido[i] = salarioBruto[i] - (((salarioBruto[i] - 1212.01)*(9*1.0/100))+90.90);
+                    }else if(salarioBruto[i] <= 3641.03){
+                        inss[i] = (((salarioBruto[i]-2427.36)*(12*1.0/100))+200.28);
+                        salarioLiquido[i] = salarioBruto[i] - (((salarioBruto[i]-2427.36)*(12*1.0/100))+200.28);  
+                    }else if(salarioBruto[i] <= 7087.22){
+                        inss[i] = (((salarioBruto[i]-3641.04)*(14*1.0/100))+345.92);
+                        salarioLiquido[i] = salarioBruto[i] - (((salarioBruto[i]-3641.04)*(14*1.0/100))+345.92);
+                    }else if((salarioBruto[i] >= 7087.23)){
+                        inss[i] = 828.38;
+                        salarioLiquido[i] = salarioBruto[i] - 828.38;
                     }
                 }else
                     break;
@@ -950,20 +951,20 @@ void Funcionario::calculaFolhaSalarial(){
         for(int i = 0; i < tamArq-1; i++){
             if(linhas[i] != ""){
                 if(getSalario(i) != ""){
-                    if(salariosLiquido[i] <= 1903.98){
-                        descontoIRRF[i] = 0;
-                    }else if(salariosLiquido[i] <= 2826.65){
-                        descontoIRRF[i] = ((salariosLiquido[i]*(7.5/100))-142.80);
-                        salariosLiquido[i] = salariosLiquido[i] - ((salariosLiquido[i]*(7.5/100))-142.80);
-                    }else if(salariosLiquido[i] <= 3751.05){
-                        descontoIRRF[i] = ((salariosLiquido[i]*(15*1.0/100))-354.80);
-                        salariosLiquido[i] = salariosLiquido[i] - ((salariosLiquido[i]*(15*1.0/100))-354.80);
-                    }else if(salariosLiquido[i] <= 4664.68){
-                        descontoIRRF[i] = ((salariosLiquido[i]*(22.5*1.0/100))-636.13);
-                        salariosLiquido[i] = salariosLiquido[i] - ((salariosLiquido[i]*(22.5*1.0/100))-636.13);     
-                    }else if(salariosLiquido[i] >= 4664.69){
-                        descontoIRRF[i] = ((salariosLiquido[i]*(27.5/100))-869.36);
-                        salariosLiquido[i] = salariosLiquido[i] - ((salariosLiquido[i]*(27.5/100))-869.36);
+                    if(salarioLiquido[i] <= 1903.98){
+                        irrf[i] = 0;
+                    }else if(salarioLiquido[i] <= 2826.65){
+                        irrf[i] = ((salarioLiquido[i]*(7.5/100))-142.80);
+                        salarioLiquido[i] = salarioLiquido[i] - ((salarioLiquido[i]*(7.5/100))-142.80);
+                    }else if(salarioLiquido[i] <= 3751.05){
+                        irrf[i] = ((salarioLiquido[i]*(15*1.0/100))-354.80);
+                        salarioLiquido[i] = salarioLiquido[i] - ((salarioLiquido[i]*(15*1.0/100))-354.80);
+                    }else if(salarioLiquido[i] <= 4664.68){
+                        irrf[i] = ((salarioLiquido[i]*(22.5*1.0/100))-636.13);
+                        salarioLiquido[i] = salarioLiquido[i] - ((salarioLiquido[i]*(22.5*1.0/100))-636.13);     
+                    }else if(salarioLiquido[i] >= 4664.69){
+                        irrf[i] = ((salarioLiquido[i]*(27.5/100))-869.36);
+                        salarioLiquido[i] = salarioLiquido[i] - ((salarioLiquido[i]*(27.5/100))-869.36);
                     }
                 }else
                     break;
@@ -975,11 +976,11 @@ void Funcionario::calculaFolhaSalarial(){
         file << "Funcinario," << "Designacao," <<"SalarioBruto," << "INSS," << "IRRF," << "SalarioLiquido" << endl; 
         for(int i = 0; i<tamArq-1; i++){
             if(getNome(i) != ""){
-                if(salariosBruto[i] != 0){
-                    file << getNome(i) << "," << getDesig(i) << "," << fixed << setprecision(2) << "R$" << salariosBruto[i] << "," << fixed << setprecision(2) 
-                    << "R$" <<descontoINSS[i] << "," << fixed << setprecision(2) << "R$" << descontoIRRF[i] << "," << fixed << setprecision(2) << "R$" 
-                    << salariosLiquido[i] << endl;
-                    salarioEmpresa+=salariosLiquido[i];
+                if(salarioBruto[i] != 0){
+                    file << getNome(i) << "," << getDesig(i) << "," << fixed << setprecision(2) << "R$" << salarioBruto[i] << "," << fixed << setprecision(2) 
+                    << "R$" <<inss[i] << "," << fixed << setprecision(2) << "R$" << irrf[i] << "," << fixed << setprecision(2) << "R$" 
+                    << salarioLiquido[i] << endl;
+                    salarioEmpresa+=salarioLiquido[i];
                 }else
                     break;
             }else
@@ -998,36 +999,38 @@ void Funcionario::exibeFolhaSalarialFuncionario(){
     string meses[12]{"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
     int testeMes=0, testeAno=0;
     int i = 0, opcao, teste, valor;
+    double salarioD[TAM];
 
+    limpaArraySalario();
     lerArquivo();
     colunas();
 
-    while(1){
-        cout << "Digite o ano e o mes, em que a folha salarial vai ser exibida: " << "Padrao : yyxxxx" << endl;
-        cin >> data;
-        getchar();
-        dataM = data;
-        dataM.erase(2, 6);
-        dataA = data;
-        dataA.erase(0, 2);
-        for(int i = 0; i<12; i++){
-            if(dataM == meses[i]){
-                testeMes=1;
-                break;
-            }
-        }
+    // while(1){
+    //     cout << "Digite o ano e o mes, em que a folha salarial vai ser exibida: " << "Padrao : yyxxxx" << endl;
+    //     cin >> data;
+    //     getchar();
+    //     dataM = data;
+    //     dataM.erase(2, 6);
+    //     dataA = data;
+    //     dataA.erase(0, 2);
+    //     for(int i = 0; i<12; i++){
+    //         if(dataM == meses[i]){
+    //             testeMes=1;
+    //             break;
+    //         }
+    //     }
         
-        if(strlen(dataA.c_str()) == 4){
-            testeAno=1;
-        }
+    //     if(strlen(dataA.c_str()) == 4){
+    //         testeAno=1;
+    //     }
 
-        if((testeAno == 1) && (testeMes == 1)){
-            break;
-        }else{
-            cout << "Data invalida." << endl;
-            continue;
-        }
-    }
+    //     if((testeAno == 1) && (testeMes == 1)){
+    //         break;
+    //     }else{
+    //         cout << "Data invalida." << endl;
+    //         continue;
+    //     }
+    // }
     while(1){
         cout << "Deseja fazer a busca por nome(1) ou codigo(2)?" << endl;
         cin >> opcao;
@@ -1064,48 +1067,61 @@ void Funcionario::exibeFolhaSalarialFuncionario(){
             cout << "codigo Inválido" << endl;     
         }
     }
-
-    data = "./csv/FolhaSalarial-" + data + ".csv";
-    cout << data << endl;
-
-    fileTeste.open(data);
-    if (fileTeste.is_open()){
-        cout<<"Folha Salarial dessa data ja foi calculada"<<endl;
-        i=0;
-        while(getline(fileTeste, arquivo[i])){
-            i++;
+    for(int i = 0; i < tamArq -1; i++){
+        try{
+            salarioD[i] = stod(salario[i]);    
+        }catch(std :: invalid_argument  const & ex ){
+             cout << "O parâmetro não é uma string" << endl;
         }
-        cout << "Codigo," << arquivo[0] << endl;
-        cout << codigo[valor] << "," << arquivo[valor+1] << endl;
-
-        fileTeste.close();
-    }else{
-        fileTeste.close();
-        cout<<"Folha Salarial dessa data ainda não foi calculada"<<endl;
-        // calculaFolhaSalarial();
-        
-        // fileTeste.open(data);
-
-        // cout<<"Folha Salarial dessa data foi calculada"<<endl;
-        // i=0;
-        // while(getline(fileTeste, arquivo[i])){
-        //     i++;
-        // }
-        
-        // cout << "Codigo," << arquivo[0] << endl;
-        // cout << codigo[valor] << "," << arquivo[valor+1] << endl;
-
-        // fileTeste.close();
     }
+
+    calculaInss(salarioD);
+    calculaIrrf();
+
+    cout << nome[valor]<< " " << salario[valor] << " " << inss[valor] << " " << irrf[valor] << " " << salarioLiquido[valor];
+
+    // data = "./csv/FolhaSalarial-" + data + ".csv";
+    // cout << data << endl;
+
+    // fileTeste.open(data);
+    // if (fileTeste.is_open()){
+    //     cout<<"Folha Salarial dessa data ja foi calculada"<<endl;
+    //     i=0;
+    //     while(getline(fileTeste, arquivo[i])){
+    //         i++;
+    //     }
+    //     cout << "Codigo," << arquivo[0] << endl;
+    //     cout << codigo[valor] << "," << arquivo[valor+1] << endl;
+
+    //     fileTeste.close();
+    // }else{
+    //     fileTeste.close();
+    //     cout<<"Folha Salarial dessa data ainda não foi calculada"<<endl;
+    //     // calculaFolhaSalarial();
+        
+    //     // fileTeste.open(data);
+
+    //     // cout<<"Folha Salarial dessa data foi calculada"<<endl;
+    //     // i=0;
+    //     // while(getline(fileTeste, arquivo[i])){
+    //     //     i++;
+    //     // }
+        
+    //     // cout << "Codigo," << arquivo[0] << endl;
+    //     // cout << codigo[valor] << "," << arquivo[valor+1] << endl;
+
+    //     // fileTeste.close();
+    // }
 
 }
 
 void Funcionario::exibeFolhaSalarialEmpresa(){
     int opcao, i, k, l;
-    string data, arquivo[100], ano, busca[12], SalarioBrutoS[100],INSSS[100],IRRFS[100],SalarioLiquidoS[100], linha, temp;
+    string data, arquivo[100], ano, busca[12], stringSalarioBru[100],stringInss[100],stringIrrf[100],stringSalarioLiq[100], linha, temp;
     ifstream fileTeste;
-    double SalarioBruto[100],INSS[100],IRRF[100],SalarioLiquido[100], salarioEmpresa=0;
+    salarioEmpresa = 0;
 
+    limpaArraySalario();
     lerArquivo();
     colunas();
 
@@ -1195,7 +1211,7 @@ void Funcionario::exibeFolhaSalarialEmpresa(){
                             break;
                         }
                     }
-                    SalarioBrutoS[i]=temp;
+                    stringSalarioBru[i]=temp;
 
                     temp = "";
                     for(++k; k < linha.size(); k++){
@@ -1205,7 +1221,7 @@ void Funcionario::exibeFolhaSalarialEmpresa(){
                             break;
                         }
                     }
-                    INSSS[i]=temp;
+                    stringInss[i]=temp;
 
                     temp = "";
                     for(++k; k < linha.size(); k++){
@@ -1215,7 +1231,7 @@ void Funcionario::exibeFolhaSalarialEmpresa(){
                             break;
                         }
                     }
-                    IRRFS[i]=temp;
+                    stringIrrf[i]=temp;
 
                     temp = "";
                     for(++k; k < linha.size(); k++){
@@ -1225,18 +1241,18 @@ void Funcionario::exibeFolhaSalarialEmpresa(){
                             break;
                         }
                     }
-                    SalarioLiquidoS[i]=temp;
+                    stringSalarioLiq[i]=temp;
 
-                    if(l>0 && SalarioBrutoS[i] != ""){
-                        SalarioBrutoS[i] = SalarioBrutoS[i].erase(0,2);
-                        INSSS[i] = INSSS[i].erase(0,2);
-                        IRRFS[i] = IRRFS[i].erase(0,2);
-                        SalarioLiquidoS[i] = SalarioLiquidoS[i].erase(0,2);
+                    if(l>0 && stringSalarioBru[i] != ""){
+                        stringSalarioBru[i] = stringSalarioBru[i].erase(0,2);
+                        stringInss[i] = stringInss[i].erase(0,2);
+                        stringIrrf[i] = stringIrrf[i].erase(0,2);
+                        stringSalarioLiq[i] = stringSalarioLiq[i].erase(0,2);
                         try{
-                            SalarioBruto[l-1] += stod(SalarioBrutoS[i]);
-                            INSS[l-1] += stod(INSSS[i]);
-                            IRRF[l-1] += stod(IRRFS[i]);
-                            SalarioLiquido[l-1] += stod(SalarioLiquidoS[i]);
+                            salarioBruto[l-1] += stod(stringSalarioBru[i]);
+                            inss[l-1] += stod(stringInss[i]);
+                            irrf[l-1] += stod(stringIrrf[i]);
+                            salarioLiquido[l-1] += stod(stringSalarioLiq[i]);
                         }catch(std :: invalid_argument  const & ex ){
                             cout << "O parâmetro não é uma string" << endl;
                         }
@@ -1269,13 +1285,74 @@ void Funcionario::exibeFolhaSalarialEmpresa(){
         cout << "Funcinario,Designacao,SalarioBruto,INSS,IRRF,SalarioLiquido" << endl;
         for(i=0; i < 100; i++){
             if(nome[i] != ""){
-                cout << nome[i] << "," << desig[i] << ',' << SalarioBruto[i] << "," << INSS[i] << "," << IRRF[i] << "," << SalarioLiquido[i] 
+                cout << nome[i] << "," << desig[i] << ',' << salarioBruto[i] << "," << inss[i] << "," << irrf[i] << "," << salarioLiquido[i] 
                 << endl;
-                salarioEmpresa += SalarioLiquido[i];
+                salarioEmpresa += salarioLiquido[i];
             }else{
                 cout << "SalarioEmpresa: " << salarioEmpresa << endl;
                 break;
             } 
         }
     }
+}
+
+void Funcionario::calculaInss(double sa[]){
+    
+    for(int i = 0; i < tamArq-1; i++){
+        if(linhas[i] != ""){
+            if(getSalario(i) != ""){
+                if(sa[i] <= 1212){
+                    inss[i] = (sa[i]*(7.5/100));
+                    salarioLiquido[i] = sa[i] - (sa[i]*(7.5/100));
+                }else if(sa[i] <= 2427.35){
+                    inss[i] = (((sa[i] - 1212.01)*(9*1.0/100))+90.90);
+                    salarioLiquido[i] = sa[i] - (((sa[i] - 1212.01)*(9*1.0/100))+90.90);
+                }else if(sa[i] <= 3641.03){
+                    inss[i] = (((sa[i]-2427.36)*(12*1.0/100))+200.28);
+                    salarioLiquido[i] = sa[i] - (((sa[i]-2427.36)*(12*1.0/100))+200.28);  
+                }else if(sa[i] <= 7087.22){
+                    inss[i] = (((sa[i]-3641.04)*(14*1.0/100))+345.92);
+                    salarioLiquido[i] = sa[i] - (((sa[i]-3641.04)*(14*1.0/100))+345.92);
+                }else if((sa[i] >= 7087.23)){
+                    inss[i] = 828.38;
+                    salarioLiquido[i] = sa[i] - 828.38;
+                }
+            }else
+                break;
+        }
+    }
+}
+
+void Funcionario::calculaIrrf(){
+    
+    for(int i = 0; i < tamArq-1; i++){
+        if(linhas[i] != ""){
+            if(getSalario(i) != ""){
+                if(salarioLiquido[i] <= 1903.98){
+                    irrf[i] = 0;
+                }else if(salarioLiquido[i] <= 2826.65){
+                    irrf[i] = ((salarioLiquido[i]*(7.5/100))-142.80);
+                    salarioLiquido[i] = salarioLiquido[i] - ((salarioLiquido[i]*(7.5/100))-142.80);
+                }else if(salarioLiquido[i] <= 3751.05){
+                    irrf[i] = ((salarioLiquido[i]*(15*1.0/100))-354.80);
+                    salarioLiquido[i] = salarioLiquido[i] - ((salarioLiquido[i]*(15*1.0/100))-354.80);
+                }else if(salarioLiquido[i] <= 4664.68){
+                    irrf[i] = ((salarioLiquido[i]*(22.5*1.0/100))-636.13);
+                    salarioLiquido[i] = salarioLiquido[i] - ((salarioLiquido[i]*(22.5*1.0/100))-636.13);     
+                }else if(salarioLiquido[i] >= 4664.69){
+                    irrf[i] = ((salarioLiquido[i]*(27.5/100))-869.36);
+                    salarioLiquido[i] = salarioLiquido[i] - ((salarioLiquido[i]*(27.5/100))-869.36);
+                }
+            }else
+                break;
+        }
+    }
+}
+
+
+void Funcionario::limpaArraySalario(){
+    fill_n(salarioBruto, TAM, 0);
+    fill_n(inss, TAM, 0);
+    fill_n(irrf, TAM, 0);
+    fill_n(salarioLiquido, TAM, 0);
 }
