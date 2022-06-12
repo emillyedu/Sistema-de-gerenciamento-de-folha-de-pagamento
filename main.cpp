@@ -13,8 +13,8 @@ int main(){
     Funcionario funcionario;
     Menu menu;
     
-    menu.cmdPrincipal();
-    // funcionario.calculaFolhaSalarial();
+    // menu.cmdPrincipal();
+    funcionario.calculaFolhaSalarial();
     
     return 0;
 }

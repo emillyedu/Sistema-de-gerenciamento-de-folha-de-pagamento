@@ -32,8 +32,7 @@ public:
     void excluirRegistro();
     void aumentoDeSalarios();
     void calculaFolhaSalarial();
-    void calculaInss(double sa[]);
-    void calculaIrrf();
+    void calculaDescontos(double sa[]);
     void modificarFuncionario();
     void limpaArraySalario();
 
