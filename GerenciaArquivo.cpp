@@ -49,11 +49,18 @@ string GerenciaArquivo::getLinhas(int i){
     return linhas[i];
 }
 
+void GerenciaArquivo::clearString(string *str){
+    for(int i = 0; i < 100; i++) {
+        str[i].clear();
+    }
+}
+
 void GerenciaArquivo::criarArquivo(){
     arquivo.open("./csv/Empresa.csv", ios::in);
 
     if(!arquivo.is_open()){
         arquivo.open("./csv/Empresa.csv", ios::out);
+        arquivo << "codigo,nome,end,telefone,data de ingresso,designacao,salario,area de supervisao,area academica,formacao maxima";
     }
 
     arquivo.close();
@@ -61,12 +68,15 @@ void GerenciaArquivo::criarArquivo(){
 
 void GerenciaArquivo::lerArquivo(){
     arquivo.open("./csv/Empresa.csv", ios::in);
+    
+    clearString(linhas);
 
     int i = 0;
     if(arquivo.is_open()){
         while(getline(arquivo, linhas[i])){
             i++;
         }
+        tamArq = i;
         arquivo.close();
     }
     else{
@@ -101,6 +111,17 @@ void GerenciaArquivo::colunas(){
 
     criarArquivo();
     lerArquivo();
+
+    clearString(codigo);
+    clearString(nome);
+    clearString(end);
+    clearString(telefone);
+    clearString(data);
+    clearString(desig);
+    clearString(salario);
+    clearString(sup);
+    clearString(acad);
+    clearString(formacao);
 
     for(i = 1, j = 0; i < 100; i++, j++){
         if(linhas[i] != ""){
