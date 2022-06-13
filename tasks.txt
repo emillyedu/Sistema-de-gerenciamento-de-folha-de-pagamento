@@ -1,0 +1,10 @@
+documentaçao -> explicar classes e metodos
+uml
+
+systens do menu
+comentar codigo
+fotografar
+voz
+folha anual
+buscar - metodo
+modificar - metodo

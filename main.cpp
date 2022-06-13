@@ -12,9 +12,10 @@ int main(){
     srand(time(NULL));
     Funcionario funcionario;
     Menu menu;
+    string str;
     
-    // menu.cmdPrincipal();
-    funcionario.exibeFolhaSalarialFuncionario();
-    
+    menu.cmdPrincipal();
+
+
     return 0;
 }

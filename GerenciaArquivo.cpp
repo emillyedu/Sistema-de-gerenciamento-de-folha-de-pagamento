@@ -372,12 +372,13 @@ void GerenciaArquivo::modificaNome(string cod){
     cout << "Digite o novo nome: ";
     getline(cin, modificacao);
 
+
     system("cls");
 
     while(1){
         if (codigo[cont].find(cod) != string::npos){
 
-            linhas[cont] = codigo[cont] + "," + modificacao + "," + end[cont] + "," + telefone[cont] + "," + data[cont]
+            linhas[cont] = codigo[cont] + "," + transformaStringMin(modificacao) + "," + end[cont] + "," + telefone[cont] + "," + data[cont]
             + "," + desig[cont] + "," + salario[cont] + "," + sup[cont] + "," + acad[cont] + "," + formacao[cont]; 
 
             cont = 0;

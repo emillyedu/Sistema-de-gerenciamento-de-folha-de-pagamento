@@ -1,11 +1,7 @@
 #include "Menu.h"
 #include <iostream>
 #include <string>
-#include <errno.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <signal.h>
-//sleep
+
 Menu::Menu()
 {
 
@@ -15,6 +11,7 @@ Menu::~Menu()
 {
 
 }
+
 
 void Menu::menuPrincipal(){
     cout << "\n------ SISTEMA DE GERENCIAMENTO DE FOLHA DE PAGAMENTO ------\n\n";
@@ -57,7 +54,7 @@ void Menu::menuModificar(){
 
 
 void Menu::menuFolhaSal(){
-    cout << "\n---------------------- MODIFICAR DADOS ---------------------\n\n";
+    cout << "\n------------------ IMPRIMIR FOLHA SALARIAL -----------------\n\n";
 
     cout << "[1] Imprimir folha salarial do FUNCIONARIO\n";
     cout << "[2] Imprimir folha salarial da EMPRESA\n";
@@ -81,6 +78,7 @@ void Menu::cmdPrincipal(){
         
         cout << "Escolha uma das opcoes: ";
         cin >> opcao;
+        getchar();
 
         system("cls");
         switch(opcao){
@@ -134,23 +132,26 @@ void Menu::cmdExibir(){
     int opcao;
 
     while(1){
+        system("cls");
         menuExibir();
         
         cout << "Agora escolha outra opcao: ";
         cin >> opcao;
-
+        getchar();
+        
         system("cls");
         switch(opcao){
             case 1:
                 funcionario.exibeRegistroFunc();
+                system("pause");
                 break;
             case 2:
                 funcionario.exibeListaFunc();
-
+                system("pause");
                 break;
             case 3:
                 funcionario.exibeListaTipo();
-
+                system("pause");
                 break;
             case 0:
                 break;
@@ -188,7 +189,9 @@ void Menu::cmdModificar(){
         
         cout << "Agora escolha outra opcao: ";
         cin >> opcao;
+        getchar();
 
+        system("cls");
         switch(opcao){
             case 1:
                 funcionario.addFuncionario();
@@ -234,13 +237,17 @@ void Menu::cmdFolhaSal(){
         
         cout << "Agora escolha outra opcao: ";
         cin >> opcao;
+        getchar();
 
+        system("cls");
         switch(opcao){
             case 1:
                 funcionario.exibeFolhaSalarialFuncionario();
+                system("pause");
                 break;
             case 2:
                 funcionario.exibeFolhaSalarialEmpresa();
+                system("pause");
                 break;
             case 0:
                 break;

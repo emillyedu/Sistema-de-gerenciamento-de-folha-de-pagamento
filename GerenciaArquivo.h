@@ -17,10 +17,11 @@ public:
     ~GerenciaArquivo();
 
     void clearString(string *str);
+    string transformaStringMin(string str);
+
     void criarArquivo();
     void lerArquivo();
     void exibirArquivo();
-    string transformaStringMin(string str);
 
     void separadorColuna(string colunaAtual[], int del[]);
     void colunas();

@@ -20,6 +20,7 @@ public:
     void cmdExibir();
     void cmdModificar();
     void cmdFolhaSal();
+    void voltarMenu(int opcao);
 
 private:
 

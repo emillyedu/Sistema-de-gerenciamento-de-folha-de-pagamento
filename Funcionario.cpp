@@ -12,6 +12,23 @@ using namespace std;
 Funcionario::Funcionario(){
 }
 
+void Funcionario::fotografarUsuario(){
+    string cod, command, webcam;
+    int op;
+    cin >> cod;
+
+    webcam = "Integrated Webcam";
+    command = "ffmpeg -i" + webcam +" -vframes 1 -video_size 640";
+
+    system(command.c_str());
+
+    cin >> op;
+    if(op == 1){
+        command = "eoq " + cod + " .jpg"; // no windows colocar o nome no arquivo da foto
+        system(command.c_str());
+    }
+}   
+
 void Funcionario::exibeRegistroFunc(){
     //Ao inserir o número de código do funcionário, os usuários podem acessar todas as informações 
     //fornecidas relacionadas a um determinado funcionário por meio desta função.
@@ -626,7 +643,7 @@ void Funcionario::addFuncionario(){
 
         getchar();
 
-        line = codigo + "," + nome + "," + endereco + "," + telefone + "," + dia + "/" + mes +"/" + ano + "," + designacao + "," + to_string(salario).erase(to_string(salario).size()-4, 4) ;
+        line = codigo + "," + transformaStringMin(nome) + "," + endereco + "," + telefone + "," + dia + "/" + mes +"/" + ano + "," + designacao + "," + to_string(salario).erase(to_string(salario).size()-4, 4) ;
         if(designacao == "Gerente"){
             linha[li] = line + "," + areaS[0] + "," + Nan + "," + Nan + "\n";
         }
@@ -668,7 +685,7 @@ void Funcionario::modificarFuncionario(){
     while(1){
         c = 1;
         while(1){
-            cout << "Primeiramentw, informe o codigo do funcionario: ";
+            cout << "Primeiramente, informe o codigo do funcionario: ";
             getline(cin, codigo);
             system("cls");
 

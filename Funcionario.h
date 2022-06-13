@@ -28,6 +28,8 @@ public:
     void exibeFolhaSalarialFuncionario();
     void exibeFolhaSalarialEmpresa();
 
+
+    void fotografarUsuario();
     void addFuncionario();
     void excluirRegistro();
     void aumentoDeSalarios();
