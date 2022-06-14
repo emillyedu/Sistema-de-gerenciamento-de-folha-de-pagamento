@@ -28,9 +28,9 @@ public:
     void exibeFolhaSalarialFuncionario();
     void exibeFolhaSalarialEmpresa();
 
-
     void fotografarUsuario();
     void addFuncionario();
+    void buscarFuncionario();
     void excluirRegistro();
     void aumentoDeSalarios();
     void calculaFolhaSalarial();
