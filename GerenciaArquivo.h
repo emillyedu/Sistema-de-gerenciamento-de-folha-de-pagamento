@@ -32,6 +32,10 @@ public:
     double geraDiasTrabalhados(double m);
     double geraHorasExtras(double m);
     
+    void buscaPorNome();
+    void buscaPorData();
+    void buscaPorEndereco();
+    
     void modificaCodigo(string cod);
     void modificaNome(string cod);
     void modificaEndereco(string cod);
@@ -59,8 +63,8 @@ public:
     
 protected:
     fstream arquivo;
-    string linhas[100], Nan = {"Nan"};;
-    string codigo[100], nome[100], end[100], telefone[100], data[100], desig[100],salario[100],sup[100],acad[100],formacao[100];
+    string linhas[TAM], Nan = {"Nan"};;
+    string codigo[TAM], nome[TAM], end[TAM], telefone[TAM], data[TAM], desig[TAM],salario[TAM],sup[TAM],acad[TAM],formacao[TAM];
     int tamArq;
 
 };
