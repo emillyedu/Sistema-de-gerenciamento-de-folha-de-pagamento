@@ -14,8 +14,8 @@ int main(){
     Menu menu;
     string str;
     
-    menu.cmdPrincipal();
-
+    //menu.cmdPrincipal();
+    funcionario.buscarFuncionario();
 
     return 0;
 }
