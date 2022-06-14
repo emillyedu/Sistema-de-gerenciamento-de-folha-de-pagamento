@@ -286,6 +286,498 @@ double GerenciaArquivo::geraHorasExtras(double m){
 
 }
 
+void GerenciaArquivo::buscaPorNome(){
+    int c = 0; //controle
+    int encontrado = 0; //contador de funcionarios foram encontrados
+    string endereco[TAM];//auxiliar para end[i]
+    string busca;
+    string opcao;
+    
+    colunas();
+
+    while(1){
+        c = 0; //zerando controle
+        encontrado = 0; //zerando contador
+
+        cout << "Buscar: ";
+        getline(cin, busca);
+
+        busca = transformaStringMin(busca);
+        
+        system("cls");
+
+        for (int i = 0; i < TAM; i++){
+            //Encontrando a "busca" em minusculo, já que todos os nomes de funcionarios do arquivo estarão em minúsculo 
+            if (nome[i].find(busca) != string::npos){
+                endereco[i] = end[i];
+                endereco[i] = endereco[i].erase(0, 12);//Para o endereco aparecer a partir de "Rua"
+
+                cout << "\n";
+
+                cout << "Codigo..........: " << codigo[i] << endl;
+                cout << "Nome............: " << nome[i] << endl;
+                cout << "Endereco........: " << endereco[i] << endl; //exibir só a partir de "Rua"
+                cout << "Telefone........: " << telefone[i] << endl;
+                cout << "Data de ingresso: " << data[i] << endl;
+                cout << "Designacao......: " << desig[i] << endl;
+                
+                c = 1; //controle para gerenciar corretamente os laços de repetição
+                encontrado++; //incrementa a quantidade de funcionarios encontrados
+            }
+        }
+
+        if (c == 1){
+            cout << "\n";
+            cout << encontrado << " funcionario(s) encontrado(s) com \"" << busca << "\" no nome" << endl << endl;
+
+            break;
+
+        } else {
+            while(1){
+                cout << "Nenhum funcionario encontrado. Gostaria de tentar novamente? [s/n]" << endl;
+                getline(cin, opcao);
+
+                if (opcao == "s" || opcao == "S"){    
+                    system("cls");
+                    c = 1;
+                    break;
+                }
+                else if (opcao == "n" || opcao == "N"){
+                    system("cls");
+                    c = 2;
+                    break;
+
+                } else {
+                    system("cls"); 
+
+                    cout << "Opcao invalida! Tente novamente" << endl << endl;
+                    continue;
+                }
+            }
+
+            //Para controlar corretamente os laços de repetição
+            if (c == 1){
+                continue; //Vai para o inicio do while
+            }
+            else if (c == 2){                
+                break; //Sai do while    
+            }
+        }
+    }
+}
+
+void GerenciaArquivo::buscaPorData(){   
+    typedef struct{
+        int diaIni, diaFi;
+        int mesIni, mesFi;
+        int anoIni, anoFi;
+    } tData;
+
+    string dInicial, mInicial, aInicial; //dia, mes e ano iniciais do intervalo de tempo
+    string dFinal, mFinal, aFinal; //dia, mes e ano finais do intervalo de tempo
+    string dataInicial, dataFinal; //auxiliares
+    string endereco[TAM];//auxiliar para end[i]
+    string dia[TAM], mes[TAM], ano[TAM];
+    string auxMes, auxDia, auxAno, busca, opcao;
+    tData dt;
+    int c1 = 0, c2 = 0, c3 = 0; //controles para auxiliar nos laços de repetição
+    int encontrado = 0; //contador de funcionarios encontrados
+
+    colunas();
+
+    while(1){
+        c1 = 0; //zerando os controles
+        c2 = 0; 
+        c3 = 0;
+        encontrado = 0; //zerando contador
+
+        while(1){
+            c1 = 0;
+
+            cout << "Intervalo de tempo, a partir das datas de ingresso:\n" << endl;
+        
+            cout << "\tDia inicial: ";
+            cin >> dt.diaIni;
+            cout << "\tMes inicial: ";
+            cin >> dt.mesIni;
+            cout << "\tAno inicial: ";
+            cin >> dt.anoIni;
+
+            if (to_string(dt.diaIni).length() == 1){
+                dInicial = "0" + to_string(dt.diaIni);
+            }
+            else if (to_string(dt.diaIni).length() == 2){
+                dInicial = to_string(dt.diaIni);
+            }
+            if (to_string(dt.mesIni).length() == 1){
+                mInicial = "0" + to_string(dt.mesIni);
+            }
+            else if(to_string(dt.mesIni).length() == 2){
+                mInicial = to_string(dt.mesIni);
+            }
+            if(to_string(dt.anoIni).length() == 2){
+                aInicial = "19" + to_string(dt.anoIni);
+            }
+            else if(to_string(dt.anoIni).length() == 4){
+                aInicial = to_string(dt.anoIni);
+            }
+            else{
+                aInicial = "0";
+            }
+
+            if(stoi(mInicial) < 1 || stoi(mInicial) > 12){
+                system("cls");
+                cout << "data invalida" << endl;
+                
+                c1 = 1;
+            }
+            
+            if(stoi(aInicial) < 1000 || stoi(aInicial) > 2022){
+                system("cls");
+                cout << "data invalida" << endl;
+
+                c1 = 1;
+            }
+
+            if(stoi(mInicial)){
+                if(stoi(mInicial) == 2){
+                    if(dt.diaIni <= 28 && dt.diaIni > 1){
+                        c1 = 2;
+                    }else{
+                        system("cls");
+                        cout << "dia do mes invalido" << endl;
+
+                        c1 = 1;
+                    }
+                }
+            
+                if(stoi(mInicial) == 1 || stoi(mInicial) == 3|| stoi(mInicial) == 5 || stoi(mInicial) == 7 || 
+                stoi(mInicial) == 8 || stoi(mInicial) == 10 || stoi(mInicial) == 12){
+
+                    if(stoi(dInicial) <= 31 && stoi(dInicial) >= 1){
+                        c1 = 2;
+                    }else{
+                        system("cls");
+                        cout << "dia do mes invalido" << endl;
+
+                        c1 = 1;
+                    }
+                }
+
+                else{
+                    if(stoi(dInicial) <= 30 && stoi(dInicial) >= 1){
+                        c1 = 2;
+                    }else{
+                        system("cls");
+                        cout << "dia do mes invalido" << endl;
+
+                        c1 = 1;
+                    }
+                }
+            } 
+
+            //Para controlar corretamente os laços de repetição
+            if (c1 == 1){
+                continue; //Vai para o inicio do while
+            }
+            else if (c1 == 2){                
+                break; //Sai do while    
+            }
+        }
+
+        cout << "\n"; 
+
+        while(1){
+            c2 = 0; 
+
+            cout << "\tDia final: ";
+            cin >> dt.diaFi;
+            cout << "\tMes final: ";
+            cin >> dt.mesFi;
+            cout << "\tAno final: ";
+            cin >> dt.anoFi;
+
+            if (to_string(dt.diaFi).length() == 1){
+                dFinal = "0" + to_string(dt.diaFi);
+            }
+            else if (to_string(dt.diaFi).length() == 2){
+                dFinal = to_string(dt.diaFi);
+            }
+            if (to_string(dt.mesFi).length() == 1){
+                mFinal = "0" + to_string(dt.mesFi);
+            }
+            else if(to_string(dt.mesFi).length() == 2){
+                mFinal = to_string(dt.mesFi);
+            }
+            if(to_string(dt.anoFi).length() == 2){
+                aFinal = "19" + to_string(dt.anoFi);
+            }
+            else if(to_string(dt.anoFi).length() == 4){
+                aFinal = to_string(dt.anoFi);
+            }
+            else{
+                aFinal = "0";
+            }
+
+            if(stoi(mFinal) < 1 || stoi(mFinal) > 12){
+                system("cls");
+                cout << "data invalida" << endl;
+                
+                c2 = 1;
+            }
+            
+            if(stoi(aFinal) < 1000 || stoi(aFinal) > 2022){
+                system("cls");
+                cout << "data invalida" << endl;
+                
+                c2 = 1;
+            }
+
+            if(stoi(mFinal)){
+                if(stoi(mFinal) == 2){
+                    if(dt.diaFi <= 28 && dt.diaFi > 1){
+                        c2 = 2;
+                    }else{
+                        system("cls");
+                        cout << "dia do mes invalido" << endl;
+                        
+                        c2 = 1;
+                    }
+                }
+            
+                if(stoi(mFinal) == 1 || stoi(mFinal) == 3|| stoi(mFinal) == 5 || stoi(mFinal) == 7 || 
+                stoi(mFinal) == 8 || stoi(mFinal) == 10 || stoi(mFinal) == 12){
+
+                    if(stoi(dFinal) <= 31 && stoi(dFinal) >= 1){
+                        c2 = 2;
+                    }else{
+                        system("cls");
+                        cout << "dia do mes invalido" << endl;
+                        
+                        c2 = 1;
+                    }
+                }
+
+                else{
+                    if(stoi(dFinal) <= 30 && stoi(dFinal) >= 1){
+                        c2 = 2;
+                    }else{
+                        system("cls");
+                        cout << "dia do mes invalido" << endl;
+                        
+                        c2 = 1;
+                    }
+                }
+            }
+
+            //Para controlar corretamente os laços de repetição
+            if (c2 == 1){
+                continue; //Vai para o inicio do while
+            }
+            else if (c2 == 2){                
+                break; //Sai do while    
+            }
+        }
+
+        system("cls");
+
+        // Datas iniciais e finais em string "dia/mes/ano"
+        dataInicial = dInicial + "/" + mInicial + "/" + aInicial;
+        dataFinal = dFinal + "/" + mFinal + "/" + aFinal;
+
+        // Imprimir apenas as informações dos funcionários que ingressaram no intervalo de tempo escolhido
+        // Além disso, só imprime se a linha do arquivo estiver preenchida
+        for (int i = 0; i < TAM; i++){
+            endereco[i] = end[i];
+            endereco[i] = endereco[i].erase(0, 12); //Para o endereco aparecer a partir de "Rua"
+
+            if (data[i].length() == 10){
+                auxDia = data[i];
+                dia[i] = auxDia.substr(0, 2); //dia[i] recebe somente o dia da string data[i]
+
+                auxMes = data[i];
+                mes[i] = auxMes.substr(3, 2); //mes[i] recebe somente o mes da string data[i]
+
+                auxAno = data[i];
+                ano[i] = auxAno.substr(6, 4); //ano[i] recebe somente o ano da string data[i]
+
+                if (stoi(ano[i]) > stoi(aInicial) && stoi(ano[i]) < stoi(aFinal)){
+
+                    cout << "\n";
+
+                    cout << "Codigo..........: " << codigo[i] << endl;
+                    cout << "Nome............: " << nome[i] << endl;
+                    cout << "Endereco........: " << endereco[i] << endl;
+                    cout << "Telefone........: " << telefone[i] << endl;
+                    cout << "Data de ingresso: " << data[i] << endl;
+                    cout << "Designacao......: " << desig[i] << endl;
+                
+                    encontrado++; //incrementa a quantidade de funcionarios encontrados
+                }
+                else if (stoi(ano[i]) == stoi(aInicial) || stoi(ano[i]) == stoi(aFinal)){
+
+                    if (stoi(mes[i]) > stoi(mInicial) && stoi(mes[i]) < stoi(mFinal)){
+
+                        cout << "\n";
+
+                        cout << "Codigo..........: " << codigo[i] << endl;
+                        cout << "Nome............: " << nome[i] << endl;
+                        cout << "Endereco........: " << endereco[i] << endl;
+                        cout << "Telefone........: " << telefone[i] << endl;
+                        cout << "Data de ingresso: " << data[i] << endl;
+                        cout << "Designacao......: " << desig[i] << endl;
+                
+                        encontrado++; //incrementa a quantidade de funcionarios encontrados
+                    }
+                    else if (stoi(mes[i]) == stoi(mInicial) || stoi(mes[i]) == stoi(mFinal)){
+
+                        if (stoi(dia[i]) >= stoi(dInicial) && stoi(dia[i]) <= stoi(dFinal)){
+                        
+                            cout << "\n";
+
+                            cout << "Codigo..........: " << codigo[i] << endl;
+                            cout << "Nome............: " << nome[i] << endl;
+                            cout << "Endereco........: " << endereco[i] << endl;
+                            cout << "Telefone........: " << telefone[i] << endl;
+                            cout << "Data de ingresso: " << data[i] << endl;
+                            cout << "Designacao......: " << desig[i] << endl;
+                
+                            encontrado++; //incrementa a quantidade de funcionarios encontrados
+                        }
+                    } 
+                }
+            }
+        }
+    
+        if (encontrado > 0){
+            cout << "\n";
+
+            cout << encontrado << " funcionario(s) encontrado(s), que ingressaram na empresa entre " << dataInicial
+            << " e " << dataFinal << endl << endl;
+
+            break;
+
+        } else {
+            while(1){
+                getchar(); //"limpa enter" da data final digitada
+
+                cout << "Nenhum funcionario encontrado. Gostaria de tentar novamente? [s/n]" << endl;
+                getline(cin, opcao);
+
+                if (opcao == "s" || opcao == "S"){    
+                    system("cls");
+                    c3 = 1;
+                    break;
+                }
+                else if (opcao == "n" || opcao == "N"){
+                    system("cls");
+                    c3 = 2;
+                    break;
+
+                } else {
+                    system("cls"); 
+
+                    cout << "Opcao invalida! Tente novamente" << endl << endl;
+                    continue;
+                }
+            }
+
+            //Para controlar corretamente os laços de repetição
+            if (c3 == 1){
+                continue; //Vai para o inicio do while
+            }
+            else if (c3 == 2){                
+                break; //Sai do while    
+            }
+        }
+    }
+}
+
+void GerenciaArquivo::buscaPorEndereco(){
+    int c = 0; //controle
+    int encontrado = 0; //contador de quantos funcionarios foram encontrados
+    string endereco[TAM]; //auxiliar para end[i]
+    string busca;
+    string opcao, string1, string2; //duas strings auxiliares para tratar a questão de letras minúsculas
+
+    colunas();
+
+    while(1){
+        c = 0; //zerando controle
+        encontrado = 0; //zerando contador
+
+        cout << "Buscar: ";
+        getline(cin, busca);
+
+        busca = transformaStringMin(busca);
+        
+        system("cls");
+
+        for (int i = 0; i < TAM; i++){
+            endereco[i] = end[i];
+            endereco[i] = endereco[i].erase(0, 12); //Para o endereco aparecer a partir de "Rua"
+
+            //Deixa o endereco em minusculo para poder realizar a busca em minusculo também
+            string1 = endereco[i];
+            string2 = transformaStringMin(string1);
+
+            if (string2.find(busca) != string::npos){
+                cout << "\n";
+
+                cout << "Codigo..........: " << codigo[i] << endl;
+                cout << "Nome............: " << nome[i] << endl;
+                cout << "Endereco........: " << endereco[i] << endl;
+                cout << "Telefone........: " << telefone[i] << endl;
+                cout << "Data de ingresso: " << data[i] << endl;
+                cout << "Designacao......: " << desig[i] << endl;
+                
+                c = 1; //controle para gerenciar corretamente os laços de repetição
+                encontrado++; //incrementa a quantidade de funcionarios encontrados
+            }
+        }
+
+        if (c == 1){
+            cout << "\n";
+            cout << encontrado << " funcionario(s) encontrado(s) com \"" << busca << "\" no endereco" << endl << endl;
+
+            break;
+
+        } else {
+            while(1){
+                cout << "Nenhum funcionario encontrado. Gostaria de tentar novamente? [s/n]" << endl;
+                getline(cin, opcao);
+
+                //getchar(); // Vai precisar?
+
+                if (opcao == "s" || opcao == "S"){    
+                    system("cls");
+                    c = 1;
+                    break;
+                }
+                else if (opcao == "n" || opcao == "N"){
+                    system("cls");
+                    c = 2;
+                    break;
+
+                } else {
+                    system("cls"); 
+
+                    cout << "Opcao invalida! Tente novamente" << endl << endl;
+                    continue;
+                }
+            }
+
+            //Para controlar corretamente os laços de repetição
+            if (c == 1){
+                continue; //Vai para o inicio do while
+            }
+            else if (c == 2){                
+                break; //Sai do while    
+            }
+        }
+    }
+}
+
 void GerenciaArquivo::modificaCodigo(string cod){
     int c = 0, cont = 0;
     string mod, aux;
@@ -298,6 +790,7 @@ void GerenciaArquivo::modificaCodigo(string cod){
         while(1){
             cout << "Digite o novo codigo: ";
             getline(cin, mod);
+        
             system("cls");
 
             if(mod.length() == 3){
@@ -318,12 +811,13 @@ void GerenciaArquivo::modificaCodigo(string cod){
             }
         }
 
-        for(int i = 1; i < 100; i++){
+        for(int i = 1; i < TAM; i++){
             if(linhas[i] != ""){
                 aux = linhas[i];
                 aux.erase(3, aux.length());
             }
 
+            //verificando o novo codigo digitado para que nao seja possivel dois ou mais codigos iguais
             if(aux == modificacao){
                 cout << "Codigo invalido, tente novamente" << endl;
                 c = 0;
@@ -341,7 +835,7 @@ void GerenciaArquivo::modificaCodigo(string cod){
     while(1){
         if (codigo[cont].find(cod) != string::npos){
 
-            linhas[cont] = modificacao + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + "," + data[cont]
+            linhas[cont+1] = modificacao + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + "," + data[cont]
             + "," + desig[cont] + "," + salario[cont] + "," + sup[cont] + "," + acad[cont] + "," + formacao[cont];
 
             cont = 0;
@@ -355,7 +849,7 @@ void GerenciaArquivo::modificaCodigo(string cod){
 
     arquivo.open("./csv/Empresa.csv", ios::out);
 
-    for(int i = 0; i < 100; i++){
+    for(int i = 0; i < TAM; i++){
         if(linhas[i] != ""){
             arquivo << linhas[i] << endl;
         }
@@ -373,14 +867,14 @@ void GerenciaArquivo::modificaNome(string cod){
     cout << "Digite o novo nome: ";
     getline(cin, modificacao);
 
-
     system("cls");
 
     while(1){
         if (codigo[cont].find(cod) != string::npos){
 
-            linhas[cont] = codigo[cont] + "," + transformaStringMin(modificacao) + "," + end[cont] + "," + telefone[cont] + "," + data[cont]
-            + "," + desig[cont] + "," + salario[cont] + "," + sup[cont] + "," + acad[cont] + "," + formacao[cont]; 
+            linhas[cont+1] = codigo[cont] + "," + transformaStringMin(modificacao) + "," + end[cont]
+            + "," + telefone[cont] + "," + data[cont] + "," + desig[cont] + "," + salario[cont] + ","
+            + sup[cont] + "," + acad[cont] + "," + formacao[cont]; 
 
             cont = 0;
             
@@ -393,14 +887,14 @@ void GerenciaArquivo::modificaNome(string cod){
 
     arquivo.open("./csv/Empresa.csv", ios::out);
 
-    for(int i = 0; i < 100; i++){
+    for(int i = 0; i < TAM; i++){
         if(linhas[i] != ""){
             arquivo << linhas[i] << endl;
         }
     }
 
     arquivo.close();       
-}        
+}      
 
 void GerenciaArquivo::modificaEndereco(string cod){
     int cont = 0;
@@ -431,7 +925,7 @@ void GerenciaArquivo::modificaEndereco(string cod){
 
     while(1){
         if(yn == "S" || yn == "s"){
-            cout << "Digite o novo CEP: ";
+            cout << "Digite o novo CEP - formato (00000000): ";
             getline(cin, cep);
 
             if(cep.length() > 8 || cep.length() < 8){
@@ -475,7 +969,7 @@ void GerenciaArquivo::modificaEndereco(string cod){
     while(1){
         if (codigo[cont].find(cod) != string::npos){
 
-            linhas[cont] = codigo[cont] + "," + nome[cont] + "," + modificacao + "," + telefone[cont] + "," + data[cont]
+            linhas[cont+1] = codigo[cont] + "," + nome[cont] + "," + modificacao + "," + telefone[cont] + "," + data[cont]
             + "," + desig[cont] + "," + salario[cont] + "," + sup[cont] + "," + acad[cont] + "," + formacao[cont]; 
 
             cont = 0;
@@ -489,7 +983,7 @@ void GerenciaArquivo::modificaEndereco(string cod){
 
     arquivo.open("./csv/Empresa.csv", ios::out);
 
-    for(int i = 0; i < 100; i++){
+    for(int i = 0; i < TAM; i++){
         if(linhas[i] != ""){
             arquivo << linhas[i] << endl;
         }
@@ -504,7 +998,7 @@ void GerenciaArquivo::modificaTelefone(string cod){
 
     colunas();
 
-    cout << "Digite o novo telefone: ";
+    cout << "Digite o novo telefone - formato: (00) 00000-0000: ";
     getline(cin, modificacao);
 
     system("cls");
@@ -512,7 +1006,7 @@ void GerenciaArquivo::modificaTelefone(string cod){
     while(1){
         if (codigo[cont].find(cod) != string::npos){
 
-            linhas[cont] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + modificacao + "," + data[cont]
+            linhas[cont+1] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + modificacao + "," + data[cont]
             + "," + desig[cont] + "," + salario[cont] + "," + sup[cont] + "," + acad[cont] + "," + formacao[cont]; 
 
             cont = 0;
@@ -526,7 +1020,7 @@ void GerenciaArquivo::modificaTelefone(string cod){
 
     arquivo.open("./csv/Empresa.csv", ios::out);
 
-    for(int i = 0; i < 100; i++){
+    for(int i = 0; i < TAM; i++){
         if(linhas[i] != ""){
             arquivo << linhas[i] << endl;
         }
@@ -631,7 +1125,7 @@ void GerenciaArquivo::modificaData(string cod){
     while(1){
         if (codigo[cont].find(cod) != string::npos){
 
-            linhas[cont] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + ","
+            linhas[cont+1] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + ","
             + dia + "/" + mes + "/" + ano + "," + desig[cont] + "," + salario[cont] + "," + sup[cont] + "," 
             + acad[cont] + "," + formacao[cont];  
             
@@ -646,7 +1140,7 @@ void GerenciaArquivo::modificaData(string cod){
 
     arquivo.open("./csv/Empresa.csv", ios::out);
 
-    for(int i = 0; i < 100; i++){
+    for(int i = 0; i < TAM; i++){
         if(linhas[i] != ""){
             arquivo << linhas[i] << endl;
         }
@@ -677,13 +1171,13 @@ void GerenciaArquivo::modificaSalario(string cod){
 
                     if (modificacao.find(".") != string::npos){
 
-                        linhas[cont] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] +
+                        linhas[cont+1] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] +
                         "," + data[cont] + "," + desig[cont] + "," + modificacao + "," + sup[cont] + "," +
                         acad[cont] + "," + formacao[cont]; 
 
                     } else {
 
-                        linhas[cont] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] +
+                        linhas[cont+1] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] +
                         "," + data[cont] + "," + desig[cont] + "," + modificacao + ".00" + "," + sup[cont] + "," +
                         acad[cont] + "," + formacao[cont]; 
                         
@@ -700,7 +1194,7 @@ void GerenciaArquivo::modificaSalario(string cod){
 
             arquivo.open("./csv/Empresa.csv", ios::out);
 
-            for(int i = 0; i < 100; i++){
+            for(int i = 0; i < TAM; i++){
                 if(linhas[i] != ""){
                     arquivo << linhas[i] << endl;
                 }
@@ -722,7 +1216,7 @@ void GerenciaArquivo::modDesigParaOperador(string cod){
     while(1){
         if (codigo[cont].find(cod) != string::npos){
 
-            linhas[cont] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + "," + data[cont]
+            linhas[cont+1] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + "," + data[cont]
             + "," + modificacao + "," + salario[cont] + "," + "Nan" + "," + "Nan" + "," + "Nan"; 
             
             cont = 0;
@@ -736,7 +1230,7 @@ void GerenciaArquivo::modDesigParaOperador(string cod){
 
     arquivo.open("./csv/Empresa.csv", ios::out);
 
-    for(int i = 0; i < 100; i++){
+    for(int i = 0; i < TAM; i++){
         if(linhas[i] != ""){
             arquivo << linhas[i] << endl;
         }
@@ -775,7 +1269,7 @@ void GerenciaArquivo::modDesigDeGerente(string cod){
             while(1){
                 if (codigo[cont].find(cod) != string::npos){
 
-                    linhas[cont] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + ","
+                    linhas[cont+1] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + ","
                     + data[cont] + "," + modificacao + "," + salario[cont] + "," + areaS + "," + areaF + ","
                     + formacao[cont]; 
 
@@ -790,7 +1284,7 @@ void GerenciaArquivo::modDesigDeGerente(string cod){
 
             arquivo.open("./csv/Empresa.csv", ios::out);
 
-            for(int i = 0; i < 100; i++){
+            for(int i = 0; i < TAM; i++){
                 if(linhas[i] != ""){
                     arquivo << linhas[i] << endl;
                 }
@@ -813,7 +1307,7 @@ void GerenciaArquivo::modDesigDeGerente(string cod){
             while(1){
                 if (codigo[cont].find(cod) != string::npos){
 
-                    linhas[cont] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + ","
+                    linhas[cont+1] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + ","
                     + data[cont] + "," + modificacao + "," + salario[cont] + "," + "Nan" + "," + areaF + ","
                     + formacaoMax;
 
@@ -828,7 +1322,7 @@ void GerenciaArquivo::modDesigDeGerente(string cod){
 
             arquivo.open("./csv/Empresa.csv", ios::out);
 
-            for(int i = 0; i < 100; i++){
+            for(int i = 0; i < TAM; i++){
                 if(linhas[i] != ""){
                     arquivo << linhas[i] << endl;
                 }
@@ -868,7 +1362,7 @@ void GerenciaArquivo::modDesigDeOperador(string cod){
             while(1){
                 if (codigo[cont].find(cod) != string::npos){
 
-                    linhas[cont] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + ","
+                    linhas[cont+1] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + ","
                     + data[cont] + "," + modificacao + "," + salario[cont] + "," + areaS + "," + acad[cont] + ","
                     + formacao[cont]; 
 
@@ -883,7 +1377,7 @@ void GerenciaArquivo::modDesigDeOperador(string cod){
 
             arquivo.open("./csv/Empresa.csv", ios::out);
 
-            for(int i = 0; i < 100; i++){
+            for(int i = 0; i < TAM; i++){
                 if(linhas[i] != ""){
                     arquivo << linhas[i] << endl;
                 }
@@ -906,7 +1400,7 @@ void GerenciaArquivo::modDesigDeOperador(string cod){
             while(1){
                 if (codigo[cont].find(cod) != string::npos){
 
-                    linhas[cont] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + ","
+                    linhas[cont+1] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + ","
                     + data[cont] + "," + modificacao + "," + salario[cont] + "," + areaS + "," + areaF + ","
                     + formacao[cont];
 
@@ -921,7 +1415,7 @@ void GerenciaArquivo::modDesigDeOperador(string cod){
 
             arquivo.open("./csv/Empresa.csv", ios::out);
 
-            for(int i = 0; i < 100; i++){
+            for(int i = 0; i < TAM; i++){
                 if(linhas[i] != ""){
                     arquivo << linhas[i] << endl;
                 }
@@ -944,7 +1438,7 @@ void GerenciaArquivo::modDesigDeOperador(string cod){
             while(1){
                 if (codigo[cont].find(cod) != string::npos){
 
-                    linhas[cont] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + ","
+                    linhas[cont+1] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + ","
                     + data[cont] + "," + modificacao + "," + salario[cont] + "," + sup[cont] + "," + areaF + ","
                     + formacaoMax;
 
@@ -959,7 +1453,7 @@ void GerenciaArquivo::modDesigDeOperador(string cod){
 
             arquivo.open("./csv/Empresa.csv", ios::out);
 
-            for(int i = 0; i < 100; i++){
+            for(int i = 0; i < TAM; i++){
                 if(linhas[i] != ""){
                     arquivo << linhas[i] << endl;
                 }
@@ -1005,7 +1499,7 @@ void GerenciaArquivo::modDesigDeDiretor(string cod){
             while(1){
                 if (codigo[cont].find(cod) != string::npos){
 
-                    linhas[cont] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + ","
+                    linhas[cont+1] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + ","
                     + data[cont] + "," + modificacao + "," + salario[cont] + "," + areaS + "," + "Nan" + ","
                     + formacao[cont]; 
 
@@ -1020,7 +1514,7 @@ void GerenciaArquivo::modDesigDeDiretor(string cod){
 
             arquivo.open("./csv/Empresa.csv", ios::out);
 
-            for(int i = 0; i < 100; i++){
+            for(int i = 0; i < TAM; i++){
                 if(linhas[i] != ""){
                     arquivo << linhas[i] << endl;
                 }
@@ -1043,7 +1537,7 @@ void GerenciaArquivo::modDesigDeDiretor(string cod){
             while(1){
                 if (codigo[cont].find(cod) != string::npos){
 
-                    linhas[cont] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + ","
+                    linhas[cont+1] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + ","
                     + data[cont] + "," + modificacao + "," + salario[cont] + "," + "Nan" + "," + areaF + ","
                     + formacaoMax; 
     
@@ -1056,7 +1550,7 @@ void GerenciaArquivo::modDesigDeDiretor(string cod){
 
             arquivo.open("./csv/Empresa.csv", ios::out);
 
-            for(int i = 0; i < 100; i++){
+            for(int i = 0; i < TAM; i++){
                 if(linhas[i] != ""){
                     arquivo << linhas[i] << endl;
                 }
@@ -1099,7 +1593,7 @@ void GerenciaArquivo::modDesigDePresidente(string cod){
             while(1){
                 if (codigo[cont].find(cod) != string::npos){
 
-                    linhas[cont] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + ","
+                    linhas[cont+1] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + ","
                     + data[cont] + "," + modificacao + "," + salario[cont] + "," + areaS + "," + "Nan" + "," + "Nan";
     
                     cont = 0;     
@@ -1110,7 +1604,7 @@ void GerenciaArquivo::modDesigDePresidente(string cod){
             }       
 
             arquivo.open("./csv/Empresa.csv", ios::out);
-            for(int i = 0; i < 100; i++){
+            for(int i = 0; i < TAM; i++){
                 if(linhas[i] != ""){
                     arquivo << linhas[i] << endl;
                 }
@@ -1130,7 +1624,7 @@ void GerenciaArquivo::modDesigDePresidente(string cod){
             while(1){
                 if (codigo[cont].find(cod) != string::npos){
 
-                    linhas[cont] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + ","
+                    linhas[cont+1] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + ","
                     + data[cont] + "," + modificacao + "," + salario[cont] + "," + areaS + "," + areaF + "," + "Nan"; 
     
                     cont = 0;
@@ -1140,7 +1634,7 @@ void GerenciaArquivo::modDesigDePresidente(string cod){
                 }    
             }       
             arquivo.open("./csv/Empresa.csv", ios::out);
-            for(int i = 0; i < 100; i++){
+            for(int i = 0; i < TAM; i++){
                 if(linhas[i] != ""){
                     arquivo << linhas[i] << endl;
                 }
@@ -1170,7 +1664,7 @@ void GerenciaArquivo::modificaDesignacao(string cod){
         while(1){
             if (codigo[cont].find(cod) != string::npos){
 
-                desigAtual = desig[cont];
+                desigAtual = desig[cont]; 
 
                 if (desigAtual == "Operador" || desigAtual == "operador"){
                     desigAtual = "1";
