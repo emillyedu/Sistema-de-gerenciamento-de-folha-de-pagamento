@@ -1,10 +1,14 @@
-documentaçao -> explicar classes e metodos
+documentaçao -> explicar classes e metodos PRINCIPAIS
 uml
+comentar metodos e classes do codigo
 
-systens do menu
-comentar codigo
+systens do menu:
+    modificar
+    folha salarial func
+    folha salarial empresa
+    buscar
+
+
+salario com virgula em add (getchar)
 fotografar
 voz
-folha anual
-buscar - metodo
-modificar - metodo

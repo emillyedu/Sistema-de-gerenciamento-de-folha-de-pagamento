@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <cstring>
+#include <windows.h>
 
 using namespace std;
 
@@ -55,7 +56,7 @@ void Funcionario::exibeRegistroFunc(){
             break;
         }
         else{
-            cout << "codigo maior do que o esperado" << endl;
+            cout << "Codigo maior do que o esperado\n" << endl;
             continue;
         }
     }
@@ -65,21 +66,29 @@ void Funcionario::exibeRegistroFunc(){
             colunas();
         }
         if(getCodigo(i) == codigo){
-            cout << endl;
             cout << "Codigo: " << getCodigo(i) << endl;
+            cout << "\n";
             cout << "Nome: " << getNome(i) << endl;
+            cout << "\n";
             cout << "Endereco: " << getEnd(i) << endl;
+            cout << "\n";
             cout << "Telefone: " << getTelefone(i) << endl;
+            cout << "\n";
             cout << "Data de ingresso: " << getData(i) << endl;
+            cout << "\n";
             cout << "Designacao: " << getDesig(i) << endl;
+            cout << "\n";
             cout << "Salario: " << getSalario(i) << endl;
             if(getSup(i) != Nan){
+                cout << "\n";
                 cout << "Area de supervisao: " << getSup(i) << endl;
             }
             if(getAcad(i) != Nan){
+                cout << "\n";
                 cout << "Area academica: " << getAcad(i) << endl;
             }
             if(getFormacao(i) != Nan){
+                cout << "\n";
                 cout << "Formacao maxima: " << getFormacao(i) << endl << endl;     
             }
             flag = 1;
@@ -88,7 +97,7 @@ void Funcionario::exibeRegistroFunc(){
     }
     
     if(flag == 0){
-        cout << "Funcionario nao encontrado" << endl;
+        cout << "Funcionario nao encontrado\n" << endl;
     }
 }
 
@@ -120,10 +129,12 @@ void Funcionario::exibeListaTipo(){
         cout << "(1) Operador\n";
         cout << "(2) Gerente\n";
         cout << "(3) Diretor\n";
-        cout << "(4) Presidente\n";
+        cout << "(4) Presidente\n\n";
 
         cin >> desig;
         getchar();
+
+        system("cls");
 
         switch (desig){
         case 1:
@@ -162,7 +173,7 @@ void Funcionario::exibeListaTipo(){
     }
 
     if(flag == 0){
-        cout << "Não foi encontrado nenhum funcionario" << endl;
+        cout << "Não foi encontrado nenhum funcionario\n" << endl;
         return;
     }
 
@@ -372,14 +383,15 @@ void Funcionario::addFuncionario(){
     string yn;
     int i, c, desig, li = 0;
     float salario;
-    string tentativa;
+
 
     criarArquivo();
     lerArquivo();
-    exibirArquivo();
+    exibeListaFunc();
+
 
     while(1){
-        cout << "deseja adicionar funcionario? [s/n]" << endl;
+        cout << "\nDeseja adicionar funcionario? [s/n]" << endl;
         cin >> yn;
         getchar();
         if(yn == "S" || yn == "s" ||yn == "N" || yn == "n"){
@@ -399,7 +411,8 @@ void Funcionario::addFuncionario(){
         while(1){
             c = 1;
             while(1){
-                cout << "digite o codigo: ";
+                system("cls");
+                cout << "Digite o codigo: ";
                 getline(cin, cod);
                 system("cls");
 
@@ -416,7 +429,8 @@ void Funcionario::addFuncionario(){
                     break;
                 }
                 else{
-                    cout << "codigo maior do que o esperado" << endl;
+                    cout << "codigo maior do que o esperado\n" << endl;
+                    Sleep(5000);
                     continue;
                 }
             }
@@ -425,7 +439,8 @@ void Funcionario::addFuncionario(){
                     colunas();
                 }
                 if(getCodigo(i-1) == codigo){
-                    cout << "codigo invalido, tente novamente" << endl;
+                    cout << "codigo invalido, tente novamente\n" << endl;
+                    Sleep(5000);
                     c = 0;
                     break;
                 }
@@ -435,13 +450,13 @@ void Funcionario::addFuncionario(){
             }
         }
 
-        cout << "digite o nome: ";
+        cout << "Digite o nome: ";
         getline(cin, nome);
 
         system("cls");
 
         while(1){
-            cout << "poderia informar seu CEP? [s/n]: ";
+            cout << "Poderia informar seu CEP? [s/n]: ";
             cin >> yn;
             getchar();
             if(yn == "S" || yn == "s" ||yn == "N" || yn == "n"){
@@ -458,12 +473,14 @@ void Funcionario::addFuncionario(){
         system("cls");
 
         while(1){
+            system("cls");
             if(yn == "S" || yn == "s"){
-                cout << "digite seu CEP: ";
+                cout << "Digite seu CEP: ";
                 getline(cin, cep);
 
                 if(cep.length() > 8 || cep.length() < 8){
-                    cout << "CEP invalido" << endl;
+                    cout << "CEP invalido\n" << endl;
+                    Sleep(5000);
                     continue;
                 }
                 else{
@@ -475,23 +492,24 @@ void Funcionario::addFuncionario(){
                 break;
             }
         }
-        
+        system("cls");
         if(endereco == Nan || yn == "N" || yn == "n"){
             endereco.clear();
             cep.clear();
-            cout << "informe o logradouro: ";
+            cout << "Informe o logradouro: ";
             getline(cin, logradouro);
-            cout << "informe o bairro: ";
+            cout << "Informe o bairro: ";
             getline(cin, bairro);
-            cout << "informe a cidade: ";
+            cout << "Informe a cidade: ";
             getline(cin, cidade);
-            cout << "informe a Uf: ";
+            cout << "Informe a Uf: ";
             getline(cin, uf);
 
             endereco = "Logradouro: " + logradouro + " - " "Bairro: " + bairro + " - " + "Cidade: " + cidade + " - " + "UF: " + uf;            
         }
 
-        cout << "digite o numero da casa: ";
+
+        cout << "Digite o numero da casa: ";
         getline(cin, numero);
 
         endereco = endereco + " - numero: " + numero;
@@ -499,15 +517,16 @@ void Funcionario::addFuncionario(){
 
         cout << "telefone - formato: (00) 00000-0000: ";
         getline(cin, telefone);
-
         system("cls");
+
         while(1){
-            cout << "data que ingressou na empresa:\n";
-            cout << "dia: ";
+            system("cls");
+            cout << "Data que ingressou na empresa:\n";
+            cout << "Dia: ";
             cin >> data.dia;
-            cout << "mes: ";
+            cout << "Mes: ";
             cin >> data.mes;
-            cout << "ano: ";
+            cout << "Ano: ";
             cin >> data.ano;
             
             if(to_string(data.dia).length() == 1){
@@ -534,23 +553,27 @@ void Funcionario::addFuncionario(){
 
             if(stoi(mes) < 1 || stoi(mes) > 12){
                 system("cls");
-                cout << "data invalida" << endl;
+                cout << "Data invalida\n" << endl;
+                Sleep(5000);
                 continue;
             }
             
             if(stoi(ano) < 1000 || stoi(ano) > 2022){
                 system("cls");
-                cout << "data invalida" << endl;
+                cout << "Data invalida\n" << endl;
+                Sleep(5000);
                 continue;
             }
 
             if(stoi(mes)){
+                system("cls");
                 if(stoi(mes) == 2){
                     if(data.dia <= 28 && data.dia >= 1){
                         break;
                     }else{
                         system("cls");
-                        cout << "dia do mes invalido" << endl;
+                        cout << "Dia do mes invalido" << endl;
+                        Sleep(5000);
                         continue;
                     }
                 }
@@ -559,7 +582,8 @@ void Funcionario::addFuncionario(){
                         break;
                     }else{
                         system("cls");
-                        cout << "dia do mes invalido" << endl;
+                        cout << "Dia do mes invalido\n" << endl;
+                        Sleep(5000);
                         continue;
                     }
                 }
@@ -568,7 +592,8 @@ void Funcionario::addFuncionario(){
                         break;
                     }else{
                         system("cls");
-                        cout << "dia do mes invalido" << endl;
+                        cout << "Dia do mes invalido\n" << endl;
+                        Sleep(5000);
                         continue;
                     }
                 }
@@ -578,11 +603,12 @@ void Funcionario::addFuncionario(){
 
         c = 1;
         while(1){
+            system("cls");
             cout << "Escolha a designacao:\n";
             cout << "(1) Operador\n";
             cout << "(2) Gerente\n";
             cout << "(3) Diretor\n";
-            cout << "(4) Presidente\n";
+            cout << "(4) Presidente\n\n";
 
             cin >> desig;
             getchar();
@@ -606,6 +632,7 @@ void Funcionario::addFuncionario(){
                 break;
             default:
                 cout << "Inválido! Tente novamente\n";
+                Sleep(5000);
                 break;
             }
 
@@ -617,33 +644,32 @@ void Funcionario::addFuncionario(){
         system("cls");
 
         if(designacao == "Gerente"){
-            cout << "informe a area de supervisão: ";
+            cout << "Informe a area de supervisão: ";
             getline(cin, areaS[0]);
             system("cls");
         }
         else if(designacao == "Diretor"){
-            cout << "informe a area de supervisão: ";
+            cout << "Informe a area de supervisão: ";
             getline(cin, areaS[1]);
             system("cls");
-            cout << "informe a area de formacao: ";
+            cout << "Informe a area de formacao: ";
             getline(cin, areaF[0]);
             system("cls");
         }
         else if(designacao == "Presidente"){
-            cout << "informe a area de formacao: ";
+            cout << "Informe a area de formacao: ";
             getline(cin, areaF[1]);
             system("cls");
-            cout << "informa a formacao academica maxima: ";
+            cout << "Informe a formacao academica maxima: ";
             getline(cin, formacao);
             system("cls");
         }
 
-        cout << "salario: ";
+        cout << "Salario: ";
         cin >> salario;
-
         getchar();
 
-        line = codigo + "," + transformaStringMin(nome) + "," + endereco + "," + telefone + "," + dia + "/" + mes +"/" + ano + "," + designacao + "," + to_string(salario).erase(to_string(salario).size()-4, 4) ;
+        line = codigo + "," + transformaStringMin(nome) + "," + transformaStringMin(endereco) + "," + telefone + "," + dia + "/" + mes +"/" + ano + "," + transformaStringMin(designacao) + "," + to_string(salario).erase(to_string(salario).size()-4, 4) ;
         if(designacao == "Gerente"){
             linha[li] = line + "," + areaS[0] + "," + Nan + "," + Nan + "\n";
         }
@@ -659,11 +685,17 @@ void Funcionario::addFuncionario(){
 
         system("cls");
 
+        cout << "\n-------------------------------------------------------------\n\n";
+
         cout << "Cadastro realizado!" << endl;
+
+        cout << "\n-------------------------------------------------------------\n";
 
         cout << "Deseja adicionar outro funcionario? [s/n]" << endl;
         cin >> yn;
         getchar();
+
+        system("cls");
 
         li++;
     }
@@ -784,7 +816,8 @@ void Funcionario::modificarFuncionario(){
 
 void Funcionario::excluirRegistro(){
     string cod, linhaAux,linha[TAM];;
-    int cont = 0, teste = 1, escolha;
+    int cont = 0, teste = 1;
+    char yn;
     fstream file;
 
     lerArquivo(); // Lê o arquivo com todas as informações dos usuário e passa para as variáveis corrrespondentes
@@ -795,34 +828,48 @@ void Funcionario::excluirRegistro(){
     cout << "Digite o Codigo do Registro: ";
     
     cin >> cod;
+    getchar();
 
+    system("cls");
     for(int i = 0; i < tamArq; i++){
         if(codigo[i] == cod){ // procura o código digitado entre os códigos do arquivo
             if(desig[i] == "Presidente" || desig[i] == "Diretor"){ // verifica se esse código pertence a um Presidente ou Diretor
                 system("cls");
                 cout << "Registro nao pode ser excluido." << endl;
+                Sleep(5000);
                 break;
             }else{
                 system("cls");
-                cout << "codigo encontrado: " << cod << endl;
-                cout << "Deseja excluir o registro do Arquivo ? ";
                 while(1){
-                    cout << "Digite (1)sim ou (2)nao: ";
-                    cin >> escolha;
+                    cout << "Deseja excluir o registro do Arquivo? [s/n]\n";
+                    cin >> yn;
                     getchar();
-                    if(escolha == 2){
+
+                    if(yn == 'n' || yn == 'N'){
                         system("cls");
+                        cout << "\n-------------------------------------------------------------\n\n";
+
                         cout << "Registro nao exluido." << endl;
+
+                        cout << "\n-------------------------------------------------------------\n";
+                        Sleep(5000);
                         break;
-                    }else if(escolha == 1){
+                    }else if(yn == 's' || yn == 'S'){
                         system("cls");
+                        cout << "\n-------------------------------------------------------------\n\n";
+
                         cout << "O registro foi excluido." << endl;
+
+                        cout << "\n-------------------------------------------------------------\n";
+                        Sleep(5000);
+
                         cont = i+1; // Armazena o index da linha em que o código foi excluído
                         teste = 0;
                         break;
                     }else{
                         system("cls");
-                        cout << "Opcao invalida" << endl;
+                        cout << "Opcao invalida." << endl;
+                        Sleep(5000);
                         continue;
                     }
                 }
@@ -831,8 +878,8 @@ void Funcionario::excluirRegistro(){
         }else if(i == tamArq-1){ // se código digitado não for encontrado e a linha estiver vazia encerra o for
             system("cls");
             cout << "Codigo nao encontrado." << endl;
+            Sleep(5);
         }
-        // linhas[i] == "" && 
     }
 
     int i = 0;

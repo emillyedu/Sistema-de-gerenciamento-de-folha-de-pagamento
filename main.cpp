@@ -14,9 +14,7 @@ int main(){
     Menu menu;
     string str;
     
-    // menu.cmdPrincipal();
-
-    funcionario.exibeFolhaSalarialEmpresa();
+    menu.cmdPrincipal();
 
 
     return 0;

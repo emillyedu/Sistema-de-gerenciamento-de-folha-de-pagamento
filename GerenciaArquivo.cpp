@@ -2,7 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-
+#include <windows.h>
 
 GerenciaArquivo::GerenciaArquivo()
 {
@@ -235,7 +235,8 @@ string GerenciaArquivo::retornaEndereco(string cep){
 
     if(linhasAPI[2] == "}"){
         system("del index.html");
-        cout << "endereco nao encontrado" << endl;
+        cout << "Endereco nao encontrado" << endl;
+        Sleep(5000);
         return "Nan";
     }
 

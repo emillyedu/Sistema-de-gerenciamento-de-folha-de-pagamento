@@ -93,9 +93,29 @@ void Menu::cmdPrincipal(){
                 break;
             case 4:
                 funcionario.aumentoDeSalarios();
+                
+                cout << "\n-------------------------------------------------------------\n";
+
+                cout << "\nAumento salarial concedido!" << endl;
+
+                cout << "\n-------------------------------------------------------------\n";
+
+                cout << "\n\n";
+                system("pause");
+                
                 break;
             case 5:
                 funcionario.calculaFolhaSalarial();
+
+                cout << "\n-------------------------------------------------------------\n";
+
+                cout << "\nFolha salarial calculada!" << endl;
+
+                cout << "\n-------------------------------------------------------------\n";
+                
+                cout << "\n\n";
+                system("pause");
+                
                 break;
             case 6:
                 cmdFolhaSal();
@@ -103,13 +123,14 @@ void Menu::cmdPrincipal(){
             case 0:
                 break;
             default:
-                system("cls");
                 cout << "\n-------------------------------------------------------------\n";
 
                 cout << "\nOpcao invalida!" << endl;
 
                 cout << "\n-------------------------------------------------------------\n";
                 
+                cout << "\n\n";
+                system("pause");
                 break;
         }
 
@@ -142,38 +163,50 @@ void Menu::cmdExibir(){
         system("cls");
         switch(opcao){
             case 1:
+                cout << "\n-------------------------------------------------------------\n";
+
                 funcionario.exibeRegistroFunc();
+
+                cout << "\n-------------------------------------------------------------\n";
+
+                cout << "\n\n";
                 system("pause");
                 break;
             case 2:
+                cout << "\n-------------------------------------------------------------\n";
+
                 funcionario.exibeListaFunc();
+
+                cout << "\n-------------------------------------------------------------\n";
+                
+                cout << "\n\n";
                 system("pause");
                 break;
             case 3:
+                cout << "\n-------------------------------------------------------------\n";
+
                 funcionario.exibeListaTipo();
+
+                cout << "\n-------------------------------------------------------------\n";
+                
+                cout << "\n\n";
                 system("pause");
                 break;
             case 0:
                 break;
             default:
-                system("cls");
                 cout << "\n-------------------------------------------------------------\n";
 
                 cout << "\nOpcao invalida!" << endl;
 
                 cout << "\n-------------------------------------------------------------\n";
                 
+                cout << "\n\n";
+                system("pause");
                 break;
         }
 
         if(opcao == 0){
-            system("cls");
-            cout << "\n-------------------------------------------------------------\n";
-
-            cout << "\nOK!" << endl;
-
-            cout << "\n-------------------------------------------------------------\n";
-            
             break;
         }
 
@@ -205,24 +238,18 @@ void Menu::cmdModificar(){
             case 0:
                 break;
             default:
-                system("cls");
                 cout << "\n-------------------------------------------------------------\n";
 
                 cout << "\nOpcao invalida!" << endl;
 
                 cout << "\n-------------------------------------------------------------\n";
                 
+                cout << "\n\n";
+                system("pause");
                 break;
         }
 
         if(opcao == 0){
-            system("cls");
-            cout << "\n-------------------------------------------------------------\n";
-
-            cout << "\nOK!" << endl;
-
-            cout << "\n-------------------------------------------------------------\n";
-            
             break;
         }
     }
@@ -242,11 +269,23 @@ void Menu::cmdFolhaSal(){
         system("cls");
         switch(opcao){
             case 1:
+                cout << "\n-------------------------------------------------------------\n";
+
                 funcionario.exibeFolhaSalarialFuncionario();
+
+                cout << "\n-------------------------------------------------------------\n";
+
+                cout << "\n\n";
                 system("pause");
                 break;
             case 2:
+                cout << "\n-------------------------------------------------------------\n";
+
                 funcionario.exibeFolhaSalarialEmpresa();
+
+                cout << "\n-------------------------------------------------------------\n";
+
+                cout << "\n\n";
                 system("pause");
                 break;
             case 0:
@@ -259,17 +298,12 @@ void Menu::cmdFolhaSal(){
 
                 cout << "\n-------------------------------------------------------------\n";
                 
+                cout << "\n\n";
+                system("pause");
                 break;
         }
 
         if(opcao == 0){
-            system("cls");
-            cout << "\n-------------------------------------------------------------\n";
-
-            cout << "\nOK!" << endl;
-
-            cout << "\n-------------------------------------------------------------\n";
-            
             break;
         }
         
