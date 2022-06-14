@@ -14,18 +14,16 @@ Funcionario::Funcionario(){
 }
 
 void Funcionario::fotografarUsuario(){
-    string cod, command, webcam;
+    string cod, command;
     int op;
     cin >> cod;
 
-    webcam = "Integrated Webcam";
-    command = "ffmpeg -i" + webcam +" -vframes 1 -video_size 640";
-
+    command = "CommandCam /quiet /filename " + cod + ".jpg";
     system(command.c_str());
 
     cin >> op;
     if(op == 1){
-        command = "eoq " + cod + " .jpg"; // no windows colocar o nome no arquivo da foto
+        command = cod + ".jpg";
         system(command.c_str());
     }
 }   

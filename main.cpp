@@ -15,7 +15,7 @@ int main(){
     string str;
     
     //menu.cmdPrincipal();
-    funcionario.buscarFuncionario();
+    funcionario.fotografarUsuario();
 
     return 0;
 }
