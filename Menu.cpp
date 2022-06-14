@@ -83,7 +83,7 @@ void Menu::cmdPrincipal(){
         system("cls");
         switch(opcao){
             case 1:
-                //metodo buscar
+                funcionario.buscarFuncionario();
                 break;
             case 2:
                 cmdExibir();
