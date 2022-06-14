@@ -708,29 +708,70 @@ void Funcionario::addFuncionario(){
 
 }
 
+void Funcionario::buscarFuncionario(){
+    int escolha;
+
+    while(1){   
+        cout << "Deseja realizar qual tipo de busca?\n" << endl;
+        cout << "[1] Buscar por nome\n";
+        cout << "[2] Buscar por data de ingresso (intervalo de tempo)\n";
+        cout << "[3] Buscar por endereco\n\n"; 
+        
+        cin >> escolha;
+        getchar();
+    
+        system("cls");
+
+        if (escolha <= 0 || escolha > 3){
+            cout << "Escolha invalida! Tente novamente" << endl;
+            continue;
+
+        } else {
+            switch (escolha){
+                case 1:
+                    buscaPorNome();
+                    break;
+        
+                case 2:
+                    buscaPorData();
+                    break;
+        
+                case 3:
+                    buscaPorEndereco();
+                    break;
+            }
+
+            break;
+        }
+    }
+}
+
 void Funcionario::modificarFuncionario(){
     int c = 0, cont = 0;
-    string codigo;
+    int escolha = 0, i = 0; 
+    string auxCodigo;
     string cod, aux;
-    int desig, escolha = 0, i = 0;
 
+    colunas();
+    
     while(1){
         c = 1;
         while(1){
             cout << "Primeiramente, informe o codigo do funcionario: ";
-            getline(cin, codigo);
+            getline(cin, auxCodigo);
+            
             system("cls");
 
-            if(codigo.length() == 3){
-                cod = codigo;
+            if(auxCodigo.length() == 3){
+                cod = auxCodigo;
                 break;
             }
-            else if(codigo.length() == 2){
-                cod = "0" + codigo;
+            else if(auxCodigo.length() == 2){
+                cod = "0" + auxCodigo;
                 break;
             }
-            else if(codigo.length() == 1){
-                cod = "00" + codigo;
+            else if(auxCodigo.length() == 1){
+                cod = "00" + auxCodigo;
                 break;
             }
             else{
@@ -738,29 +779,34 @@ void Funcionario::modificarFuncionario(){
                 continue;
             }
         }
-
-        for(int i = 1; i < 100; i++){
-            if(linhas[i] != ""){
-                aux = linhas[i];
-                aux.erase(3, aux.length());
-            }
-
-            if(aux == cod){
-                cout << "Codigo invalido, tente novamente" << endl;
-                c = 0;
+        
+        for(int i = 0; i < TAM; i++){
+            //verificando se o codigo digitado existe ou não
+            if(codigo[i].find(cod) != string::npos){
+                c = 1;
                 break;
             }
+            else{
+                c = 0;
+                continue;
+            }
         }
-
+        
         if(c == 1){
+            system("cls");
             break;
         }
-    
-        system("cls");
+        else{
+            system("cls");
+            cout << "Codigo nao existe, tente novamente" << endl;
+            continue;
+        }
     }
 
-    while(1){   
-        cout << "O que deseja modificar?" << endl;
+    while(1){
+        cout << "Codigo encontrado: " << cod << endl;
+
+        cout << "\nO que deseja modificar?" << endl;
         cout << "[1] Codigo\n";
         cout << "[2] Nome\n";
         cout << "[3] Endereco\n"; 
