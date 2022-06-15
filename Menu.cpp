@@ -94,7 +94,7 @@ void Menu::cmdPrincipal(){
             case 4:
                 funcionario.aumentoDeSalarios();
                 
-                cout << "\n-------------------------------------------------------------\n";
+                cout << "\n-------------------------------------------------------------\n\n";
 
                 cout << "\nAumento salarial concedido!" << endl;
 
@@ -107,7 +107,7 @@ void Menu::cmdPrincipal(){
             case 5:
                 funcionario.calculaFolhaSalarial();
 
-                cout << "\n-------------------------------------------------------------\n";
+                cout << "\n-------------------------------------------------------------\n\n";
 
                 cout << "\nFolha salarial calculada!" << endl;
 
@@ -123,7 +123,7 @@ void Menu::cmdPrincipal(){
             case 0:
                 break;
             default:
-                cout << "\n-------------------------------------------------------------\n";
+                cout << "\n-------------------------------------------------------------\n\n";
 
                 cout << "\nOpcao invalida!" << endl;
 
@@ -135,7 +135,7 @@ void Menu::cmdPrincipal(){
         }
 
         if(opcao == 0){
-            cout << "\n-------------------------------------------------------------\n";
+            cout << "\n-------------------------------------------------------------\n\n";
 
             cout << "\nAtendimento finalizado!" << endl;
 
@@ -238,7 +238,7 @@ void Menu::cmdModificar(){
             case 0:
                 break;
             default:
-                cout << "\n-------------------------------------------------------------\n";
+                cout << "\n-------------------------------------------------------------\n\n";
 
                 cout << "\nOpcao invalida!" << endl;
 
@@ -292,7 +292,7 @@ void Menu::cmdFolhaSal(){
                 break;
             default:
                 system("cls");
-                cout << "\n-------------------------------------------------------------\n";
+                cout << "\n-------------------------------------------------------------\n\n";
 
                 cout << "\nOpcao invalida!" << endl;
 

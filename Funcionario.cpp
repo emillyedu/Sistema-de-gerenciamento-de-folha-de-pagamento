@@ -13,19 +13,60 @@ using namespace std;
 Funcionario::Funcionario(){
 }
 
-void Funcionario::fotografarUsuario(){
-    string cod, command;
-    int op;
-    cin >> cod;
+void Funcionario::fotografarUsuario(string cod){
+    string command;
+    char yn;
+    int flag = 0;
 
-    command = "CommandCam /quiet /filename " + cod + ".jpg";
-    system(command.c_str());
+    system("cls");
 
-    cin >> op;
-    if(op == 1){
-        command = cod + ".jpg";
+    while(1){
+        cout << "Podemos tirar uma foto sua? [s/n]" << endl;
+        cin >> yn;
+
+        system("cls");
+
+        if(yn == 's' || yn == 'S'){
+            cout << "OK! Prepare-se para a foto :)" << endl;
+            Sleep(5000);
+            system("cls");
+        }
+        else if(yn == 'n' || yn == 'N'){
+            flag = 1;
+            break;
+        }
+        else{
+            continue;
+        }
+
+        command = "CommandCam /quiet /filename " + cod + ".jpg";
         system(command.c_str());
+
+        cout << "Foto tirada!" << endl;
+        Sleep(5000);
+
+        system("cls");
+
+        if(flag == 0){
+            break;
+        }
+
     }
+    
+    if(flag == 0){
+        //command = "move " + "./" + cod + ".jpg" "./fotos-funcionarios";
+        //system(command.c_str());
+
+        cout << "Deseja ver a sua foto? [s/n]" << endl;
+        cin >> yn;
+        if(yn == 's' || yn == 'S'){
+            command = "./fotos-funcionarios/" + cod + ".jpg";
+            system(command.c_str());
+        }
+
+        system("cls");
+    }
+
 }   
 
 void Funcionario::exibeRegistroFunc(){
@@ -183,139 +224,6 @@ void Funcionario::exibeListaTipo(){
     }
 }
 
-// void Funcionario::separadorColuna(string colPresent[], int del[]){
-//     for(int i = 1, j = 0; i < 100; i++, j++){
-//         if(linhas[i] != ""){
-//             colPresent[j] = linhas[i];
-//             colPresent[j].erase(0, del[j]);
-//             colPresent[j].erase(colPresent[j].find(','));
-//         }
-//         else{
-//             break;
-//         }
-//     }
-// }
-
-// void Funcionario::colunas(){
-//     int del[100] = {0};
-//     int j, i;
-
-//     criarArquivo();
-//     lerArquivo();
-
-//     for(i = 1, j = 0; i < 100; i++, j++){
-//         if(linhas[i] != ""){
-//             codigo[j] = linhas[i];
-//             codigo[j].erase(3, codigo[j].length());
-//         }
-//         else{
-//             break;
-//         }
-//     }
-
-//     for(j = 0; j < 100; j++){
-//         del[j] += codigo[j].size() + 1;
-//     }
-//     separadorColuna(nome, del);
-    
-//     for(j = 0; j < 100; j++){
-//         del[j] += nome[j].size() + 1;
-//     }
-//     separadorColuna(end, del);
-
-//     for(j = 0; j < 100; j++){
-//         del[j] += end[j].size() + 1;
-//     }
-//     separadorColuna(telefone, del);
-
-//     for(j = 0; j < 100; j++){
-//         del[j] += telefone[j].size() + 1;
-//     }
-//     separadorColuna(data, del);
-//     for(j = 0; j < 100; j++){
-//         del[j] += data[j].size() + 1;
-//     }
-//     separadorColuna(desig, del);
-//     for(j = 0; j < 100; j++){
-//         del[j] += desig[j].size() + 1;
-//     }
-//     separadorColuna(salario, del);
-//     for(j = 0; j < 100; j++){
-//         del[j] += salario[j].size() + 1;
-//     }
-//     separadorColuna(sup, del);
-//     for(j = 0; j < 100; j++){
-//         del[j] += sup[j].size() + 1;
-//     }
-//     separadorColuna(acad, del);
-    
-//     for(i = 1, j = 0; i < 100; i++, j++){
-//         del[j] += acad[j].length() +1;
-//         if(linhas[i] != ""){
-//             formacao[j] = linhas[i];
-//             formacao[j].erase(0, del[j]);
-//         }
-//         else{
-//             break;
-//         }
-//     }
-// }
-
-// string Funcionario::forEndereco(string api[], int line, int tam){
-//     api[line].erase(0, tam);
-//     int count = 0;
-//     while(1){
-//         for(int i = 0; i < 50; i++){
-//             if(api[line][i] == '"'){
-//                 api[line].erase(i, 2);
-//                 count = 1;
-//                 break;
-//             }
-//         }
-//         if(count = 1){
-//             break;
-//         }
-//     }
-//     return api[line];
-// }
-
-// string Funcionario::retornaEndereco(string cep){
-//     int i;
-//     int count = 0;
-//     string logradouro;
-//     string linhasAPI[12];
-
-//     fstream arquivoAPI;
-    
-//     string CEP = cep;
-//     string url = "http://viacep.com.br/ws/" + CEP +"/json/";
-//     string comando = "wget " + url;
-
-//     system(comando.c_str());
-
-//     system("cls");
-
-//     arquivoAPI.open("index.html", ios::in);
-
-//     i = 0;
-//     while(getline(arquivoAPI, linhasAPI[i])){
-//         i++;
-//     }
-
-//     arquivoAPI.close();
-
-//     if(linhasAPI[2] == "}"){
-//         system("del index.html");
-//         cout << "endereco nao encontrado" << endl;
-//         return "Nan";
-//     }
-
-//     system("del index.html");
-
-//     return "Logradouro: " + forEndereco(linhasAPI, 2, 17) + " - " "Bairro: " + forEndereco(linhasAPI, 4, 13) + " - " + "Cidade: " + forEndereco(linhasAPI, 5, 17) + " - " + "UF: " + forEndereco(linhasAPI, 6, 9);
-
-// }
-
 void Funcionario::aumentoDeSalarios(){
     Operador operador;
     Gerente gerente;
@@ -377,16 +285,17 @@ void Funcionario::addFuncionario(){
 
     Data data;
     string nome, aux, codigo, cod, telefone, designacao, endereco, cep, numero, areaS[2], areaF[2], formacao;
-    string logradouro, bairro, cidade, uf, linha[100], line, dia, mes, ano;
+    string logradouro, bairro, cidade, uf, linha[100], line, dia, mes, ano, salario;
     string yn;
     int i, c, desig, li = 0;
-    float salario;
 
 
     criarArquivo();
     lerArquivo();
-    exibeListaFunc();
 
+    cout << "\n-------------------------------------------------------------\n\n";
+    exibeListaFunc();
+    cout << "\n\n-------------------------------------------------------------\n";
 
     while(1){
         cout << "\nDeseja adicionar funcionario? [s/n]" << endl;
@@ -396,9 +305,11 @@ void Funcionario::addFuncionario(){
             break;
         }
         else if(yn.length() > 1){
+            system("cls");
             continue;
         }
         else{
+            system("cls");
             continue;
         }
         system("cls");
@@ -461,9 +372,11 @@ void Funcionario::addFuncionario(){
                 break;
             }
             else if(yn.length() > 1){
+                system("cls");
                 continue;
             }
             else{
+                system("cls");
                 continue;
             } 
             system("cls");
@@ -664,10 +577,20 @@ void Funcionario::addFuncionario(){
         }
 
         cout << "Salario: ";
-        cin >> salario;
-        getchar();
+        getline(cin, salario);
+        for(int i = 0; i < salario.size(); i++){
+            if(salario[i] != ','){
+            }else{
+                salario[i] = '.';
+            }
 
-        line = codigo + "," + transformaStringMin(nome) + "," + transformaStringMin(endereco) + "," + telefone + "," + dia + "/" + mes +"/" + ano + "," + transformaStringMin(designacao) + "," + to_string(salario).erase(to_string(salario).size()-4, 4) ;
+        }
+
+        system("cls");
+
+        fotografarUsuario(codigo);
+
+        line = codigo + "," + transformaStringMin(nome) + "," + transformaStringMin(endereco) + "," + telefone + "," + dia + "/" + mes +"/" + ano + "," + transformaStringMin(designacao) + "," + salario ;
         if(designacao == "Gerente"){
             linha[li] = line + "," + areaS[0] + "," + Nan + "," + Nan + "\n";
         }
@@ -859,7 +782,7 @@ void Funcionario::modificarFuncionario(){
 }
 
 void Funcionario::excluirRegistro(){
-    string cod, linhaAux,linha[TAM];;
+    string cod, linhaAux,linha[TAM], command;
     int cont = 0, teste = 1;
     char yn;
     fstream file;
@@ -907,6 +830,9 @@ void Funcionario::excluirRegistro(){
                         cout << "\n-------------------------------------------------------------\n";
                         Sleep(5000);
 
+                        command = "del " + cod + ".jpg";
+                        system(command.c_str());
+
                         cont = i+1; // Armazena o index da linha em que o código foi excluído
                         teste = 0;
                         break;
@@ -947,6 +873,7 @@ void Funcionario::excluirRegistro(){
         file << linha[i] << endl;
     }
     file.close();
+
 
 }
 
@@ -1239,60 +1166,4 @@ void Funcionario::exibeFolhaSalarialEmpresa(){
 }
 
 
-void Funcionario::calculaDescontos(double sa[]){
 
-    for(int i = 0; i < tamArq-1; i++){
-        if(linhas[i] != ""){
-            if(getSalario(i) != ""){
-                if(sa[i] <= 1212){
-                    inss[i] = (sa[i]*(7.5/100));
-                    salarioLiquido[i] = sa[i] - (sa[i]*(7.5/100));
-                }else if(sa[i] <= 2427.35){
-                    inss[i] = (((sa[i] - 1212.01)*(9*1.0/100))+90.90);
-                    salarioLiquido[i] = sa[i] - (((sa[i] - 1212.01)*(9*1.0/100))+90.90);
-                }else if(sa[i] <= 3641.03){
-                    inss[i] = (((sa[i]-2427.36)*(12*1.0/100))+200.28);
-                    salarioLiquido[i] = sa[i] - (((sa[i]-2427.36)*(12*1.0/100))+200.28);  
-                }else if(sa[i] <= 7087.22){
-                    inss[i] = (((sa[i]-3641.04)*(14*1.0/100))+345.92);
-                    salarioLiquido[i] = sa[i] - (((sa[i]-3641.04)*(14*1.0/100))+345.92);
-                }else if((sa[i] >= 7087.23)){
-                    inss[i] = 828.38;
-                    salarioLiquido[i] = sa[i] - 828.38;
-                }
-            }else
-                break;
-        }
-    }
-
-    for(int i = 0; i < tamArq-1; i++){
-        if(linhas[i] != ""){
-            if(getSalario(i) != ""){
-                if(salarioLiquido[i] <= 1903.98){
-                    irrf[i] = 0;
-                }else if(salarioLiquido[i] <= 2826.65){
-                    irrf[i] = ((salarioLiquido[i]*(7.5/100))-142.80);
-                    salarioLiquido[i] = salarioLiquido[i] - ((salarioLiquido[i]*(7.5/100))-142.80);
-                }else if(salarioLiquido[i] <= 3751.05){
-                    irrf[i] = ((salarioLiquido[i]*(15*1.0/100))-354.80);
-                    salarioLiquido[i] = salarioLiquido[i] - ((salarioLiquido[i]*(15*1.0/100))-354.80);
-                }else if(salarioLiquido[i] <= 4664.68){
-                    irrf[i] = ((salarioLiquido[i]*(22.5*1.0/100))-636.13);
-                    salarioLiquido[i] = salarioLiquido[i] - ((salarioLiquido[i]*(22.5*1.0/100))-636.13);     
-                }else if(salarioLiquido[i] >= 4664.69){
-                    irrf[i] = ((salarioLiquido[i]*(27.5/100))-869.36);
-                    salarioLiquido[i] = salarioLiquido[i] - ((salarioLiquido[i]*(27.5/100))-869.36);
-                }
-            }else
-                break;
-        }
-    }
-}
-
-
-void Funcionario::limpaArraySalario(){
-    fill_n(salarioBruto, TAM, 0);
-    fill_n(inss, TAM, 0);
-    fill_n(irrf, TAM, 0);
-    fill_n(salarioLiquido, TAM, 0);
-}

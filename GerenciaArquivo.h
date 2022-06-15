@@ -31,6 +31,9 @@ public:
 
     double geraDiasTrabalhados(double m);
     double geraHorasExtras(double m);
+
+    void calculaDescontos(double sa[]);
+    void limpaArraySalario();
     
     void buscaPorNome();
     void buscaPorData();
@@ -63,9 +66,10 @@ public:
     
 protected:
     fstream arquivo;
+    int tamArq;
     string linhas[TAM], Nan = {"Nan"};;
     string codigo[TAM], nome[TAM], end[TAM], telefone[TAM], data[TAM], desig[TAM],salario[TAM],sup[TAM],acad[TAM],formacao[TAM];
-    int tamArq;
+    double salarioBruto[TAM],inss[TAM],irrf[TAM],salarioLiquido[TAM], salarioEmpresa;
 
 };
 

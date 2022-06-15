@@ -246,6 +246,64 @@ string GerenciaArquivo::retornaEndereco(string cep){
 
 }
 
+void GerenciaArquivo::calculaDescontos(double sa[]){
+
+    for(int i = 0; i < tamArq-1; i++){
+        if(linhas[i] != ""){
+            if(getSalario(i) != ""){
+                if(sa[i] <= 1212){
+                    inss[i] = (sa[i]*(7.5/100));
+                    salarioLiquido[i] = sa[i] - (sa[i]*(7.5/100));
+                }else if(sa[i] <= 2427.35){
+                    inss[i] = (((sa[i] - 1212.01)*(9*1.0/100))+90.90);
+                    salarioLiquido[i] = sa[i] - (((sa[i] - 1212.01)*(9*1.0/100))+90.90);
+                }else if(sa[i] <= 3641.03){
+                    inss[i] = (((sa[i]-2427.36)*(12*1.0/100))+200.28);
+                    salarioLiquido[i] = sa[i] - (((sa[i]-2427.36)*(12*1.0/100))+200.28);  
+                }else if(sa[i] <= 7087.22){
+                    inss[i] = (((sa[i]-3641.04)*(14*1.0/100))+345.92);
+                    salarioLiquido[i] = sa[i] - (((sa[i]-3641.04)*(14*1.0/100))+345.92);
+                }else if((sa[i] >= 7087.23)){
+                    inss[i] = 828.38;
+                    salarioLiquido[i] = sa[i] - 828.38;
+                }
+            }else
+                break;
+        }
+    }
+
+    for(int i = 0; i < tamArq-1; i++){
+        if(linhas[i] != ""){
+            if(getSalario(i) != ""){
+                if(salarioLiquido[i] <= 1903.98){
+                    irrf[i] = 0;
+                }else if(salarioLiquido[i] <= 2826.65){
+                    irrf[i] = ((salarioLiquido[i]*(7.5/100))-142.80);
+                    salarioLiquido[i] = salarioLiquido[i] - ((salarioLiquido[i]*(7.5/100))-142.80);
+                }else if(salarioLiquido[i] <= 3751.05){
+                    irrf[i] = ((salarioLiquido[i]*(15*1.0/100))-354.80);
+                    salarioLiquido[i] = salarioLiquido[i] - ((salarioLiquido[i]*(15*1.0/100))-354.80);
+                }else if(salarioLiquido[i] <= 4664.68){
+                    irrf[i] = ((salarioLiquido[i]*(22.5*1.0/100))-636.13);
+                    salarioLiquido[i] = salarioLiquido[i] - ((salarioLiquido[i]*(22.5*1.0/100))-636.13);     
+                }else if(salarioLiquido[i] >= 4664.69){
+                    irrf[i] = ((salarioLiquido[i]*(27.5/100))-869.36);
+                    salarioLiquido[i] = salarioLiquido[i] - ((salarioLiquido[i]*(27.5/100))-869.36);
+                }
+            }else
+                break;
+        }
+    }
+}
+
+
+void GerenciaArquivo::limpaArraySalario(){
+    fill_n(salarioBruto, TAM, 0);
+    fill_n(inss, TAM, 0);
+    fill_n(irrf, TAM, 0);
+    fill_n(salarioLiquido, TAM, 0);
+}
+
 //Numeros aletórios de dias trabalhados
 double GerenciaArquivo::geraDiasTrabalhados(double m){
     double dias;

@@ -28,18 +28,15 @@ public:
     void exibeFolhaSalarialFuncionario();
     void exibeFolhaSalarialEmpresa();
 
-    void fotografarUsuario();
+    void fotografarUsuario(string cod);
     void addFuncionario();
     void buscarFuncionario();
     void excluirRegistro();
     void aumentoDeSalarios();
     void calculaFolhaSalarial();
-    void calculaDescontos(double sa[]);
     void modificarFuncionario();
-    void limpaArraySalario();
 
 protected:
-    double salarioBruto[TAM],inss[TAM],irrf[TAM],salarioLiquido[TAM], salarioEmpresa;
 
 };
 

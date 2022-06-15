@@ -14,8 +14,8 @@ int main(){
     Menu menu;
     string str;
     
-    //menu.cmdPrincipal();
-    funcionario.fotografarUsuario();
+    menu.cmdPrincipal();
+    //funcionario.fotografarUsuario("emilly");
 
     return 0;
 }
