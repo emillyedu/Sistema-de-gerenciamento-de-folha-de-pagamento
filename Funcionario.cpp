@@ -990,13 +990,16 @@ void Funcionario::exibeFolhaSalarialFuncionario(){
     colunas();
 
     while(1){
+        system("cls");
         cout << "Deseja fazer a busca por nome(1) ou codigo(2)?" << endl;
         cin >> opcao;
+        system("cls");
         if(opcao == 1){
             teste = 0;
             cout << "Digite o nome: ";
             getchar();
             getline(cin, nomeF);
+            system("cls");
             nomeF = transformaStringMin(nomeF);
             for(i=0;i<100;i++){
                 if(nomeF == nome[i]){
@@ -1007,13 +1010,15 @@ void Funcionario::exibeFolhaSalarialFuncionario(){
         }
         if(teste)
             break;
-        cout << "Nome Inválido" << endl;
+        cout << "Nome Invalido" << endl;
+        Sleep(5000);
         
         }else if(opcao == 2){
             teste = 0;
             cout << "Digite o codigo: ";
             getchar();
             getline(cin, codigoF);
+            system("cls");
             for(i=0;i<100;i++){
                 if(codigoF == codigo[i]){
                     valor = i;
@@ -1023,14 +1028,15 @@ void Funcionario::exibeFolhaSalarialFuncionario(){
             }
             if(teste)
                 break;
-            cout << "codigo Inválido" << endl;     
+            cout << "codigo Inválido" << endl;   
+            Sleep(5000);  
         }
     }
-    for(int i = 0; i < tamArq -1; i++){
+    for(int i = 0; i < tamArq - 1; i++){
         try{
             salarioD[i] = stod(salario[i]);    
         }catch(std :: invalid_argument  const & ex ){
-             cout << "O parâmetro não é uma string" << endl;
+            //cout << "O parâmetro não é uma string" << endl;
         }
     }
 
@@ -1040,6 +1046,8 @@ void Funcionario::exibeFolhaSalarialFuncionario(){
     cout << "Funcinario,Designacao,SalarioBruto,INSS,IRRF,SalarioLiquido" << endl;
     cout << nome[valor] << ",R$" << salario[valor] << ",R$" << inss[valor] << ",R$" << irrf[valor] << ",R$" << salarioLiquido[valor] << endl;
 
+    cout << endl;
+    system("pause");
 }
 
 void Funcionario::exibeFolhaSalarialEmpresa(){
