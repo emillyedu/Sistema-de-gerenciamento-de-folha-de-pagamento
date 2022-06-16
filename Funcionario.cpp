@@ -433,10 +433,13 @@ void Funcionario::addFuncionario(){
             cout << "Data que ingressou na empresa:\n";
             cout << "Dia: ";
             cin >> data.dia;
+            getchar();
             cout << "Mes: ";
             cin >> data.mes;
+            getchar();
             cout << "Ano: ";
             cin >> data.ano;
+            getchar();
             
             if(to_string(data.dia).length() == 1){
                 dia = "0" + to_string(data.dia);

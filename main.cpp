@@ -13,8 +13,8 @@ int main(){
     Funcionario funcionario;
     Menu menu;
     
-    menu.cmdPrincipal();
-    // funcionario.fotografarUsuario("123");
+    //menu.cmdPrincipal();
+    funcionario.addFuncionario();
 
     return 0;
 }
