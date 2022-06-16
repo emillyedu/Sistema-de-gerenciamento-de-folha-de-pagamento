@@ -15,6 +15,7 @@ public:
     void menuExibir();
     void menuModificar();
     void menuFolhaSal();
+    void menuBuscar();
 
     void cmdPrincipal();
     void cmdExibir();

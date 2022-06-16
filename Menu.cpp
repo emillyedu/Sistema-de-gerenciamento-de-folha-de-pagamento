@@ -1,6 +1,7 @@
 #include "Menu.h"
 #include <iostream>
 #include <string>
+#include <windows.h>
 
 Menu::Menu()
 {
@@ -64,12 +65,26 @@ void Menu::menuFolhaSal(){
 
 }
 
+void Menu::menuBuscar(){
+    cout << "\n-------------------------- BUSCAR --------------------------\n\n";
+
+    cout << "[1] Buscar funcionario pelo NOME\n";
+    cout << "[2] Buscar Funcionario por INTERVALO DE TEMPO\n";
+    cout << "[2] Buscar Funcionario pelo ENDERECO\n";
+    cout << "[0] Sair\n";
+
+    cout << "\n------------------------------------------------------------\n\n";
+}
+
 
 void Menu::cmdPrincipal(){
     Funcionario funcionario;
     int opcao;
 
+    system("cls");
+
     cout << "\n---------- Bem vindo ao Sistema de Gerenciamento ------------\n\n";
+    Sleep(5000);
 
     while(1){
         system("cls");
