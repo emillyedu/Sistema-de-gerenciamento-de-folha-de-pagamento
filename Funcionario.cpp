@@ -54,13 +54,11 @@ void Funcionario::fotografarUsuario(string cod){
     }
     
     if(flag == 0){
-        //command = "move " + "./" + cod + ".jpg" "./fotos-funcionarios";
-        //system(command.c_str());
 
         cout << "Deseja ver a sua foto? [s/n]" << endl;
         cin >> yn;
         if(yn == 's' || yn == 'S'){
-            command = "./fotos-funcionarios/" + cod + ".jpg";
+            command = cod + ".jpg";
             system(command.c_str());
         }
 
@@ -826,12 +824,11 @@ void Funcionario::excluirRegistro(){
                         cout << "\n-------------------------------------------------------------\n\n";
 
                         cout << "O registro foi excluido." << endl;
+                        command = "del " + cod + ".jpg";
+                        system(command.c_str());
 
                         cout << "\n-------------------------------------------------------------\n";
                         Sleep(5000);
-
-                        command = "del " + cod + ".jpg";
-                        system(command.c_str());
 
                         cont = i+1; // Armazena o index da linha em que o código foi excluído
                         teste = 0;

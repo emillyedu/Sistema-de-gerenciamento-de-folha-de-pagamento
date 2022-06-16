@@ -12,10 +12,9 @@ int main(){
     srand(time(NULL));
     Funcionario funcionario;
     Menu menu;
-    string str;
     
     menu.cmdPrincipal();
-    //funcionario.fotografarUsuario("emilly");
+    // funcionario.fotografarUsuario("123");
 
     return 0;
 }
