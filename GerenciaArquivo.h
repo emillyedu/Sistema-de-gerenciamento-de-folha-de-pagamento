@@ -18,6 +18,7 @@ public:
 
     void clearString(string *str);
     string transformaStringMin(string str);
+    bool isNumber(const string& str);
 
     void criarArquivo();
     void lerArquivo();

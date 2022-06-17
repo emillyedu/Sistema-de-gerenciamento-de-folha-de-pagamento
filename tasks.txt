@@ -4,15 +4,14 @@ comentar metodos e classes do codigo
 
 menu:
     modificar
-    folha salarial func
-    folha salarial empresa
     buscar
 
 
 voz
+fotografar
 
 buscar:
-sem tratamento de erro em datas (ex:  digitar a data completa quando pede "dia", o programa quebra)
+char na data
 data invalida: nao pede de volta, continua pedindo as coisas q vem dps e ai quebra o programa
 
 endereço: buscar o que?

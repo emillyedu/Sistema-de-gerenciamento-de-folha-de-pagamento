@@ -92,6 +92,14 @@ void GerenciaArquivo::exibirArquivo(){
     }
 }
 
+bool GerenciaArquivo::isNumber(const string &str)
+{
+    for (char const &c : str) {
+        if (std::isdigit(c) == 0) return false;
+    }
+    return true;
+}
+
 string GerenciaArquivo::transformaStringMin(string str){
     char* c;
     c = &str[0];
@@ -456,17 +464,17 @@ void GerenciaArquivo::buscaPorData(){
         
             cout << "\tDia inicial: ";
             cin >> dt.diaIni;
-            cout << "\tMes inicial: ";
-            cin >> dt.mesIni;
-            cout << "\tAno inicial: ";
-            cin >> dt.anoIni;
-
             if (to_string(dt.diaIni).length() == 1){
                 dInicial = "0" + to_string(dt.diaIni);
             }
             else if (to_string(dt.diaIni).length() == 2){
                 dInicial = to_string(dt.diaIni);
             }
+            cout << "\tMes inicial: ";
+            cin >> dt.mesIni;
+            cout << "\tAno inicial: ";
+            cin >> dt.anoIni;
+
             if (to_string(dt.mesIni).length() == 1){
                 mInicial = "0" + to_string(dt.mesIni);
             }
@@ -1104,10 +1112,13 @@ void GerenciaArquivo::modificaData(string cod){
         cout << "Digite a nova data:\n";
         cout << "dia: ";
         cin >> modificacao.dia;
+        getchar();
         cout << "mes: ";
         cin >> modificacao.mes;
+        getchar();
         cout << "ano: ";
         cin >> modificacao.ano;
+        getchar();
             
         if(to_string(modificacao.dia).length() == 1){
             dia = "0" + to_string(modificacao.dia);
@@ -1115,11 +1126,23 @@ void GerenciaArquivo::modificaData(string cod){
         else if(to_string(modificacao.dia).length() == 2){
             dia = to_string(modificacao.dia);
         }
+        else if(to_string(modificacao.dia).length() > 2){
+            system("cls");
+            cout << "Dia invalido" << endl;
+            Sleep(5000);
+            continue;
+        }
         if(to_string(modificacao.mes).length() == 1){
             mes = "0" + to_string(modificacao.mes);
         }
         else if(to_string(modificacao.mes).length() == 2){
             mes = to_string(modificacao.mes);
+        }
+        else if(to_string(modificacao.mes).length() > 2){
+            system("cls");
+            cout << "Mes invalido" << endl;
+            Sleep(5000);
+            continue;
         }
         if(to_string(modificacao.ano).length() == 2){
             ano = "19" + to_string(modificacao.ano);

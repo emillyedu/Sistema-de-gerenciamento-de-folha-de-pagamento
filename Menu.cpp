@@ -284,24 +284,14 @@ void Menu::cmdFolhaSal(){
         system("cls");
         switch(opcao){
             case 1:
-                cout << "\n-------------------------------------------------------------\n";
 
                 funcionario.exibeFolhaSalarialFuncionario();
 
-                cout << "\n-------------------------------------------------------------\n";
-
-                cout << "\n\n";
-                system("pause");
                 break;
             case 2:
-                cout << "\n-------------------------------------------------------------\n";
 
                 funcionario.exibeFolhaSalarialEmpresa();
 
-                cout << "\n-------------------------------------------------------------\n";
-
-                cout << "\n\n";
-                system("pause");
                 break;
             case 0:
                 break;

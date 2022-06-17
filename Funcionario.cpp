@@ -103,30 +103,21 @@ void Funcionario::exibeRegistroFunc(){
             colunas();
         }
         if(getCodigo(i) == codigo){
-            cout << "Codigo: " << getCodigo(i) << endl;
-            cout << "\n";
-            cout << "Nome: " << getNome(i) << endl;
-            cout << "\n";
-            cout << "Endereco: " << getEnd(i) << endl;
-            cout << "\n";
-            cout << "Telefone: " << getTelefone(i) << endl;
-            cout << "\n";
-            cout << "Data de ingresso: " << getData(i) << endl;
-            cout << "\n";
-            cout << "Designacao: " << getDesig(i) << endl;
-            cout << "\n";
-            cout << "Salario: " << getSalario(i) << endl;
+            cout << "Codigo............: " << getCodigo(i) << endl;
+            cout << "Nome..............: " << getNome(i) << endl;
+            cout << "Endereco..........: " << getEnd(i) << endl;
+            cout << "Telefone..........: " << getTelefone(i) << endl;
+            cout << "Data de ingresso..: " << getData(i) << endl;
+            cout << "Designacao........: " << getDesig(i) << endl;
+            cout << "Salario...........: " << getSalario(i) << endl;
             if(getSup(i) != Nan){
-                cout << "\n";
                 cout << "Area de supervisao: " << getSup(i) << endl;
             }
             if(getAcad(i) != Nan){
-                cout << "\n";
-                cout << "Area academica: " << getAcad(i) << endl;
+                cout << "Area academica....: " << getAcad(i) << endl;
             }
             if(getFormacao(i) != Nan){
-                cout << "\n";
-                cout << "Formacao maxima: " << getFormacao(i) << endl << endl;     
+                cout << "Formacao maxima...: " << getFormacao(i) << endl << endl;     
             }
             flag = 1;
             break;
@@ -276,16 +267,17 @@ void Funcionario::aumentoDeSalarios(){
 
 void Funcionario::addFuncionario(){
     typedef struct{
-        int dia;
-        int mes;
-        int ano;
+        string dia;
+        string mes;
+        string ano;
     } Data;
 
     Data data;
     string nome, aux, codigo, cod, telefone, designacao, endereco, cep, numero, areaS[2], areaF[2], formacao;
     string logradouro, bairro, cidade, uf, linha[100], line, dia, mes, ano, salario;
-    string yn;
-    int i, c, desig, li = 0;
+    string yn, desig;
+    bool teste;//usa pra verificar se salário é um caracter e não um número
+    int i, c, li = 0;
 
 
     criarArquivo();
@@ -432,36 +424,101 @@ void Funcionario::addFuncionario(){
             system("cls");
             cout << "Data que ingressou na empresa:\n";
             cout << "Dia: ";
-            cin >> data.dia;
-            getchar();
+            getline(cin, data.dia);
+            // getchar();
             cout << "Mes: ";
-            cin >> data.mes;
-            getchar();
+            getline(cin, data.mes);
+            // getchar();
             cout << "Ano: ";
-            cin >> data.ano;
-            getchar();
+            getline(cin, data.ano);
+            // getchar();
             
-            if(to_string(data.dia).length() == 1){
-                dia = "0" + to_string(data.dia);
+            if(data.dia.length() == 1){
+                dia = "0" + data.dia;
+                if(isNumber(dia)){
+
+                }else{
+                    system("cls");
+                    cout << "Dia invalido" << endl;
+                    Sleep(5000);
+                    continue;
+                }
             }
-            else if(to_string(data.dia).length() == 2){
-                dia = to_string(data.dia);
+
+            else if(data.dia.length() == 2){
+                dia = data.dia;
+                if(isNumber(dia)){
+
+                }else{
+                    system("cls");
+                    cout << "Dia invalido" << endl;
+                    Sleep(5000);
+                    continue;
+                }
             }
-            if(to_string(data.mes).length() == 1){
-                mes = "0" + to_string(data.mes);
+
+            else if(data.dia.length() > 2){
+                system("cls");
+                cout << "Dia invalido" << endl;
+                Sleep(5000);
+                continue;
             }
-            else if(to_string(data.mes).length() == 2){
-                mes = to_string(data.mes);
+
+            if(data.mes.length() == 1){
+                mes = "0" + data.mes;
+                if(isNumber(mes)){
+                    
+                }else{
+                    system("cls");
+                    cout << "Mes invalido" << endl;
+                    Sleep(5000);
+                    continue;
+                }
             }
-            if(to_string(data.ano).length() == 2){
-                ano = "19" + to_string(data.ano);
+            else if(data.mes.length() == 2){
+                mes = data.mes;
+                if(isNumber(mes)){
+                    
+                }else{
+                    system("cls");
+                    cout << "Mes invalido" << endl;
+                    Sleep(5000);
+                    continue;
+                }
             }
-            else if(to_string(data.ano).length() == 4){
-                ano = to_string(data.ano);
+            else if(data.mes.length() > 2){
+                system("cls");
+                cout << "Mes invalido" << endl;
+                Sleep(5000);
+                continue;
+            }
+            
+            if(data.ano.length() == 2){
+                ano = "19" + data.ano;
+                if(isNumber(ano)){
+                    
+                }else{
+                    system("cls");
+                    cout << "Ano invalido" << endl;
+                    Sleep(5000);
+                    continue;
+                }
+            }
+            else if(data.ano.length() == 4){
+                ano = data.ano;
+                if(isNumber(ano)){
+                    
+                }else{
+                    system("cls");
+                    cout << "Ano invalido" << endl;
+                    Sleep(5000);
+                    continue;
+                }
             }
             else{
                 ano = "0";
             }
+            
 
             if(stoi(mes) < 1 || stoi(mes) > 12){
                 system("cls");
@@ -480,7 +537,7 @@ void Funcionario::addFuncionario(){
             if(stoi(mes)){
                 system("cls");
                 if(stoi(mes) == 2){
-                    if(data.dia <= 28 && data.dia >= 1){
+                    if(stoi(data.dia) <= 28 && stoi(data.dia) >= 1){
                         break;
                     }else{
                         system("cls");
@@ -522,31 +579,48 @@ void Funcionario::addFuncionario(){
             cout << "(3) Diretor\n";
             cout << "(4) Presidente\n\n";
 
-            cin >> desig;
-            getchar();
+            // cin >> desig;
+            getline(cin, desig);
 
-            switch (desig){
-            case 1:
+            if(desig == "1"){
                 designacao = "Operador";
                 c = 0;
-                break;
-            case 2:
+            }else if(desig == "2"){
                 designacao = "Gerente";
                 c = 0;
-                break;
-            case 3:
+            }else if(desig == "3"){
                 designacao = "Diretor";
                 c = 0;
-                break;
-            case 4:
+            }else if(desig == "4"){
                 designacao = "Presidente";
                 c = 0;
-                break;
-            default:
+            }else{
                 cout << "Inválido! Tente novamente\n";
                 Sleep(5000);
-                break;
             }
+
+            // switch (desig){
+            // case 1:
+            //     designacao = "Operador";
+            //     c = 0;
+            //     break;
+            // case 2:
+            //     designacao = "Gerente";
+            //     c = 0;
+            //     break;
+            // case 3:
+            //     designacao = "Diretor";
+            //     c = 0;
+            //     break;
+            // case 4:
+            //     designacao = "Presidente";
+            //     c = 0;
+            //     break;
+            // default:
+            //     cout << "Inválido! Tente novamente\n";
+            //     Sleep(5000);
+            //     break;
+            // }
 
             if(c == 0){
                 break;
@@ -577,14 +651,28 @@ void Funcionario::addFuncionario(){
             system("cls");
         }
 
-        cout << "Salario: ";
-        getline(cin, salario);
-        for(int i = 0; i < salario.size(); i++){
-            if(salario[i] != ','){
-            }else{
-                salario[i] = '.';
+        while(1){
+            teste = false;
+            cout << "Salario: ";
+            getline(cin, salario);
+
+            for(int i = 0; i < salario.size(); i++){
+                if(salario[i] != ','){
+                    if(isdigit(salario[i]) == 0 && salario[i] != '.'){
+                        teste = true;
+                    }
+                }else{
+                    salario[i] = '.';
+                }
             }
 
+            if(teste){
+                system("cls");
+                cout << "Salario invalido" << endl;
+                Sleep(5000);
+                continue; 
+            }else
+                break;
         }
 
         system("cls");
@@ -991,7 +1079,7 @@ void Funcionario::exibeFolhaSalarialFuncionario(){
 
     while(1){
         system("cls");
-        cout << "Deseja fazer a busca por nome(1) ou codigo(2)?" << endl;
+        cout << "Deseja fazer a busca por nome (1) ou codigo (2)?" << endl;
         cin >> opcao;
         system("cls");
         if(opcao == 1){
@@ -1043,10 +1131,12 @@ void Funcionario::exibeFolhaSalarialFuncionario(){
     calculaDescontos(salarioD);
 
     system("cls");
+    cout << "\n-------------------------------------------------------------\n\n";
     cout << "Funcinario,Designacao,SalarioBruto,INSS,IRRF,SalarioLiquido" << endl;
     cout << nome[valor] << ",R$" << salario[valor] << ",R$" << inss[valor] << ",R$" << irrf[valor] << ",R$" << salarioLiquido[valor] << endl;
+    cout << "\n-------------------------------------------------------------\n";
 
-    cout << endl;
+    cout << "\n\n";
     system("pause");
 }
 
@@ -1060,25 +1150,31 @@ void Funcionario::exibeFolhaSalarialEmpresa(){
     limpaArraySalario();
     lerArquivo();
     colunas();
+    system("cls");
 
     while(1){
+        system("cls");
         cout << "Exibir folha salarial mensal ou anual ? (1) - mensal / (2) - anual" << endl;
         getline(cin, opcao);
+        system("cls");
         if(opcao == "1"){
             break;
         }else if(opcao == "2"){
             break;
         }else{
-            cout << "Opção inválida" << endl;
+            cout << "Opcao invalida" << endl;
             opcao = "0";
+            Sleep(5000);
             continue;
         }
     }
     
 
     if(opcao == "1"){
+        system("cls");
         cout << "Digite o ano e o mes, folha salarial que vai ser exibida: " << "Padrao : yyxxxx" << endl;
         cin >> data;
+        system("cls");
         data = "./csv/FolhaSalarial-" + data + ".csv";
         cout << data << endl;
 
@@ -1086,6 +1182,8 @@ void Funcionario::exibeFolhaSalarialEmpresa(){
         if (fileTeste.is_open()){
             cout<<"Folha Salarial dessa data ja foi calculada"<<endl;
             i=0;
+            Sleep(5000);
+            system("cls");
             while(getline(fileTeste, arquivo[i])){
                 cout << arquivo[i] << endl;
             }
@@ -1094,23 +1192,14 @@ void Funcionario::exibeFolhaSalarialEmpresa(){
         }else{
             fileTeste.close();
             cout<<"Folha Salarial dessa data ainda não foi calculada"<<endl;
-
-            // calculaFolhaSalarial();
-            
-            // fileTeste.open(data);
-
-            // cout<<"Folha Salarial dessa data foi calculada"<<endl;
-            // i=0;
-            // while(getline(fileTeste, arquivo[i])){
-            //     cout << arquivo[i] << endl;
-            // }
-
-            // fileTeste.close();
+            Sleep(5000);
+            system("cls");
         }
     }else if(opcao == "2"){
+        system("cls");
         cout << "Digite o ano da folha salarial que vai ser exibida: " << "Padrao : xxxx" << endl;
         cin >> ano;
-
+        system("cls");
         for(int j = 1; j<13; j++){
             if(j < 10){
                 busca[j-1] = "./csv/FolhaSalarial-0" + to_string(j) + ano + ".csv";
@@ -1120,6 +1209,7 @@ void Funcionario::exibeFolhaSalarialEmpresa(){
 
             fileTeste.open(busca[j-1]);
             if(fileTeste.is_open()){
+                cout << "\n-------------------------------------------------------------\n\n";
                 while(getline(fileTeste, linha)){
                     temp = "";
                     for(k = 0; k < linha.size(); k++){
@@ -1149,10 +1239,10 @@ void Funcionario::exibeFolhaSalarialEmpresa(){
                             empresaMes[j] = stod(temp);
                             salarioEmpresa += empresaMes[j];
                         }catch(std :: invalid_argument  const & ex ){
-                            cout << "O parâmetro não é uma string" << endl;
                         }
                         
                         if(j==1){
+                            system("cls");
                             cout << "Folha Salarial " << ano << endl;
                         }
                         
@@ -1161,13 +1251,20 @@ void Funcionario::exibeFolhaSalarialEmpresa(){
                         if(j==12){
                             cout <<  "Gasto Salarial Anual Da Empresa: R$ " << salarioEmpresa<< endl;
                         }
+
                     }
                 }
+                cout << "\n-------------------------------------------------------------\n";
+                cout << "\n\n";
+                system("pause");
                     
                 fileTeste.close();
             }else{
                 fileTeste.close();
+                system("cls");
                 cout<<"Folha Salarial do mes " << j << " nao foi calculada" <<endl;
+                Sleep(5000);
+                system("cls");
             }
         }
     }
