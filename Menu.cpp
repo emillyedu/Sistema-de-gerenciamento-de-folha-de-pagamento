@@ -314,3 +314,7 @@ void Menu::cmdFolhaSal(){
         
     }
 }
+void Menu::voltarMenu(int opcao){
+    //falta esse método
+}
+
