@@ -3,7 +3,6 @@ uml
 comentar metodos e classes do codigo
 
 menu:
-    modificar
     buscar
 
 
