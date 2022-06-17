@@ -25,7 +25,7 @@ using namespace std;
 class Funcionario:public GerenciaArquivo{
 public:
     Funcionario();
-    ~Funcionario();
+
 
     /*! Por meio deste método, ao inserir o número de código de um determinado funcionário, os usuários podem acessar
      *  todas as informações fornecidas relacionadas a esse funcionário. Não possui parâmetros.
