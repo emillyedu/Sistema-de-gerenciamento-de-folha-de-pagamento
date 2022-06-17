@@ -1,14 +1,15 @@
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <string.h>
-
 /*! \brief Descrição mais curta do programa:
  *  Esse programa se trata de ... .
  *
  *  Descrição mais detalhada....
  *  
 */
+
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <string.h>
+
 
 /*! 
  *  \def TAM é o tamanho utilizado nos arrays dos atributos do programa, que é 100. Diretiva muito útil, permitindo
@@ -46,8 +47,11 @@ public:
     */
     string transformaStringMin(string str);
 
-
-
+    /*! Um método que verifica se uma string inserida possui apenas caracteres numéricos. Possui um parâmetro.
+     *  \param &str endereço de uma variável do tipo const string, a ser verificada.
+     *  \return bool, retorna verdadeiro se só houver números na string recebida, caso contrário, retorna falso. 
+     *  \author ???
+    */
     bool isNumber(const string& str);
 
     /*! Método utilizado para criar o arquivo csv onde ficarão os dados dos funcionários. Não possui parâmetros.
