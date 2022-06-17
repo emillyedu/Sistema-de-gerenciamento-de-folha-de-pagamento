@@ -281,8 +281,7 @@ protected:
 
     /*! Atributos do tipo string, sendo: linhas[TAM] um array de tamanho 100 para armazenar as linhas do arquivo csv;
      *  e Nan um atributo que armazena a string "Nan".
-     *  \var linhas[TAM]
-     *  \var Nan 
+     *  \var
     */
     string linhas[TAM], Nan = {"Nan"};; 
 
