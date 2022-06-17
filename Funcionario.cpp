@@ -425,13 +425,10 @@ void Funcionario::addFuncionario(){
             cout << "Data que ingressou na empresa:\n";
             cout << "Dia: ";
             getline(cin, data.dia);
-            // getchar();
             cout << "Mes: ";
             getline(cin, data.mes);
-            // getchar();
             cout << "Ano: ";
             getline(cin, data.ano);
-            // getchar();
             
             if(data.dia.length() == 1){
                 dia = "0" + data.dia;
@@ -579,9 +576,8 @@ void Funcionario::addFuncionario(){
             cout << "(3) Diretor\n";
             cout << "(4) Presidente\n\n";
 
-            // cin >> desig;
             getline(cin, desig);
-
+            system("cls");
             if(desig == "1"){
                 designacao = "Operador";
                 c = 0;
@@ -598,29 +594,6 @@ void Funcionario::addFuncionario(){
                 cout << "Inválido! Tente novamente\n";
                 Sleep(5000);
             }
-
-            // switch (desig){
-            // case 1:
-            //     designacao = "Operador";
-            //     c = 0;
-            //     break;
-            // case 2:
-            //     designacao = "Gerente";
-            //     c = 0;
-            //     break;
-            // case 3:
-            //     designacao = "Diretor";
-            //     c = 0;
-            //     break;
-            // case 4:
-            //     designacao = "Presidente";
-            //     c = 0;
-            //     break;
-            // default:
-            //     cout << "Inválido! Tente novamente\n";
-            //     Sleep(5000);
-            //     break;
-            // }
 
             if(c == 0){
                 break;
@@ -767,7 +740,8 @@ void Funcionario::modificarFuncionario(){
     while(1){
         c = 1;
         while(1){
-            cout << "Primeiramente, informe o codigo do funcionario: ";
+            system("cls");
+            cout << "Informe o codigo do funcionario: ";
             getline(cin, auxCodigo);
             
             system("cls");
@@ -785,7 +759,9 @@ void Funcionario::modificarFuncionario(){
                 break;
             }
             else{
+                system("cls");
                 cout << "Codigo maior do que o esperado" << endl;
+                Sleep(5000);
                 continue;
             }
         }
@@ -809,13 +785,13 @@ void Funcionario::modificarFuncionario(){
         else{
             system("cls");
             cout << "Codigo nao existe, tente novamente" << endl;
+            Sleep(5000);
             continue;
         }
     }
 
     while(1){
-        cout << "Codigo encontrado: " << cod << endl;
-
+        system("cls");
         cout << "\nO que deseja modificar?" << endl;
         cout << "[1] Codigo\n";
         cout << "[2] Nome\n";
@@ -832,36 +808,86 @@ void Funcionario::modificarFuncionario(){
 
         if (escolha <= 0 || escolha > 7){
             cout << "Escolha invalida! Tente novamente" << endl;
+            Sleep(5000);
+            system("cls");
             continue;
 
         } else {
             switch (escolha){
                 case 1:
                     modificaCodigo(cod);
+                    system("cls");
+                    cout << "\n-------------------------------------------------------------\n";
+
+                    cout << "\nCodigo alterado!" << endl;
+
+                    cout << "\n-------------------------------------------------------------\n";
+                    Sleep(5000);
+                    system("cls");
                     break;
         
                 case 2:
                     modificaNome(cod);
                     break;
-        
+                    cout << "\n-------------------------------------------------------------\n";
+
+                    cout << "\nNome alterado!" << endl;
+
+                    cout << "\n-------------------------------------------------------------\n";
+                    Sleep(5000);
+                    system("cls");        
                 case 3:
                     modificaEndereco(cod);
+                    cout << "\n-------------------------------------------------------------\n";
+
+                    cout << "\nEndereco alterado!" << endl;
+
+                    cout << "\n-------------------------------------------------------------\n";
+                    Sleep(5000);
+                    system("cls");
                     break;
-        
                 case 4:
                     modificaTelefone(cod);
+                    cout << "\n-------------------------------------------------------------\n";
+
+                    cout << "\nTelefone alterado!" << endl;
+
+                    cout << "\n-------------------------------------------------------------\n";
+                    Sleep(5000);
+                    system("cls");
                     break;
 
                 case 5:
                     modificaData(cod);
+                    cout << "\n-------------------------------------------------------------\n";
+
+                    cout << "\nData de ingresso alterada!" << endl;
+
+                    cout << "\n-------------------------------------------------------------\n";
+                    Sleep(5000);
+                    system("cls");
                     break;
         
                 case 6:
                     modificaSalario(cod);
+                    cout << "\n-------------------------------------------------------------\n";
+
+                    cout << "\nSalario alterado!" << endl;
+
+                    cout << "\n-------------------------------------------------------------\n";
+                    Sleep(5000);
+                    system("cls");
                     break;
         
                 case 7:
                     modificaDesignacao(cod);
+                    cout << "\n-------------------------------------------------------------\n";
+
+                    cout << "\nDesignacao alterada!" << endl;
+
+                    cout << "\n-------------------------------------------------------------\n";
+                    Sleep(5000);
+                    system("cls");
                     break;
             }
 
@@ -1176,7 +1202,6 @@ void Funcionario::exibeFolhaSalarialEmpresa(){
         cin >> data;
         system("cls");
         data = "./csv/FolhaSalarial-" + data + ".csv";
-        cout << data << endl;
 
         fileTeste.open(data);
         if (fileTeste.is_open()){
@@ -1184,9 +1209,14 @@ void Funcionario::exibeFolhaSalarialEmpresa(){
             i=0;
             Sleep(5000);
             system("cls");
+            cout << "\n-------------------------------------------------------------\n\n";
             while(getline(fileTeste, arquivo[i])){
                 cout << arquivo[i] << endl;
             }
+            cout << "\n-------------------------------------------------------------\n";
+            cout << "\n\n";
+            system("pause");
+            system("cls");
 
             fileTeste.close();
         }else{

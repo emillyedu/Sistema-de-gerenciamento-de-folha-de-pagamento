@@ -34,7 +34,7 @@ public:
     /*! Método que apaga uma string, tornando-a vazia. Possui um parâmetro.
      *  \param *str um ponteiro do tipo string que aponta para uma string qualquer, a fim de realizar a função do método.
      *  \return void, não possui retorno.
-     *  \author ???
+     *  \author Êmilly Eduarda
     */
     void clearString(string *str);
 
@@ -42,26 +42,29 @@ public:
      *  Possui um parâmetro.
      *  \param str uma variável do tipo string, a ser modificada.
      *  \return string, retorna a string com todas as letras minúsculas.
-     *  \author ???
+     *  \author Lucas Bitu
     */
     string transformaStringMin(string str);
+
+
+
     bool isNumber(const string& str);
 
     /*! Método utilizado para criar o arquivo csv onde ficarão os dados dos funcionários. Não possui parâmetros.
      *  \return void, não possui retorno.
-     *  \author Êmilly
+     *  \author Êmilly Eduarda
     */
     void criarArquivo();
 
     /*! Método utilizado para ler o arquivo csv onde ficarão os dados dos funcionários. Não possui parâmetros.
      *  \return void, não possui retorno.
-     *  \author Êmilly
+     *  \author Êmilly Eduarda
     */
     void lerArquivo();
 
     /*! Um método utilizado para a exibição dos dados dos funcionários. Não possui parâmetros.
      *  \return void, não possui retorno.
-     *  \author Êmilly
+     *  \author Êmilly Eduarda
     */
     void exibirArquivo();
 
@@ -71,7 +74,7 @@ public:
      *  \param del[] elemento de um array do tipo inteiro, também funcionando como uma referência para realização
      *  da função do método.
      *  \return void, não possui retorno.
-     *  \author Êmilly
+     *  \author Êmilly Eduarda
     */
     void separadorColuna(string colunaAtual[], int del[]);
 
@@ -79,7 +82,7 @@ public:
      *  separadamente em cada array do tipo string, que são, justamente, grande parte dos atributos da classe
      *  "GerenciaArquivo". Não possui parâmetros.  
      *  \return void, não possui retorno.
-     *  \author Êmilly
+     *  \author Êmilly Eduarda
     */
     void colunas();
 
@@ -87,7 +90,7 @@ public:
      *  o endereço de um funcionário(a). Possui um parâmetro.
      *  \param cep variável do tipo string a ser recebida, a fim de realizar a função do método.
      *  \return string, retorna uma string com o endereço do funcionário(a).
-     *  \author Êmilly
+     *  \author Êmilly Eduarda
     */
     string retornaEndereco(string cep);
 
@@ -99,7 +102,7 @@ public:
      *  \param tam variável do tipo inteiro, representando o tamanho do índice até onde a string do API deve ser
      *  apagada, a fim de gerar outra string com as partes certas do endereço. 
      *  \return string, retorna as partes do endereço para auxiliar no método "retornaEndereco(string cep)".
-     *  \author Êmilly
+     *  \author Êmilly Eduarda
     */
     string forEndereco(string api[], int line, int tam);
 
@@ -129,7 +132,7 @@ public:
 
     /*! Método utilizado para limpar o array que armazena os salários dos funcionários. Não possui parâmetros.
      *  \return void, não possui retorno.
-     *  \author ???
+     *  \author Lucas Bitu
     */
     void limpaArraySalario();
     
@@ -142,13 +145,13 @@ public:
     /*! Método que realiza a busca parcial de funcionários pelo intervalo de tempo entre as datas em que os mesmos
      *  ingressaram na empresa. Não possui parâmetros.
      *  \return void, não possui retorno.
-     *  \author Igor Matheus
+     *  \author Êmilly Eduarda, Lucas Bitu e Igor Matheus
     */
     void buscaPorData();
 
     /*! Método que realiza a busca parcial de funcionários pelo endereço dos mesmos. Não possui parâmetros.
      *  \return void, não possui retorno.
-     *  \author Igor Matheus
+     *  \author Êmilly Eduarda, Lucas Bitu e Igor Matheus
     */
     void buscaPorEndereco();
 
@@ -193,7 +196,7 @@ public:
      *  \param cod variável do tipo string, que recebe o código do funcionário(a), a fim de realizar a modificação
      *  da data de ingresso no funcionário(a) correto.
      *  \return void, não possui retorno.
-     *  \author Igor Matheus
+     *  \author Êmilly Eduarda, Lucas Bitu e Igor Matheus
     */
     void modificaData(string cod);
 
@@ -202,7 +205,7 @@ public:
      *  \param cod variável do tipo string, que recebe o código do funcionário(a), a fim de realizar a modificação
      *  do salário no funcionário(a) correto.
      *  \return void, não possui retorno.
-     *  \author Igor Matheus
+     *  \author Êmilly Eduarda, Lucas Bitu e Igor Matheus
     */
     void modificaSalario(string cod);
 
@@ -211,7 +214,7 @@ public:
      *  \param cod variável do tipo string, que recebe o código do funcionário(a), para realizar a modificação
      *  da designação no funcionário(a) correto.
      *  \return void, não possui retorno.
-     *  \author Igor Matheus
+     *  \author Êmilly Eduarda, Lucas Bitu e Igor Matheus
     */
     void modificaDesignacao(string cod);
 
@@ -220,7 +223,7 @@ public:
      *  \param cod variável do tipo string, que recebe o código do funcionário(a), para realizar a modificação
      *  da designação no funcionário(a) correto.
      *  \return void, não possui retorno.
-     *  \author Igor Matheus
+     *  \author Êmilly Eduarda, Lucas Bitu e Igor Matheus
     */
     void modDesigDeOperador(string cod);
 
@@ -229,7 +232,7 @@ public:
      *  \param cod variável do tipo string, que recebe o código do funcionário(a), para realizar a modificação
      *  da designação no funcionário(a) correto.
      *  \return void, não possui retorno.
-     *  \author Igor Matheus
+     *  \author Êmilly Eduarda, Lucas Bitu e Igor Matheus
     */
     void modDesigDeGerente(string cod);
 
@@ -238,7 +241,7 @@ public:
      *  \param cod variável do tipo string, que recebe o código do funcionário(a), para realizar a modificação
      *  da designação no funcionário(a) correto.
      *  \return void, não possui retorno.
-     *  \author Igor Matheus
+     *  \author Êmilly Eduarda, Lucas Bitu e Igor Matheus
     */
     void modDesigDeDiretor(string cod);
 
@@ -247,7 +250,7 @@ public:
      *  \param cod variável do tipo string, que recebe o código do funcionário(a), para realizar a modificação
      *  da designação no funcionário(a) correto.
      *  \return void, não possui retorno.
-     *  \author Igor Matheus
+     *  \author Êmilly Eduarda, Lucas Bitu e Igor Matheus
     */
     void modDesigDePresidente(string cod);
 
@@ -256,7 +259,7 @@ public:
      *  \param cod variável do tipo string, que recebe o código do funcionário(a), para realizar a modificação
      *  da designação no funcionário(a) correto.
      *  \return void, não possui retorno.
-     *  \author Igor Matheus
+     *  \author Êmilly Eduarda, Lucas Bitu e Igor Matheus
     */
     void modDesigParaOperador(string cod);
 

@@ -30,20 +30,20 @@ public:
     /*! Por meio deste método, ao inserir o número de código de um determinado funcionário, os usuários podem acessar
      *  todas as informações fornecidas relacionadas a esse funcionário. Não possui parâmetros.
      *  \return void, não possui retorno.
-     *  \author Lucas Bitu
+     *  \author Êmilly Eduarda
     */
     void exibeRegistroFunc();
 
     /*! Método que exibe o registro de todos os funcionários . Não possui parâmetros.
      *  \return void, não possui retorno.
-     *  \author Lucas Bitu
+     *  \author Êmilly Eduarda
     */
     void exibeListaFunc();
 
     /*! Método utilizado para exibir o registro de todos os funcionários de uma determinada designação.
      *  Não possui parâmetros.
      *  \return void, não possui retorno.
-     *  \author Lucas Bitu
+     *  \author Êmilly Eduarda
     */
     void exibeListaTipo();
 
@@ -65,14 +65,14 @@ public:
      *  \param cod uma variável do tipo string que recebe o código do funcionário para cada foto ficar salva
      *  para cada funcionário de forma correta. 
      *  \return void, não possui retorno.
-     *  \author ???
+     *  \author Êmilly Eduarda e Lucas Bitu
     */
     void fotografarUsuario(string cod);
 
     /*! Este método adiciona um novo funcionário na empresa, recebendo todos os seus dados e armazenando estes no
      *  arquivo csv. Não possui parâmetros.
      *  \return void, não possui retorno.
-     *  \author Êmilly
+     *  \author Êmilly Eduarda
     */
     void addFuncionario();
 
@@ -80,7 +80,7 @@ public:
      *  nome, data de ingresso ou endereço. Para isso, faz uso dos métodos auxiliares presentes na classe "GerenciaArquivo".
      *  Não possui parâmetros.
      *  \return void, não possui retorno.
-     *  \author Igor Matheus
+     *  \author Êmilly Eduarda, Lucas Bitu e Igor Matheus
     */
     void buscarFuncionario();
 
@@ -95,7 +95,7 @@ public:
      *  dos mesmos. Operador: 5% de aumento; Gerente: 10% de aumento; Diretor: 20% de aumento; Presidente: 30%
      *  de aumento. Não possui parâmetros.
      *  \return void, não possui retorno.
-     *  \author ???
+     *  \author Êmilly Eduarda
     */
     void aumentoDeSalarios();
 
@@ -111,7 +111,7 @@ public:
      *  salário e designação dos funcionários. Para isso, faz uso dos métodos auxiliares presentes na classe
      *  "GerenciaArquivo". Não possui parâmetros.
      *  \return void, não possui retorno.
-     *  \author Igor Matheus
+     *  \author Êmilly Eduarda, Lucas Bitu e Igor Matheus
     */
     void modificarFuncionario();
 

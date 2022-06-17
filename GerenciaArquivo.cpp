@@ -2,6 +2,10 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <cstring>
 #include <windows.h>
 
 GerenciaArquivo::GerenciaArquivo()
@@ -854,6 +858,7 @@ void GerenciaArquivo::modificaCodigo(string cod){
     while(1){
         c = 1;
         while(1){
+            system("cls");
             cout << "Digite o novo codigo: ";
             getline(cin, mod);
         
@@ -873,10 +878,12 @@ void GerenciaArquivo::modificaCodigo(string cod){
             }
             else{
                 cout << "Codigo maior do que o esperado" << endl;
+                Sleep(5000);
+                system("cls");
                 continue;
             }
         }
-
+        system("cls");
         for(int i = 1; i < TAM; i++){
             if(linhas[i] != ""){
                 aux = linhas[i];
@@ -886,6 +893,8 @@ void GerenciaArquivo::modificaCodigo(string cod){
             //verificando o novo codigo digitado para que nao seja possivel dois ou mais codigos iguais
             if(aux == modificacao){
                 cout << "Codigo invalido, tente novamente" << endl;
+                Sleep(5000);
+                system("cls");
                 c = 0;
                 break;
             }
@@ -929,7 +938,7 @@ void GerenciaArquivo::modificaNome(string cod){
     string modificacao;
 
     colunas();
-
+    system("cls");
     cout << "Digite o novo nome: ";
     getline(cin, modificacao);
 
@@ -970,6 +979,7 @@ void GerenciaArquivo::modificaEndereco(string cod){
     colunas();
     
     while(1){
+        system("cls");
         cout << "Poderia informar seu novo CEP? [s/n]: ";
         cin >> yn;
         getchar();
@@ -995,7 +1005,9 @@ void GerenciaArquivo::modificaEndereco(string cod){
             getline(cin, cep);
 
             if(cep.length() > 8 || cep.length() < 8){
+                system("cls");
                 cout << "CEP invalido" << endl;
+                Sleep(5000);
                 continue;
             }
             else{
@@ -1008,7 +1020,7 @@ void GerenciaArquivo::modificaEndereco(string cod){
             break;
         }
     }
-        
+    system("cls");
     if(endereco == "Nan" || yn == "N" || yn == "n"){
         endereco.clear();
         cep.clear();
@@ -1035,7 +1047,7 @@ void GerenciaArquivo::modificaEndereco(string cod){
     while(1){
         if (codigo[cont].find(cod) != string::npos){
 
-            linhas[cont+1] = codigo[cont] + "," + nome[cont] + "," + modificacao + "," + telefone[cont] + "," + data[cont]
+            linhas[cont+1] = codigo[cont] + "," + nome[cont] + "," + transformaStringMin(modificacao) + "," + telefone[cont] + "," + data[cont]
             + "," + desig[cont] + "," + salario[cont] + "," + sup[cont] + "," + acad[cont] + "," + formacao[cont]; 
 
             cont = 0;
@@ -1063,7 +1075,7 @@ void GerenciaArquivo::modificaTelefone(string cod){
     string modificacao;
 
     colunas();
-
+    system("cls");
     cout << "Digite o novo telefone - formato: (00) 00000-0000: ";
     getline(cin, modificacao);
 
@@ -1097,110 +1109,162 @@ void GerenciaArquivo::modificaTelefone(string cod){
 
 void GerenciaArquivo::modificaData(string cod){
     typedef struct{
-        int dia;
-        int mes;
-        int ano;
+        string dia;
+        string mes;
+        string ano;
     } Data;
 
-    Data modificacao; 
+    Data data; 
     string dia, mes, ano;
     int cont = 0;
     
     colunas();
 
     while(1){
-        cout << "Digite a nova data:\n";
-        cout << "dia: ";
-        cin >> modificacao.dia;
-        getchar();
-        cout << "mes: ";
-        cin >> modificacao.mes;
-        getchar();
-        cout << "ano: ";
-        cin >> modificacao.ano;
-        getchar();
-            
-        if(to_string(modificacao.dia).length() == 1){
-            dia = "0" + to_string(modificacao.dia);
+        system("cls");
+        cout << "Nova data que ingressou na empresa:\n";
+        cout << "Dia: ";
+        getline(cin, data.dia);
+        cout << "Mes: ";
+        getline(cin, data.mes);
+        cout << "Ano: ";
+        getline(cin, data.ano);
+        
+        if(data.dia.length() == 1){
+            dia = "0" + data.dia;
+            if(isNumber(dia)){
+
+            }else{
+                system("cls");
+                cout << "Dia invalido" << endl;
+                Sleep(5000);
+                continue;
+            }
         }
-        else if(to_string(modificacao.dia).length() == 2){
-            dia = to_string(modificacao.dia);
+
+        else if(data.dia.length() == 2){
+            dia = data.dia;
+            if(isNumber(dia)){
+
+            }else{
+                system("cls");
+                cout << "Dia invalido" << endl;
+                Sleep(5000);
+                continue;
+            }
         }
-        else if(to_string(modificacao.dia).length() > 2){
+
+        else if(data.dia.length() > 2){
             system("cls");
             cout << "Dia invalido" << endl;
             Sleep(5000);
             continue;
         }
-        if(to_string(modificacao.mes).length() == 1){
-            mes = "0" + to_string(modificacao.mes);
+
+        if(data.mes.length() == 1){
+            mes = "0" + data.mes;
+            if(isNumber(mes)){
+                
+            }else{
+                system("cls");
+                cout << "Mes invalido" << endl;
+                Sleep(5000);
+                continue;
+            }
         }
-        else if(to_string(modificacao.mes).length() == 2){
-            mes = to_string(modificacao.mes);
+        else if(data.mes.length() == 2){
+            mes = data.mes;
+            if(isNumber(mes)){
+                
+            }else{
+                system("cls");
+                cout << "Mes invalido" << endl;
+                Sleep(5000);
+                continue;
+            }
         }
-        else if(to_string(modificacao.mes).length() > 2){
+        else if(data.mes.length() > 2){
             system("cls");
             cout << "Mes invalido" << endl;
             Sleep(5000);
             continue;
         }
-        if(to_string(modificacao.ano).length() == 2){
-            ano = "19" + to_string(modificacao.ano);
+        
+        if(data.ano.length() == 2){
+            ano = "19" + data.ano;
+            if(isNumber(ano)){
+                
+            }else{
+                system("cls");
+                cout << "Ano invalido" << endl;
+                Sleep(5000);
+                continue;
+            }
         }
-        else if(to_string(modificacao.ano).length() == 4){
-            ano = to_string(modificacao.ano);
+        else if(data.ano.length() == 4){
+            ano = data.ano;
+            if(isNumber(ano)){
+                
+            }else{
+                system("cls");
+                cout << "Ano invalido" << endl;
+                Sleep(5000);
+                continue;
+            }
         }
         else{
             ano = "0";
         }
+        
 
         if(stoi(mes) < 1 || stoi(mes) > 12){
             system("cls");
-            cout << "data invalida" << endl;
+            cout << "Data invalida\n" << endl;
+            Sleep(5000);
             continue;
         }
-            
+        
         if(stoi(ano) < 1000 || stoi(ano) > 2022){
             system("cls");
-            cout << "data invalida" << endl;
+            cout << "Data invalida\n" << endl;
+            Sleep(5000);
             continue;
         }
 
         if(stoi(mes)){
+            system("cls");
             if(stoi(mes) == 2){
-                if(modificacao.dia <= 28 && modificacao.dia > 1){
+                if(stoi(data.dia) <= 28 && stoi(data.dia) >= 1){
                     break;
-
-                } else {
+                }else{
                     system("cls");
-                    cout << "dia do mes invalido" << endl;
+                    cout << "Dia do mes invalido" << endl;
+                    Sleep(5000);
                     continue;
                 }
             }
-            
             if(stoi(mes) == 1 || stoi(mes) == 3|| stoi(mes) == 5 || stoi(mes) == 7 || stoi(mes) == 8 || stoi(mes) == 10 || stoi(mes) == 12){
                 if(stoi(dia) <= 31 && stoi(dia) >= 1){
                     break;
-
-                } else {
+                }else{
                     system("cls");
-                    cout << "dia do mes invalido" << endl;
+                    cout << "Dia do mes invalido\n" << endl;
+                    Sleep(5000);
                     continue;
                 }
-
-            } else {
+            }
+            else{
                 if(stoi(dia) <= 30 && stoi(dia) >= 1){
                     break;
-
-                } else {
+                }else{
                     system("cls");
-                    cout << "dia do mes invalido" << endl;
+                    cout << "Dia do mes invalido\n" << endl;
+                    Sleep(5000);
                     continue;
                 }
             }
         }
     }
-    
     system("cls");
 
     while(1){
@@ -1233,58 +1297,76 @@ void GerenciaArquivo::modificaData(string cod){
 void GerenciaArquivo::modificaSalario(string cod){
     int cont = 0;
     string modificacao;
+    bool teste;
     
     colunas();
 
     while(1){
-        cout << "Digite o novo salario: ";
-        getline(cin, modificacao);
-    
-        system("cls");
 
-        if (stod(modificacao) <= 0){
-            cout << "Salario invalido! Tente novamente" << endl;
-            continue;
+        while(1){
+            teste = false;
+            system("cls");
+            cout << " Digite o novo salario: ";
+            getline(cin, modificacao);
 
-        } else {
-            while(1){
-                if (codigo[cont].find(cod) != string::npos){
-
-                    if (modificacao.find(".") != string::npos){
-
-                        linhas[cont+1] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] +
-                        "," + data[cont] + "," + desig[cont] + "," + modificacao + "," + sup[cont] + "," +
-                        acad[cont] + "," + formacao[cont]; 
-
-                    } else {
-
-                        linhas[cont+1] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] +
-                        "," + data[cont] + "," + desig[cont] + "," + modificacao + ".00" + "," + sup[cont] + "," +
-                        acad[cont] + "," + formacao[cont]; 
-                        
-                    }        
-
-                    cont = 0;
-            
-                    break; 
-                    
-                } else {
-                    cont++;
-                }    
-            }
-
-            arquivo.open("./csv/Empresa.csv", ios::out);
-
-            for(int i = 0; i < TAM; i++){
-                if(linhas[i] != ""){
-                    arquivo << linhas[i] << endl;
+            for(int i = 0; i < modificacao.size(); i++){
+                if(modificacao[i] != ','){
+                    if(isdigit(modificacao[i]) == 0 && modificacao[i] != '.'){
+                        teste = true;
+                    }
+                }else{
+                    modificacao[i] = '.';
                 }
             }
 
-            arquivo.close(); 
+            if(teste){
+                system("cls");
+                cout << "Salario invalido" << endl;
+                Sleep(5000);
+                continue; 
+            }else
+                break;
+        }    
+        system("cls");
 
-            break;
+        while(1){
+            if (codigo[cont].find(cod) != string::npos){
+
+                if (modificacao.find(".") != string::npos){
+
+                    linhas[cont+1] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] +
+                    "," + data[cont] + "," + desig[cont] + "," + modificacao + "," + sup[cont] + "," +
+                    acad[cont] + "," + formacao[cont]; 
+
+                } else {
+
+                    linhas[cont+1] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] +
+                    "," + data[cont] + "," + desig[cont] + "," + modificacao + ".00" + "," + sup[cont] + "," +
+                    acad[cont] + "," + formacao[cont]; 
+                    
+                }        
+
+                cont = 0;
+        
+                break; 
+                
+            } else {
+                cont++;
+            }    
         }
+
+        arquivo.open("./csv/Empresa.csv", ios::out);
+
+        for(int i = 0; i < TAM; i++){
+            if(linhas[i] != ""){
+                arquivo << linhas[i] << endl;
+            }
+        }
+
+        arquivo.close(); 
+
+        break;
+        
     }   
 }
 
@@ -1298,7 +1380,7 @@ void GerenciaArquivo::modDesigParaOperador(string cod){
         if (codigo[cont].find(cod) != string::npos){
 
             linhas[cont+1] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + "," + data[cont]
-            + "," + modificacao + "," + salario[cont] + "," + "Nan" + "," + "Nan" + "," + "Nan"; 
+            + "," + transformaStringMin(modificacao) + "," + salario[cont] + "," + "Nan" + "," + "Nan" + "," + "Nan"; 
             
             cont = 0;
             
@@ -1321,23 +1403,48 @@ void GerenciaArquivo::modDesigParaOperador(string cod){
 }
     
 void GerenciaArquivo::modDesigDeGerente(string cod){
-    int cont;
-    string modificacao, areaS, areaF, formacaoMax;
+    int cont, c=1;
+    string modificacao, areaS, areaF, formacaoMax, desig;
 
     colunas();
 
     while(1){
         cont = 0; 
+        while(1){
+            system("cls");
+            cout << "Escolha a nova designacao:\n";
+            cout << "(1) Operador\n";
+            cout << "(2) Diretor\n";
+            cout << "(3) Presidente\n\n";
 
-        cout << "Digite a nova designacao - (Operador, Diretor ou Presidente?): ";
-        getline(cin, modificacao);
+            getline(cin, desig);
+            system("cls");
 
-        if (modificacao == "Operador" || modificacao == "operador"){
+            if(desig == "1"){
+                modificacao = "Operador";
+                c = 0;
+            }else if(desig == "2"){
+                modificacao = "Diretor";
+                c = 0;
+            }else if(desig == "3"){
+                modificacao = "Presidente";
+                c = 0;
+            }else{
+                cout << "Inválido! Tente novamente\n";
+                Sleep(5000);
+            }
+
+            if(c == 0){
+                break;
+            }
+        }
+
+        if (modificacao == "Operador"){
             
             modDesigParaOperador(cod);
             break;
 
-        } else if (modificacao == "Diretor" || modificacao == "diretor"){
+        } else if (modificacao == "Diretor"){
             
             cout << "Qual a area de supervisao? ";
             getline(cin, areaS);
@@ -1351,7 +1458,7 @@ void GerenciaArquivo::modDesigDeGerente(string cod){
                 if (codigo[cont].find(cod) != string::npos){
 
                     linhas[cont+1] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + ","
-                    + data[cont] + "," + modificacao + "," + salario[cont] + "," + areaS + "," + areaF + ","
+                    + data[cont] + "," + transformaStringMin(modificacao) + "," + salario[cont] + "," + areaS + "," + areaF + ","
                     + formacao[cont]; 
 
                     cont = 0;
@@ -1375,7 +1482,7 @@ void GerenciaArquivo::modDesigDeGerente(string cod){
 
             break;
             
-        } else if (modificacao == "Presidente" || modificacao == "presidente"){
+        } else if (modificacao == "Presidente"){
 
             cout << "Qual a area de formacao? ";
             getline(cin, areaF);
@@ -1389,7 +1496,7 @@ void GerenciaArquivo::modDesigDeGerente(string cod){
                 if (codigo[cont].find(cod) != string::npos){
 
                     linhas[cont+1] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + ","
-                    + data[cont] + "," + modificacao + "," + salario[cont] + "," + "Nan" + "," + areaF + ","
+                    + data[cont] + "," + transformaStringMin(modificacao) + "," + salario[cont] + "," + "Nan" + "," + areaF + ","
                     + formacaoMax;
 
                     cont = 0;
@@ -1416,24 +1523,50 @@ void GerenciaArquivo::modDesigDeGerente(string cod){
         } else {
             system("cls");
             cout << "Resposta invalida, tente novamente." << endl;
+            Sleep(5000);
             continue;
         }
     }
 }
 
 void GerenciaArquivo::modDesigDeOperador(string cod){
-    int cont = 0;
-    string modificacao, areaS, areaF, formacaoMax;
+    int cont = 0, c=1;
+    string modificacao, desig, areaS, areaF, formacaoMax;
 
     colunas();
 
     while(1){
         cont = 0;
 
-        cout << "Digite a nova designacao - (Gerente, Diretor ou Presidente?): ";
-        getline(cin, modificacao);
+        while(1){
+            system("cls");
+            cout << "Escolha a nova designacao:\n";
+            cout << "(1) Gerente\n";
+            cout << "(2) Diretor\n";
+            cout << "(3) Presidente\n\n";
+
+            getline(cin, desig);
+            system("cls");
+            if(desig == "1"){
+                modificacao = "Gerente";
+                c = 0;
+            }else if(desig == "2"){
+                modificacao = "Diretor";
+                c = 0;
+            }else if(desig == "3"){
+                modificacao = "Presidente";
+                c = 0;
+            }else{
+                cout << "Inválido! Tente novamente\n";
+                Sleep(5000);
+            }
+
+            if(c == 0){
+                break;
+            }
+        }
         
-        if (modificacao == "Gerente" || modificacao == "gerente"){
+        if (modificacao == "Gerente"){
 
             cout << "Qual a area de supervisao? ";
             getline(cin, areaS);
@@ -1444,7 +1577,7 @@ void GerenciaArquivo::modDesigDeOperador(string cod){
                 if (codigo[cont].find(cod) != string::npos){
 
                     linhas[cont+1] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + ","
-                    + data[cont] + "," + modificacao + "," + salario[cont] + "," + areaS + "," + acad[cont] + ","
+                    + data[cont] + "," + transformaStringMin(modificacao) + "," + salario[cont] + "," + areaS + "," + acad[cont] + ","
                     + formacao[cont]; 
 
                     cont = 0;
@@ -1468,7 +1601,7 @@ void GerenciaArquivo::modDesigDeOperador(string cod){
 
             break;
 
-        } else if (modificacao == "Diretor" || modificacao == "diretor"){
+        } else if (modificacao == "Diretor"){
 
             cout << "Qual a area de supervisao? ";
             getline(cin, areaS);
@@ -1482,7 +1615,7 @@ void GerenciaArquivo::modDesigDeOperador(string cod){
                 if (codigo[cont].find(cod) != string::npos){
 
                     linhas[cont+1] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + ","
-                    + data[cont] + "," + modificacao + "," + salario[cont] + "," + areaS + "," + areaF + ","
+                    + data[cont] + "," + transformaStringMin(modificacao) + "," + salario[cont] + "," + areaS + "," + areaF + ","
                     + formacao[cont];
 
                     cont = 0;
@@ -1506,7 +1639,7 @@ void GerenciaArquivo::modDesigDeOperador(string cod){
 
             break;
 
-        } else if (modificacao == "Presidente" || modificacao == "presidente"){
+        } else if (modificacao == "Presidente"){
             
             cout << "Qual a area de formacao? ";
             getline(cin, areaF);
@@ -1520,7 +1653,7 @@ void GerenciaArquivo::modDesigDeOperador(string cod){
                 if (codigo[cont].find(cod) != string::npos){
 
                     linhas[cont+1] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + ","
-                    + data[cont] + "," + modificacao + "," + salario[cont] + "," + sup[cont] + "," + areaF + ","
+                    + data[cont] + "," + transformaStringMin(modificacao) + "," + salario[cont] + "," + sup[cont] + "," + areaF + ","
                     + formacaoMax;
 
                     cont = 0;
@@ -1547,6 +1680,7 @@ void GerenciaArquivo::modDesigDeOperador(string cod){
         } else {
             system("cls");
             cout << "Resposta invalida, tente novamente." << endl;
+            Sleep(5000);
 
             continue;        
         }
@@ -1554,23 +1688,48 @@ void GerenciaArquivo::modDesigDeOperador(string cod){
 }
 
 void GerenciaArquivo::modDesigDeDiretor(string cod){
-    int cont;
-    string modificacao, areaS, areaF, formacaoMax;
+    int cont, c=1;;
+    string modificacao, desig, areaS, areaF, formacaoMax;
 
     colunas();
 
     while(1){
         cont = 0;
+        while(1){
+            system("cls");
+            cout << "Escolha a nova designacao:\n";
+            cout << "(1) Operador\n";
+            cout << "(2) Gerente\n";
+            cout << "(3) Presidente\n\n";
 
-        cout << "Digite a nova designacao - (Operador, Gerente ou Presidente?): ";
-        getline(cin, modificacao);
+            getline(cin, desig);
+            system("cls");
+
+            if(desig == "1"){
+                modificacao = "Operador";
+                c = 0;
+            }else if(desig == "2"){
+                modificacao = "Gerente";
+                c = 0;
+            }else if(desig == "3"){
+                modificacao = "Presidente";
+                c = 0;
+            }else{
+                cout << "Inválido! Tente novamente\n";
+                Sleep(5000);
+            }
+
+            if(c == 0){
+                break;
+            }
+        }
     
-        if (modificacao == "Operador" || modificacao == "operador"){
+        if (modificacao == "Operador"){
             
             modDesigParaOperador(cod);
             break;
 
-        } else if (modificacao == "Gerente" || modificacao == "gerente"){
+        } else if (modificacao == "Gerente"){
 
             cout << "Qual a area de supervisao? ";
             getline(cin, areaS);
@@ -1581,7 +1740,7 @@ void GerenciaArquivo::modDesigDeDiretor(string cod){
                 if (codigo[cont].find(cod) != string::npos){
 
                     linhas[cont+1] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + ","
-                    + data[cont] + "," + modificacao + "," + salario[cont] + "," + areaS + "," + "Nan" + ","
+                    + data[cont] + "," + transformaStringMin(modificacao) + "," + salario[cont] + "," + areaS + "," + "Nan" + ","
                     + formacao[cont]; 
 
                     cont = 0;
@@ -1605,7 +1764,7 @@ void GerenciaArquivo::modDesigDeDiretor(string cod){
 
             break;
 
-        } else if (modificacao == "Presidente" || modificacao == "presidente"){
+        } else if (modificacao == "Presidente"){
             
             cout << "Qual a area de formacao? ";
             getline(cin, areaF);
@@ -1619,7 +1778,7 @@ void GerenciaArquivo::modDesigDeDiretor(string cod){
                 if (codigo[cont].find(cod) != string::npos){
 
                     linhas[cont+1] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + ","
-                    + data[cont] + "," + modificacao + "," + salario[cont] + "," + "Nan" + "," + areaF + ","
+                    + data[cont] + "," + transformaStringMin(modificacao) + "," + salario[cont] + "," + "Nan" + "," + areaF + ","
                     + formacaoMax; 
     
                     cont = 0;
@@ -1642,29 +1801,56 @@ void GerenciaArquivo::modDesigDeDiretor(string cod){
         } else {
             system("cls");
             cout << "Resposta invalida, tente novamente." << endl;
+            Sleep(5000);
             continue;        
         }
     }
 }
 
 void GerenciaArquivo::modDesigDePresidente(string cod){
-    int cont;
-    string modificacao, areaS, areaF, formacaoMax;
+    int cont, c=1;
+    string modificacao, desig, areaS, areaF, formacaoMax;
 
     colunas();
 
     while(1){
         cont = 0;
 
-        cout << "Digite a nova designacao - (Operador, Gerente ou Diretor?): ";
-        getline(cin, modificacao);
+        while(1){
+            system("cls");
+            cout << "Escolha a nova designacao:\n";
+            cout << "(1) Operador\n";
+            cout << "(2) Gerente\n";
+            cout << "(3) Diretor\n";
 
-        if (modificacao == "Operador" || modificacao == "operador"){
+            getline(cin, desig);
+            system("cls");
+            if(desig == "1"){
+                modificacao = "Operador";
+                c = 0;
+            }else if(desig == "2"){
+                modificacao = "Gerente";
+                c = 0;
+            }else if(desig == "3"){
+                modificacao = "Diretor";
+                c = 0;
+            }
+            else{
+                cout << "Inválido! Tente novamente\n";
+                Sleep(5000);
+            }
+
+            if(c == 0){
+                break;
+            }
+        }
+
+        if (modificacao == "Operador"){
             
             modDesigParaOperador(cod);
             break;
 
-        } else if (modificacao == "Gerente" || modificacao == "gerente"){
+        } else if (modificacao == "Gerente"){
 
             cout << "Qual a area de supervisao? ";
             getline(cin, areaS);
@@ -1675,7 +1861,7 @@ void GerenciaArquivo::modDesigDePresidente(string cod){
                 if (codigo[cont].find(cod) != string::npos){
 
                     linhas[cont+1] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + ","
-                    + data[cont] + "," + modificacao + "," + salario[cont] + "," + areaS + "," + "Nan" + "," + "Nan";
+                    + data[cont] + "," + transformaStringMin(modificacao) + "," + salario[cont] + "," + areaS + "," + "Nan" + "," + "Nan";
     
                     cont = 0;     
                     break;     
@@ -1693,7 +1879,7 @@ void GerenciaArquivo::modDesigDePresidente(string cod){
             arquivo.close();   
 
             break;
-        } else if (modificacao == "Diretor" || modificacao == "diretor"){
+        } else if (modificacao == "Diretor"){
             cout << "Qual a area de supervisao?";
             getline(cin, areaS);
 
@@ -1726,6 +1912,7 @@ void GerenciaArquivo::modDesigDePresidente(string cod){
         } else {
             system("cls");
             cout << "Resposta invalida, tente novamente." << endl;
+            Sleep(5000);
             continue;        
         }
     }
@@ -1745,7 +1932,7 @@ void GerenciaArquivo::modificaDesignacao(string cod){
         while(1){
             if (codigo[cont].find(cod) != string::npos){
 
-                desigAtual = desig[cont]; 
+                desigAtual = desig[cont];
 
                 if (desigAtual == "Operador" || desigAtual == "operador"){
                     desigAtual = "1";
@@ -1794,7 +1981,9 @@ void GerenciaArquivo::modificaDesignacao(string cod){
             break;
 
         } else {
+            system("cls");
             cout << "Opcao invalida! Tente novamente" << endl;
+            Sleep(5000);
             continue;
 
         }
