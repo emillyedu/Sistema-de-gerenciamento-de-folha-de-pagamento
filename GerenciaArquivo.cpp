@@ -54,7 +54,7 @@ string GerenciaArquivo::getLinhas(int i){
 }
 
 void GerenciaArquivo::clearString(string *str){
-    for(int i = 0; i < 100; i++) {
+    for(int i = 0; i < TAM; i++) {
         str[i].clear();
     }
 }
@@ -89,7 +89,7 @@ void GerenciaArquivo::lerArquivo(){
 }
 
 void GerenciaArquivo::exibirArquivo(){
-    for(int i = 0; i < 100; i++){
+    for(int i = 0; i < TAM; i++){
         if(linhas[i] != ""){
             cout << linhas[i] << endl;
         }
@@ -114,7 +114,7 @@ string GerenciaArquivo::transformaStringMin(string str){
 }
 
 void GerenciaArquivo::separadorColuna(string colPresent[], int del[]){
-    for(int i = 1, j = 0; i < 100; i++, j++){
+    for(int i = 1, j = 0; i < TAM; i++, j++){
         if(linhas[i] != ""){
             colPresent[j] = linhas[i];
             colPresent[j].erase(0, del[j]);
@@ -127,7 +127,7 @@ void GerenciaArquivo::separadorColuna(string colPresent[], int del[]){
 }
 
 void GerenciaArquivo::colunas(){
-    int del[100] = {0};
+    int del[TAM] = {0};
     int j, i;
 
     criarArquivo();
@@ -144,7 +144,7 @@ void GerenciaArquivo::colunas(){
     clearString(acad);
     clearString(formacao);
 
-    for(i = 1, j = 0; i < 100; i++, j++){
+    for(i = 1, j = 0; i < TAM; i++, j++){
         if(linhas[i] != ""){
             codigo[j] = linhas[i];
             codigo[j].erase(3, codigo[j].length());
@@ -154,43 +154,43 @@ void GerenciaArquivo::colunas(){
         }
     }
 
-    for(j = 0; j < 100; j++){
+    for(j = 0; j < TAM; j++){
         del[j] += codigo[j].size() + 1;
     }
     separadorColuna(nome, del);
     
-    for(j = 0; j < 100; j++){
+    for(j = 0; j < TAM; j++){
         del[j] += nome[j].size() + 1;
     }
     separadorColuna(end, del);
 
-    for(j = 0; j < 100; j++){
+    for(j = 0; j < TAM; j++){
         del[j] += end[j].size() + 1;
     }
     separadorColuna(telefone, del);
 
-    for(j = 0; j < 100; j++){
+    for(j = 0; j < TAM; j++){
         del[j] += telefone[j].size() + 1;
     }
     separadorColuna(data, del);
-    for(j = 0; j < 100; j++){
+    for(j = 0; j < TAM; j++){
         del[j] += data[j].size() + 1;
     }
     separadorColuna(desig, del);
-    for(j = 0; j < 100; j++){
+    for(j = 0; j < TAM; j++){
         del[j] += desig[j].size() + 1;
     }
     separadorColuna(salario, del);
-    for(j = 0; j < 100; j++){
+    for(j = 0; j < TAM; j++){
         del[j] += salario[j].size() + 1;
     }
     separadorColuna(sup, del);
-    for(j = 0; j < 100; j++){
+    for(j = 0; j < TAM; j++){
         del[j] += sup[j].size() + 1;
     }
     separadorColuna(acad, del);
     
-    for(i = 1, j = 0; i < 100; i++, j++){
+    for(i = 1, j = 0; i < TAM; i++, j++){
         del[j] += acad[j].length() +1;
         if(linhas[i] != ""){
             formacao[j] = linhas[i];
@@ -368,21 +368,19 @@ void GerenciaArquivo::buscaPorNome(){
     while(1){
         c = 0; //zerando controle
         encontrado = 0; //zerando contador
-
-        cout << "Buscar: ";
+        system("cls");
+        cout << "Buscar nome: ";
         getline(cin, busca);
 
         busca = transformaStringMin(busca);
         
         system("cls");
-
+        cout << "\n-------------------------------------------------------------\n\n";
         for (int i = 0; i < TAM; i++){
             //Encontrando a "busca" em minusculo, já que todos os nomes de funcionarios do arquivo estarão em minúsculo 
             if (nome[i].find(busca) != string::npos){
                 endereco[i] = end[i];
                 endereco[i] = endereco[i].erase(0, 12);//Para o endereco aparecer a partir de "Rua"
-
-                cout << "\n";
 
                 cout << "Codigo..........: " << codigo[i] << endl;
                 cout << "Nome............: " << nome[i] << endl;
@@ -395,15 +393,14 @@ void GerenciaArquivo::buscaPorNome(){
                 encontrado++; //incrementa a quantidade de funcionarios encontrados
             }
         }
-
+        cout << "\n-------------------------------------------------------------\n\n";
         if (c == 1){
-            cout << "\n";
-            cout << encontrado << " funcionario(s) encontrado(s) com \"" << busca << "\" no nome" << endl << endl;
-
+            system("pause");
             break;
 
         } else {
             while(1){
+                system("cls");
                 cout << "Nenhum funcionario encontrado. Gostaria de tentar novamente? [s/n]" << endl;
                 getline(cin, opcao);
 
@@ -421,6 +418,7 @@ void GerenciaArquivo::buscaPorNome(){
                     system("cls"); 
 
                     cout << "Opcao invalida! Tente novamente" << endl << endl;
+                    Sleep(5000);
                     continue;
                 }
             }
@@ -463,14 +461,14 @@ void GerenciaArquivo::buscaPorData(){
 
         while(1){
             c1 = 0;
-
+            system("cls");
             cout << "Intervalo de tempo, a partir das datas de ingresso:\n" << endl;
         
-            cout << "\tDia inicial: ";
+            cout << "Dia inicial: ";
             getline(cin, dt.diaIni);
-            cout << "\tMes inicial: ";
+            cout << "Mes inicial: ";
             getline(cin, dt.mesIni);
-            cout << "\tAno inicial: ";
+            cout << "Ano inicial: ";
             getline(cin, dt.anoIni);
 
             if (dt.diaIni.length() == 1){
@@ -548,14 +546,14 @@ void GerenciaArquivo::buscaPorData(){
             if(stoi(mInicial) < 1 || stoi(mInicial) > 12){
                 system("cls");
                 cout << "data invalida" << endl;
-                
+                Sleep(5000);
                 c1 = 1;
             }
             
             if(stoi(aInicial) < 1000 || stoi(aInicial) > 2022){
                 system("cls");
                 cout << "data invalida" << endl;
-
+                Sleep(5000);
                 c1 = 1;
             }
 
@@ -566,7 +564,7 @@ void GerenciaArquivo::buscaPorData(){
                     }else{
                         system("cls");
                         cout << "dia do mes invalido" << endl;
-
+                        Sleep(5000);
                         c1 = 1;
                     }
                 }
@@ -579,7 +577,7 @@ void GerenciaArquivo::buscaPorData(){
                     }else{
                         system("cls");
                         cout << "dia do mes invalido" << endl;
-
+                        Sleep(5000);
                         c1 = 1;
                     }
                 }
@@ -590,7 +588,7 @@ void GerenciaArquivo::buscaPorData(){
                     }else{
                         system("cls");
                         cout << "dia do mes invalido" << endl;
-
+                        Sleep(5000);
                         c1 = 1;
                     }
                 }
@@ -610,11 +608,11 @@ void GerenciaArquivo::buscaPorData(){
         while(1){
             c2 = 0; 
 
-            cout << "\tDia final: ";
+            cout << "Dia final: ";
             getline(cin, dt.diaFi);
-            cout << "\tMes final: ";
+            cout << "Mes final: ";
             getline(cin, dt.mesFi);
-            cout << "\tAno final: ";
+            cout << "Ano final: ";
             getline(cin, dt.anoFi);
 
             if (dt.diaFi.length() == 1){
@@ -692,14 +690,14 @@ void GerenciaArquivo::buscaPorData(){
             if(stoi(mFinal) < 1 || stoi(mFinal) > 12){
                 system("cls");
                 cout << "data invalida" << endl;
-                
+                Sleep(5000);
                 c2 = 1;
             }
             
             if(stoi(aFinal) < 1000 || stoi(aFinal) > 2022){
                 system("cls");
                 cout << "data invalida" << endl;
-                
+                Sleep(5000);
                 c2 = 1;
             }
 
@@ -710,7 +708,7 @@ void GerenciaArquivo::buscaPorData(){
                     }else{
                         system("cls");
                         cout << "dia do mes invalido" << endl;
-                        
+                        Sleep(5000);
                         c2 = 1;
                     }
                 }
@@ -723,7 +721,7 @@ void GerenciaArquivo::buscaPorData(){
                     }else{
                         system("cls");
                         cout << "dia do mes invalido" << endl;
-                        
+                        Sleep(5000);
                         c2 = 1;
                     }
                 }
@@ -734,7 +732,7 @@ void GerenciaArquivo::buscaPorData(){
                     }else{
                         system("cls");
                         cout << "dia do mes invalido" << endl;
-                        
+                        Sleep(5000);
                         c2 = 1;
                     }
                 }
@@ -757,6 +755,7 @@ void GerenciaArquivo::buscaPorData(){
 
         // Imprimir apenas as informações dos funcionários que ingressaram no intervalo de tempo escolhido
         // Além disso, só imprime se a linha do arquivo estiver preenchida
+
         for (int i = 0; i < TAM; i++){
             endereco[i] = end[i];
             endereco[i] = endereco[i].erase(0, 12); //Para o endereco aparecer a partir de "Rua"
@@ -772,46 +771,41 @@ void GerenciaArquivo::buscaPorData(){
                 ano[i] = auxAno.substr(6, 4); //ano[i] recebe somente o ano da string data[i]
 
                 if (stoi(ano[i]) > stoi(aInicial) && stoi(ano[i]) < stoi(aFinal)){
-
-                    cout << "\n";
-
+                    cout << "\n------------------------------------------------------------\n\n";
                     cout << "Codigo..........: " << codigo[i] << endl;
                     cout << "Nome............: " << nome[i] << endl;
                     cout << "Endereco........: " << endereco[i] << endl;
                     cout << "Telefone........: " << telefone[i] << endl;
                     cout << "Data de ingresso: " << data[i] << endl;
                     cout << "Designacao......: " << desig[i] << endl;
-                
+                    cout << "\n------------------------------------------------------------\n\n";
                     encontrado++; //incrementa a quantidade de funcionarios encontrados
                 }
                 else if (stoi(ano[i]) == stoi(aInicial) || stoi(ano[i]) == stoi(aFinal)){
 
                     if (stoi(mes[i]) > stoi(mInicial) && stoi(mes[i]) < stoi(mFinal)){
-
-                        cout << "\n";
-
+                        cout << "\n------------------------------------------------------------\n\n";
                         cout << "Codigo..........: " << codigo[i] << endl;
                         cout << "Nome............: " << nome[i] << endl;
                         cout << "Endereco........: " << endereco[i] << endl;
                         cout << "Telefone........: " << telefone[i] << endl;
                         cout << "Data de ingresso: " << data[i] << endl;
                         cout << "Designacao......: " << desig[i] << endl;
-                
+                        cout << "\n------------------------------------------------------------\n\n";
                         encontrado++; //incrementa a quantidade de funcionarios encontrados
                     }
                     else if (stoi(mes[i]) == stoi(mInicial) || stoi(mes[i]) == stoi(mFinal)){
 
                         if (stoi(dia[i]) >= stoi(dInicial) && stoi(dia[i]) <= stoi(dFinal)){
-                        
-                            cout << "\n";
-
+                    
+                            cout << "\n------------------------------------------------------------\n\n";
                             cout << "Codigo..........: " << codigo[i] << endl;
                             cout << "Nome............: " << nome[i] << endl;
                             cout << "Endereco........: " << endereco[i] << endl;
                             cout << "Telefone........: " << telefone[i] << endl;
                             cout << "Data de ingresso: " << data[i] << endl;
                             cout << "Designacao......: " << desig[i] << endl;
-                
+                            cout << "\n------------------------------------------------------------\n\n";
                             encontrado++; //incrementa a quantidade de funcionarios encontrados
                         }
                     } 
@@ -820,17 +814,13 @@ void GerenciaArquivo::buscaPorData(){
         }
     
         if (encontrado > 0){
-            cout << "\n";
-
-            cout << encontrado << " funcionario(s) encontrado(s), que ingressaram na empresa entre " << dataInicial
-            << " e " << dataFinal << endl << endl;
-
+            system("pause");
             break;
 
         } else {
             while(1){
                 getchar(); //"limpa enter" da data final digitada
-
+                system("cls");
                 cout << "Nenhum funcionario encontrado. Gostaria de tentar novamente? [s/n]" << endl;
                 getline(cin, opcao);
 
@@ -848,6 +838,7 @@ void GerenciaArquivo::buscaPorData(){
                     system("cls"); 
 
                     cout << "Opcao invalida! Tente novamente" << endl << endl;
+                    Sleep(5000);
                     continue;
                 }
             }
@@ -863,6 +854,7 @@ void GerenciaArquivo::buscaPorData(){
     }
 }
 
+
 void GerenciaArquivo::buscaPorEndereco(){
     int c = 0; //controle
     int encontrado = 0; //contador de quantos funcionarios foram encontrados
@@ -872,17 +864,19 @@ void GerenciaArquivo::buscaPorEndereco(){
 
     colunas();
 
+    system("cls");
+
     while(1){
         c = 0; //zerando controle
         encontrado = 0; //zerando contador
-
-        cout << "Buscar: ";
+        system("cls");
+        cout << "Buscar pela rua, bairro OU cidade: ";
         getline(cin, busca);
 
         busca = transformaStringMin(busca);
         
         system("cls");
-
+        cout << "\n------------------------------------------------------------\n\n";
         for (int i = 0; i < TAM; i++){
             endereco[i] = end[i];
             endereco[i] = endereco[i].erase(0, 12); //Para o endereco aparecer a partir de "Rua"
@@ -892,7 +886,6 @@ void GerenciaArquivo::buscaPorEndereco(){
             string2 = transformaStringMin(string1);
 
             if (string2.find(busca) != string::npos){
-                cout << "\n";
 
                 cout << "Codigo..........: " << codigo[i] << endl;
                 cout << "Nome............: " << nome[i] << endl;
@@ -905,15 +898,15 @@ void GerenciaArquivo::buscaPorEndereco(){
                 encontrado++; //incrementa a quantidade de funcionarios encontrados
             }
         }
+        cout << "\n------------------------------------------------------------\n\n";
 
         if (c == 1){
-            cout << "\n";
-            cout << encontrado << " funcionario(s) encontrado(s) com \"" << busca << "\" no endereco" << endl << endl;
-
+            system("pause");
             break;
 
         } else {
             while(1){
+                system("cls");
                 cout << "Nenhum funcionario encontrado. Gostaria de tentar novamente? [s/n]" << endl;
                 getline(cin, opcao);
 
@@ -933,6 +926,7 @@ void GerenciaArquivo::buscaPorEndereco(){
                     system("cls"); 
 
                     cout << "Opcao invalida! Tente novamente" << endl << endl;
+                    Sleep(5000);
                     continue;
                 }
             }
@@ -942,7 +936,7 @@ void GerenciaArquivo::buscaPorEndereco(){
                 continue; //Vai para o inicio do while
             }
             else if (c == 2){                
-                break; //Sai do while    
+                break;    
             }
         }
     }

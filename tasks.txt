@@ -2,16 +2,6 @@ documentaçao -> explicar classes e metodos PRINCIPAIS
 uml
 comentar metodos e classes do codigo
 
-menu:
-    buscar
-
 
 voz
 fotografar: mover e abrir na pasta fotos
-
-buscar:
-char na data
-data invalida: nao pede de volta, continua pedindo as coisas q vem dps e ai quebra o programa
-endereço: buscar o que?
-        -> melhor: buscar pelo cep OU pedir só cidade, bairro e logradouro (pergunta a pessoa se ela quer buscar pelo cep ou escrever)
-                                                                           (se for escrever, pergunta se ela quer informar city, se sim, digita. dps pergunta se quer buscar pelo bairro...)

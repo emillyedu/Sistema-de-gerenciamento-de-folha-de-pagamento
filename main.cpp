@@ -7,16 +7,13 @@
 
 #include <iostream>
 
-
 int main(){
     srand(time(NULL));
-    Funcionario funcionario;
     Menu menu;
+    Funcionario funcionario;
     
-    // menu.cmdPrincipal();
-    funcionario.buscaPorData();
-    // funcionario.buscarFuncionario();
-
+    menu.cmdPrincipal();
+    // funcionario.fotografarUsuario("123");
 
     return 0;
 }

@@ -93,6 +93,9 @@ public:
     */
     void colunas();
 
+    void separadorEnd(string colPresent[], int del[]);
+    void endereco();
+
     /** 
      *  Um método que faz uso da API presente em "http://viacep.com.br" para, a partir de um CEP informado, obter
      *  o endereço de um funcionário(a). Possui um parâmetro.
@@ -325,7 +328,6 @@ protected:
      *  \var 
     */
     string codigo[TAM], nome[TAM], end[TAM], telefone[TAM], data[TAM], desig[TAM],salario[TAM],sup[TAM],acad[TAM],formacao[TAM];
-    
     /** 
      *  Atributos do tipo double que armazenam os dados, em arrays de tamanho TAM (100), sobre o salário bruto,
      *  salário líquido, imposto do INSS, bem como do IRRF; E, em uma variável, armazena os dados sobre o salário

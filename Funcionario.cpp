@@ -48,6 +48,8 @@ void Funcionario::fotografarUsuario(string cod){
         system("cls");
 
         if(flag == 0){
+            command = "move \"./" + cod + ".jpg\"" + "\"./fotos-funcionarios\"";
+            system(command.c_str());
             break;
         }
 
@@ -98,7 +100,7 @@ void Funcionario::exibeRegistroFunc(){
         }
     }
 
-    for(int i = 0; i < 100; i++){
+    for(int i = 0; i < TAM; i++){
         if(linhas[i] != ""){
             colunas();
         }
@@ -134,7 +136,7 @@ void Funcionario::exibeListaFunc(){
     lerArquivo();
 
     cout << "Codigo,Nome,Designacao" << endl;
-    for(int i = 0; i < 100; i++){
+    for(int i = 0; i < TAM; i++){
         if(linhas[i] != ""){
             colunas();
         }
@@ -191,7 +193,7 @@ void Funcionario::exibeListaTipo(){
         }
     }
     
-    for(int i = 0; i < 100; i++){
+    for(int i = 0; i < TAM; i++){
         if(linhas[i] != ""){
             colunas();
         }
@@ -206,7 +208,7 @@ void Funcionario::exibeListaTipo(){
     }
 
     cout << "Codigo,Nome,Designacao" << endl;
-    for(int i = 0; i < 100; i++){
+    for(int i = 0; i < TAM; i++){
         if(getDesig(i) == designacao){
             cout << getCodigo(i) << "," << getNome(i) << "," << getDesig(i) << endl;
         }
@@ -219,13 +221,13 @@ void Funcionario::aumentoDeSalarios(){
     Presidente presidente;
     Diretor diretor;
     
-    double salarioAum[100];
+    double salarioAum[TAM];
 
     criarArquivo();
     lerArquivo();
 
     int count ;
-    for(int i = 1, j = 0; i < 100; i++, j++){
+    for(int i = 1, j = 0; i < TAM; i++, j++){
         count = 0;
         if(linhas[i] != ""){
             count = 1;
@@ -253,7 +255,7 @@ void Funcionario::aumentoDeSalarios(){
 
     arquivo.open("./csv/Empresa.csv", ios::out);
         arquivo << "codigo,nome,end,telefone,data de ingresso,designacao,salario,area de supervisao,area academica,formacao maxima" << endl;
-        for(int i = 0; i < 100; i++){
+        for(int i = 0; i < TAM; i++){
             if(linhas[i+1] != ""){
                 arquivo << getCodigo(i) + "," + getNome(i) + "," + getEnd(i) + "," + getTelefone(i) + "," + getData(i) + "," + getDesig(i) + "," + to_string(salarioAum[i]).erase(to_string(salarioAum[i]).size()-4, 4) + "," + getSup(i) + "," + getAcad(i) + "," + getFormacao(i) << endl;
             }
@@ -274,7 +276,7 @@ void Funcionario::addFuncionario(){
 
     Data data;
     string nome, aux, codigo, cod, telefone, designacao, endereco, cep, numero, areaS[2], areaF[2], formacao;
-    string logradouro, bairro, cidade, uf, linha[100], line, dia, mes, ano, salario;
+    string logradouro, bairro, cidade, uf, linha[TAM], line, dia, mes, ano, salario;
     string yn, desig;
     bool teste;//usa pra verificar se salário é um caracter e não um número
     int i, c, li = 0;
@@ -333,7 +335,7 @@ void Funcionario::addFuncionario(){
                     continue;
                 }
             }
-            for(i = 1; i < 100; i++){
+            for(i = 1; i < TAM; i++){
                 if(linhas[i] != ""){
                     colunas();
                 }
@@ -684,7 +686,7 @@ void Funcionario::addFuncionario(){
     }
 
     arquivo.open("./csv/Empresa.csv", ios::out | ios::app);
-    for(li = 0; li < 100; li++){
+    for(li = 0; li < TAM; li++){
         arquivo << linha[li];
     }
     arquivo.close();
@@ -694,11 +696,12 @@ void Funcionario::addFuncionario(){
 void Funcionario::buscarFuncionario(){
     int escolha;
 
-    while(1){   
-        cout << "Deseja realizar qual tipo de busca?\n" << endl;
+    while(1){
+        cout << "\n------------------------- BUSCAR ---------------------------\n\n";
         cout << "[1] Buscar por nome\n";
         cout << "[2] Buscar por data de ingresso (intervalo de tempo)\n";
-        cout << "[3] Buscar por endereco\n\n"; 
+        cout << "[3] Buscar por endereco\n"; 
+        cout << "\n------------------------------------------------------------\n\n";
         
         cin >> escolha;
         getchar();
@@ -1115,7 +1118,7 @@ void Funcionario::exibeFolhaSalarialFuncionario(){
             getline(cin, nomeF);
             system("cls");
             nomeF = transformaStringMin(nomeF);
-            for(i=0;i<100;i++){
+            for(i=0;i<TAM;i++){
                 if(nomeF == nome[i]){
                     valor = i;
                     teste = 1;
@@ -1133,7 +1136,7 @@ void Funcionario::exibeFolhaSalarialFuncionario(){
             getchar();
             getline(cin, codigoF);
             system("cls");
-            for(i=0;i<100;i++){
+            for(i=0;i<TAM;i++){
                 if(codigoF == codigo[i]){
                     valor = i;
                     teste = 1;
