@@ -438,9 +438,9 @@ void GerenciaArquivo::buscaPorNome(){
 
 void GerenciaArquivo::buscaPorData(){   
     typedef struct{
-        int diaIni, diaFi;
-        int mesIni, mesFi;
-        int anoIni, anoFi;
+        string diaIni, diaFi;
+        string mesIni, mesFi;
+        string anoIni, anoFi;
     } tData;
 
     string dInicial, mInicial, aInicial; //dia, mes e ano iniciais do intervalo de tempo
@@ -467,29 +467,79 @@ void GerenciaArquivo::buscaPorData(){
             cout << "Intervalo de tempo, a partir das datas de ingresso:\n" << endl;
         
             cout << "\tDia inicial: ";
-            cin >> dt.diaIni;
-            if (to_string(dt.diaIni).length() == 1){
-                dInicial = "0" + to_string(dt.diaIni);
-            }
-            else if (to_string(dt.diaIni).length() == 2){
-                dInicial = to_string(dt.diaIni);
-            }
+            getline(cin, dt.diaIni);
             cout << "\tMes inicial: ";
-            cin >> dt.mesIni;
+            getline(cin, dt.mesIni);
             cout << "\tAno inicial: ";
-            cin >> dt.anoIni;
+            getline(cin, dt.anoIni);
 
-            if (to_string(dt.mesIni).length() == 1){
-                mInicial = "0" + to_string(dt.mesIni);
+            if (dt.diaIni.length() == 1){
+                dInicial = "0" + dt.diaIni;
+                if(!isNumber(dInicial)){
+                    system("cls");
+                    cout << "Dia invalido" << endl;
+                    Sleep(5000);
+                    continue;
+                }
             }
-            else if(to_string(dt.mesIni).length() == 2){
-                mInicial = to_string(dt.mesIni);
+            else if (dt.diaIni.length() == 2){
+                dInicial = dt.diaIni;
+                if(!isNumber(dInicial)){
+                    system("cls");
+                    cout << "Dia invalido" << endl;
+                    Sleep(5000);
+                    continue;
+                }
             }
-            if(to_string(dt.anoIni).length() == 2){
-                aInicial = "19" + to_string(dt.anoIni);
+            else if(dt.diaIni.length() > 2){
+                system("cls");
+                cout << "Dia invalido" << endl;
+                Sleep(5000);
+                continue;
             }
-            else if(to_string(dt.anoIni).length() == 4){
-                aInicial = to_string(dt.anoIni);
+
+            if (dt.mesIni.length() == 1){
+                mInicial = "0" + dt.mesIni;
+                if(!isNumber(mInicial)){
+                    system("cls");
+                    cout << "Mes invalido" << endl;
+                    Sleep(5000);
+                    continue;
+                }
+            }
+            else if(dt.mesIni.length() == 2){
+                mInicial = dt.mesIni;
+                if(!isNumber(mInicial)){
+                    system("cls");
+                    cout << "Mes invalido" << endl;
+                    Sleep(5000);
+                    continue;
+                }
+            }
+            else if(dt.mesIni.length() > 2){
+                system("cls");
+                cout << "Mes invalido" << endl;
+                Sleep(5000);
+                continue;
+            }
+
+            if(dt.anoIni.length() == 2){
+                aInicial = "19" + dt.anoIni;
+                if(!isNumber(aInicial)){
+                    system("cls");
+                    cout << "Ano invalido" << endl;
+                    Sleep(5000);
+                    continue;
+                }
+            }
+            else if(dt.anoIni.length() == 4){
+                aInicial = dt.anoIni;
+                if(!isNumber(aInicial)){
+                    system("cls");
+                    cout << "Ano invalido" << endl;
+                    Sleep(5000);
+                    continue;
+                }
             }
             else{
                 aInicial = "0";
@@ -511,7 +561,7 @@ void GerenciaArquivo::buscaPorData(){
 
             if(stoi(mInicial)){
                 if(stoi(mInicial) == 2){
-                    if(dt.diaIni <= 28 && dt.diaIni > 1){
+                    if(stoi(dt.diaIni) <= 28 && stoi(dt.diaIni) > 1){
                         c1 = 2;
                     }else{
                         system("cls");
@@ -561,29 +611,79 @@ void GerenciaArquivo::buscaPorData(){
             c2 = 0; 
 
             cout << "\tDia final: ";
-            cin >> dt.diaFi;
+            getline(cin, dt.diaFi);
             cout << "\tMes final: ";
-            cin >> dt.mesFi;
+            getline(cin, dt.mesFi);
             cout << "\tAno final: ";
-            cin >> dt.anoFi;
+            getline(cin, dt.anoFi);
 
-            if (to_string(dt.diaFi).length() == 1){
-                dFinal = "0" + to_string(dt.diaFi);
+            if (dt.diaFi.length() == 1){
+                dFinal = "0" + dt.diaFi;
+                if(!isNumber(dFinal)){
+                    system("cls");
+                    cout << "Dia invalido" << endl;
+                    Sleep(5000);
+                    continue;
+                }
             }
-            else if (to_string(dt.diaFi).length() == 2){
-                dFinal = to_string(dt.diaFi);
+            else if (dt.diaFi.length() == 2){
+                dFinal = dt.diaFi;
+                if(!isNumber(dFinal)){
+                    system("cls");
+                    cout << "Dia invalido" << endl;
+                    Sleep(5000);
+                    continue;
+                }
             }
-            if (to_string(dt.mesFi).length() == 1){
-                mFinal = "0" + to_string(dt.mesFi);
+            else if(dt.diaFi.length() > 2){
+                system("cls");
+                cout << "Dia invalido" << endl;
+                Sleep(5000);
+                continue;
             }
-            else if(to_string(dt.mesFi).length() == 2){
-                mFinal = to_string(dt.mesFi);
+
+            if (dt.mesFi.length() == 1){
+                mFinal = "0" + dt.mesFi;
+                if(!isNumber(mFinal)){
+                    system("cls");
+                    cout << "Mes invalido" << endl;
+                    Sleep(5000);
+                    continue;
+                }
             }
-            if(to_string(dt.anoFi).length() == 2){
-                aFinal = "19" + to_string(dt.anoFi);
+            else if(dt.mesFi.length() == 2){
+                mFinal = dt.mesFi;
+                if(!isNumber(mFinal)){
+                    system("cls");
+                    cout << "Mes invalido" << endl;
+                    Sleep(5000);
+                    continue;
+                }
             }
-            else if(to_string(dt.anoFi).length() == 4){
-                aFinal = to_string(dt.anoFi);
+            else if(dt.mesFi.length() > 2){
+                system("cls");
+                cout << "Mes invalido" << endl;
+                Sleep(5000);
+                continue;
+            }
+
+            if(dt.anoFi.length() == 2){
+                aFinal = "19" + dt.anoFi;
+                if(!isNumber(aFinal)){
+                    system("cls");
+                    cout << "Ano invalido" << endl;
+                    Sleep(5000);
+                    continue;
+                }
+            }
+            else if(dt.anoFi.length() == 4){
+                aFinal = dt.anoFi;
+                if(!isNumber(aFinal)){
+                    system("cls");
+                    cout << "Ano invalido" << endl;
+                    Sleep(5000);
+                    continue;
+                }
             }
             else{
                 aFinal = "0";
@@ -605,7 +705,7 @@ void GerenciaArquivo::buscaPorData(){
 
             if(stoi(mFinal)){
                 if(stoi(mFinal) == 2){
-                    if(dt.diaFi <= 28 && dt.diaFi > 1){
+                    if(stoi(dt.diaFi) <= 28 && stoi(dt.diaFi) > 1){
                         c2 = 2;
                     }else{
                         system("cls");

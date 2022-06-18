@@ -13,8 +13,8 @@ int main(){
     Funcionario funcionario;
     Menu menu;
     
-    menu.cmdPrincipal();
-    // funcionario.addFuncionario();
+    // menu.cmdPrincipal();
+    funcionario.buscaPorData();
     // funcionario.buscarFuncionario();
 
 
