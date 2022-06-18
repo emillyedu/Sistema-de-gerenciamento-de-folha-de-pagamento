@@ -93,9 +93,6 @@ public:
     */
     void colunas();
 
-    void separadorEnd(string colPresent[], int del[]);
-    void endereco();
-
     /** 
      *  Um método que faz uso da API presente em "http://viacep.com.br" para, a partir de um CEP informado, obter
      *  o endereço de um funcionário(a). Possui um parâmetro.
