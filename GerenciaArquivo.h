@@ -55,21 +55,21 @@ public:
     /** 
      *  Método utilizado para criar o arquivo csv onde ficarão os dados dos funcionários. Não possui parâmetros.
      *  \return void, não possui retorno.
-     *  \author Êmilly
+     *  \author Êmilly Eduarda
     */
     void criarArquivo();
 
     /** 
      *  Método utilizado para ler o arquivo csv onde ficarão os dados dos funcionários. Não possui parâmetros.
      *  \return void, não possui retorno.
-     *  \author Êmilly
+     *  \author Êmilly Eduarda
     */
     void lerArquivo();
 
     /** 
      *  Um método utilizado para a exibição dos dados dos funcionários. Não possui parâmetros.
      *  \return void, não possui retorno.
-     *  \author Êmilly
+     *  \author Êmilly Eduarda
     */
     void exibirArquivo();
 
@@ -80,7 +80,7 @@ public:
      *  \param del[] elemento de um array do tipo inteiro, também funcionando como uma referência para realização
      *  da função do método.
      *  \return void, não possui retorno.
-     *  \author Êmilly
+     *  \author Êmilly Eduarda
     */
     void separadorColuna(string colunaAtual[], int del[]);
 
@@ -89,7 +89,7 @@ public:
      *  separadamente em cada array do tipo string, que são, justamente, grande parte dos atributos da classe
      *  "GerenciaArquivo". Não possui parâmetros.  
      *  \return void, não possui retorno.
-     *  \author Êmilly
+     *  \author Êmilly Eduarda
     */
     void colunas();
 
@@ -98,7 +98,7 @@ public:
      *  o endereço de um funcionário(a). Possui um parâmetro.
      *  \param cep variável do tipo string a ser recebida, a fim de realizar a função do método.
      *  \return string, retorna uma string com o endereço do funcionário(a).
-     *  \author Êmilly
+     *  \author Êmilly Eduarda
     */
     string retornaEndereco(string cep);
 
@@ -111,7 +111,7 @@ public:
      *  \param tam variável do tipo inteiro, representando o tamanho do índice até onde a string do API deve ser
      *  apagada, a fim de gerar outra string com as partes certas do endereço. 
      *  \return string, retorna as partes do endereço para auxiliar no método "retornaEndereco(string cep)".
-     *  \author Êmilly
+     *  \author Êmilly Eduarda
     */
     string forEndereco(string api[], int line, int tam);
 
@@ -247,8 +247,8 @@ public:
      *  \param cod variável do tipo string, que recebe o código do funcionário(a), para realizar a modificação
      *  da designação no funcionário(a) correto.
      *  \return void, não possui retorno.
-     *  \author Igor Matheus
-    */
+     *  \authors Êmilly Eduarda, Lucas Bitu e Igor Matheus
+     */
     void modDesigDeOperador(string cod);
 
     /** 

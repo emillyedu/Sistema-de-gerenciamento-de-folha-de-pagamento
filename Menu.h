@@ -93,15 +93,6 @@ public:
     */
     void cmdFolhaSal();
 
-    /** 
-     *  Tal método é responsável por realizar a volta de alguma parte dos menus, para outra parte anterior.
-     *  Não possui parâmetros.
-     *  \param opcao uma variável do tipo int, representando a opção de "voltar".
-     *  \return void, não possui retorno.
-     *  \author ???
-    */
-    void voltarMenu(int opcao);
-
 private:
 
 };

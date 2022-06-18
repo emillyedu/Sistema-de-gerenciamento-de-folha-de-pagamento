@@ -26,20 +26,19 @@ using namespace std;
 class Funcionario:public GerenciaArquivo{
 public:
     Funcionario();
-    ~Funcionario();
 
     /** 
      *  Por meio deste método, ao inserir o número de código de um determinado funcionário, os usuários podem acessar
      *  todas as informações fornecidas relacionadas a esse funcionário. Não possui parâmetros.
      *  \return void, não possui retorno.
-     *  \author Lucas Bitu
+     *  \author Êmilly Eduarda
     */
     void exibeRegistroFunc();
 
     /** 
      *  Método que exibe o registro de todos os funcionários . Não possui parâmetros.
      *  \return void, não possui retorno.
-     *  \author Lucas Bitu
+     *  \author Êmilly Eduarda
     */
     void exibeListaFunc();
 
@@ -47,7 +46,7 @@ public:
      *  Método utilizado para exibir o registro de todos os funcionários de uma determinada designação.
      *  Não possui parâmetros.
      *  \return void, não possui retorno.
-     *  \author Lucas Bitu
+     *  \author Êmilly Eduarda
     */
     void exibeListaTipo();
 

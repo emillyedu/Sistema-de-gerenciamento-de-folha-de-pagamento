@@ -17,7 +17,7 @@ public:
      *  funcionários. Isso, quando o método é sobrescrito nas classes filhas. Possui um parâmetro.
      *  \param salario variável do tipo double, representando o salário de um funcionário(a).
      *  \return double, retorna o novo salário do funcionário(a) após o aumento.
-     *  \author Lucas Bitu
+     *  \author Êmilly Eduarda
     */
     virtual double calculaSalario(double salario) = 0;
 

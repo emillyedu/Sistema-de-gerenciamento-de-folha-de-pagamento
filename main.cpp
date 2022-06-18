@@ -18,5 +18,5 @@ int main(){
     // funcionario.buscarFuncionario();
 
 
-    // return 0;
+    return 0;
 }

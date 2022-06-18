@@ -18,7 +18,7 @@ public:
      *  Possui um parâmetro.
      *  \param salario variável do tipo double, representando o salário do Operador.
      *  \return double, retorna o novo salário do Operador após o aumento.
-     *  \author Lucas Bitu
+     *  \author Êmilly Eduarda
     */
     double calculaSalario(double salario);
 

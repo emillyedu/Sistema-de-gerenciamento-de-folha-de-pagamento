@@ -18,7 +18,7 @@ public:
      *  Possui um parâmetro.
      *  \param salario variável do tipo double, representando o salário do Diretor.
      *  \return double, retorna o novo salário do Diretor após o aumento.
-     *  \author Lucas Bitu
+     *  \author Êmilly Eduarda
     */
     double calculaSalario(double salario);
 
