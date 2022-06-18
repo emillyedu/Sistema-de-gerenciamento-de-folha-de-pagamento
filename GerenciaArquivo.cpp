@@ -443,24 +443,19 @@ void GerenciaArquivo::buscaPorData(){
 
     string dInicial, mInicial, aInicial; //dia, mes e ano iniciais do intervalo de tempo
     string dFinal, mFinal, aFinal; //dia, mes e ano finais do intervalo de tempo
-    string dataInicial, dataFinal; //auxiliares
-    string endereco[TAM];//auxiliar para end[i]
+    string dataInicial, dataFinal;
+    string endereco[TAM];
     string dia[TAM], mes[TAM], ano[TAM];
     string auxMes, auxDia, auxAno, busca, opcao;
     tData dt;
-    int c1 = 0, c2 = 0, c3 = 0; //controles para auxiliar nos laços de repetição
-    int encontrado = 0; //contador de funcionarios encontrados
+    int encontrado=0;
 
     colunas();
 
     while(1){
-        c1 = 0; //zerando os controles
-        c2 = 0; 
-        c3 = 0;
-        encontrado = 0; //zerando contador
+        encontrado = 0;
 
         while(1){
-            c1 = 0;
             system("cls");
             cout << "Intervalo de tempo, a partir das datas de ingresso:\n" << endl;
         
@@ -470,6 +465,8 @@ void GerenciaArquivo::buscaPorData(){
             getline(cin, dt.mesIni);
             cout << "Ano inicial: ";
             getline(cin, dt.anoIni);
+
+            system("cls");
 
             if (dt.diaIni.length() == 1){
                 dInicial = "0" + dt.diaIni;
@@ -547,25 +544,25 @@ void GerenciaArquivo::buscaPorData(){
                 system("cls");
                 cout << "data invalida" << endl;
                 Sleep(5000);
-                c1 = 1;
+                continue;
             }
             
             if(stoi(aInicial) < 1000 || stoi(aInicial) > 2022){
                 system("cls");
                 cout << "data invalida" << endl;
                 Sleep(5000);
-                c1 = 1;
+                continue;
             }
 
             if(stoi(mInicial)){
                 if(stoi(mInicial) == 2){
-                    if(stoi(dt.diaIni) <= 28 && stoi(dt.diaIni) > 1){
-                        c1 = 2;
+                    if(stoi(dt.diaIni) <= 28 && stoi(dt.diaIni) >= 1){
+                        break;
                     }else{
                         system("cls");
                         cout << "dia do mes invalido" << endl;
                         Sleep(5000);
-                        c1 = 1;
+                        continue;
                     }
                 }
             
@@ -573,47 +570,40 @@ void GerenciaArquivo::buscaPorData(){
                 stoi(mInicial) == 8 || stoi(mInicial) == 10 || stoi(mInicial) == 12){
 
                     if(stoi(dInicial) <= 31 && stoi(dInicial) >= 1){
-                        c1 = 2;
+                        break;
                     }else{
                         system("cls");
                         cout << "dia do mes invalido" << endl;
                         Sleep(5000);
-                        c1 = 1;
+                        continue;
                     }
                 }
 
                 else{
                     if(stoi(dInicial) <= 30 && stoi(dInicial) >= 1){
-                        c1 = 2;
+                        break;
                     }else{
                         system("cls");
                         cout << "dia do mes invalido" << endl;
                         Sleep(5000);
-                        c1 = 1;
+                        continue;
                     }
                 }
             } 
 
-            //Para controlar corretamente os laços de repetição
-            if (c1 == 1){
-                continue; //Vai para o inicio do while
-            }
-            else if (c1 == 2){                
-                break; //Sai do while    
-            }
         }
 
-        cout << "\n"; 
-
         while(1){
-            c2 = 0; 
-
+            system("cls");
+            cout << "Intervalo de tempo, a partir das datas de ingresso:\n" << endl;
             cout << "Dia final: ";
             getline(cin, dt.diaFi);
             cout << "Mes final: ";
             getline(cin, dt.mesFi);
             cout << "Ano final: ";
             getline(cin, dt.anoFi);
+
+            system("cls");
 
             if (dt.diaFi.length() == 1){
                 dFinal = "0" + dt.diaFi;
@@ -691,25 +681,25 @@ void GerenciaArquivo::buscaPorData(){
                 system("cls");
                 cout << "data invalida" << endl;
                 Sleep(5000);
-                c2 = 1;
+                continue;
             }
             
             if(stoi(aFinal) < 1000 || stoi(aFinal) > 2022){
                 system("cls");
                 cout << "data invalida" << endl;
                 Sleep(5000);
-                c2 = 1;
+                continue;
             }
 
             if(stoi(mFinal)){
                 if(stoi(mFinal) == 2){
                     if(stoi(dt.diaFi) <= 28 && stoi(dt.diaFi) > 1){
-                        c2 = 2;
+                        break;
                     }else{
                         system("cls");
                         cout << "dia do mes invalido" << endl;
                         Sleep(5000);
-                        c2 = 1;
+                        continue;
                     }
                 }
             
@@ -717,33 +707,25 @@ void GerenciaArquivo::buscaPorData(){
                 stoi(mFinal) == 8 || stoi(mFinal) == 10 || stoi(mFinal) == 12){
 
                     if(stoi(dFinal) <= 31 && stoi(dFinal) >= 1){
-                        c2 = 2;
+                        break;
                     }else{
                         system("cls");
                         cout << "dia do mes invalido" << endl;
                         Sleep(5000);
-                        c2 = 1;
+                        continue;
                     }
                 }
 
                 else{
                     if(stoi(dFinal) <= 30 && stoi(dFinal) >= 1){
-                        c2 = 2;
+                        break;
                     }else{
                         system("cls");
                         cout << "dia do mes invalido" << endl;
                         Sleep(5000);
-                        c2 = 1;
+                        continue;
                     }
                 }
-            }
-
-            //Para controlar corretamente os laços de repetição
-            if (c2 == 1){
-                continue; //Vai para o inicio do while
-            }
-            else if (c2 == 2){                
-                break; //Sai do while    
             }
         }
 
@@ -779,7 +761,7 @@ void GerenciaArquivo::buscaPorData(){
                     cout << "Data de ingresso: " << data[i] << endl;
                     cout << "Designacao......: " << desig[i] << endl;
                     cout << "\n------------------------------------------------------------\n\n";
-                    encontrado++; //incrementa a quantidade de funcionarios encontrados
+                    encontrado++;
                 }
                 else if (stoi(ano[i]) == stoi(aInicial) || stoi(ano[i]) == stoi(aFinal)){
 
@@ -792,7 +774,7 @@ void GerenciaArquivo::buscaPorData(){
                         cout << "Data de ingresso: " << data[i] << endl;
                         cout << "Designacao......: " << desig[i] << endl;
                         cout << "\n------------------------------------------------------------\n\n";
-                        encontrado++; //incrementa a quantidade de funcionarios encontrados
+                        encontrado++;
                     }
                     else if (stoi(mes[i]) == stoi(mInicial) || stoi(mes[i]) == stoi(mFinal)){
 
@@ -806,20 +788,20 @@ void GerenciaArquivo::buscaPorData(){
                             cout << "Data de ingresso: " << data[i] << endl;
                             cout << "Designacao......: " << desig[i] << endl;
                             cout << "\n------------------------------------------------------------\n\n";
-                            encontrado++; //incrementa a quantidade de funcionarios encontrados
+                            encontrado++;
                         }
                     } 
                 }
             }
         }
-    
+        int c3=0;
+
         if (encontrado > 0){
             system("pause");
             break;
 
         } else {
             while(1){
-                getchar(); //"limpa enter" da data final digitada
                 system("cls");
                 cout << "Nenhum funcionario encontrado. Gostaria de tentar novamente? [s/n]" << endl;
                 getline(cin, opcao);
@@ -831,25 +813,23 @@ void GerenciaArquivo::buscaPorData(){
                 }
                 else if (opcao == "n" || opcao == "N"){
                     system("cls");
-                    c3 = 2;
+                    c3 = 0;
                     break;
 
                 } else {
                     system("cls"); 
-
                     cout << "Opcao invalida! Tente novamente" << endl << endl;
                     Sleep(5000);
                     continue;
                 }
             }
 
-            //Para controlar corretamente os laços de repetição
-            if (c3 == 1){
-                continue; //Vai para o inicio do while
+            if(c3 == 1){
+                continue;
             }
-            else if (c3 == 2){                
-                break; //Sai do while    
-            }
+            else{
+                break;
+            }          
         }
     }
 }

@@ -12,8 +12,9 @@ int main(){
     Menu menu;
     Funcionario funcionario;
     
-    menu.cmdPrincipal();
+    // menu.cmdPrincipal();
     // funcionario.fotografarUsuario("123");
+    funcionario.buscaPorData();
 
     return 0;
 }
