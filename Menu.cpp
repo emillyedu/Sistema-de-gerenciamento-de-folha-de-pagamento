@@ -80,6 +80,7 @@ void Menu::menuFotos(){
 void Menu::cmdPrincipal(){
     Funcionario funcionario;
     int opcao;
+    bool teste;
 
     system("cls");
 
@@ -120,16 +121,27 @@ void Menu::cmdPrincipal(){
                 
                 break;
             case 5:
-                funcionario.calculaFolhaSalarial();
+                teste = funcionario.calculaFolhaSalarial();
 
-                cout << "\n-------------------------------------------------------------\n";
+                if(teste){
+                    cout << "\n-------------------------------------------------------------\n";
 
-                cout << "\nFolha salarial calculada!" << endl;
+                    cout << "\nFolha salarial calculada!" << endl;
 
-                cout << "\n-------------------------------------------------------------\n";
-                
-                cout << "\n\n";
-                system("pause");
+                    cout << "\n-------------------------------------------------------------\n";
+                    
+                    cout << "\n\n";
+                    system("pause");
+                }else{
+                    cout << "\n-------------------------------------------------------------\n";
+
+                    cout << "\nFolha salarial ja havia sido calculada!" << endl;
+
+                    cout << "\n-------------------------------------------------------------\n";
+                    
+                    cout << "\n\n";
+                    system("pause");
+                }
                 
                 break;
             case 6:

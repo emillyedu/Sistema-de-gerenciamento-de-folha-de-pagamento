@@ -1,3 +1,2 @@
-tratar calcula folha salarial
 tratar virgulas que podem entrar no csv: codigo, nome, endereco, telefone
 acentuações

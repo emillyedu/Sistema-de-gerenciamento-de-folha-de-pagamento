@@ -128,10 +128,10 @@ public:
     /** 
      *  Tal método realiza o cálculo de salário de todos os funcionários para um determinado mês. É solicitado ao
      *  usuário: o mês e a folha salarial à qual se refere. Não possui parâmetros.
-     *  \return void, não possui retorno.
+     *  \return bool, falso caso ja tenha sido calculada antes e true caso contrário.
      *  \author Lucas Bitu
     */
-    void calculaFolhaSalarial();
+    bool calculaFolhaSalarial();
 
     /** 
      *  Tal método é responsável por realizar a modificação dos dados de funcionários da empresa, salvando essas
