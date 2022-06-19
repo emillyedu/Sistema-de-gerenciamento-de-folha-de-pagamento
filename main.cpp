@@ -1,3 +1,12 @@
+/** 
+ *  Projeto apresentado às disciplinas de Linguagem de Programação I e Laboratório de Linguagem de Programação I.
+ * 
+ *  Descrição: esse programa se trata de um Sistema de Gerenciamento de Folha de Pagamento de funcionários de
+ *  uma empresa.
+ *
+ *  Autores: Êmilly Eduarda, Igor Matheus e Lucas Bitu.
+*/
+
 #include "Funcionario.h"
 #include "Operador.h"
 #include "Diretor.h"
