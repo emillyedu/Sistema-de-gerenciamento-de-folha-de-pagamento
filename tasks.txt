@@ -1,7 +1,3 @@
-documentaçao -> explicar classes e metodos PRINCIPAIS
-uml
-comentar metodos e classes do codigo
-
-
-voz
-fotografar: mover e abrir na pasta fotos
+tratar calcula folha salarial
+tratar virgulas que podem entrar no csv: codigo, nome, endereco, telefone
+acentuações

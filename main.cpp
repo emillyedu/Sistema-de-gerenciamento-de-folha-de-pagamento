@@ -15,6 +15,12 @@ int main(){
     
     menu.cmdPrincipal();
 
+    // string str;
+    // getline(cin, str);
+    // if(str.size()==0){
+    //     cout << "sem tamanho" << endl;
+    // }
+
     
     return 0;
 }

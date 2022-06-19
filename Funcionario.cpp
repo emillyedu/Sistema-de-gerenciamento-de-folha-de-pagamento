@@ -505,11 +505,28 @@ void Funcionario::addFuncionario(){
             cout << "Data que ingressou na empresa:\n";
             cout << "Dia: ";
             getline(cin, data.dia);
+            if(data.dia.size()==0){
+                system("cls");
+                cout << "Dia invalido" << endl;
+                Sleep(5000);
+                continue;
+            }
             cout << "Mes: ";
             getline(cin, data.mes);
+            if(data.mes.size()==0){
+                system("cls");
+                cout << "Mes invalido" << endl;
+                Sleep(5000);
+                continue;
+            }
             cout << "Ano: ";
             getline(cin, data.ano);
-            
+            if(data.ano.size()==0){
+                system("cls");
+                cout << "Ano invalido" << endl;
+                Sleep(5000);
+                continue;
+            }
             if(data.dia.length() == 1){
                 dia = "0" + data.dia;
                 if(isNumber(dia)){
@@ -734,13 +751,13 @@ void Funcionario::addFuncionario(){
 
         line = codigo + "," + transformaStringMin(nome) + "," + transformaStringMin(endereco) + "," + telefone + "," + dia + "/" + mes +"/" + ano + "," + transformaStringMin(designacao) + "," + salario ;
         if(designacao == "Gerente"){
-            linha[li] = line + "," + areaS[0] + "," + Nan + "," + Nan + "\n";
+            linha[li] = line + ",'" + areaS[0] + "'," + Nan + "," + Nan + "\n";
         }
         else if(designacao == "Diretor"){
-            linha[li] = line + "," + areaS[1] + "," + areaF[0] + "," + Nan + "\n";
+            linha[li] = line + ",'" + areaS[1] + "','" + areaF[0] + "'," + Nan + "\n";
         }
         else if(designacao == "Presidente"){
-            linha[li] = line + "," + Nan + "," + areaF[1] + "," + formacao + "\n";
+            linha[li] = line + "," + Nan + ",'" + areaF[1] + "'," + formacao + "\n";
         }
         else{
             linha[li] = line + "," + Nan + "," + Nan + "," + Nan + "\n";
@@ -880,14 +897,15 @@ void Funcionario::modificarFuncionario(){
         cout << "[4] Telefone\n";
         cout << "[5] Data\n";
         cout << "[6] Salario\n";
-        cout << "[7] Designacao\n\n";
+        cout << "[7] Designacao\n";
+        cout << "[0] Sair\n\n";
 
         cin >> escolha;
         getchar();
    
         system("cls");
 
-        if (escolha <= 0 || escolha > 7){
+        if (escolha < 0 || escolha > 7){
             cout << "Escolha invalida! Tente novamente" << endl;
             Sleep(5000);
             system("cls");
@@ -969,6 +987,8 @@ void Funcionario::modificarFuncionario(){
                     cout << "\n-------------------------------------------------------------\n";
                     Sleep(5000);
                     system("cls");
+                    break;
+                case 0:
                     break;
             }
 

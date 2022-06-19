@@ -461,10 +461,28 @@ void GerenciaArquivo::buscaPorData(){
         
             cout << "Dia inicial: ";
             getline(cin, dt.diaIni);
+            if(dt.diaIni.size()==0){
+                system("cls");
+                cout << "Dia invalido" << endl;
+                Sleep(5000);
+                continue;
+            }
             cout << "Mes inicial: ";
             getline(cin, dt.mesIni);
+            if(dt.mesIni.size()==0){
+                system("cls");
+                cout << "Mes invalido" << endl;
+                Sleep(5000);
+                continue;
+            }
             cout << "Ano inicial: ";
             getline(cin, dt.anoIni);
+            if(dt.anoIni.size()==0){
+                system("cls");
+                cout << "Ano invalido" << endl;
+                Sleep(5000);
+                continue;
+            }
 
             system("cls");
 
@@ -598,10 +616,28 @@ void GerenciaArquivo::buscaPorData(){
             cout << "Intervalo de tempo, a partir das datas de ingresso:\n" << endl;
             cout << "Dia final: ";
             getline(cin, dt.diaFi);
+            if(dt.diaFi.size()==0){
+                system("cls");
+                cout << "Dia invalido" << endl;
+                Sleep(5000);
+                continue;
+            }
             cout << "Mes final: ";
             getline(cin, dt.mesFi);
+            if(dt.mesFi.size()==0){
+                system("cls");
+                cout << "Mes invalido" << endl;
+                Sleep(5000);
+                continue;
+            }
             cout << "Ano final: ";
             getline(cin, dt.anoFi);
+            if(dt.anoFi.size()==0){
+                system("cls");
+                cout << "Ano invalido" << endl;
+                Sleep(5000);
+                continue;
+            }
 
             system("cls");
 
@@ -925,7 +961,7 @@ void GerenciaArquivo::buscaPorEndereco(){
 void GerenciaArquivo::modificaCodigo(string cod){
     int c = 0, cont = 0;
     string mod, aux;
-    string modificacao;
+    string modificacao, command;
     
     colunas();
 
@@ -975,6 +1011,9 @@ void GerenciaArquivo::modificaCodigo(string cod){
         }
 
         if(c == 1){
+            string codAntigo = "./fotos-funcionarios/" + cod +".jpg";
+            string codNovo = "./fotos-funcionarios/" + modificacao +".jpg";
+            rename(codAntigo.c_str(), codNovo.c_str());
             break;
         }
     }
@@ -1199,10 +1238,28 @@ void GerenciaArquivo::modificaData(string cod){
         cout << "Nova data que ingressou na empresa:\n";
         cout << "Dia: ";
         getline(cin, data.dia);
+        if(data.dia.size()==0){
+            system("cls");
+            cout << "Dia invalido" << endl;
+            Sleep(5000);
+            continue;
+        }
         cout << "Mes: ";
         getline(cin, data.mes);
+        if(data.mes.size()==0){
+            system("cls");
+            cout << "Mes invalido" << endl;
+            Sleep(5000);
+            continue;
+        }
         cout << "Ano: ";
         getline(cin, data.ano);
+        if(data.ano.size()==0){
+            system("cls");
+            cout << "Ano invalido" << endl;
+            Sleep(5000);
+            continue;
+        }
         
         if(data.dia.length() == 1){
             dia = "0" + data.dia;
@@ -1382,6 +1439,12 @@ void GerenciaArquivo::modificaSalario(string cod){
             system("cls");
             cout << " Digite o novo salario: ";
             getline(cin, modificacao);
+            if(modificacao.size() == 0){
+                system("cls");
+                cout << "Salario Ivalido" << endl;
+                Sleep(5000);
+                continue;
+            }
 
             for(int i = 0; i < modificacao.size(); i++){
                 if(modificacao[i] != ','){
@@ -1532,7 +1595,7 @@ void GerenciaArquivo::modDesigDeGerente(string cod){
                 if (codigo[cont].find(cod) != string::npos){
 
                     linhas[cont+1] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + ","
-                    + data[cont] + "," + transformaStringMin(modificacao) + "," + salario[cont] + "," + areaS + "," + areaF + ","
+                    + data[cont] + "," + transformaStringMin(modificacao) + "," + salario[cont] + ",'" + areaS + "','" + areaF + "',"
                     + formacao[cont]; 
 
                     cont = 0;
@@ -1570,8 +1633,8 @@ void GerenciaArquivo::modDesigDeGerente(string cod){
                 if (codigo[cont].find(cod) != string::npos){
 
                     linhas[cont+1] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + ","
-                    + data[cont] + "," + transformaStringMin(modificacao) + "," + salario[cont] + "," + "Nan" + "," + areaF + ","
-                    + formacaoMax;
+                    + data[cont] + "," + transformaStringMin(modificacao) + "," + salario[cont] + "," + "Nan" + ",'" + areaF + "','"
+                    + formacaoMax + "'";
 
                     cont = 0;
             
@@ -1651,7 +1714,7 @@ void GerenciaArquivo::modDesigDeOperador(string cod){
                 if (codigo[cont].find(cod) != string::npos){
 
                     linhas[cont+1] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + ","
-                    + data[cont] + "," + transformaStringMin(modificacao) + "," + salario[cont] + "," + areaS + "," + acad[cont] + ","
+                    + data[cont] + "," + transformaStringMin(modificacao) + "," + salario[cont] + "," + "'" + areaS + "'" + "," + acad[cont] + ","
                     + formacao[cont]; 
 
                     cont = 0;
@@ -1689,7 +1752,7 @@ void GerenciaArquivo::modDesigDeOperador(string cod){
                 if (codigo[cont].find(cod) != string::npos){
 
                     linhas[cont+1] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + ","
-                    + data[cont] + "," + transformaStringMin(modificacao) + "," + salario[cont] + "," + areaS + "," + areaF + ","
+                    + data[cont] + "," + transformaStringMin(modificacao) + "," + salario[cont] + "," + "'" + areaS + "'" + "," + "'" + areaF + "'" + ","
                     + formacao[cont];
 
                     cont = 0;
@@ -1727,8 +1790,8 @@ void GerenciaArquivo::modDesigDeOperador(string cod){
                 if (codigo[cont].find(cod) != string::npos){
 
                     linhas[cont+1] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + ","
-                    + data[cont] + "," + transformaStringMin(modificacao) + "," + salario[cont] + "," + sup[cont] + "," + areaF + ","
-                    + formacaoMax;
+                    + data[cont] + "," + transformaStringMin(modificacao) + "," + salario[cont] + "," + sup[cont] + ",'" + areaF + "',"
+                    + "'"+ formacaoMax + "'";
 
                     cont = 0;
             
@@ -1814,8 +1877,8 @@ void GerenciaArquivo::modDesigDeDiretor(string cod){
                 if (codigo[cont].find(cod) != string::npos){
 
                     linhas[cont+1] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + ","
-                    + data[cont] + "," + transformaStringMin(modificacao) + "," + salario[cont] + "," + areaS + "," + "Nan" + ","
-                    + formacao[cont]; 
+                    + data[cont] + "," + transformaStringMin(modificacao) + "," + salario[cont] + ",'" + areaS + "'," + "Nan" + ",'"
+                    + formacao[cont] + "'"; 
 
                     cont = 0;
             
@@ -1852,7 +1915,7 @@ void GerenciaArquivo::modDesigDeDiretor(string cod){
                 if (codigo[cont].find(cod) != string::npos){
 
                     linhas[cont+1] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + ","
-                    + data[cont] + "," + transformaStringMin(modificacao) + "," + salario[cont] + "," + "Nan" + "," + areaF + ","
+                    + data[cont] + "," + transformaStringMin(modificacao) + "," + salario[cont] + "," + "Nan" + ",'" + areaF + "',"
                     + formacaoMax; 
     
                     cont = 0;
@@ -1935,7 +1998,7 @@ void GerenciaArquivo::modDesigDePresidente(string cod){
                 if (codigo[cont].find(cod) != string::npos){
 
                     linhas[cont+1] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + ","
-                    + data[cont] + "," + transformaStringMin(modificacao) + "," + salario[cont] + "," + areaS + "," + "Nan" + "," + "Nan";
+                    + data[cont] + "," + transformaStringMin(modificacao) + "," + salario[cont] + ",'" + areaS + "'," + "Nan" + "," + "Nan";
     
                     cont = 0;     
                     break;     
@@ -1966,7 +2029,7 @@ void GerenciaArquivo::modDesigDePresidente(string cod){
                 if (codigo[cont].find(cod) != string::npos){
 
                     linhas[cont+1] = codigo[cont] + "," + nome[cont] + "," + end[cont] + "," + telefone[cont] + ","
-                    + data[cont] + "," + modificacao + "," + salario[cont] + "," + areaS + "," + areaF + "," + "Nan"; 
+                    + data[cont] + "," + modificacao + "," + salario[cont] + ",'" + areaS + "','" + areaF + "'," + "Nan"; 
     
                     cont = 0;
                     break;      
