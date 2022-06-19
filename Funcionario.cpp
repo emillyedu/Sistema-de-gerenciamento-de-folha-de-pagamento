@@ -13,15 +13,38 @@ using namespace std;
 Funcionario::Funcionario(){
 }
 
+void Funcionario::renovarFoto(string cod){
+    bool teste;
+    
+    lerArquivo();
+    colunas();
+
+    teste = true;
+    for(int i = 0; i < TAM; i++){
+        if(cod == getCodigo(i)){
+            teste = false;
+            break;
+        }
+    }
+
+    if(teste){
+        system("cls");
+        cout << "Codigo nao pertence a um funcinario" << endl;
+        Sleep(5000);
+        system("cls");
+    }else{
+        fotografarUsuario(cod);
+    }
+}
+
 void Funcionario::fotografarUsuario(string cod){
     string command;
     char yn;
-    int flag = 0;
-
+    
     system("cls");
 
     while(1){
-        cout << "Podemos tirar uma foto sua? [s/n]" << endl;
+        cout << "Esta pronto para tirar sua foto? [s/n]" << endl;
         cin >> yn;
 
         system("cls");
@@ -32,8 +55,11 @@ void Funcionario::fotografarUsuario(string cod){
             system("cls");
         }
         else if(yn == 'n' || yn == 'N'){
-            flag = 1;
-            break;
+            cout << "Que pena :(" << endl;
+            cout << "Iremos aguardar 10 segundos!" << endl;
+            Sleep(10000);
+            system("cls");
+            continue;
         }
         else{
             continue;
@@ -41,33 +67,85 @@ void Funcionario::fotografarUsuario(string cod){
 
         command = "CommandCam /quiet /filename " + cod + ".jpg";
         system(command.c_str());
-
-        cout << "Foto tirada!" << endl;
+        cout << "\n-------------------------------------------------------------\n";
+        cout << "\nFoto tirada!" << endl;
+        cout << "\n-------------------------------------------------------------\n";
         Sleep(5000);
 
         system("cls");
 
-        if(flag == 0){
-            command = "move \"./" + cod + ".jpg\"" + "\"./fotos-funcionarios\"";
-            system(command.c_str());
-            break;
-        }
-
+        command = "move \"./" + cod + ".jpg\" " + "\"./fotos-funcionarios\"";
+        system(command.c_str());
+        system("cls");
+        break;
     }
     
-    if(flag == 0){
-
-        cout << "Deseja ver a sua foto? [s/n]" << endl;
-        cin >> yn;
-        if(yn == 's' || yn == 'S'){
-            command = cod + ".jpg";
-            system(command.c_str());
-        }
+    cout << "Deseja ver a sua foto? [s/n]" << endl;
+    cin >> yn;
+    if(yn == 's' || yn == 'S'){
+        command = "start ./fotos-funcionarios/" + cod +".jpg";
+        system((command).c_str());
+        cout << "\n-------------------------------------------------------------\n";
+        cout << "\nFoto exibida!" << endl;
+        cout << "\n-------------------------------------------------------------\n";
+        Sleep(5000);
 
         system("cls");
     }
 
-}   
+    system("cls");
+    
+
+}
+
+void Funcionario::exibeFoto(){
+    string command, cod, codigo;
+    bool teste;
+
+    lerArquivo();
+    colunas();
+
+    while(1){
+        cout << "Insira o codigo do funcionario desejado: ";
+        getline(cin, codigo);
+        system("cls");
+
+        if(codigo.length() == 3){
+            cod = codigo;
+            break;
+        }
+        else if(codigo.length() == 2){
+            cod = "0" + codigo;
+            break;
+        }
+        else if(codigo.length() == 1){
+            cod = "00" + codigo;
+            break;
+        }
+        else{
+            cout << "Codigo maior do que o esperado\n" << endl;
+            continue;
+        }
+    }
+    
+    teste = true;
+    for(int i = 0; i < TAM; i++){
+        if(cod == getCodigo(i)){
+            command = "start ./fotos-funcionarios/" + cod +".jpg";
+            system((command).c_str());
+            teste = false;
+            break;
+        }
+    }
+
+    if(teste){
+        system("cls");
+        cout << "Codigo nao pertence a um funcinario" << endl;
+        Sleep(5000);
+        system("cls");
+    }
+
+}
 
 void Funcionario::exibeRegistroFunc(){
     //Ao inserir o número de código do funcionário, os usuários podem acessar todas as informações 
@@ -944,8 +1022,8 @@ void Funcionario::excluirRegistro(){
                         cout << "\n-------------------------------------------------------------\n\n";
 
                         cout << "O registro foi excluido." << endl;
-                        command = "del " + cod + ".jpg";
-                        system(command.c_str());
+                        command = "./fotos-funcionarios/" + cod +".jpg";
+                        remove(command.c_str());
 
                         cout << "\n-------------------------------------------------------------\n";
                         Sleep(5000);

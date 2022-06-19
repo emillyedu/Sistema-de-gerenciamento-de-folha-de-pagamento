@@ -23,6 +23,7 @@ void Menu::menuPrincipal(){
     cout << "[4] Conceder aumento salarial\n";
     cout << "[5] Calcular folha salarial\n";
     cout << "[6] Imprimir folha salarial\n";
+    cout << "[7] Fotografia\n";
     cout << "[0] Sair\n";
 
     cout << "\n------------------------------------------------------------\n\n";
@@ -65,12 +66,11 @@ void Menu::menuFolhaSal(){
 
 }
 
-void Menu::menuBuscar(){
-    cout << "\n-------------------------- BUSCAR --------------------------\n\n";
+void Menu::menuFotos(){
+    cout << "\n-------------------------- FOTOS --------------------------\n\n";
 
-    cout << "[1] Buscar funcionario pelo NOME\n";
-    cout << "[2] Buscar Funcionario por INTERVALO DE TEMPO\n";
-    cout << "[2] Buscar Funcionario pelo ENDERECO\n";
+    cout << "[1] Renovar foto do funcionario\n";
+    cout << "[2] Exibir foto do funcionario\n";
     cout << "[0] Sair\n";
 
     cout << "\n------------------------------------------------------------\n\n";
@@ -109,7 +109,7 @@ void Menu::cmdPrincipal(){
             case 4:
                 funcionario.aumentoDeSalarios();
                 
-                cout << "\n-------------------------------------------------------------\n\n";
+                cout << "\n-------------------------------------------------------------\n";
 
                 cout << "\nAumento salarial concedido!" << endl;
 
@@ -122,7 +122,7 @@ void Menu::cmdPrincipal(){
             case 5:
                 funcionario.calculaFolhaSalarial();
 
-                cout << "\n-------------------------------------------------------------\n\n";
+                cout << "\n-------------------------------------------------------------\n";
 
                 cout << "\nFolha salarial calculada!" << endl;
 
@@ -135,10 +135,13 @@ void Menu::cmdPrincipal(){
             case 6:
                 cmdFolhaSal();
                 break;
+            case 7:
+                cmdFotos();
+                break;
             case 0:
                 break;
             default:
-                cout << "\n-------------------------------------------------------------\n\n";
+                cout << "\n-------------------------------------------------------------\n";
 
                 cout << "\nOpcao invalida!" << endl;
 
@@ -161,6 +164,81 @@ void Menu::cmdPrincipal(){
         
     }
 
+}
+
+void Menu::cmdFotos(){
+    Funcionario funcionario;
+    int opcao;
+    string cod, codigo;
+
+    while(1){
+        system("cls");
+        menuFotos();
+        
+        cout << "Agora escolha outra opcao: ";
+        cin >> opcao;
+        getchar();
+        
+        system("cls");
+        switch(opcao){
+            case 1:
+                while(1){
+                    cout << "Insira o codigo do funcionario desejado: ";
+                    getline(cin, codigo);
+                    system("cls");
+
+                    if(codigo.length() == 3){
+                        cod = codigo;
+                        break;
+                    }
+                    else if(codigo.length() == 2){
+                        cod = "0" + codigo;
+                        break;
+                    }
+                    else if(codigo.length() == 1){
+                        cod = "00" + codigo;
+                        break;
+                    }
+                    else{
+                        cout << "Codigo maior do que o esperado\n" << endl;
+                        continue;
+                    }
+                }
+
+                funcionario.renovarFoto(cod);
+
+                break;
+            case 2:
+                funcionario.exibeFoto();
+                cout << "\n-------------------------------------------------------------\n";
+
+                cout << "\nFoto exibida!" << endl;
+
+                cout << "\n-------------------------------------------------------------\n";
+                
+                cout << "\n\n";
+                Sleep(5000);
+                system("cls");
+                break;
+            case 0:
+                break;
+            default:
+                cout << "\n-------------------------------------------------------------\n";
+
+                cout << "\nOpcao invalida!" << endl;
+
+                cout << "\n-------------------------------------------------------------\n";
+                
+                cout << "\n\n";
+                system("pause");
+                break;
+        }
+
+        if(opcao == 0){
+            break;
+        }
+
+    }
 }
 
 void Menu::cmdExibir(){
@@ -253,7 +331,7 @@ void Menu::cmdModificar(){
             case 0:
                 break;
             default:
-                cout << "\n-------------------------------------------------------------\n\n";
+                cout << "\n-------------------------------------------------------------\n";
 
                 cout << "\nOpcao invalida!" << endl;
 
@@ -297,7 +375,7 @@ void Menu::cmdFolhaSal(){
                 break;
             default:
                 system("cls");
-                cout << "\n-------------------------------------------------------------\n\n";
+                cout << "\n-------------------------------------------------------------\n";
 
                 cout << "\nOpcao invalida!" << endl;
 

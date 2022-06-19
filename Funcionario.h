@@ -68,12 +68,28 @@ public:
     /** 
      *  Um método utilizado para tirar uma foto do funcionário, no momento em que este estiver sendo adicionado
      *  na empresa. Possui um parâmetro.
-     *  \param cod uma variável do tipo string que recebe o código do funcionário para cada foto ficar salva
-     *  para cada funcionário de forma correta. 
+     *  \param cod string que recebe o código do funcionário.
      *  \return void, não possui retorno.
      *  \authors Êmilly Eduarda e Lucas Bitu
     */
     void fotografarUsuario(string cod);
+
+
+    /** 
+     *  Um método utilizado para renovar a foto do funcionário. Possui um parâmetro.
+     *  \param cod string que recebe o código do funcionário.
+     *  \return void, não possui retorno.
+     *  \authors Êmilly Eduarda e Lucas Bitu
+    */
+    void renovarFoto(string cod);
+
+    /** 
+     *  Um método utilizado para exibir a foto do funcionário. Não possui parâmetro.
+     *  \param sem parametros 
+     *  \return void, não possui retorno.
+     *  \authors Êmilly Eduarda e Lucas Bitu
+    */
+    void exibeFoto();
 
     /** 
      *  Este método adiciona um novo funcionário na empresa, recebendo todos os seus dados e armazenando estes no

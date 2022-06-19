@@ -52,13 +52,20 @@ public:
     void menuFolhaSal();
 
     /** 
-     *  Este método é o menu de busca do sistema, apresentando as seguintes opções: buscar funcionário pelo nome, buscar
-     *  funcionário por intervalo de tempo, buscar funcionário pelo endereço, ou sair para o meu principal.
+     *  Tal método é usado para exibir as opções: renovar foto, ou exibir foto. 
      *  Não possui parâmetros.
      *  \return void, não possui retorno.
      *  \author Êmilly Eduarda
     */
-    void menuBuscar();
+    void menuFotos();
+
+    /** 
+     *  Tal método é o menu de impressão e edição de fotos, apresentando as seguintes opções: renovar foto, ou exibir foto. 
+     *  Não possui parâmetros.
+     *  \return void, não possui retorno.
+     *  \author Êmilly Eduarda
+    */
+    void cmdFotos();
 
     /** 
      *  Este método é responsável por organizar como os diferentes métodos para operações, nos diferentes menus, serão

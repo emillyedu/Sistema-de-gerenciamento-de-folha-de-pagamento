@@ -6,15 +6,15 @@
 #include "Menu.h"
 
 #include <iostream>
+#include<stdio.h>
 
 int main(){
     srand(time(NULL));
     Menu menu;
     Funcionario funcionario;
     
-    // menu.cmdPrincipal();
-    // funcionario.fotografarUsuario("123");
-    funcionario.buscaPorData();
+    menu.cmdPrincipal();
 
+    
     return 0;
 }
