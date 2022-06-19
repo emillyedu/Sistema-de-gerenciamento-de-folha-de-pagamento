@@ -1232,54 +1232,119 @@ void Funcionario::excluirRegistro(){
 
 }
 
-void Funcionario::calculaFolhaSalarial(){
+bool Funcionario::calculaFolhaSalarial(){
+    typedef struct{
+        string mes;
+        string ano;
+    } Data;
+
+    Data data;
     ifstream fileTeste;
     fstream file;
-    string data, dataM, dataA;
-    string meses[12]{"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
-    int testeMes=0, testeAno=0;
+    string mes, ano, busca;
     salarioEmpresa=0;
-    double mes;
+    int mesI;
+    bool teste;
 
     limpaArraySalario();
     lerArquivo();
     colunas();
 
     while(1){
-        cout << "Digite o ano e o mes, em que a folha salarial vai ser calculada: " << "Padrao : yyxxxx" << endl;
-        cin >> data;
-        getchar();
-        dataM = data;
-        dataM.erase(2, 6);
-        dataA = data;
-        dataA.erase(0, 2);
-        
-        for(int i = 0; i<12; i++){
-            if(dataM == meses[i]){
-                testeMes=1;
-                break;
-            }
+        system("cls");
+        cout << "Data em que a folha salaria deve ser calculada:\n";
+        cout << "Mes: ";
+        getline(cin, data.mes);
+        if(data.mes.size()==0){
+            system("cls");
+            cout << "Mes invalido" << endl;
+            Sleep(5000);
+            continue;
         }
-        
-        if(strlen(dataA.c_str()) == 4){
-            testeAno=1;
+        cout << "Ano: ";
+        getline(cin, data.ano);
+        if(data.ano.size()==0){
+            system("cls");
+            cout << "Ano invalido" << endl;
+            Sleep(5000);
+            continue;
         }
 
-        if((testeAno == 1) && (testeMes == 1)){
-            break;
-        }else{
-            cout << "Data invalida." << endl;
+        if(data.mes.length() == 1){
+                mes = "0" + data.mes;
+                if(!isNumber(mes)){
+                    system("cls");
+                    cout << "Mes invalido" << endl;
+                    Sleep(5000);
+                    continue;
+                }
+        }
+        else if(data.mes.length() == 2){
+            mes = data.mes;
+            if(!isNumber(mes)){
+                system("cls");
+                cout << "Mes invalido" << endl;
+                Sleep(5000);
+                continue;
+            }
+        }
+        else if(data.mes.length() > 2){
+            system("cls");
+            cout << "Mes invalido" << endl;
+            Sleep(5000);
             continue;
+        }
+        
+        if(data.ano.length() == 2){
+            ano = "19" + data.ano;
+            if(!isNumber(ano)){
+                system("cls");
+                cout << "Ano invalido" << endl;
+                Sleep(5000);
+                continue;
+            }
+        }
+        else if(data.ano.length() == 4){
+            ano = data.ano;
+            if(!isNumber(ano)){
+                system("cls");
+                cout << "Ano invalido" << endl;
+                Sleep(5000);
+                continue;
+            }
+        }
+        else{
+            system("cls");
+            cout << "Ano invalido" << endl;
+            Sleep(5000);
+            continue;
+        }
+            
+
+        if(stoi(mes) < 1 || stoi(mes) > 12){
+            system("cls");
+            cout << "Data invalida\n" << endl;
+            Sleep(5000);
+            continue;
+        }
+            
+        if(stoi(ano) < 1000 || stoi(ano) > 2022){
+            system("cls");
+            cout << "Data invalida\n" << endl;
+            Sleep(5000);
+            continue;
+        }else{
+            break;
         }
     }
 
-    data = "./csv/FolhaSalarial-" + data + ".csv";
+    busca = "./csv/FolhaSalarial-" + mes + ano + ".csv";
 
     // verifica se o arquivo já foi criado
-    fileTeste.open(data);
+    fileTeste.open(busca);
     if (fileTeste.is_open()){
-        cout<<"Folha Salarial dessa data ja foi calculada"<<endl;
         fileTeste.close();
+        return false;
     }else{
         fileTeste.close();
 
@@ -1293,19 +1358,18 @@ void Funcionario::calculaFolhaSalarial(){
         }
 
         //variavel mes da folha salarial
-        dataM = dataM.erase(2, dataM.length());
-        mes = stod(dataM);
+        mesI = stod(mes);
 
         // Calcula salario bruto daquele mes
         for(int i = 0; i < tamArq-1; i++){
             if(linhas[i] != ""){
                 if(getSalario(i) != ""){
-                    if(mes == 2){
-                        salarioBruto[i] = ((salarioBruto[i]/28)*geraDiasTrabalhados(mes)) +  ((salarioBruto[i]/28)/8)*2*geraHorasExtras(mes);
-                    }else if(mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12){
-                        salarioBruto[i] = ((salarioBruto[i]/31)*geraDiasTrabalhados(mes)) +  ((salarioBruto[i]/31)/8)*2*geraHorasExtras(mes);
+                    if(mesI == 2){
+                        salarioBruto[i] = ((salarioBruto[i]/28)*geraDiasTrabalhados(mesI)) +  ((salarioBruto[i]/28)/8)*2*geraHorasExtras(mesI);
+                    }else if(mesI == 1 || mesI == 3 || mesI == 5 || mesI == 7 || mesI == 8 || mesI == 10 || mesI == 12){
+                        salarioBruto[i] = ((salarioBruto[i]/31)*geraDiasTrabalhados(mesI)) +  ((salarioBruto[i]/31)/8)*2*geraHorasExtras(mesI);
                     }else{
-                        salarioBruto[i] = ((salarioBruto[i]/30)*geraDiasTrabalhados(mes)) +  ((salarioBruto[i]/30)/8)*2*geraHorasExtras(mes);       
+                        salarioBruto[i] = ((salarioBruto[i]/30)*geraDiasTrabalhados(mesI)) +  ((salarioBruto[i]/30)/8)*2*geraHorasExtras(mesI);       
                     }
                 }else
                     break;
@@ -1315,7 +1379,7 @@ void Funcionario::calculaFolhaSalarial(){
         //desconto inss e irrf
         calculaDescontos(salarioBruto);
 
-        file.open(data, fstream::out);
+        file.open(busca, fstream::out);
         file << "Funcinario," << "Designacao," <<"SalarioBruto," << "INSS," << "IRRF," << "SalarioLiquido" << endl; 
         for(int i = 0; i<tamArq-1; i++){
             if(getNome(i) != ""){
@@ -1331,6 +1395,7 @@ void Funcionario::calculaFolhaSalarial(){
         }
         file << "SalarioEmpresa: " << fixed << setprecision(2) << salarioEmpresa << endl;
         file.close();
+        return true;
 
     }
 }
@@ -1408,8 +1473,15 @@ void Funcionario::exibeFolhaSalarialFuncionario(){
 }
 
 void Funcionario::exibeFolhaSalarialEmpresa(){
+    typedef struct{
+        string mes;
+        string ano;
+    } Data;
+
+    Data data;
     int i, k, l, teste=0;
-    string opcao, data, arquivo[TAM], ano, busca[12], linha, temp, meses[12]={"janeiro", "fevereiro", "março", "abril", "maio","junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"};
+    string opcao, buscaMes, arquivo[TAM], ano, mes, busca[12], linha, temp, aux; 
+    string meses[12]={"janeiro", "fevereiro", "março", "abril", "maio","junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"};
     ifstream fileTeste;
     salarioEmpresa = 0;
     double empresaMes[12];
@@ -1421,7 +1493,7 @@ void Funcionario::exibeFolhaSalarialEmpresa(){
 
     while(1){
         system("cls");
-        cout << "Exibir folha salarial mensal ou anual ? (1) - mensal / (2) - anual" << endl;
+        cout << "Exibir folha salarial mensal (1) ou anual (2)?" << endl;
         getline(cin, opcao);
         system("cls");
         if(opcao == "1"){
@@ -1438,13 +1510,97 @@ void Funcionario::exibeFolhaSalarialEmpresa(){
     
 
     if(opcao == "1"){
+        while(1){
         system("cls");
-        cout << "Digite o ano e o mes, folha salarial que vai ser exibida: " << "Padrao : yyxxxx" << endl;
-        cin >> data;
-        system("cls");
-        data = "./csv/FolhaSalarial-" + data + ".csv";
+        cout << "Data em que a folha salaria deve ser exibida:\n";
+        cout << "Mes: ";
+        getline(cin, data.mes);
+        if(data.mes.size()==0){
+            system("cls");
+            cout << "Mes invalido" << endl;
+            Sleep(5000);
+            continue;
+        }
+        cout << "Ano: ";
+        getline(cin, data.ano);
+        if(data.ano.size()==0){
+            system("cls");
+            cout << "Ano invalido" << endl;
+            Sleep(5000);
+            continue;
+        }
 
-        fileTeste.open(data);
+        if(data.mes.length() == 1){
+                mes = "0" + data.mes;
+                if(!isNumber(mes)){
+                    system("cls");
+                    cout << "Mes invalido" << endl;
+                    Sleep(5000);
+                    continue;
+                }
+        }
+        else if(data.mes.length() == 2){
+            mes = data.mes;
+            if(!isNumber(mes)){
+                system("cls");
+                cout << "Mes invalido" << endl;
+                Sleep(5000);
+                continue;
+            }
+        }
+        else if(data.mes.length() > 2){
+            system("cls");
+            cout << "Mes invalido" << endl;
+            Sleep(5000);
+            continue;
+        }
+        
+        if(data.ano.length() == 2){
+            ano = "19" + data.ano;
+            if(!isNumber(ano)){
+                system("cls");
+                cout << "Ano invalido" << endl;
+                Sleep(5000);
+                continue;
+            }
+        }
+        else if(data.ano.length() == 4){
+            ano = data.ano;
+            if(!isNumber(ano)){
+                system("cls");
+                cout << "Ano invalido" << endl;
+                Sleep(5000);
+                continue;
+            }
+        }
+        else{
+            system("cls");
+            cout << "Ano invalido" << endl;
+            Sleep(5000);
+            continue;
+        }
+            
+
+        if(stoi(mes) < 1 || stoi(mes) > 12){
+            system("cls");
+            cout << "Data invalida\n" << endl;
+            Sleep(5000);
+            continue;
+        }
+            
+        if(stoi(ano) < 1000 || stoi(ano) > 2022){
+            system("cls");
+            cout << "Data invalida\n" << endl;
+            Sleep(5000);
+            continue;
+        }else{
+            break;
+        }
+    }
+
+    buscaMes = "./csv/FolhaSalarial-" + mes + ano + ".csv";
+
+        fileTeste.open(buscaMes);
         if (fileTeste.is_open()){
             cout<<"Folha Salarial dessa data ja foi calculada"<<endl;
             i=0;
@@ -1467,10 +1623,50 @@ void Funcionario::exibeFolhaSalarialEmpresa(){
             system("cls");
         }
     }else if(opcao == "2"){
+       while(1){
         system("cls");
-        cout << "Digite o ano da folha salarial que vai ser exibida: " << "Padrao : xxxx" << endl;
-        cin >> ano;
-        system("cls");
+        cout << "Data em que a folha salaria deve ser exibida:\n";
+        cout << "Ano: ";
+        getline(cin, data.ano);
+        if(data.ano.size()==0){
+            system("cls");
+            cout << "Ano invalido" << endl;
+            Sleep(5000);
+            continue;
+        }
+        if(data.ano.length() == 2){
+            ano = "19" + data.ano;
+            if(!isNumber(ano)){
+                system("cls");
+                cout << "Ano invalido" << endl;
+                Sleep(5000);
+                continue;
+            }
+        }
+        else if(data.ano.length() == 4){
+            ano = data.ano;
+            if(!isNumber(ano)){
+                system("cls");
+                cout << "Ano invalido" << endl;
+                Sleep(5000);
+                continue;
+            }
+        }
+        else{
+            system("cls");
+            cout << "Ano invalido" << endl;
+            Sleep(5000);
+            continue;
+        }
+        if(stoi(ano) < 1000 || stoi(ano) > 2022){
+            system("cls");
+            cout << "Data invalida\n" << endl;
+            Sleep(5000);
+            continue;
+        }else{
+            break;
+        }
+    }
         for(int j = 1; j<13; j++){
             if(j < 10){
                 busca[j-1] = "./csv/FolhaSalarial-0" + to_string(j) + ano + ".csv";
@@ -1480,7 +1676,9 @@ void Funcionario::exibeFolhaSalarialEmpresa(){
 
             fileTeste.open(busca[j-1]);
             if(fileTeste.is_open()){
-                cout << "\n-------------------------------------------------------------\n\n";
+                if(j==1){
+                    cout << "\n-------------------------------------------------------------\n\n";
+                }
                 while(getline(fileTeste, linha)){
                     temp = "";
                     for(k = 0; k < linha.size(); k++){
@@ -1493,7 +1691,10 @@ void Funcionario::exibeFolhaSalarialEmpresa(){
                     }
 
                     if(temp == "SalarioEmpresa"){
-                        teste = 1;
+                        aux = temp;
+                        // cout << aux << endl;
+                    }else{
+                        aux = "";
                     }
                         
                     temp = "";
@@ -1501,14 +1702,10 @@ void Funcionario::exibeFolhaSalarialEmpresa(){
                         temp = temp + linha[k];
                     }
 
-                    if(teste == 1){
-                        teste =1;
-                    }
-                    
-                    if(temp != "" && teste == 1){
+                    if(aux == "SalarioEmpresa"){
                         try{
-                            empresaMes[j] = stod(temp);
-                            salarioEmpresa += empresaMes[j];
+                            empresaMes[j-1] = stod(temp);
+                            salarioEmpresa += empresaMes[j-1];
                         }catch(std :: invalid_argument  const & ex ){
                         }
                         
@@ -1517,7 +1714,7 @@ void Funcionario::exibeFolhaSalarialEmpresa(){
                             cout << "Folha Salarial " << ano << endl;
                         }
                         
-                        cout << "Mes de " << meses[j-1] << ": R$ " << empresaMes[j] << endl;
+                        cout << "Mes de " << meses[j-1] << ": R$ " << empresaMes[j-1] << endl;
                         
                         if(j==12){
                             
@@ -1526,16 +1723,17 @@ void Funcionario::exibeFolhaSalarialEmpresa(){
 
                     }
                 }
+
                 cout << "\n-------------------------------------------------------------\n";
                 cout << "\n\n";
                 system("pause");
                 system("cls");
-                    
+
                 fileTeste.close();
             }else{
                 fileTeste.close();
                 system("cls");
-                cout<<"Folha Salarial do mes " << j << " nao foi calculada" <<endl;
+                cout<<"Folha Salarial do mes " << meses[j-1] << " nao foi calculada" <<endl;
                 Sleep(5000);
                 system("cls");
             }
