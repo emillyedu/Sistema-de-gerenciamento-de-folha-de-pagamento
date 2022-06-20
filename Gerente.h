@@ -16,7 +16,7 @@ public:
     /** 
      *  Um método sobrescrito que realiza o cálculo do aumento de salário para funcionários da designação Gerente.
      *  Possui um parâmetro.
-     *  \param salario variável do tipo double, representando o salário do Gerente.
+     *  \param salario variável do tipo double.
      *  \return double, retorna o novo salário do Gerente após o aumento.
      *  \author Êmilly Eduarda
     */
