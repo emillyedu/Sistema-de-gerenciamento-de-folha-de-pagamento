@@ -14,9 +14,9 @@ public:
     ~Diretor();
 
     /** 
-     *  Método sobrescrito que realiza o cálculo do aumento de salário para funcionários da designação Diretor.
+     *  Método sobrescrito que calcula o aumento de salário para funcionários da designação Diretor.
      *  Possui um parâmetro.
-     *  \param salario variável do tipo double, representando o salário do Diretor.
+     *  \param salario variável do tipo double.
      *  \return double, retorna o novo salário do Diretor após o aumento.
      *  \author Êmilly Eduarda
     */
