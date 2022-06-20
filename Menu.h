@@ -19,41 +19,38 @@ public:
 
     /** 
      *  Este método é o menu principal do sistema, apresentando as opções para o usuário escolher qual/quais
-     *  operações realizar com os funcionários: buscar, consultar, modificar dados, conceder aumento, calcular folha
-     *  salarial, imprimir folha salarial, ou simplesmente sair do programa. Não possui parâmetros.
+     *  operações realizar com os funcionários da empresa, ou simplesmente sair do programa. Não possui parâmetros.
      *  \return void, não possui retorno.
      *  \author Êmilly Eduarda
     */
     void menuPrincipal();
 
     /** 
-     *  Este método é o menu de exibição do sistema, apresentando as seguintes opções: consultar registro de funcionário,
-     *  consultar lista de funcionários, consultar lista de funcionários por tipo, ou sair para o meu principal.
-     *  Não possui parâmetros.
+     *  Método que constitui o menu de exibição do sistema, apresentando as opções para operações relativas à exibição
+     *  dos dados. Não possui parâmetros.
      *  \return void, não possui retorno.
      *  \author Êmilly Eduarda
     */
     void menuExibir();
 
     /** 
-     *  Tal método é o menu de modificação de dados do sistema, apresentando as seguintes opções: adicionar funcionário,
-     *  modificar dados do funcionário, excluir funcionário, ou sair para o menu principal. Não possui parâmetros.
+     *  Tal método é o menu de modificação de dados do sistema, apresentando opções que dizem respeito à modificação
+     *  de dados dos funcionários. Não possui parâmetros.
      *  \return void, não possui retorno.
      *  \author Êmilly Eduarda
     */
     void menuModificar();
 
     /** 
-     *  Tal método é o menu de impressão da folha salarial do sistema, apresentando as seguintes opções: imprimir folha
-     *  salarial do funcionário, imprimir folha salarial da empresa, ou sair para o menu principal. Não possui parâmetros.
+     *  Tal método constitui o menu de impressão da folha salarial do sistema, apresentando opções relacionadas às
+     *  impressões de folhas salariais. Não possui parâmetros.
      *  \return void, não possui retorno.
      *  \author Êmilly Eduarda
     */
     void menuFolhaSal();
 
     /** 
-     *  Tal método é usado para exibir as opções: renovar foto, ou exibir foto. 
-     *  Não possui parâmetros.
+     *  Tal método é usado para exibir as opções: renovar foto, ou exibir foto. Não possui parâmetros.
      *  \return void, não possui retorno.
      *  \author Êmilly Eduarda
     */
@@ -68,16 +65,15 @@ public:
     void cmdFotos();
 
     /** 
-     *  Este método é responsável por organizar como os diferentes métodos para operações, nos diferentes menus, serão
-     *  chamados e apresentados no Prompt de Comando do computador, ao longo da execução do programa.
-     *  Não possui parâmetros.
+     *  Método responsável por organizar como os diferentes métodos para operações, nos diferentes menus, serão chamados e
+     *  apresentados no Prompt de Comando do computador, ao longo da execução do programa. Não possui parâmetros.
      *  \return void, não possui retorno.
      *  \author Êmilly Eduarda
     */
     void cmdPrincipal();
 
     /** 
-     *  Tal método é responsável por organizar como os diferentes métodos para operações, no menu de exibição do sistema,
+     *  Método responsável pela organização de como os diferentes métodos para operações, no menu de exibição do sistema,
      *  serão chamados e apresentados no Prompt de Comando. Não possui parâmetros.
      *  \return void, não possui retorno.
      *  \author Êmilly Eduarda
@@ -93,7 +89,7 @@ public:
     void cmdModificar();
 
     /** 
-     *  Um método responsável por organizar como os diferentes métodos para operações, no menu de impressão da folha
+     *  Método responsável por organizar como os diferentes métodos para operações, no menu de impressão da folha
      *  salarial do sistema, serão chamados e apresentados no Prompt de Comando. Não possui parâmetros.
      *  \return void, não possui retorno.
      *  \author Êmilly Eduarda
