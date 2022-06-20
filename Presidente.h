@@ -14,9 +14,9 @@ public:
     ~Presidente();
 
     /** 
-     *  Um método sobrescrito que realiza o cálculo do aumento de salário para funcionários da designação Presidente.
+     *  Método sobrescrito que realiza o cálculo do aumento de salário para funcionários da designação Presidente.
      *  Possui um parâmetro.
-     *  \param salario variável do tipo double, representando o salário do Presidente.
+     *  \param salario variável do tipo double.
      *  \return double, retorna o novo salário do Presidente após o aumento.
      *  \author Êmilly Eduarda
     */
