@@ -10,7 +10,7 @@ auxiliar na organização e administração de uma empresa, no que diz respeito 
 - Conceder aumento salarial.
 - Calcular folha salarial.
 - Imprimir folha salarial do funcionário e da empresa (mensal e anual).
-- fotografar, renovar e exibir fotrografia.
+- Fotografar, renovar e exibir fotografia.
 - Capturar o endereço do funcionário pelo CEP, usando API.
 
 
