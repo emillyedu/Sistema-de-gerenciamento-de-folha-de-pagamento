@@ -1,2 +1,5 @@
+<<<<<<< HEAD
+=======
 tratar virgulas que podem entrar no csv: codigo, nome, endereco, telefone
+>>>>>>> 17c42d2d675dd2275cc63fedff1f2fd154e0496f
 acentuações

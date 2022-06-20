@@ -1717,17 +1717,18 @@ void Funcionario::exibeFolhaSalarialEmpresa(){
                         cout << "Mes de " << meses[j-1] << ": R$ " << empresaMes[j-1] << endl;
                         
                         if(j==12){
+                            
                             cout <<  "Gasto Salarial Anual Da Empresa: R$ " << salarioEmpresa<< endl;
                         }
 
                     }
                 }
-                if(j==12){
-                    cout << "\n-------------------------------------------------------------\n";
-                    cout << "\n\n";
-                    system("pause");
-                }
-                    
+
+                cout << "\n-------------------------------------------------------------\n";
+                cout << "\n\n";
+                system("pause");
+                system("cls");
+
                 fileTeste.close();
             }else{
                 fileTeste.close();

@@ -374,14 +374,10 @@ void Menu::cmdFolhaSal(){
         system("cls");
         switch(opcao){
             case 1:
-
                 funcionario.exibeFolhaSalarialFuncionario();
-
                 break;
             case 2:
-
                 funcionario.exibeFolhaSalarialEmpresa();
-
                 break;
             case 0:
                 break;
