@@ -170,7 +170,7 @@ public:
      *  modificação no arquivo csv. Possui um parâmetro.
      *  \param cod variável do tipo string, código atual do funcionário(a).
      *  \return void, não possui retorno.
-     *  \author Igor Matheus
+     *  \author Êmilly Eduarda, Lucas Bitu e Igor Matheus
     */
     void modificaCodigo(string cod);
 
@@ -179,7 +179,7 @@ public:
      *  no arquivo csv. Possui um parâmetro.
      *  \param cod variável do tipo string, código do funcionário(a).
      *  \return void, não possui retorno.
-     *  \author Igor Matheus
+     *  \author Êmilly Eduarda, Lucas Bitu e Igor Matheus
     */
     void modificaNome(string cod);
 
@@ -188,7 +188,7 @@ public:
      *  no arquivo csv. Possui um parâmetro.
      *  \param cod variável do tipo string, código do funcionário(a).
      *  \return void, não possui retorno.
-     *  \author Igor Matheus
+     *  \author Êmilly Eduarda, Lucas Bitu e Igor Matheus
     */
     void modificaEndereco(string cod);
 
@@ -197,7 +197,7 @@ public:
      *  arquivo csv. Possui um parâmetro.
      *  \param cod variável do tipo string, código do funcionário(a).
      *  \return void, não possui retorno.
-     *  \author Igor Matheus
+     *  \author Êmilly Eduarda, Lucas Bitu e Igor Matheus
     */
     void modificaTelefone(string cod);
 

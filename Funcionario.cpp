@@ -44,6 +44,7 @@ void Funcionario::fotografarUsuario(string cod){
     system("cls");
 
     while(1){
+        system("cls");
         cout << "Esta pronto para tirar sua foto? [s/n]" << endl;
         cin >> yn;
 
@@ -79,9 +80,10 @@ void Funcionario::fotografarUsuario(string cod){
         system("cls");
         break;
     }
-    
+    system("cls");
     cout << "Deseja ver a sua foto? [s/n]" << endl;
     cin >> yn;
+    system("cls");
     if(yn == 's' || yn == 'S'){
         command = "start ./fotos-funcionarios/" + cod +".jpg";
         system((command).c_str());
@@ -106,6 +108,7 @@ void Funcionario::exibeFoto(){
     colunas();
 
     while(1){
+        system("cls");
         cout << "Insira o codigo do funcionario desejado: ";
         getline(cin, codigo);
         system("cls");
@@ -246,23 +249,23 @@ void Funcionario::exibeListaTipo(){
 
         switch (desig){
         case 1:
-            designacao = "Operador";
+            designacao = "operador";
             c = 0;
             break;
         case 2:
-            designacao = "Gerente";
+            designacao = "gerente";
             c = 0;
             break;
         case 3:
-            designacao = "Diretor";
+            designacao = "diretor";
             c = 0;
             break;
         case 4:
-            designacao = "Presidente";
+            designacao = "presidente";
             c = 0;
             break;
         default:
-            cout << "Inválido! Tente novamente\n";
+            cout << "Invalido! Tente novamente\n";
             break;
         }
 
@@ -281,7 +284,7 @@ void Funcionario::exibeListaTipo(){
     }
 
     if(flag == 0){
-        cout << "Não foi encontrado nenhum funcionario\n" << endl;
+        cout << "Nao foi encontrado nenhum funcionario\n" << endl;
         return;
     }
 
@@ -312,16 +315,16 @@ void Funcionario::aumentoDeSalarios(){
 
             colunas();
         
-            if(getDesig(j) == "Operador"){
+            if(getDesig(j) == "operador"){
                 salarioAum[j] = operador.calculaSalario(stod(getSalario(j)));
             }
-            else if(getDesig(j)  == "Presidente"){
+            else if(getDesig(j)  == "presidente"){
                 salarioAum[j] = presidente.calculaSalario(stod(getSalario(j)));
             }
-            else if(getDesig(j) == "Gerente"){
+            else if(getDesig(j) == "gerente"){
                 salarioAum[j] = gerente.calculaSalario(stod(getSalario(j)));
             }
-            else if(getDesig(j) == "Diretor"){
+            else if(getDesig(j) == "diretor"){
                 salarioAum[j] = diretor.calculaSalario(stod(getSalario(j)));
             }
         }
@@ -356,7 +359,7 @@ void Funcionario::addFuncionario(){
     string nome, aux, codigo, cod, telefone, designacao, endereco, cep, numero, areaS[2], areaF[2], formacao;
     string logradouro, bairro, cidade, uf, linha[TAM], line, dia, mes, ano, salario;
     string yn, desig;
-    bool teste;//usa pra verificar se salário é um caracter e não um número
+    bool teste;
     int i, c, li = 0;
 
 
@@ -476,7 +479,6 @@ void Funcionario::addFuncionario(){
 
         system("cls");
 
-        system("cls");
 
         while(1){
             cout << "Poderia informar seu CEP? [s/n]: ";
@@ -584,8 +586,9 @@ void Funcionario::addFuncionario(){
                 }else
                     break;
             }
+            endereco = "Logradouro: " + logradouro + " - " "Bairro: " + bairro + " - " + "Cidade: " + cidade + " - " + "UF: " + uf;            
         }
-        endereco = "Logradouro: " + logradouro + " - " "Bairro: " + bairro + " - " + "Cidade: " + cidade + " - " + "UF: " + uf;            
+    
 
         cout << "Digite o numero da casa: ";
         getline(cin, numero);
@@ -618,26 +621,6 @@ void Funcionario::addFuncionario(){
                 break;
         }
 
-        system("cls");
-
-
-        while(1){
-            cout << "Poderia informar seu CEP? [s/n]: ";
-            cin >> yn;
-            getchar();
-            if(yn == "S" || yn == "s" ||yn == "N" || yn == "n"){
-                break;
-            }
-            else if(yn.length() > 1){
-                system("cls");
-                continue;
-            }
-            else{
-                system("cls");
-                continue;
-            } 
-            system("cls");
-        }
         system("cls");
 
         while(1){
@@ -1067,14 +1050,14 @@ void Funcionario::modificarFuncionario(){
         
                 case 2:
                     modificaNome(cod);
-                    break;
                     cout << "\n-------------------------------------------------------------\n";
 
                     cout << "\nNome alterado!" << endl;
 
                     cout << "\n-------------------------------------------------------------\n";
                     Sleep(5000);
-                    system("cls");        
+                    system("cls");  
+                    break;      
                 case 3:
                     modificaEndereco(cod);
                     cout << "\n-------------------------------------------------------------\n";
@@ -1660,6 +1643,7 @@ void Funcionario::exibeFolhaSalarialEmpresa(){
 
         fileTeste.open(buscaMes);
         if (fileTeste.is_open()){
+            system("cls");
             cout<<"Folha Salarial dessa data ja foi calculada"<<endl;
             i=0;
             Sleep(5000);
@@ -1768,12 +1752,13 @@ void Funcionario::exibeFolhaSalarialEmpresa(){
                         
                         if(j==1){
                             system("cls");
-                            cout << "Folha Salarial " << ano << endl;
+                            cout << "\n------------------- " << "Folha Salarial " << ano << " ---------------------\n"<< endl;
                         }
                         
                         cout << "Mes de " << meses[j-1] << ": R$ " << empresaMes[j-1] << endl;
                         
                         if(j==12){
+                            cout << "\n";
                             cout <<  "Gasto Salarial Anual Da Empresa: R$ " << salarioEmpresa<< endl;
                         }
 

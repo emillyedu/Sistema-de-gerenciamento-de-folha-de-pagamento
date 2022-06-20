@@ -962,7 +962,7 @@ void GerenciaArquivo::modificaCodigo(string cod){
     int c = 0, cont = 0;
     string mod, aux;
     string modificacao, command;
-    
+    bool teste;
     colunas();
 
     while(1){
@@ -1009,8 +1009,28 @@ void GerenciaArquivo::modificaCodigo(string cod){
                 break;
             }
         }
-
+        if(c == 0){
+            continue;
+        }
         if(c == 1){
+            teste = false;
+
+            for(int i = 0; i < modificacao.size(); i++){
+                if(modificacao[i] != ','){
+                }else{
+                    teste = true;
+                    system("cls");
+                    cout << "Codigo invalido, digite sem virgulas" << endl;
+                    Sleep(5000);
+                    system("cls");
+                    break;
+                }
+            }
+        }
+        if(teste){
+            continue;
+        }
+        else{
             string codAntigo = "./fotos-funcionarios/" + cod +".jpg";
             string codNovo = "./fotos-funcionarios/" + modificacao +".jpg";
             rename(codAntigo.c_str(), codNovo.c_str());
@@ -1049,11 +1069,34 @@ void GerenciaArquivo::modificaCodigo(string cod){
 void GerenciaArquivo::modificaNome(string cod){
     int cont = 0;
     string modificacao;
+    bool teste;
 
     colunas();
     system("cls");
-    cout << "Digite o novo nome: ";
-    getline(cin, modificacao);
+    while(1){
+        system("cls");
+        teste = false;
+        cout << "Digite o novo nome: ";
+        getline(cin, modificacao);
+
+        for(int i = 0; i < modificacao.size(); i++){
+            if(modificacao[i] != ','){
+            }else{
+                teste = true;
+                system("cls");
+                cout << "Nome invalido, digite sem virgulas" << endl;
+                Sleep(5000);
+                system("cls");
+                break;
+            }
+        }
+
+        if(teste){
+            continue;
+        }else
+            break;
+    }
+
 
     system("cls");
 
@@ -1088,7 +1131,7 @@ void GerenciaArquivo::modificaEndereco(string cod){
     int cont = 0;
     string yn, cep;
     string modificacao, endereco, logradouro, bairro, cidade, uf, numero;
-
+    bool teste;
     colunas();
     
     while(1){
@@ -1134,21 +1177,73 @@ void GerenciaArquivo::modificaEndereco(string cod){
         }
     }
     system("cls");
-    if(endereco == "Nan" || yn == "N" || yn == "n"){
-        endereco.clear();
-        cep.clear();
+    if(endereco == Nan || yn == "N" || yn == "n"){
+        while(1){
+            endereco.clear();
+            cep.clear();
+            cout << "Informe o logradouro: ";
+            getline(cin, logradouro);
+            cout << "Informe o bairro: ";
+            getline(cin, bairro);
+            cout << "Informe a cidade: ";
+            getline(cin, cidade);
+            cout << "Informe a Uf: ";
+            getline(cin, uf);
+            system("cls");
 
-        cout << "informe o novo logradouro: ";
-        getline(cin, logradouro);
-        cout << "informe o novo bairro: ";
-        getline(cin, bairro);
-        cout << "informe a nova cidade: ";
-        getline(cin, cidade);
-        cout << "informe a nova Uf: ";
-        getline(cin, uf);
+            teste = false;
 
-        endereco = "Logradouro: " + logradouro + " - " "Bairro: " + bairro +
-        " - " + "Cidade: " + cidade + " - " + "UF: " + uf;            
+            for(int i = 0; i < logradouro.size(); i++){
+                if((logradouro[i] != ',')){
+                }else{
+                    teste = true;
+                    system("cls");
+                    cout << "Endereco invalido, digite sem virgulas" << endl;
+                    Sleep(5000);
+                    system("cls");
+                    break;
+                }
+            }
+            for(int i = 0; i < bairro.size(); i++){
+                if((bairro[i] != ',')){
+                }else{
+                    teste = true;
+                    system("cls");
+                    cout << "Endereco invalido, digite sem virgulas" << endl;
+                    Sleep(5000);
+                    system("cls");
+                    break;
+                }
+            }
+            for(int i = 0; i < cidade.size(); i++){
+                if((cidade[i] != ',')){
+                }else{
+                    teste = true;
+                    system("cls");
+                    cout << "Endereco invalido, digite sem virgulas" << endl;
+                    Sleep(5000);
+                    system("cls");
+                    break;
+                }
+            }
+            for(int i = 0; i < uf.size(); i++){
+                if((uf[i] != ',')){
+                }else{
+                    teste = true;
+                    system("cls");
+                    cout << "Endereco invalido, digite sem virgulas" << endl;
+                    Sleep(5000);
+                    system("cls");
+                    break;
+                }
+            }
+
+            if(teste){
+                continue;
+            }else
+                break;
+        }
+        endereco = "Logradouro: " + logradouro + " - " "Bairro: " + bairro + " - " + "Cidade: " + cidade + " - " + "UF: " + uf;            
     }
 
     cout << "Digite o novo numero da casa: ";
@@ -1186,12 +1281,35 @@ void GerenciaArquivo::modificaEndereco(string cod){
 void GerenciaArquivo::modificaTelefone(string cod){
     int cont = 0;
     string modificacao;
+    bool teste;
 
     colunas();
     system("cls");
-    cout << "Digite o novo telefone - formato: (00) 00000-0000: ";
-    getline(cin, modificacao);
 
+    while(1){
+        system("cls");
+        teste = false;
+        cout << "Digite o novo telefone - formato: (00) 00000-0000: ";
+        getline(cin, modificacao);
+        system("cls");
+
+        for(int i = 0; i < modificacao.size(); i++){
+            if(modificacao[i] != ','){
+            }else{
+                teste = true;
+                system("cls");
+                cout << "Telefone invalido, digite sem virgulas" << endl;
+                Sleep(5000);
+                system("cls");
+                break;
+            }
+        }
+
+        if(teste){
+            continue;
+        }else
+            break;
+    }
     system("cls");
 
     while(1){
