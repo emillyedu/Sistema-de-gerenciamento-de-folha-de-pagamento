@@ -14,9 +14,9 @@ public:
     ~Operador();
 
     /** 
-     *  Tal método sobrescrito realiza o cálculo do aumento de salário para funcionários da designação Operador.
+     *  Método sobrescrito para realizar o cálculo do aumento de salário para funcionários da designação Operador.
      *  Possui um parâmetro.
-     *  \param salario variável do tipo double, representando o salário do Operador.
+     *  \param salario variável do tipo double.
      *  \return double, retorna o novo salário do Operador após o aumento.
      *  \author Êmilly Eduarda
     */
