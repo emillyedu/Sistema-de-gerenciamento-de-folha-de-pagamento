@@ -1,1 +1,4 @@
-codigo,nome,end,telefone,data de ingresso,designacao,salario,area de supervisao,area academica,formacao maxima123,lucas,logradouro:  - bairro:  - cidade: várzea alegre - uf: ce - numero: 189,88 998556036,12/12/2000,operador,1000,Nan,Nan,Nan
+codigo,nome,end,telefone,data de ingresso,designacao,salario,area de supervisao,area academica,formacao maxima
+123,lucas,logradouro:  - bairro:  - cidade: várzea alegre - uf: ce - numero: 189,88 998556036,12/12/2000,operador,1000,Nan,Nan,Nan
+111,emi,logradouro: rua professora josefa di lorenzo souza - bairro: portal do sol - cidade: joão pessoa - uf: pb - numero: 624,8889986038,10/10/1989,gerente,2000,'funcionarios',Nan,Nan
+777,igo,logradouro:  - bairro:  - cidade: várzea alegre - uf: ce - numero: 189,889997667039,09/08/1999,diretor,3000,'operacoes','adm',Nan

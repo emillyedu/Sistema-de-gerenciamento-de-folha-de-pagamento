@@ -24,6 +24,5 @@ int main(){
     
     menu.cmdPrincipal();
     // funcionario.calculaFolhaSalarial();
-
     return 0;
 }
