@@ -1401,8 +1401,8 @@ bool Funcionario::calculaFolhaSalarial(){
 }
 
 void Funcionario::exibeFolhaSalarialFuncionario(){
-    string nomeF, codigoF;
-    int i = 0, opcao, teste, valor;
+    string nomeF, codigoF, opcao;
+    int i = 0, teste, valor, c;
     double salarioD[TAM];
 
     limpaArraySalario();
@@ -1412,9 +1412,9 @@ void Funcionario::exibeFolhaSalarialFuncionario(){
     while(1){
         system("cls");
         cout << "Deseja fazer a busca por nome (1) ou codigo (2)?" << endl;
-        cin >> opcao;
+        getline(cin, opcao);
         system("cls");
-        if(opcao == 1){
+        if(opcao == "1"){
             teste = 0;
             cout << "Digite o nome: ";
             getchar();
@@ -1428,12 +1428,41 @@ void Funcionario::exibeFolhaSalarialFuncionario(){
                     break;
             }
         }
-        if(teste)
+        if(teste){
             break;
-        cout << "Nome Invalido" << endl;
-        Sleep(5000);
+        }else{
+            c=0;
+            cout << "Nome Invalido" << endl;
+            Sleep(5000);
+            system("cls");
+            cout << "Nenhum funcionario encontrado. Gostaria de tentar novamente? [s/n]" << endl;
+            getline(cin, opcao);
+
+            if (opcao == "s" || opcao == "S"){    
+                system("cls");
+                c = 1;
+                break;
+            }
+            else if (opcao == "n" || opcao == "N"){
+                system("cls");
+                c = 2;
+                break;
+            }else{
+               system("cls"); 
+                 cout << "Opcao invalida! Tente novamente" << endl << endl;
+                Sleep(5000);
+                continue;
+            }
+
+            if (c == 1){
+                continue; //Vai para o inicio do while
+            }
+            else if (c == 2){                
+                break;    
+            }
+        }
         
-        }else if(opcao == 2){
+        }else if(opcao == "2"){
             teste = 0;
             cout << "Digite o codigo: ";
             getchar();
@@ -1448,28 +1477,57 @@ void Funcionario::exibeFolhaSalarialFuncionario(){
             }
             if(teste)
                 break;
-            cout << "codigo Inválido" << endl;   
-            Sleep(5000);  
+            }else{
+                c=0;
+                cout << "Nome Invalido" << endl;
+                Sleep(5000);
+                system("cls");
+                cout << "Nenhum funcionario encontrado. Gostaria de tentar novamente? [s/n]" << endl;
+                getline(cin, opcao);
+
+                if (opcao == "s" || opcao == "S"){    
+                    system("cls");
+                    c = 1;
+                    break;
+                }
+                else if (opcao == "n" || opcao == "N"){
+                    system("cls");
+                    c = 2;
+                    break;
+                }else{
+                system("cls"); 
+                    cout << "Opcao invalida! Tente novamente" << endl << endl;
+                    Sleep(5000);
+                continue;
+                }
+
+                if (c == 1){
+                    continue; //Vai para o inicio do while
+                }
+                else if (c == 2){                
+                    break;    
+                }
+            }  
         }
-    }
+    
     for(int i = 0; i < tamArq - 1; i++){
         try{
             salarioD[i] = stod(salario[i]);    
         }catch(std :: invalid_argument  const & ex ){
-            //cout << "O parâmetro não é uma string" << endl;
         }
     }
 
     calculaDescontos(salarioD);
+    if(teste){
+        system("cls");
+        cout << "\n-------------------------------------------------------------\n\n";
+        cout << "Funcinario,Designacao,SalarioBruto,INSS,IRRF,SalarioLiquido" << endl;
+        cout << nome[valor] << ",R$" << salario[valor] << ",R$" << inss[valor] << ",R$" << irrf[valor] << ",R$" << salarioLiquido[valor] << endl;
+        cout << "\n-------------------------------------------------------------\n";
 
-    system("cls");
-    cout << "\n-------------------------------------------------------------\n\n";
-    cout << "Funcinario,Designacao,SalarioBruto,INSS,IRRF,SalarioLiquido" << endl;
-    cout << nome[valor] << ",R$" << salario[valor] << ",R$" << inss[valor] << ",R$" << irrf[valor] << ",R$" << salarioLiquido[valor] << endl;
-    cout << "\n-------------------------------------------------------------\n";
-
-    cout << "\n\n";
-    system("pause");
+        cout << "\n\n";
+        system("pause");
+    }
 }
 
 void Funcionario::exibeFolhaSalarialEmpresa(){
@@ -1692,7 +1750,6 @@ void Funcionario::exibeFolhaSalarialEmpresa(){
 
                     if(temp == "SalarioEmpresa"){
                         aux = temp;
-                        // cout << aux << endl;
                     }else{
                         aux = "";
                     }
@@ -1717,18 +1774,17 @@ void Funcionario::exibeFolhaSalarialEmpresa(){
                         cout << "Mes de " << meses[j-1] << ": R$ " << empresaMes[j-1] << endl;
                         
                         if(j==12){
-                            
                             cout <<  "Gasto Salarial Anual Da Empresa: R$ " << salarioEmpresa<< endl;
                         }
 
                     }
                 }
-
-                cout << "\n-------------------------------------------------------------\n";
-                cout << "\n\n";
-                system("pause");
-                system("cls");
-
+                if(j==12){
+                    cout << "\n-------------------------------------------------------------\n";
+                    cout << "\n\n";
+                    system("pause");
+                }
+                    
                 fileTeste.close();
             }else{
                 fileTeste.close();
