@@ -1414,27 +1414,29 @@ void Funcionario::exibeFolhaSalarialFuncionario(){
         if(teste){
             break;
         }else{
-            c=0;
-            cout << "Nome Invalido" << endl;
-            Sleep(5000);
-            system("cls");
-            cout << "Nenhum funcionario encontrado. Gostaria de tentar novamente? [s/n]" << endl;
-            getline(cin, opcao);
-
-            if (opcao == "s" || opcao == "S"){    
-                system("cls");
-                c = 1;
-                break;
-            }
-            else if (opcao == "n" || opcao == "N"){
-                system("cls");
-                c = 2;
-                break;
-            }else{
-               system("cls"); 
-                 cout << "Opcao invalida! Tente novamente" << endl << endl;
+            while(1){
+                c=0;
+                cout << "Nome Invalido" << endl;
                 Sleep(5000);
-                continue;
+                system("cls");
+                cout << "Nenhum funcionario encontrado. Gostaria de tentar novamente? [s/n]" << endl;
+                getline(cin, opcao);
+
+                if (opcao == "s" || opcao == "S"){    
+                    system("cls");
+                    c = 1;
+                    break;
+                }
+                else if (opcao == "n" || opcao == "N"){
+                    system("cls");
+                    c = 2;
+                    break;
+                }else{
+                system("cls"); 
+                    cout << "Opcao invalida! Tente novamente" << endl << endl;
+                    Sleep(5000);
+                    continue;
+                }
             }
 
             if (c == 1){
@@ -1461,27 +1463,29 @@ void Funcionario::exibeFolhaSalarialFuncionario(){
             if(teste)
                 break;
             }else{
-                c=0;
-                cout << "Nome Invalido" << endl;
-                Sleep(5000);
-                system("cls");
-                cout << "Nenhum funcionario encontrado. Gostaria de tentar novamente? [s/n]" << endl;
-                getline(cin, opcao);
-
-                if (opcao == "s" || opcao == "S"){    
-                    system("cls");
-                    c = 1;
-                    break;
-                }
-                else if (opcao == "n" || opcao == "N"){
-                    system("cls");
-                    c = 2;
-                    break;
-                }else{
-                system("cls"); 
-                    cout << "Opcao invalida! Tente novamente" << endl << endl;
+                while(1){
+                    c=0;
+                    cout << "Nome Invalido" << endl;
                     Sleep(5000);
-                continue;
+                    system("cls");
+                    cout << "Nenhum funcionario encontrado. Gostaria de tentar novamente? [s/n]" << endl;
+                    getline(cin, opcao);
+
+                    if (opcao == "s" || opcao == "S"){    
+                        system("cls");
+                        c = 1;
+                        break;
+                    }
+                    else if (opcao == "n" || opcao == "N"){
+                        system("cls");
+                        c = 2;
+                        break;
+                    }else{
+                    system("cls"); 
+                        cout << "Opcao invalida! Tente novamente" << endl << endl;
+                        Sleep(5000);
+                    continue;
+                    }
                 }
 
                 if (c == 1){
