@@ -411,7 +411,7 @@ void Funcionario::addFuncionario(){
                     cout << "codigo maior do que o esperado\n" << endl;
                     Sleep(5000);
                     continue;
-                }
+                }            
             }
             for(i = 1; i < TAM; i++){
                 if(linhas[i] != ""){
@@ -424,13 +424,57 @@ void Funcionario::addFuncionario(){
                     break;
                 }
             }
+            if(c == 0){
+                continue;
+            }
             if(c == 1){
+                teste = false;
+
+                for(int i = 0; i < codigo.size(); i++){
+                    if(codigo[i] != ','){
+                    }else{
+                        teste = true;
+                        system("cls");
+                        cout << "Codigo invalido, digite sem virgulas" << endl;
+                        Sleep(5000);
+                        system("cls");
+                        break;
+                    }
+                }
+            }
+            if(teste){
+                continue;
+            }
+            else{
                 break;
             }
         }
 
-        cout << "Digite o nome: ";
-        getline(cin, nome);
+        while(1){
+            system("cls");
+            teste = false;
+            cout << "Digite o nome: ";
+            getline(cin, nome);
+
+            for(int i = 0; i < nome.size(); i++){
+                if(nome[i] != ','){
+                }else{
+                    teste = true;
+                    system("cls");
+                    cout << "Nome invalido, digite sem virgulas" << endl;
+                    Sleep(5000);
+                    system("cls");
+                    break;
+                }
+            }
+
+            if(teste){
+                continue;
+            }else
+                break;
+        }
+
+        system("cls");
 
         system("cls");
 
@@ -475,20 +519,73 @@ void Funcionario::addFuncionario(){
         }
         system("cls");
         if(endereco == Nan || yn == "N" || yn == "n"){
-            endereco.clear();
-            cep.clear();
-            cout << "Informe o logradouro: ";
-            getline(cin, logradouro);
-            cout << "Informe o bairro: ";
-            getline(cin, bairro);
-            cout << "Informe a cidade: ";
-            getline(cin, cidade);
-            cout << "Informe a Uf: ";
-            getline(cin, uf);
+            while(1){
+                endereco.clear();
+                cep.clear();
+                cout << "Informe o logradouro: ";
+                getline(cin, logradouro);
+                cout << "Informe o bairro: ";
+                getline(cin, bairro);
+                cout << "Informe a cidade: ";
+                getline(cin, cidade);
+                cout << "Informe a Uf: ";
+                getline(cin, uf);
+                system("cls");
 
-            endereco = "Logradouro: " + logradouro + " - " "Bairro: " + bairro + " - " + "Cidade: " + cidade + " - " + "UF: " + uf;            
+                teste = false;
+
+                for(int i = 0; i < logradouro.size(); i++){
+                    if((logradouro[i] != ',')){
+                    }else{
+                        teste = true;
+                        system("cls");
+                        cout << "Endereco invalido, digite sem virgulas" << endl;
+                        Sleep(5000);
+                        system("cls");
+                        break;
+                    }
+                }
+                for(int i = 0; i < bairro.size(); i++){
+                    if((bairro[i] != ',')){
+                    }else{
+                        teste = true;
+                        system("cls");
+                        cout << "Endereco invalido, digite sem virgulas" << endl;
+                        Sleep(5000);
+                        system("cls");
+                        break;
+                    }
+                }
+                for(int i = 0; i < cidade.size(); i++){
+                    if((cidade[i] != ',')){
+                    }else{
+                        teste = true;
+                        system("cls");
+                        cout << "Endereco invalido, digite sem virgulas" << endl;
+                        Sleep(5000);
+                        system("cls");
+                        break;
+                    }
+                }
+                for(int i = 0; i < uf.size(); i++){
+                    if((uf[i] != ',')){
+                    }else{
+                        teste = true;
+                        system("cls");
+                        cout << "Endereco invalido, digite sem virgulas" << endl;
+                        Sleep(5000);
+                        system("cls");
+                        break;
+                    }
+                }
+
+                if(teste){
+                    continue;
+                }else
+                    break;
+            }
         }
-
+        endereco = "Logradouro: " + logradouro + " - " "Bairro: " + bairro + " - " + "Cidade: " + cidade + " - " + "UF: " + uf;            
 
         cout << "Digite o numero da casa: ";
         getline(cin, numero);
@@ -496,8 +593,51 @@ void Funcionario::addFuncionario(){
         endereco = endereco + " - numero: " + numero;
         system("cls");
 
-        cout << "telefone - formato: (00) 00000-0000: ";
-        getline(cin, telefone);
+        while(1){
+            system("cls");
+            teste = false;
+            cout << "telefone - formato: (00) 00000-0000: ";
+            getline(cin, telefone);
+            system("cls");
+
+            for(int i = 0; i < telefone.size(); i++){
+                if(telefone[i] != ','){
+                }else{
+                    teste = true;
+                    system("cls");
+                    cout << "Telefone invalido, digite sem virgulas" << endl;
+                    Sleep(5000);
+                    system("cls");
+                    break;
+                }
+            }
+
+            if(teste){
+                continue;
+            }else
+                break;
+        }
+
+        system("cls");
+
+
+        while(1){
+            cout << "Poderia informar seu CEP? [s/n]: ";
+            cin >> yn;
+            getchar();
+            if(yn == "S" || yn == "s" ||yn == "N" || yn == "n"){
+                break;
+            }
+            else if(yn.length() > 1){
+                system("cls");
+                continue;
+            }
+            else{
+                system("cls");
+                continue;
+            } 
+            system("cls");
+        }
         system("cls");
 
         while(1){
