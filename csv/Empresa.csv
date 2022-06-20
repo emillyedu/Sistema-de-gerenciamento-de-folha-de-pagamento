@@ -1,4 +1,5 @@
 codigo,nome,end,telefone,data de ingresso,designacao,salario,area de supervisao,area academica,formacao maxima
-123,lucas,logradouro:  - bairro:  - cidade: várzea alegre - uf: ce - numero: 189,88998556036,12/12/2000,operador,1000,Nan,Nan,Nan
-111,emi,logradouro: rua professora josefa di lorenzo souza - bairro: portal do sol - cidade: joão pessoa - uf: pb - numero: 624,8889986038,10/10/1989,gerente,2000,'funcionarios',Nan,Nan
-777,igo,logradouro:  - bairro:  - cidade: várzea alegre - uf: ce - numero: 189,889997667039,09/08/1999,diretor,3000,'operacoes','adm',Nan
+001,lucas,logradouro:  - bairro:  - cidade: várzea alegre - uf: ce - numero: 189,88998556036,19/09/2003,operador,2000,Nan,Nan,Nan
+002,emi,logradouro: rua professora josefa di lorenzo souza - bairro: portal do sol - cidade: joão pessoa - uf: pb - numero: 624,83997667037,10/05/1997,gerente,4000,'funcinarios',Nan,Nan
+003,igor,logradouro: rua praia enseada do amor - bairro: portal do sol - cidade: joão pessoa - uf: pb - numero: 621,88999994343,05/05/1980,diretor,6000,'equipamentos','administracao',Nan
+004,jaoquim,logradouro: rua edgar coelho de alencar - bairro: são josé - cidade: juazeiro do norte - uf: ce - numero: 198,88999958132,05/02/1988,presidente,8000,Nan,'Engenharia',Mestrado
