@@ -14,7 +14,7 @@ auxiliar na organização e administração de uma empresa, no que diz respeito 
 - Capturar o endereço do funcionário pelo CEP, usando API.
 
 
-Todos os dados dos funcionários e todas as folhas salariais estão salvas como arquivos CSV, na pasta <a href="/CSV">CSVs</a>.
+Todos os dados dos funcionários e todas as folhas salariais estão salvas como arquivos CSV, na pasta <a href="/csv">CSVs</a>.
 
 ### Compilar programa
 
