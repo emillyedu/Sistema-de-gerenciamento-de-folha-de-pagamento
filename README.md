@@ -21,3 +21,5 @@ calcula a folha salarial do funcionário e da empresa, sendo ela mensal ou anual
 ```
 
 ### Estrutura do código
+
+<img src="/assets/uml.png" alt="uml"/>
