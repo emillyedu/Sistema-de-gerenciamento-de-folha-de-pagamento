@@ -893,10 +893,9 @@ void Funcionario::addFuncionario(){
         cout << "Cadastro realizado!" << endl;
 
         cout << "\n-------------------------------------------------------------\n";
-
-        cout << "Deseja adicionar outro funcionario? [s/n]" << endl;
-        cin >> yn;
-        getchar();
+        Sleep(5000);
+        
+        yn = 'n';
 
         system("cls");
 
