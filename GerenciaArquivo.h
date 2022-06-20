@@ -29,7 +29,7 @@ public:
 
     /** 
      *  Método que apaga uma string, tornando-a vazia. Possui um parâmetro.
-     *  \param *str um ponteiro do tipo string que aponta para uma string qualquer, a fim de realizar a função do método.
+     *  \param *str um ponteiro do tipo string que aponta para a string que será apagada.
      *  \return void, não possui retorno.
      *  \author Êmilly Eduarda
     */
@@ -39,7 +39,7 @@ public:
      *  Um método que transforma uma string qualquer em outra, mas agora contendo apenas letras minúsculas.
      *  Possui um parâmetro.
      *  \param str uma variável do tipo string, a ser modificada.
-     *  \return string, retorna a string com todas as letras minúsculas.
+     *  \return string, retorna a string modificada.
      *  \author Lucas Bitu
     */
     string transformaStringMin(string str);
@@ -53,14 +53,14 @@ public:
     bool isNumber(const string& str);
 
     /** 
-     *  Método utilizado para criar o arquivo csv onde ficarão os dados dos funcionários. Não possui parâmetros.
+     *  Método para criação do arquivo csv onde ficarão os dados dos funcionários. Não possui parâmetros.
      *  \return void, não possui retorno.
      *  \author Êmilly Eduarda
     */
     void criarArquivo();
 
     /** 
-     *  Método utilizado para ler o arquivo csv onde ficarão os dados dos funcionários. Não possui parâmetros.
+     *  Método para leitura do arquivo csv onde ficarão os dados dos funcionários. Não possui parâmetros.
      *  \return void, não possui retorno.
      *  \author Êmilly Eduarda
     */
@@ -75,19 +75,16 @@ public:
 
     /** 
      *  Método para auxiliar na obtenção dos dados dos funcionários, a partir do arquivo csv. Possui dois parâmetros.
-     *  \param colunaAtual[] elemento de um array do tipo string, funcionando como uma referência para realização
-     *  da função do método.
-     *  \param del[] elemento de um array do tipo inteiro, também funcionando como uma referência para realização
-     *  da função do método.
+     *  \param colunaAtual[] elemento de um array do tipo string.
+     *  \param del[] elemento de um array do tipo inteiro.
      *  \return void, não possui retorno.
      *  \author Êmilly Eduarda
     */
     void separadorColuna(string colunaAtual[], int del[]);
 
     /** 
-     *  Este método é responsável por obter os dados dos funcionários, a partir do arquivo csv, "guardando-os"
-     *  separadamente em cada array do tipo string, que são, justamente, grande parte dos atributos da classe
-     *  "GerenciaArquivo". Não possui parâmetros.  
+     *  Método responsável por obter os dados salvos no arquivo csv, "guardando-os" separadamente em cada array do tipo
+     *  string, que são, justamente, grande parte dos atributos da classe "GerenciaArquivo". Não possui parâmetros.  
      *  \return void, não possui retorno.
      *  \author Êmilly Eduarda
     */
@@ -96,20 +93,17 @@ public:
     /** 
      *  Um método que faz uso da API presente em "http://viacep.com.br" para, a partir de um CEP informado, obter
      *  o endereço de um funcionário(a). Possui um parâmetro.
-     *  \param cep variável do tipo string a ser recebida, a fim de realizar a função do método.
-     *  \return string, retorna uma string com o endereço do funcionário(a).
+     *  \param cep variável do tipo string a ser recebida.
+     *  \return string, retorna uma string com o endereço.
      *  \author Êmilly Eduarda
     */
     string retornaEndereco(string cep);
 
     /** 
      *  Método para auxiliar no processo de obtenção do endereço de um funcionário(a) pela API. Possui três parâmetros.
-     *  \param api[] elemento de um array do tipo string, funcionando como uma referência para obter determinada parte
-     *  do endereço.
-     *  \param line variável do tipo inteiro, representando também uma referência para obter determinada parte do
-     *  endereço.
-     *  \param tam variável do tipo inteiro, representando o tamanho do índice até onde a string do API deve ser
-     *  apagada, a fim de gerar outra string com as partes certas do endereço. 
+     *  \param api[] elemento de um array do tipo string.
+     *  \param line variável do tipo inteiro.
+     *  \param tam variável do tipo inteiro. 
      *  \return string, retorna as partes do endereço para auxiliar no método "retornaEndereco(string cep)".
      *  \author Êmilly Eduarda
     */
@@ -118,17 +112,17 @@ public:
     /** 
      *  Um método que gera números aletórios de dias trabalhados pelos funcionários, dependendo de um mês informado.
      *  Possui um parâmetro.
-     *  \param m variável do tipo double, representando o mês em que a folha salarial vai ser calculada.
-     *  \return double, retorna a quantidade de dias trabalhados pelo funcionário(a) em determinado mês.
+     *  \param m variável do tipo double, mês em que a folha salarial vai ser calculada.
+     *  \return double, retorna a quantidade de dias trabalhados em determinado mês.
      *  \author Lucas Bitu
     */
     double geraDiasTrabalhados(double m);
 
     /** 
-     *  Um método que gera números aletórios de horas extras feitas pelos funcionários, dependendo de um mês informado.
+     *  Este método gera números aletórios de horas extras feitas pelos funcionários, dependendo de um mês informado.
      *  Possui um parâmetro.
-     *  \param m variável do tipo double, representando o mês em que a folha salarial vai ser calculada.
-     *  \return double, retorna a quantidade de horas extras feitas pelo funcionário(a) em determinado mês.
+     *  \param m variável do tipo double, mês em que a folha salarial vai ser calculada.
+     *  \return double, retorna a quantidade de horas extras feitas em determinado mês.
      *  \author Lucas Bitu
     */
     double geraHorasExtras(double m);
@@ -136,7 +130,7 @@ public:
     /** 
      *  Método responsável por calcular os descontos no salário dos funcionários, relativos ao imposto de renda
      *  e previdência social. Possui um parâmetro.
-     *  \param sa[] elemento de um array do tipo double, representando o salário a ser descontado.
+     *  \param sa[] elemento de um array do tipo double, salário a ser descontado.
      *  \return void, não possui retorno.
      *  \author Lucas Bitu
     */
@@ -150,7 +144,7 @@ public:
     void limpaArraySalario();
     
     /** 
-     *  Método que realiza a busca parcial de funcionários pelo nome dos mesmos. Não possui parâmetros.
+     *  Método para realizar a busca parcial de funcionários pelo nome. Não possui parâmetros.
      *  \return void, não possui retorno.
      *  \author Igor Matheus
     */
@@ -165,127 +159,115 @@ public:
     void buscaPorData();
 
     /** 
-     *  Método que realiza a busca parcial de funcionários pelo endereço dos mesmos. Não possui parâmetros.
+     *  Método que realiza a busca parcial de funcionários pelo endereço. Não possui parâmetros.
      *  \return void, não possui retorno.
      *  \authors Êmilly Eduarda, Lucas Bitu e Igor Matheus
     */
     void buscaPorEndereco();
 
     /** 
-     *  Um método que, a partir do código atual de um funcionário(a), é responsável por modificar esse código para
-     *  um novo, salvando a modificação no arquivo csv. Possui um parâmetro.
-     *  \param cod variável do tipo string, que recebe o código atual do funcionário(a), a fim de realizar a modificação
-     *  no funcionário(a) correto.
+     *  A partir do código atual de um funcionário(a), este método modifica esse código para um novo, salvando a
+     *  modificação no arquivo csv. Possui um parâmetro.
+     *  \param cod variável do tipo string, código atual do funcionário(a).
      *  \return void, não possui retorno.
      *  \author Igor Matheus
     */
     void modificaCodigo(string cod);
 
     /** 
-     *  Um método que, a partir do código de um funcionário(a), é responsável por modificar o nome do mesmo, salvando
-     *  a modificação no arquivo csv. Possui um parâmetro.
-     *  \param cod variável do tipo string, que recebe o código do funcionário(a), a fim de realizar a modificação
-     *  do nome no funcionário(a) correto.
+     *  A partir do código de um funcionário(a), este método modifica o nome do mesmo, salvando a modificação
+     *  no arquivo csv. Possui um parâmetro.
+     *  \param cod variável do tipo string, código do funcionário(a).
      *  \return void, não possui retorno.
      *  \author Igor Matheus
     */
     void modificaNome(string cod);
 
     /** 
-     *  Um método que, a partir do código de um funcionário(a), é responsável por modificar o endereço do mesmo,
-     *  salvando a modificação no arquivo csv. Possui um parâmetro.
-     *  \param cod variável do tipo string, que recebe o código do funcionário(a), para realizar a modificação
-     *  do endereço no funcionário(a) correto.
+     *  Um método que, a partir do código de um funcionário(a), modifica o endereço do mesmo, salvando a modificação
+     *  no arquivo csv. Possui um parâmetro.
+     *  \param cod variável do tipo string, código do funcionário(a).
      *  \return void, não possui retorno.
      *  \author Igor Matheus
     */
     void modificaEndereco(string cod);
 
     /** 
-     *  Um método que, a partir do código de um funcionário(a), é responsável por modificar o telefone do mesmo,
-     *  salvando a modificação no arquivo csv. Possui um parâmetro.
-     *  \param cod variável do tipo string, que recebe o código do funcionário(a), para realizar a modificação
-     *  do telefone no funcionário(a) correto.
+     *  Tal método, a partir do código de um funcionário(a), modifica o telefone do mesmo, salvando a modificação no
+     *  arquivo csv. Possui um parâmetro.
+     *  \param cod variável do tipo string, código do funcionário(a).
      *  \return void, não possui retorno.
      *  \author Igor Matheus
     */
     void modificaTelefone(string cod);
 
     /** 
-     *  Um método que, a partir do código de um funcionário(a), é responsável por modificar a data de ingresso
-     *  do mesmo, salvando a modificação no arquivo csv. Possui um parâmetro.
-     *  \param cod variável do tipo string, que recebe o código do funcionário(a), a fim de realizar a modificação
-     *  da data de ingresso no funcionário(a) correto.
+     *  Um método que, a partir do código de um funcionário(a), modifica a data de ingresso do mesmo, salvando a modificação
+     *  no arquivo csv. Possui um parâmetro.
+     *  \param cod variável do tipo string, código do funcionário(a).
      *  \return void, não possui retorno.
      *  \authors Êmilly Eduarda, Lucas Bitu e Igor Matheus
     */
     void modificaData(string cod);
 
     /** 
-     *  Método que, a partir do código de um funcionário(a), é responsável por modificar o salário do mesmo, salvando
-     *  a modificação no arquivo csv. Possui um parâmetro.
-     *  \param cod variável do tipo string, que recebe o código do funcionário(a), a fim de realizar a modificação
-     *  do salário no funcionário(a) correto.
+     *  A partir do código de um funcionário(a), o método modifica o salário do mesmo, salvando a modificação no arquivo csv.
+     *  Possui um parâmetro.
+     *  \param cod variável do tipo string, código do funcionário(a).
      *  \return void, não possui retorno.
      *  \authors Êmilly Eduarda, Lucas Bitu e Igor Matheus
     */
     void modificaSalario(string cod);
 
     /** 
-     *  Método que, a partir do código de um funcionário(a), é responsável por modificar a designação do mesmo,
-     *  salvando tal modificação no arquivo csv. Possui um parâmetro.
-     *  \param cod variável do tipo string, que recebe o código do funcionário(a), para realizar a modificação
-     *  da designação no funcionário(a) correto.
+     *  Método que, a partir do código de um funcionário(a), modifica a designação do mesmo, salvando tal modificação no
+     *  arquivo csv. Possui um parâmetro.
+     *  \param cod variável do tipo string, código do funcionário(a).
      *  \return void, não possui retorno.
      *  \authors Êmilly Eduarda, Lucas Bitu e Igor Matheus
     */
     void modificaDesignacao(string cod);
 
     /** 
-     *  Um método auxiliar para o método "modificaDesignacao(string cod)". É responsável por modificar a designação
-     *  de um Operador, salvando tal modificação no arquivo csv. Possui um parâmetro.
-     *  \param cod variável do tipo string, que recebe o código do funcionário(a), para realizar a modificação
-     *  da designação no funcionário(a) correto.
+     *  Um método auxiliar para o método "modificaDesignacao(string cod)". Modifica a designação de um Operador, salvando
+     *  tal modificação no arquivo csv. Possui um parâmetro.
+     *  \param cod variável do tipo string, código do funcionário(a).
      *  \return void, não possui retorno.
      *  \authors Êmilly Eduarda, Lucas Bitu e Igor Matheus
      */
     void modDesigDeOperador(string cod);
 
     /** 
-     *  Um método auxiliar para o método "modificaDesignacao(string cod)". É responsável por modificar a designação
-     *  de um Gerente, salvando tal modificação no arquivo csv. Possui um parâmetro.
-     *  \param cod variável do tipo string, que recebe o código do funcionário(a), para realizar a modificação
-     *  da designação no funcionário(a) correto.
+     *  Um método auxiliar para o método "modificaDesignacao(string cod)". Modifica a designação de um Gerente e salva tal
+     *  modificação no arquivo csv. Possui um parâmetro.
+     *  \param cod variável do tipo string, código do funcionário(a).
      *  \return void, não possui retorno.
      *  \authors Êmilly Eduarda, Lucas Bitu e Igor Matheus
     */
     void modDesigDeGerente(string cod);
 
     /** 
-     *  Um método auxiliar para o método "modificaDesignacao(string cod)". É responsável por modificar a designação
-     *  de um Diretor, salvando tal modificação no arquivo csv. Possui um parâmetro.
-     *  \param cod variável do tipo string, que recebe o código do funcionário(a), para realizar a modificação
-     *  da designação no funcionário(a) correto.
+     *  Método auxiliar para o método "modificaDesignacao(string cod)". Modifica a designação de um Diretor e salva tal
+     *  modificação no arquivo csv. Possui um parâmetro.
+     *  \param cod variável do tipo string, código do funcionário(a).
      *  \return void, não possui retorno.
      *  \authors Êmilly Eduarda, Lucas Bitu e Igor Matheus
     */
     void modDesigDeDiretor(string cod);
 
     /** 
-     *  Um método auxiliar para o método "modificaDesignacao(string cod)". É responsável por modificar a designação
-     *  de um Presidente, salvando tal modificação no arquivo csv. Possui um parâmetro.
-     *  \param cod variável do tipo string, que recebe o código do funcionário(a), para realizar a modificação
-     *  da designação no funcionário(a) correto.
+     *  Método auxiliar para o método "modificaDesignacao(string cod)". Modifica a designação de um Presidente, salvando tal
+     *  modificação no arquivo csv. Possui um parâmetro.
+     *  \param cod variável do tipo string, código do funcionário(a).
      *  \return void, não possui retorno.
      *  \authors Êmilly Eduarda, Lucas Bitu e Igor Matheus
     */
     void modDesigDePresidente(string cod);
 
     /** 
-     *  Método auxiliar capaz de modificar a designação de qualquer funcionário(a) Gerente, Diretor ou Presidente,
-     *  para um Operador, salvando tal modificação no arquivo csv. Possui um parâmetro.
-     *  \param cod variável do tipo string, que recebe o código do funcionário(a), para realizar a modificação
-     *  da designação no funcionário(a) correto.
+     *  Um método auxiliar capaz de modificar a designação de um Gerente, Diretor ou Presidente, para um Operador, salvando essa
+     *  modificação no arquivo csv. Possui um parâmetro.
+     *  \param cod variável do tipo string, código do funcionário(a).
      *  \return void, não possui retorno.
      *  \authors Êmilly Eduarda, Lucas Bitu e Igor Matheus
     */
@@ -312,23 +294,23 @@ protected:
     int tamArq; 
 
     /** 
-     *  Atributos do tipo string, sendo: linhas[TAM] um array de tamanho 100 para armazenar as linhas do arquivo csv;
+     *  Atributos do tipo string, sendo: linhas[TAM] um array para armazenar as linhas do arquivo csv;
      *  e Nan um atributo que armazena a string "Nan".
      *  \var 
     */
     string linhas[TAM], Nan = {"Nan"};; 
 
     /** 
-     *  Atributos do tipo string que armazenam, em arrays de tamanho TAM (100), os principais dados dos funcionários:
+     *  Atributos do tipo string que armazenam, em arrays, os principais dados dos funcionários:
      *  codigo, nome, endereço, telefone, data, designação, salário, área de supervisão, formação acadêmica e
      *  formação acadêmica máxima.
      *  \var 
     */
     string codigo[TAM], nome[TAM], end[TAM], telefone[TAM], data[TAM], desig[TAM],salario[TAM],sup[TAM],acad[TAM],formacao[TAM];
+    
     /** 
-     *  Atributos do tipo double que armazenam os dados, em arrays de tamanho TAM (100), sobre o salário bruto,
-     *  salário líquido, imposto do INSS, bem como do IRRF; E, em uma variável, armazena os dados sobre o salário
-     *  da empresa.  
+     *  Atributos do tipo double que armazenam os dados, em arrays, sobre o salário bruto, salário líquido, impostos do INSS e IRRF;
+     *  e, em uma variável, armazena os dados sobre o montante salarial da empresa.  
      *  \var 
     */
     double salarioBruto[TAM],inss[TAM],irrf[TAM],salarioLiquido[TAM], salarioEmpresa;
