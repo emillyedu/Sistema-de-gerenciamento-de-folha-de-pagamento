@@ -911,40 +911,36 @@ void Funcionario::addFuncionario(){
 }
 
 void Funcionario::buscarFuncionario(){
-    int escolha;
+    string escolha;
 
     while(1){
         cout << "\n------------------------- BUSCAR ---------------------------\n\n";
         cout << "[1] Buscar por nome\n";
         cout << "[2] Buscar por data de ingresso (intervalo de tempo)\n";
         cout << "[3] Buscar por endereco\n"; 
+        cout << "[0] Sair\n";
         cout << "\n------------------------------------------------------------\n\n";
         
-        cin >> escolha;
-        getchar();
+        getline(cin, escolha);
     
         system("cls");
 
-        if (escolha <= 0 || escolha > 3){
-            cout << "Escolha invalida! Tente novamente" << endl;
-            continue;
-
-        } else {
-            switch (escolha){
-                case 1:
-                    buscaPorNome();
-                    break;
-        
-                case 2:
-                    buscaPorData();
-                    break;
-        
-                case 3:
-                    buscaPorEndereco();
-                    break;
-            }
-
+        if(escolha == "1"){
+            buscaPorNome();
+            system("cls");
+        }else if(escolha == "2"){
+            buscaPorData();
+            system("cls");
+        }else if(escolha == "3"){
+            buscaPorEndereco();
+            system("cls");
+        }else if(escolha == "0"){
             break;
+        }else{
+            cout << "Escolha invalida! Tente novamente" << endl;
+            Sleep(5000);
+            system("cls");
+            continue;
         }
     }
 }

@@ -378,7 +378,7 @@ void GerenciaArquivo::buscaPorNome(){
         cout << "\n-------------------------------------------------------------\n\n";
         for (int i = 0; i < TAM; i++){
             //Encontrando a "busca" em minusculo, já que todos os nomes de funcionarios do arquivo estarão em minúsculo 
-            if (nome[i].find(busca) != string::npos){
+            if (nome[i].find(busca) != string::npos && busca != ""){
                 endereco[i] = end[i];
                 endereco[i] = endereco[i].erase(0, 12);//Para o endereco aparecer a partir de "Rua"
 
@@ -901,7 +901,7 @@ void GerenciaArquivo::buscaPorEndereco(){
             string1 = endereco[i];
             string2 = transformaStringMin(string1);
 
-            if (string2.find(busca) != string::npos){
+            if (string2.find(busca) != string::npos && busca != ""){
 
                 cout << "Codigo..........: " << codigo[i] << endl;
                 cout << "Nome............: " << nome[i] << endl;
