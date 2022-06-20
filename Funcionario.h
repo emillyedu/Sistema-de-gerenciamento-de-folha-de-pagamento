@@ -19,7 +19,7 @@
 using namespace std;
 
 /** 
- *  Esta classe herda da classe "GerenciaArquivo". É utilizada, também, para outras operações relacionadas
+ *  Esta classe herda de "GerenciaArquivo". É utilizada para outras operações relacionadas
  *  aos funcionários.
  *  \class
 */
@@ -28,7 +28,7 @@ public:
     Funcionario();
 
     /** 
-     *  Por meio deste método, ao inserir o número de código de um determinado funcionário, os usuários podem acessar
+     *  Método que, ao inserir o código de um determinado funcionário, os usuários podem acessar
      *  todas as informações fornecidas relacionadas a esse funcionário. Não possui parâmetros.
      *  \return void, não possui retorno.
      *  \author Êmilly Eduarda
@@ -51,7 +51,7 @@ public:
     void exibeListaTipo();
 
     /** 
-     *  Método que; a partir do código ou nome de um determinado funcionário, informado pelo usuário; exibe a folha 
+     *  Método que, a partir do código ou nome de um determinado funcionário, exibe a folha 
      *  salarial desse mesmo funcionário. Não possui parâmetros.
      *  \return void, não possui retorno.
      *  \author Lucas Bitu
@@ -66,9 +66,9 @@ public:
     void exibeFolhaSalarialEmpresa();
 
     /** 
-     *  Um método utilizado para tirar uma foto do funcionário, no momento em que este estiver sendo adicionado
+     *  Método utilizado para tirar uma foto do funcionário, no momento em que este estiver sendo adicionado
      *  na empresa. Possui um parâmetro.
-     *  \param cod string que recebe o código do funcionário.
+     *  \param cod string com o código do funcionário.
      *  \return void, não possui retorno.
      *  \authors Êmilly Eduarda e Lucas Bitu
     */
@@ -77,15 +77,14 @@ public:
 
     /** 
      *  Um método utilizado para renovar a foto do funcionário. Possui um parâmetro.
-     *  \param cod string que recebe o código do funcionário.
+     *  \param cod string com o código do funcionário.
      *  \return void, não possui retorno.
      *  \authors Êmilly Eduarda e Lucas Bitu
     */
     void renovarFoto(string cod);
 
     /** 
-     *  Um método utilizado para exibir a foto do funcionário. Não possui parâmetro.
-     *  \param sem parametros 
+     *  Método utilizado para exibir a foto do funcionário. Não possui parâmetros.
      *  \return void, não possui retorno.
      *  \authors Êmilly Eduarda e Lucas Bitu
     */
@@ -100,17 +99,16 @@ public:
     void addFuncionario();
 
     /** 
-     *  Tal método é responsável por realizar a busca parcial de funcionários da empresa, podendo ser uma busca por
-     *  nome, data de ingresso ou endereço. Para isso, faz uso dos métodos auxiliares presentes na classe "GerenciaArquivo".
-     *  Não possui parâmetros.
+     *  Tal método realiza a busca parcial de funcionários da empresa, podendo ser uma busca por nome, data de ingresso
+     *  ou endereço. Não possui parâmetros.
      *  \return void, não possui retorno.
      *  \authors Êmilly Eduarda, Lucas Bitu e Igor Matheus
     */
     void buscarFuncionario();
 
     /** 
-     *  Um método utilizado para excluir, do arquivo csv, os dados de um determinado funcionário da empresa, a partir
-     *  do código desse funcionário. Não possui parâmetros.
+     *  Método utilizado para excluir os dados, de um determinado funcionário da empresa, do arquivo csv.
+     *  Não possui parâmetros.
      *  \return void, não possui retorno.
      *  \author Lucas Bitu
     */
@@ -126,8 +124,7 @@ public:
     void aumentoDeSalarios();
 
     /** 
-     *  Tal método realiza o cálculo de salário de todos os funcionários para um determinado mês. É solicitado ao
-     *  usuário: o mês e a folha salarial à qual se refere. Não possui parâmetros.
+     *  Tal método realiza o cálculo de salário de todos os funcionários para um determinado mês. Não possui parâmetros.
      *  \return bool, falso caso ja tenha sido calculada antes e true caso contrário.
      *  \author Lucas Bitu
     */
@@ -136,8 +133,7 @@ public:
     /** 
      *  Tal método é responsável por realizar a modificação dos dados de funcionários da empresa, salvando essas
      *  modificações no arquivo csv. É possível modificar o código, nome, endereço, telefone, data de ingresso,
-     *  salário e designação dos funcionários. Para isso, faz uso dos métodos auxiliares presentes na classe
-     *  "GerenciaArquivo". Não possui parâmetros.
+     *  salário e designação dos funcionários. Não possui parâmetros.
      *  \return void, não possui retorno.
      *  \authors Êmilly Eduarda, Lucas Bitu e Igor Matheus
     */
