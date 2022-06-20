@@ -2,19 +2,31 @@
 
 O Sistema de Gerenciamento de Folha de Pagamento consiste é um programa capaz de 
 auxiliar na organização e administração de uma empresa, no que diz respeito ao gerenciamento de seus funcionários.
-Dentre suas funcionalidades, estão as opções de adicionar, editar e excluir funcionário, além de aumentar salário
-com base nos percentuais de aumento de cada designação na empresa.
 
-Também, vale ressaltar que o sistema consegue fotografar o usuário e buscar seu endereço com base em seu CEP. E, ainda,
-calcula a folha salarial do funcionário e da empresa, sendo ela mensal ou anual.
+### Funcionalidades
+- Buscar funcionário.
+- Adicionar, editar e excluir funcionário.
+- Consultar registro de funcionário, lista de funcionários e lista de funcionários por designação.
+- Conceder aumento salarial.
+- Calcular folha salarial.
+- Imprimir folha salarial do funcionário e da empresa (mensal e anual).
+- fotografar, renovar e exibir fotrografia.
+- Capturar o endereço do funcionário pelo CEP, usando API.
+
+
+Todos os dados dos funcionários e todas as folhas salariais estão salvas como arquivos CSV, na pasta <a href="/CSVs">CSVs</a>.
 
 ### Compilar programa
+
+Para compilar o programa, em seu terminal coloque o seguinte código:
 
 ```c++
     g++ *.cpp -o projeto
 ```
 
 ### Executar programa
+
+É possível executá-lo escrevendo:
 
 ```c++
    ./projeto
@@ -23,3 +35,14 @@ calcula a folha salarial do funcionário e da empresa, sendo ela mensal ou anual
 ### Estrutura do código
 
 <img src="/assets/uml.png" alt="uml"/>
+
+
+### Contribuidores
+
+#### <a href="https://github.com/emillyedu">Êmilly Eduarda</a>
+
+#### <a href="https://github.com/LucasBitu">Lucas Bitu</a>
+
+#### <a href="https://github.com/Igor-Matheus">Igor Matheus</a>
+
+
